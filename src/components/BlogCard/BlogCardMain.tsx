@@ -19,13 +19,8 @@ const BlogCardMain = ({
   img,
 }: BlogCardProp) => {
   return (
-    <div
-      id="blog-card"
-      className="blog-card-container gray-3"
-    >
-      <div className="blog-card-image-container">
-        {img}
-      </div>
+    <div id="blog-card" className="blog-card-container gray-3">
+      <div className="blog-card-image-container">{img}</div>
       <div className="py-1"></div>
       <div className="px-2">
         <div className="blog-text-container text-main">

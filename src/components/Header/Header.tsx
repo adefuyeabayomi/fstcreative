@@ -28,10 +28,7 @@ export function Header(): React.JSX.Element {
                 <nav>
                   <ul>
                     <li className="desktop-nav-links">
-                      <Link
-                        className="text-none gray-1 text-medium"
-                        to={"/"}
-                      >
+                      <Link className="text-none gray-1 text-medium" to={"/"}>
                         Home
                       </Link>
                     </li>

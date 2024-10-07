@@ -28,8 +28,14 @@ function Navigation(): React.JSX.Element {
           <Route path="/reset-password" Component={PasswordReset} />
           <Route path="/chat" Component={ChatPage} />
           <Route path="/blog" Component={Blog} />
-          <Route path="/blog/visual-design-elements" Component={DesignElements} />
-          <Route path="/blog/visual-design-principles" Component={DesignPrinciples} />
+          <Route
+            path="/blog/visual-design-elements"
+            Component={DesignElements}
+          />
+          <Route
+            path="/blog/visual-design-principles"
+            Component={DesignPrinciples}
+          />
         </Routes>
         <div className="py-4" />
         <Footer />

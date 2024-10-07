@@ -1,4 +1,3 @@
-
 const password = () => {
   return <div>password component</div>;
 };

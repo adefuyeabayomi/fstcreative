@@ -1,0 +1,39 @@
+import React from "react";
+import "./style.css";
+
+const TempArticle = (): React.JSX.Element => {
+  return (
+    <section className="main-spacing-x">
+      <div className="py-3" />
+      <div className="article-title-backdrop py-4 p-3">
+        <h2 className="font-family-quicksand text-medium"></h2>
+        <div className="py-1" />
+        <p className="white">
+          <span>Date: 6 October, 2024</span>{" "}
+          <span>Tags: Visual Design, Introduction, Design Elements</span>
+        </p>
+      </div>
+      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+        <div className="py-3" />
+        <div>
+          <h4 className="font-family-quicksand gray-2 text-semibold"></h4>
+          <p className="py-2 text-medium gray-4"></p>
+          <div className="container-fluid no-space">
+            <div className="row no-space g-3 align-items-center">
+              <div className="no-space col-12 col-md-6"></div>
+              <div className="no-space col-12 col-md-6"></div>
+            </div>
+          </div>
+          <ul className="text-p text-medium gray-4">
+            <li><span className="text-semibold"></span></li>
+            <li><span className="text-semibold"></span></li>
+            <li><span className="text-semibold"></span></li>
+            <li><span className="text-semibold"></span></li>
+            </ul>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default TempArticle;

@@ -4,7 +4,7 @@ import BlogCardMain, {
   BlogCardProp,
 } from "../../components/BlogCard/BlogCardMain";
 
-import img1 from '../../assets/images/blog-img.png'
+import img1 from "../../assets/images/blog-img.png";
 
 const blogCards: BlogCardProp[] = [
   {
@@ -84,8 +84,7 @@ const Blog = (): React.JSX.Element => {
     <section id="blog" className="blog-container">
       <div className="main-spacing-x">
         <div className="py-3" />
-        <div>
-        </div>
+        <div></div>
         <div className="py-2" />
         <div className="highlight-container">
           <div></div>
@@ -93,7 +92,8 @@ const Blog = (): React.JSX.Element => {
         <div className="featured-container">
           <div>
             <h3 className="px-2 text-main font-family-quicksand text-semibold">
-              <span className="text-main">FEATURED</span> <span className="gray-4">POSTS</span>
+              <span className="text-main">FEATURED</span>{" "}
+              <span className="gray-4">POSTS</span>
             </h3>
             <div className="py-" />
           </div>
