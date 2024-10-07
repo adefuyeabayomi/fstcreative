@@ -1,8 +1,4 @@
 .blog-card-image {
-  width: 350px;
-  height: 180px;
+  width: 100%;
   border-radius: 10px;
-}
-.blog-text-container {
-  width: 350px;
 }

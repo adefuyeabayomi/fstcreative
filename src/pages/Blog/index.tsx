@@ -4,76 +4,78 @@ import BlogCardMain, {
   BlogCardProp,
 } from "../../components/BlogCard/BlogCardMain";
 
+import img1 from '../../assets/images/blog-img.png'
+
 const blogCards: BlogCardProp[] = [
   {
-    title: "Mastering UI/UX Design Principles",
-    linkPath: "/blog/ui-ux-design-principles",
+    title: "Introduction to Visual Design - Design Elements",
+    linkPath: "/blog/visual-design-elements",
     highlightText:
-      "Learn the key principles of effective UI/UX design for a seamless user experience.",
-    img: "https://example.com/images/ui-ux-design.jpg",
+      "Learn the basic elements of design and how they can be used in any visual medium to achieve the desired effect.",
+    img: <img src={img1} className="blog-card-image" />,
   },
   {
-    title: "Advanced Software Engineering Techniques",
-    linkPath: "/blog/advanced-software-engineering",
+    title: "Introduction to Visual Design - Design Principles",
+    linkPath: "/blog/visual-design-principles",
     highlightText:
       "Explore advanced methodologies and patterns in modern software engineering.",
-    img: "https://example.com/images/software-engineering.jpg",
+    img: <img className="blog-card-image" />,
   },
   {
     title: "Creative Design Inspirations for Your Next Project",
     linkPath: "/blog/creative-design-inspirations",
     highlightText:
       "Get inspired by top creative design trends and elevate your work.",
-    img: "https://example.com/images/creative-design.jpg",
+    img: <img className="blog-card-image" />,
   },
   {
     title: "User-Centered Design: Best Practices",
     linkPath: "/blog/user-centered-design",
     highlightText:
       "Discover the essentials of putting users first in UI/UX design.",
-    img: "https://example.com/images/user-centered-design.jpg",
+    img: <img className="blog-card-image" />,
   },
   {
     title: "Effective Code Review Practices in Software Engineering",
     linkPath: "/blog/code-review-practices",
     highlightText:
       "Improve code quality with these code review best practices.",
-    img: "https://example.com/images/code-review.jpg",
+    img: <img className="blog-card-image" />,
   },
   {
     title: "Creative Branding through Visual Design",
     linkPath: "/blog/creative-branding-visual-design",
     highlightText:
       "Learn how to create strong brand identities through visual design.",
-    img: "https://example.com/images/branding.jpg",
+    img: <img className="blog-card-image" />,
   },
   {
     title: "UI/UX Design for Mobile Apps: Key Strategies",
     linkPath: "/blog/ui-ux-mobile-design",
     highlightText:
       "Discover strategies for designing intuitive and engaging mobile app experiences.",
-    img: "https://example.com/images/mobile-design.jpg",
+    img: <img className="blog-card-image" />,
   },
   {
     title: "Software Engineering: The Future of Microservices",
     linkPath: "/blog/software-engineering-microservices",
     highlightText:
       "Explore how microservices are shaping the future of software development.",
-    img: "https://example.com/images/microservices.jpg",
+    img: <img className="blog-card-image" />,
   },
   {
     title: "Creative Web Design: Balancing Aesthetics and Usability",
     linkPath: "/blog/creative-web-design",
     highlightText:
       "Achieve the perfect balance between creativity and functionality in web design.",
-    img: "https://example.com/images/web-design.jpg",
+    img: <img className="blog-card-image" />,
   },
   {
     title: "UI Patterns That Enhance User Experience",
     linkPath: "/blog/ui-patterns-enhance-experience",
     highlightText:
       "Utilize effective UI patterns to create seamless and intuitive user journeys.",
-    img: "https://example.com/images/ui-patterns.jpg",
+    img: <img className="blog-card-image" />,
   },
 ];
 
@@ -83,9 +85,6 @@ const Blog = (): React.JSX.Element => {
       <div className="main-spacing-x">
         <div className="py-3" />
         <div>
-          <h2 className="text-main text-center text-regular">
-            Five and Six Technologies Blog
-          </h2>
         </div>
         <div className="py-2" />
         <div className="highlight-container">
@@ -93,10 +92,10 @@ const Blog = (): React.JSX.Element => {
         </div>
         <div className="featured-container">
           <div>
-            <h5 className="text-main text-center font-family-quicksand text-medium">
-              FEATURED
-            </h5>
-            <div className="py-2" />
+            <h3 className="px-2 text-main font-family-quicksand text-semibold">
+              <span className="text-main">FEATURED</span> <span className="gray-4">POSTS</span>
+            </h3>
+            <div className="py-" />
           </div>
         </div>
         <div className="category-1-container">
@@ -104,7 +103,7 @@ const Blog = (): React.JSX.Element => {
             <div className="row no-space g-3 align-items-top justify-content-center">
               {blogCards.map((x) => {
                 return (
-                  <div className="w-max-content px-2">
+                  <div className="col-12 col-md-6">
                     <BlogCardMain
                       highlightText={x.highlightText}
                       title={x.title}

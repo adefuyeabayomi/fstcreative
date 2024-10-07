@@ -29,7 +29,7 @@ export function Header(): React.JSX.Element {
                   <ul>
                     <li className="desktop-nav-links">
                       <Link
-                        className="text-none text-main text-medium"
+                        className="text-none gray-1 text-medium"
                         to={"/"}
                       >
                         Home
@@ -37,7 +37,7 @@ export function Header(): React.JSX.Element {
                     </li>
                     <li className="desktop-nav-links">
                       <Link
-                        className="text-none text-main text-medium"
+                        className="text-none gray-1 text-medium"
                         to={"/services"}
                       >
                         Services
@@ -45,7 +45,7 @@ export function Header(): React.JSX.Element {
                     </li>
                     <li className="desktop-nav-links">
                       <Link
-                        className="text-none text-main text-medium"
+                        className="text-none gray-1 text-medium"
                         to={"/exhibits"}
                       >
                         Exhibits
@@ -53,7 +53,7 @@ export function Header(): React.JSX.Element {
                     </li>
                     <li className="desktop-nav-links">
                       <Link
-                        className="text-none text-main text-medium"
+                        className="text-none gray-1 text-medium"
                         to={"/products"}
                       >
                         Products
@@ -61,7 +61,7 @@ export function Header(): React.JSX.Element {
                     </li>
                     <li className="desktop-nav-links">
                       <Link
-                        className="text-none text-main text-medium"
+                        className="text-none gray-1 text-medium"
                         to={"/blog"}
                       >
                         Blog

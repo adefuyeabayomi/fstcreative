@@ -11,6 +11,8 @@ import ForgotPassword from "../pages/Authentications/ForgotPassword";
 import PasswordReset from "../pages/Authentications/PasswordReset";
 import ChatPage from "../pages/Chat/index";
 import Blog from "../pages/Blog";
+import DesignElements from "../pages/Articles/DesignElements";
+import DesignPrinciples from "../pages/Articles/DesignPrinciples";
 
 function Navigation(): React.JSX.Element {
   return (
@@ -26,7 +28,10 @@ function Navigation(): React.JSX.Element {
           <Route path="/reset-password" Component={PasswordReset} />
           <Route path="/chat" Component={ChatPage} />
           <Route path="/blog" Component={Blog} />
+          <Route path="/blog/visual-design-elements" Component={DesignElements} />
+          <Route path="/blog/visual-design-principles" Component={DesignPrinciples} />
         </Routes>
+        <div className="py-4" />
         <Footer />
       </Router>
     </>

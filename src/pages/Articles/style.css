@@ -1,0 +1,6 @@
+.article-title-backdrop {
+    border-radius: 20px;
+    background-image: linear-gradient(178deg, #21287e, #220427);
+    color: white;
+    text-align: center;
+}

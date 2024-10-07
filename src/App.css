@@ -50,7 +50,7 @@ body {
   --font-size-h4: 1.45rem;
   --font-size-h5: 1.25rem;
   --font-size-h6: 1.15rem;
-  --font-size-p: 0.9rem;
+  --font-size-p: 0.95rem;
   --font-size-small: 0.83rem;
   --font-size-mini: 0.7rem;
 
@@ -72,9 +72,9 @@ body {
   --letter-spacing-h4: -0.105rem;
   --letter-spacing-h5: -0.095rem;
   --letter-spacing-h6: -0.065rem;
-  --letter-spacing-p: -0.045rem;
-  --letter-spacing-small: -0.035rem;
-  --letter-spacing-mini: -0.025rem;
+  --letter-spacing-p: -0.035rem;
+  --letter-spacing-small: -0.025rem;
+  --letter-spacing-mini: -0.015rem;
 }
 
 /* Heading Styles */
@@ -169,6 +169,10 @@ small {
 
 .text-medium {
   font-weight: 500;
+}
+
+.text-medium-1 {
+  font-weight: 550;
 }
 
 .text-semibold {
@@ -696,4 +700,7 @@ colors definition
 .d-divider-3 {
   height: 3px;
   border-radius: 3px;
+}
+.word-break {
+  word-break: break-all;
 }

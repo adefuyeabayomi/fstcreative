@@ -1,12 +1,10 @@
 import { Link } from "react-router-dom";
 
-import blogImg from "../../assets/images/blog-img.png";
-
 export interface BlogCardProp {
   title: string;
   linkPath: string;
   highlightText: string;
-  img: string;
+  img: React.JSX.Element;
 }
 
 import "./style.css";
@@ -23,22 +21,22 @@ const BlogCardMain = ({
   return (
     <div
       id="blog-card"
-      className="blog-card-container border-debug gray-1 w-max-content"
+      className="blog-card-container gray-3"
     >
       <div className="blog-card-image-container">
-        <img src={blogImg} className="blog-card-image" />
+        {img}
       </div>
       <div className="py-1"></div>
-      <div className="text-small">
+      <div className="px-2">
         <div className="blog-text-container text-main">
           <h6 className="text-medium font-family-quicksand ">{title}</h6>
         </div>
         <div className="blog-text-container" style={{ fontWeight: "550" }}>
-          <p>{highlightText}</p>
+          <p className="word-break gray-4">{highlightText}</p>
         </div>
         <div className="py-1"></div>
         <Link className="text-none gray-1" to={linkPath}>
-          <div className="blog-text-container">
+          <div className="blog-text-container text-p">
             <div className="container-fluid no-space">
               <div className="row no-space align-items-center">
                 <div className="no-space w-max-content">
