@@ -36,7 +36,7 @@ if (!fs.existsSync(filePath)) {
 import React from 'react';
 import './style.css';
 
-const ${name.charAt(0).toUpperCase() + name.slice(1)} = () => {
+const ${name.charAt(0).toUpperCase() + name.slice(1)} = (): React.JSX.Element => {
     return (
         <div>
             ${name.charAt(0).toUpperCase() + name.slice(1)} component

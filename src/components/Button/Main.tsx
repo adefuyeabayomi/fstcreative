@@ -3,12 +3,18 @@ import "./style.css";
 
 interface ButtonPropType {
   children: React.JSX.Element | string;
-  iconLeft?: React.JSX.Element;
-  iconRight?: React.JSX.Element;
+  icon?: React.JSX.Element;
+  iconLeft?: boolean;
 }
 
-const FButtonMain = ({ children, iconLeft, iconRight }: ButtonPropType) => {
-  return <button className="fbuttonmain">{children}</button>;
-};
+const FButtonMain = ({ children, icon, iconLeft }: ButtonPropType) => {
+  let button = iconLeft ? <button className="fbuttonmain">{icon} {children} </button>  : <button className="fbuttonmain">{children} {icon}</button>;
+  return button;
+}
 
-export default FButtonMain;
+export default FButtonMain
+
+
+
+
+
