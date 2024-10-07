@@ -1,0 +1,9 @@
+.fbuttonmain {
+  padding: 10px 20px;
+  border: 0px solid;
+  border-radius: 50px;
+  font-family: "Quicksand";
+  font-weight: 600;
+  background: #ffb13d;
+  color: white;
+}
