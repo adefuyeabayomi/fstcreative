@@ -54,7 +54,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   if (userFromStore) {
     userData = JSON.parse(userFromStore);
   }
-  const [user, setUser] = useState(userData);
+  const [user] = useState(userData);
 
   const login = (accessToken: string, email: string) => {
     setIsAuthenticated(true);
