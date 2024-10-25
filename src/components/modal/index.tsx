@@ -28,23 +28,22 @@ const DModal: React.FC<DModalProps> = ({ isOpen, onClose, children }) => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <dialog
+        <motion.dialog
           ref={dialogRef}
           className="custom-dialog"
           onClick={handleDialogClick}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.5 }}
         >
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+          <motion.div>
             <button className="close-button" onClick={onClose}>
               &times;
             </button>
             {children}
           </motion.div>
-        </dialog>
+        </motion.dialog>
       )}
     </AnimatePresence>
   );

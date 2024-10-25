@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { animateScroll as scroll } from "react-scroll";
 import "./style.css";
 
 const TempArticle = (): React.JSX.Element => {
+  useEffect(() => {
+    // Scroll to top when the component mounts
+    scroll.scrollToTop({
+      duration: 1000, // duration of the scrolling animation in milliseconds
+      smooth: "easeInOutQuart", // the type of easing
+    });
+  }, []);
   return (
     <section className="main-spacing-x">
       <div className="py-3" />
@@ -25,11 +33,19 @@ const TempArticle = (): React.JSX.Element => {
             </div>
           </div>
           <ul className="text-p text-medium gray-4">
-            <li><span className="text-semibold"></span></li>
-            <li><span className="text-semibold"></span></li>
-            <li><span className="text-semibold"></span></li>
-            <li><span className="text-semibold"></span></li>
-            </ul>
+            <li>
+              <span className="text-semibold"></span>
+            </li>
+            <li>
+              <span className="text-semibold"></span>
+            </li>
+            <li>
+              <span className="text-semibold"></span>
+            </li>
+            <li>
+              <span className="text-semibold"></span>
+            </li>
+          </ul>
         </div>
       </div>
     </section>

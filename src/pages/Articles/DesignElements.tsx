@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "./style.css";
 import designElement1 from "./images/design-elements-1.png";
 import designElement2 from "./images/design-elements-2.png";
@@ -9,14 +10,23 @@ import designElement7 from "./images/design-elements-7.png";
 import designElement8 from "./images/design-elements-8.png";
 import designElement9 from "./images/design-elements-9.png";
 import designElement10 from "./images/design-elements-10.png";
+import { animateScroll as scroll } from "react-scroll";
 
 const DesignElements = () => {
+  useEffect(() => {
+    // Scroll to top when the component mounts
+    scroll.scrollToTop({
+      duration: 1000, // duration of the scrolling animation in milliseconds
+      smooth: "easeInOutQuart", // the type of easing
+    });
+  }, []);
+
   return (
     <section className="main-spacing-x">
       <div className="py-3" />
       <div className="article-title-backdrop py-4 p-3">
         <h2 className="font-family-quicksand text-medium">
-          Introduction to Visual Design - Design Elements
+          Introduction to Visual Design (I) - Design Elements
         </h2>
         <div className="py-1" />
         <p className="white">
@@ -327,14 +337,15 @@ const DesignElements = () => {
             Shades, Tints and Tones
           </h6>
           <p className="py-2 text-medium gray-4">
-          <span className="text-semibold">Shades:  </span> A shade is created by adding black to a color, making it
-            darker. This is often used for more dramatic or subdued effects.
+            <span className="text-semibold">Shades: </span> A shade is created
+            by adding black to a color, making it darker. This is often used for
+            more dramatic or subdued effects.
             <br />
-            <span className="text-semibold">Tints:  </span>A tint is created by
+            <span className="text-semibold">Tints: </span>A tint is created by
             adding white to a color, making it lighter. This is common in
             creating softer, pastel tones.
             <br />
-            <span className="text-semibold">Tones:  </span>A tone is created by
+            <span className="text-semibold">Tones: </span>A tone is created by
             adding gray (a mixture of black and white) to a color. Tones help
             create more muted, sophisticated colors that can be used for subtle
             design work.
@@ -347,9 +358,16 @@ const DesignElements = () => {
           <h6 className="font-family-quicksand gray-2 text-semibold">
             Color Palette
           </h6>
-          <p className="py-2 text-medium gray-4">A color palette is a collection of colors chosen for a design or brand. It typically includes primary, secondary, and accent colors, ensuring visual harmony. Palettes are essential for maintaining consistency in branding and design, providing a range of shades, tints, and tones for diverse use cases. A well-curated palette can help establish mood and communicate the desired message effectively.</p>
+          <p className="py-2 text-medium gray-4">
+            A color palette is a collection of colors chosen for a design or
+            brand. It typically includes primary, secondary, and accent colors,
+            ensuring visual harmony. Palettes are essential for maintaining
+            consistency in branding and design, providing a range of shades,
+            tints, and tones for diverse use cases. A well-curated palette can
+            help establish mood and communicate the desired message effectively.
+          </p>
         </div>
-        
+
         <div className="container-fluid no-space">
           <div className="row g-3 align-items-center">
             <div className="col-12 col-md-6">
@@ -374,13 +392,10 @@ const DesignElements = () => {
             knowledge helps in making informed choices for creating
             aesthetically pleasing designs.
             <br />
-            {
-                /*
+            {/*
             For a deeper dive into color theory, you can refer to this [external
             resource].
-                */
-            }
-
+                */}
           </p>
         </div>
       </div>
@@ -388,43 +403,142 @@ const DesignElements = () => {
         <div className="py-3" />
         <div>
           <h4 className="font-family-quicksand gray-2 text-semibold">Form</h4>
-          <p className="py-2 text-medium gray-4">Form in design refers to creating a sense of realism by using three-dimensional objects. It allows flat, 2D designs to appear more lifelike and tangible. <br /> Realism can be achieved through several techniques:</p>
-            <ul className="text-p text-medium gray-4">
-            <li><span className="text-semibold">Lighting: </span>Simulating light sources to add highlights and shadows.</li>
-            <li><span className="text-semibold">Shadows: </span>Creating depth and grounding objects by adding shadows.</li>
-            <li><span className="text-semibold">Depth: </span>Using layering, gradients, and overlap to give the illusion of depth.</li>
-            <li><span className="text-semibold">Perspective: </span>Altering angles and scaling to mimic how objects appear in real life.</li>
-            </ul>
-            <p className="py-2 text-medium gray-4">These techniques make designs appear more dynamic and realistic. Modern day designs use realism to achieve an immersive experience for users and is becoming very popular in web design.</p>
+          <p className="py-2 text-medium gray-4">
+            Form in design refers to creating a sense of realism by using
+            three-dimensional objects. It allows flat, 2D designs to appear more
+            lifelike and tangible. <br /> Realism can be achieved through
+            several techniques:
+          </p>
+          <ul className="text-p text-medium gray-4">
+            <li>
+              <span className="text-semibold">Lighting: </span>Simulating light
+              sources to add highlights and shadows.
+            </li>
+            <li>
+              <span className="text-semibold">Shadows: </span>Creating depth and
+              grounding objects by adding shadows.
+            </li>
+            <li>
+              <span className="text-semibold">Depth: </span>Using layering,
+              gradients, and overlap to give the illusion of depth.
+            </li>
+            <li>
+              <span className="text-semibold">Perspective: </span>Altering
+              angles and scaling to mimic how objects appear in real life.
+            </li>
+          </ul>
+          <p className="py-2 text-medium gray-4">
+            These techniques make designs appear more dynamic and realistic.
+            Modern day designs use realism to achieve an immersive experience
+            for users and is becoming very popular in web design.
+          </p>
         </div>
       </div>
       <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
         <div className="py-3" />
         <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold">Texture</h4>
-          <p className="py-2 text-medium gray-4">Texture in design refers to the surface quality of an object. In graphic and digital design, texture creates the illusion of a surface that can be felt, even though the medium is flat. It adds depth, dimension, and realism to designs, making elements more engaging and lifelike.</p>
-          <p className="py-2 text-medium gray-4">Textures can be rough, smooth, gritty, soft, or metallic, among other types. They are often achieved through patterns, gradients, or image overlays. In UI/UX design, texture is primarily visual, enhancing the user experience by creating a sense of tangibility or weight to certain elements, helping guide attention and evoke emotions.</p>
-          <p className="py-2 text-medium gray-4">For example: <br />Paper texture in a background gives a handmade feel. <br />Wood grain in a product image adds warmth and earthiness. <br />Subtle gradients mimic soft textures for buttons or cards. <br /></p>
-          <p className="py-2 text-medium gray-4">Textures should be used carefully to avoid overwhelming the design or distracting from the core content.</p>
+          <h4 className="font-family-quicksand gray-2 text-semibold">
+            Texture
+          </h4>
+          <p className="py-2 text-medium gray-4">
+            Texture in design refers to the surface quality of an object. In
+            graphic and digital design, texture creates the illusion of a
+            surface that can be felt, even though the medium is flat. It adds
+            depth, dimension, and realism to designs, making elements more
+            engaging and lifelike.
+          </p>
+          <p className="py-2 text-medium gray-4">
+            Textures can be rough, smooth, gritty, soft, or metallic, among
+            other types. They are often achieved through patterns, gradients, or
+            image overlays. In UI/UX design, texture is primarily visual,
+            enhancing the user experience by creating a sense of tangibility or
+            weight to certain elements, helping guide attention and evoke
+            emotions.
+          </p>
+          <p className="py-2 text-medium gray-4">
+            For example: <br />
+            Paper texture in a background gives a handmade feel. <br />
+            Wood grain in a product image adds warmth and earthiness. <br />
+            Subtle gradients mimic soft textures for buttons or cards. <br />
+          </p>
+          <p className="py-2 text-medium gray-4">
+            Textures should be used carefully to avoid overwhelming the design
+            or distracting from the core content.
+          </p>
         </div>
       </div>
       <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
         <div className="py-3" />
         <div>
           <h4 className="font-family-quicksand gray-2 text-semibold">Space</h4>
-          <p className="py-2 text-medium gray-4">Also know as whitespace or negative space. Space in design is necessary to ensure the design is not cluttered. A cluttered design is always not ideal. Designs need space to breath. Elements in a design should be given a healthy room to breath</p>
-          <p className="py-2 text-medium gray-4">Here are key ways to implement better whitespace in design:</p>
+          <p className="py-2 text-medium gray-4">
+            Also know as whitespace or negative space. Space in design is
+            necessary to ensure the design is not cluttered. A cluttered design
+            is always not ideal. Designs need space to breath. Elements in a
+            design should be given a healthy room to breath
+          </p>
+          <p className="py-2 text-medium gray-4">
+            Here are key ways to implement better whitespace in design:
+          </p>
 
           <ul className="text-p text-medium gray-4">
-            <li><span className="text-semibold">Use a Grid System: </span>Grids create a structured layout, naturally introducing consistent whitespace between elements. They help maintain uniform spacing, making the design more balanced and readable.</li>
-            <li><span className="text-semibold">Prioritize Content Hierarchy: </span>Increase whitespace around important elements (like headers or calls to action) to draw attention and create a clear visual hierarchy. This separates primary content from secondary details.</li>
-            <li><span className="text-semibold">Embrace Minimalism: </span>Avoid overcrowding by using fewer elements and embracing simplicity. Allow content to "breathe" by not filling every part of the canvas, which improves focus and visual clarity.</li>
-            <li><span className="text-semibold">Adjust Line Spacing and Letter Spacing: </span>Increase line height (leading) and letter spacing (tracking) for better readability. Too-tight spacing can make text feel cramped, while generous spacing can enhance comfort and flow.</li>
-            <li><span className="text-semibold">Use Padding and Margins: </span>Properly apply padding within elements (e.g., buttons or text blocks) and margins between elements to create adequate gaps, ensuring a more open and clean design.</li>
-            <li><span className="text-semibold">Consistent Spacing Between Sections: </span>Ensure consistent vertical and horizontal whitespace between sections or content blocks. This helps separate content logically and prevents visual clutter.</li>
-            <li><span className="text-semibold">Balance Positive and Negative Space: </span>Pay attention to the relationship between positive space (content) and negative space (empty areas). A balance between the two can enhance the design’s composition and aesthetic.</li>
-            <li><span className="text-semibold">Whitespace in UI Elements: </span>Space out interactive elements like buttons, forms, and links. Adding whitespace around these areas ensures they stand out and improves usability by making them easier to tap or click.</li>
-            </ul>
+            <li>
+              <span className="text-semibold">Use a Grid System: </span>Grids
+              create a structured layout, naturally introducing consistent
+              whitespace between elements. They help maintain uniform spacing,
+              making the design more balanced and readable.
+            </li>
+            <li>
+              <span className="text-semibold">
+                Prioritize Content Hierarchy:{" "}
+              </span>
+              Increase whitespace around important elements (like headers or
+              calls to action) to draw attention and create a clear visual
+              hierarchy. This separates primary content from secondary details.
+            </li>
+            <li>
+              <span className="text-semibold">Embrace Minimalism: </span>Avoid
+              overcrowding by using fewer elements and embracing simplicity.
+              Allow content to "breathe" by not filling every part of the
+              canvas, which improves focus and visual clarity.
+            </li>
+            <li>
+              <span className="text-semibold">
+                Adjust Line Spacing and Letter Spacing:{" "}
+              </span>
+              Increase line height (leading) and letter spacing (tracking) for
+              better readability. Too-tight spacing can make text feel cramped,
+              while generous spacing can enhance comfort and flow.
+            </li>
+            <li>
+              <span className="text-semibold">Use Padding and Margins: </span>
+              Properly apply padding within elements (e.g., buttons or text
+              blocks) and margins between elements to create adequate gaps,
+              ensuring a more open and clean design.
+            </li>
+            <li>
+              <span className="text-semibold">
+                Consistent Spacing Between Sections:{" "}
+              </span>
+              Ensure consistent vertical and horizontal whitespace between
+              sections or content blocks. This helps separate content logically
+              and prevents visual clutter.
+            </li>
+            <li>
+              <span className="text-semibold">
+                Balance Positive and Negative Space:{" "}
+              </span>
+              Pay attention to the relationship between positive space (content)
+              and negative space (empty areas). A balance between the two can
+              enhance the design’s composition and aesthetic.
+            </li>
+            <li>
+              <span className="text-semibold">Whitespace in UI Elements: </span>
+              Space out interactive elements like buttons, forms, and links.
+              Adding whitespace around these areas ensures they stand out and
+              improves usability by making them easier to tap or click.
+            </li>
+          </ul>
         </div>
       </div>
       <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">

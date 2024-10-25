@@ -1,32 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./style.css";
 import BlogCardMain, {
   BlogCardProp,
 } from "../../components/BlogCard/BlogCardMain";
-
+import { animateScroll as scroll } from "react-scroll";
 import img1 from "../../assets/images/blog-img.png";
+import dP from "../../assets/images/dprinciples.png";
+import colorTheory from "../../assets/images/color-theory.png";
 
 const blogCards: BlogCardProp[] = [
   {
-    title: "Introduction to Visual Design - Design Elements",
+    title: "Introduction to Visual Design (I) - Design Elements",
     linkPath: "/blog/visual-design-elements",
     highlightText:
       "Learn the basic elements of design and how they can be used in any visual medium to achieve the desired effect.",
     img: <img src={img1} className="blog-card-image" />,
   },
   {
-    title: "Introduction to Visual Design - Design Principles",
+    title: "Introduction to Visual Design (II) - Design Principles",
     linkPath: "/blog/visual-design-principles",
     highlightText:
-      "Explore advanced methodologies and patterns in modern software engineering.",
-    img: <img className="blog-card-image" />,
+      "Explore design principles and how they are applied in the creating effective visual media.",
+    img: <img src={dP} className="blog-card-image" />,
   },
   {
     title: "Creative Design Inspirations for Your Next Project",
-    linkPath: "/blog/creative-design-inspirations",
+    linkPath: "/blog/color-theory",
     highlightText:
       "Get inspired by top creative design trends and elevate your work.",
-    img: <img className="blog-card-image" />,
+    img: <img src={colorTheory} className="blog-card-image" />,
   },
   {
     title: "User-Centered Design: Best Practices",
@@ -80,6 +82,14 @@ const blogCards: BlogCardProp[] = [
 ];
 
 const Blog = (): React.JSX.Element => {
+  useEffect(() => {
+    // Scroll to top when the component mounts
+    scroll.scrollToTop({
+      duration: 1000, // duration of the scrolling animation in milliseconds
+      smooth: "easeInOutQuart", // the type of easing
+    });
+  }, []);
+
   return (
     <section id="blog" className="blog-container">
       <div className="main-spacing-x">
@@ -101,9 +111,9 @@ const Blog = (): React.JSX.Element => {
         <div className="category-1-container">
           <div className="container-fluid no-space">
             <div className="row no-space g-3 align-items-top justify-content-center">
-              {blogCards.map((x) => {
+              {blogCards.map((x,index) => {
                 return (
-                  <div className="col-12 col-md-6">
+                  <div key={index} className="col-12 col-md-6">
                     <BlogCardMain
                       highlightText={x.highlightText}
                       title={x.title}
