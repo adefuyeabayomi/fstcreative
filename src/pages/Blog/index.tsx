@@ -32,7 +32,7 @@ const blogCards: BlogCardProp[] = [
   },
 ];
 
-let other = [
+export const other = [
   {
     title: "User-Centered Design: Best Practices",
     linkPath: "/blog/user-centered-design",
