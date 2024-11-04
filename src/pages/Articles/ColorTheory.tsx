@@ -198,25 +198,40 @@ const ColorTheory = (): React.JSX.Element => {
           <ul className="text-p text-medium gray-4">
             <li>
               <div>
-                <span className="text-semibold">Choose the right harmony:</span> Depending on the type of design you’re working on, different color harmonies serve different purposes. For example:
+                <span className="text-semibold">Choose the right harmony:</span>{" "}
+                Depending on the type of design you’re working on, different
+                color harmonies serve different purposes. For example:
                 <ul className="text-p text-medium gray-4">
                   <li>
-                    <span className="text-semibold">Complementary:</span>Use for bold, high-impact designs (e.g., sale ads).
+                    <span className="text-semibold">Complementary:</span>Use for
+                    bold, high-impact designs (e.g., sale ads).
                   </li>
                   <li>
-                    <span className="text-semibold">Analogous: </span>Use for calm, cohesive designs (e.g., nature-themed projects).
+                    <span className="text-semibold">Analogous: </span>Use for
+                    calm, cohesive designs (e.g., nature-themed projects).
                   </li>
                   <li>
-                    <span className="text-semibold">Monochromatic:</span>Use for minimalistic, professional designs (e.g., tech products).
+                    <span className="text-semibold">Monochromatic:</span>Use for
+                    minimalistic, professional designs (e.g., tech products).
                   </li>
                 </ul>
               </div>
             </li>
             <li>
-              <span className="text-semibold">Experiment with balance:</span> While color harmony creates balance, it’s important to decide which colors will dominate and which will be accents. Too much color can overwhelm the design, while too little can make it feel flat.
+              <span className="text-semibold">Experiment with balance:</span>{" "}
+              While color harmony creates balance, it’s important to decide
+              which colors will dominate and which will be accents. Too much
+              color can overwhelm the design, while too little can make it feel
+              flat.
             </li>
             <li>
-              <span className="text-semibold">Consider the emotional response:</span>Color schemes evoke different emotions, so choosing the right harmony can help convey your message effectively. For example, analogous color schemes often feel more peaceful, while complementary schemes can feel more energetic.
+              <span className="text-semibold">
+                Consider the emotional response:
+              </span>
+              Color schemes evoke different emotions, so choosing the right
+              harmony can help convey your message effectively. For example,
+              analogous color schemes often feel more peaceful, while
+              complementary schemes can feel more energetic.
             </li>
           </ul>
         </div>
@@ -224,40 +239,64 @@ const ColorTheory = (): React.JSX.Element => {
       <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
         <div className="py-3" />
         <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold">Color Psychology</h4>
-          <p className="py-2 text-medium gray-4">Color Psychology is the study of how different colors affect human emotions and behavior. Colors can influence perceptions, evoke feelings, and even drive actions.</p>
-          <p className="py-2 text-medium gray-4">Here’s a simple overview of the emotions commonly associated with different colors:</p>
-        
+          <h4 className="font-family-quicksand gray-2 text-semibold">
+            Color Psychology
+          </h4>
+          <p className="py-2 text-medium gray-4">
+            Color Psychology is the study of how different colors affect human
+            emotions and behavior. Colors can influence perceptions, evoke
+            feelings, and even drive actions.
+          </p>
+          <p className="py-2 text-medium gray-4">
+            Here’s a simple overview of the emotions commonly associated with
+            different colors:
+          </p>
+
           <ul className="text-p text-medium gray-4">
             <li>
-              <span className="text-semibold">Red:</span> Passion, excitement, urgency, and energy. Often used in sales or to grab attention.
+              <span className="text-semibold">Red:</span> Passion, excitement,
+              urgency, and energy. Often used in sales or to grab attention.
             </li>
             <li>
-              <span className="text-semibold">Blue: </span>Trust, calm, professionalism, and security. Common in tech and corporate branding.
+              <span className="text-semibold">Blue: </span>Trust, calm,
+              professionalism, and security. Common in tech and corporate
+              branding.
             </li>
             <li>
-              <span className="text-semibold">Yellow: </span>Happiness, optimism, and warmth, but can also signal caution. Used to create a cheerful or eye-catching effect.
+              <span className="text-semibold">Yellow: </span>Happiness,
+              optimism, and warmth, but can also signal caution. Used to create
+              a cheerful or eye-catching effect.
             </li>
             <li>
-              <span className="text-semibold">Green: </span>Nature, health, growth, and tranquility. Popular in environmental and wellness industries.
+              <span className="text-semibold">Green: </span>Nature, health,
+              growth, and tranquility. Popular in environmental and wellness
+              industries.
             </li>
             <li>
-              <span className="text-semibold">Orange: </span>Creativity, enthusiasm, and friendliness. Often used to suggest fun and adventure.
+              <span className="text-semibold">Orange: </span>Creativity,
+              enthusiasm, and friendliness. Often used to suggest fun and
+              adventure.
             </li>
             <li>
-              <span className="text-semibold">Purple: </span>Luxury, creativity, and mystery. Associated with elegance and sophistication
+              <span className="text-semibold">Purple: </span>Luxury, creativity,
+              and mystery. Associated with elegance and sophistication
             </li>
             <li>
-              <span className="text-semibold">Black: </span>Power, sophistication, and elegance. Frequently used in luxury brands.
+              <span className="text-semibold">Black: </span>Power,
+              sophistication, and elegance. Frequently used in luxury brands.
             </li>
             <li>
-              <span className="text-semibold">White: </span>Purity, cleanliness, and simplicity. Common in minimalist designs and healthcare.
+              <span className="text-semibold">White: </span>Purity, cleanliness,
+              and simplicity. Common in minimalist designs and healthcare.
             </li>
             <li>
-              <span className="text-semibold">Pink: </span>Femininity, compassion, and youthfulness. Often used in products aimed at younger audiences.
+              <span className="text-semibold">Pink: </span>Femininity,
+              compassion, and youthfulness. Often used in products aimed at
+              younger audiences.
             </li>
             <li>
-              <span className="text-semibold">Gray: </span>Neutrality, balance, and calm. Common in professional or modern designs.
+              <span className="text-semibold">Gray: </span>Neutrality, balance,
+              and calm. Common in professional or modern designs.
             </li>
           </ul>
         </div>

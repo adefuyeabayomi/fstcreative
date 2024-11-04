@@ -1,6 +1,13 @@
 import { animateScroll as scroll } from "react-scroll";
 import "./style.css";
 import { useEffect } from "react";
+import designPrinciple1 from "./images/design-principles-1.png";
+import designPrinciple2 from "./images/design-principles-2.png";
+import designPrinciple3 from "./images/design-principles-3.png";
+import designPrinciple4 from "./images/design-principles-4.png";
+import designPrinciple5 from "./images/design-principles-5.png";
+import designPrinciple6 from "./images/design-principles-6.png";
+import designPrinciple7 from "./images/design-principles-7.png";
 
 const DesignPrinciples = () => {
   useEffect(() => {
@@ -60,6 +67,14 @@ const DesignPrinciples = () => {
             layout.
           </p>
         </div>
+
+        <div className="container-fluid no-space">
+          <div className="row g-3 align-items-center justify-content-center">
+            <div className="article-images-container">
+              <img src={designPrinciple1} />
+            </div>
+          </div>
+        </div>
       </div>
       <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
         <div className="py-3" />
@@ -81,6 +96,17 @@ const DesignPrinciples = () => {
             depending on the mood you want to set!
           </p>
         </div>
+
+        <div className="container-fluid no-space">
+          <div className="row g-3 align-items-center justify-content-center">
+            <div className="article-images-container">
+              <img src={designPrinciple2} />
+            </div>
+            <div className="article-images-container">
+              <img src={designPrinciple3} />
+            </div>
+          </div>
+        </div>
       </div>
       <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
         <div className="py-3" />
@@ -100,6 +126,17 @@ const DesignPrinciples = () => {
             viewer’s attention. This contrast guides their eyes to the most
             important information first.
           </p>
+        </div>
+
+        <div className="container-fluid no-space">
+          <div className="row g-3 align-items-center justify-content-center">
+            <div className="article-images-container">
+              <img src={designPrinciple4} />
+            </div>
+            <div className="article-images-container">
+              <img src={designPrinciple5} />
+            </div>
+          </div>
         </div>
       </div>
       <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
@@ -121,6 +158,17 @@ const DesignPrinciples = () => {
             elements are placed near each other, like the restaurant's address
             and phone number, they feel more connected and related.
           </p>
+        </div>
+
+        <div className="container-fluid no-space">
+          <div className="row g-3 align-items-center justify-content-center">
+            <div className="article-images-container">
+              <img src={designPrinciple6} />
+            </div>
+            <div className="article-images-container">
+              <img src={designPrinciple7} />
+            </div>
+          </div>
         </div>
       </div>
       <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">

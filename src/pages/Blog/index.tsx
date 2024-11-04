@@ -24,12 +24,15 @@ const blogCards: BlogCardProp[] = [
     img: <img src={dP} className="blog-card-image" />,
   },
   {
-    title: "Creative Design Inspirations for Your Next Project",
+    title: "Color Theory in design.",
     linkPath: "/blog/color-theory",
     highlightText:
-      "Get inspired by top creative design trends and elevate your work.",
+      "Discover the impact of color and how it shapes mood, emotion, and visual harmony in design.",
     img: <img src={colorTheory} className="blog-card-image" />,
   },
+];
+
+let other = [
   {
     title: "User-Centered Design: Best Practices",
     linkPath: "/blog/user-centered-design",
@@ -110,8 +113,8 @@ const Blog = (): React.JSX.Element => {
         </div>
         <div className="category-1-container">
           <div className="container-fluid no-space">
-            <div className="row no-space g-3 align-items-top justify-content-center">
-              {blogCards.map((x,index) => {
+            <div className="row no-space g-3 align-items-top">
+              {blogCards.map((x, index) => {
                 return (
                   <div key={index} className="col-12 col-md-6">
                     <BlogCardMain
