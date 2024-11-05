@@ -15,3 +15,13 @@
   width: 100% !important;
   max-width: 400px !important;
 }
+
+.banner-images-container img {
+  width: 100% !important;
+  max-width: 900px !important;
+}
+.banner-images-container{
+  width: 100% ;
+  max-width: 900px !important;
+  margin: 0px auto;
+}

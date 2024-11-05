@@ -1,6 +1,14 @@
 import React, { useEffect } from "react";
 import { animateScroll as scroll } from "react-scroll";
 import "./style.css";
+import colorTheoryBanner from './images/color-theory-banner.png'
+import colorTheory1 from './images/color-theory-1.png'
+import colorTheory2 from './images/color-theory-2.png'
+import colorTheory3 from './images/color-theory-3.png'
+import colorTheory4 from './images/color-theory-4.png'
+import colorTheory5 from './images/color-theory-5.png'
+import colorTheory6 from './images/color-theory-6.png'
+import colorTheory7 from './images/color-theory-7.png'
 
 const ColorTheory = (): React.JSX.Element => {
   useEffect(() => {
@@ -41,6 +49,11 @@ const ColorTheory = (): React.JSX.Element => {
             that are worth looking at when working with colors.
           </p>
         </div>
+        
+
+        <div className="banner-images-container">
+          <img className="color-theory-banner" src={colorTheoryBanner} />
+        </div>
       </div>
       <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
         <div className="py-3" />
@@ -54,16 +67,49 @@ const ColorTheory = (): React.JSX.Element => {
             from the other. It’s what people commonly refer to when they talk
             about color.
           </p>
+          
+
+          <div className="container-fluid no-space">
+          <div className="row g-3 align-items-center justify-content-center">
+            <div className="article-images-container">
+                <img src={colorTheory1} />
+              </div>
+            </div>
+          </div>
           <p className="py-2 text-medium gray-4">
             Saturation refers to the intensity or purity of a color. Highly
             saturated colors are bold and vibrant, while low saturation makes
             colors look muted or more gray.
           </p>
+          
+
+          <div className="container-fluid no-space">
+          <div className="row g-3 align-items-center justify-content-center">
+            <div className="article-images-container">
+                <img src={colorTheory2} />
+              </div>
+              <div className="article-images-container">
+                <img src={colorTheory3} />
+              </div>
+            </div>
+          </div>
           <p className="py-2 text-medium gray-4">
             Value refers to how light or dark a color is. High value means the
             color is closer to white (lighter), while low value means the color
             is closer to black (darker).
           </p>
+          
+
+          <div className="container-fluid no-space">
+          <div className="row g-3 align-items-center justify-content-center">
+            <div className="article-images-container">
+                <img src={colorTheory4} />
+              </div>
+              <div className="article-images-container">
+                <img src={colorTheory5} />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
@@ -105,10 +151,29 @@ const ColorTheory = (): React.JSX.Element => {
           </h6>
           <p className="py-2 text-medium gray-4">
             These are colors made by mixing a primary color with a neighboring
-            secondary color. For example, red-orange (red + orange), blue-green
-            (blue + green), etc.
+            secondary color.
+
+            <ul>
+            <li>Red-Orange: #FF4500</li>
+            <li>Yellow-Orange: #FFD700</li>
+            <li>Yellow-Green: #9ACD32</li>
+            <li>Blue-Green: #00CED1</li>
+            <li>Blue-Purple: #8A2BE2</li>
+            <li>Red-Purple: #C71585 </li>
+            </ul>
           </p>
         </div>
+        
+        <div className="container-fluid no-space">
+          <div className="row g-3 align-items-center justify-content-center">
+            <div className="article-images-container">
+                <img src={colorTheory6} />
+              </div>
+              <div className="article-images-container">
+                <img src={colorTheory7} />
+              </div>
+            </div>
+          </div>
       </div>
       <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
         <div className="py-3" />

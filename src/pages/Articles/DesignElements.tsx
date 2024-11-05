@@ -111,11 +111,11 @@ const DesignElements = () => {
           </p>
 
           <div className="container-fluid no-space">
-            <div className="row g-3 align-items-center">
-              <div className="col-12 col-md-6">
+          <div className="row g-3 align-items-center justify-content-center">
+            <div className="article-images-container">
                 <img src={designElement1} />
               </div>
-              <div className="col-12 col-md-6">
+              <div className="article-images-container">
                 <img src={designElement2} />
               </div>
             </div>
@@ -135,11 +135,11 @@ const DesignElements = () => {
           </p>
 
           <div className="container-fluid no-space">
-            <div className="row g-3 align-items-center">
-              <div className="col-12 col-md-6">
+          <div className="row g-3 align-items-center justify-content-center">
+            <div className="article-images-container">
                 <img src={designElement3} />
               </div>
-              <div className="col-12 col-md-6">
+              <div className="article-images-container">
                 <img src={designElement4} />
               </div>
             </div>
@@ -228,11 +228,11 @@ const DesignElements = () => {
         </div>
 
         <div className="container-fluid no-space">
-          <div className="row g-3 align-items-center">
-            <div className="col-12 col-md-6">
+          <div className="row g-3 align-items-center justify-content-center">
+            <div className="article-images-container">
               <img src={designElement5} />
             </div>
-            <div className="col-12 col-md-6">
+            <div className="article-images-container">
               <img src={designElement6} />
             </div>
           </div>
@@ -319,15 +319,15 @@ const DesignElements = () => {
           </p>
         </div>
 
-        <div className="container-fluid no-space">
-          <div className="row g-3 align-items-center">
-            <div className="col-12 col-md-6">
+        <div className="row g-3 align-items-center justify-content-center">
+           
+            <div className="article-images-container">
               <img src={designElement7} />
             </div>
-            <div className="col-12 col-md-6">
+            <div className="article-images-container">
               <img src={designElement8} />
             </div>
-          </div>
+      
         </div>
       </div>
       <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
@@ -368,15 +368,14 @@ const DesignElements = () => {
           </p>
         </div>
 
-        <div className="container-fluid no-space">
-          <div className="row g-3 align-items-center">
-            <div className="col-12 col-md-6">
+        <div className="row g-3 align-items-center justify-content-center">
+            <div className="article-images-container">
               <img src={designElement9} />
             </div>
-            <div className="col-12 col-md-6">
+            <div className="article-images-container">
               <img src={designElement10} />
             </div>
-          </div>
+
         </div>
       </div>
       <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
@@ -539,34 +538,6 @@ const DesignElements = () => {
               improves usability by making them easier to tap or click.
             </li>
           </ul>
-        </div>
-      </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
-        <div className="py-3" />
-        <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold"></h4>
-          <p className="py-2 text-medium gray-4"></p>
-        </div>
-      </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
-        <div className="py-3" />
-        <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold"></h4>
-          <p className="py-2 text-medium gray-4"></p>
-        </div>
-      </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
-        <div className="py-3" />
-        <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold"></h4>
-          <p className="py-2 text-medium gray-4"></p>
-        </div>
-      </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
-        <div className="py-3" />
-        <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold"></h4>
-          <p className="py-2 text-medium gray-4"></p>
         </div>
       </div>
     </section>
