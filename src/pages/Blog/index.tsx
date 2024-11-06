@@ -7,6 +7,8 @@ import { animateScroll as scroll } from "react-scroll";
 import img1 from "../../assets/images/blog-img.png";
 import dP from "../../assets/images/dprinciples.png";
 import colorTheory from "../../assets/images/color-theory.png";
+import figmaIntro from "../../assets/images/figma-intro.png";
+import typography from "../../assets/images/typography.png";
 
 const blogCards: BlogCardProp[] = [
   {
@@ -29,6 +31,20 @@ const blogCards: BlogCardProp[] = [
     highlightText:
       "Discover the impact of color and how it shapes mood, emotion, and visual harmony in design.",
     img: <img src={colorTheory} className="blog-card-image" />,
+  },
+  {
+    title: "Mastering Typography: The Power of Fonts in Design",
+    linkPath: "/blog/typography",
+    highlightText:
+      "Explore typography’s role in creating readable, impactful, and visually compelling designs.",
+    img: <img src={typography} className="blog-card-image" />,
+  },
+  {
+    title: "Introduction to Figma",
+    linkPath: "/blog/figma-intro",
+    highlightText:
+      "Learn the essentials of Figma for creating intuitive and polished user interfaces from scratch.",
+    img: <img src={figmaIntro} className="blog-card-image" />,
   },
 ];
 
@@ -105,8 +121,7 @@ const Blog = (): React.JSX.Element => {
         <div className="featured-container">
           <div>
             <h3 className="px-2 text-main font-family-quicksand text-semibold">
-              <span className="text-main">FEATURED</span>{" "}
-              <span className="gray-4">POSTS</span>
+              <span className="text-main">DESIGN BASICS</span>
             </h3>
             <div className="py-" />
           </div>

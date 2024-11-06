@@ -14,6 +14,8 @@ import Blog from "../pages/Blog";
 import DesignElements from "../pages/Articles/DesignElements";
 import DesignPrinciples from "../pages/Articles/DesignPrinciples";
 import ColorTheory from "../pages/Articles/ColorTheory";
+import FigmaIntro from "../pages/Articles/FigmaIntro";
+import Typography from "../pages/Articles/Typography";
 
 function Navigation(): React.JSX.Element {
   return (
@@ -38,6 +40,8 @@ function Navigation(): React.JSX.Element {
             Component={DesignPrinciples}
           />
           <Route path="/blog/color-theory" Component={ColorTheory} />
+          <Route path="/blog/figma-intro" Component={FigmaIntro} />
+          <Route path="/blog/typography" Component={Typography} />
         </Routes>
         <div className="py-4" />
         <Footer />

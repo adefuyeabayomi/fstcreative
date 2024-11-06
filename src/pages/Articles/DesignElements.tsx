@@ -111,8 +111,8 @@ const DesignElements = () => {
           </p>
 
           <div className="container-fluid no-space">
-          <div className="row g-3 align-items-center justify-content-center">
-            <div className="article-images-container">
+            <div className="row g-3 align-items-center justify-content-center">
+              <div className="article-images-container">
                 <img src={designElement1} />
               </div>
               <div className="article-images-container">
@@ -135,8 +135,8 @@ const DesignElements = () => {
           </p>
 
           <div className="container-fluid no-space">
-          <div className="row g-3 align-items-center justify-content-center">
-            <div className="article-images-container">
+            <div className="row g-3 align-items-center justify-content-center">
+              <div className="article-images-container">
                 <img src={designElement3} />
               </div>
               <div className="article-images-container">
@@ -320,14 +320,12 @@ const DesignElements = () => {
         </div>
 
         <div className="row g-3 align-items-center justify-content-center">
-           
-            <div className="article-images-container">
-              <img src={designElement7} />
-            </div>
-            <div className="article-images-container">
-              <img src={designElement8} />
-            </div>
-      
+          <div className="article-images-container">
+            <img src={designElement7} />
+          </div>
+          <div className="article-images-container">
+            <img src={designElement8} />
+          </div>
         </div>
       </div>
       <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
@@ -369,13 +367,12 @@ const DesignElements = () => {
         </div>
 
         <div className="row g-3 align-items-center justify-content-center">
-            <div className="article-images-container">
-              <img src={designElement9} />
-            </div>
-            <div className="article-images-container">
-              <img src={designElement10} />
-            </div>
-
+          <div className="article-images-container">
+            <img src={designElement9} />
+          </div>
+          <div className="article-images-container">
+            <img src={designElement10} />
+          </div>
         </div>
       </div>
       <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
