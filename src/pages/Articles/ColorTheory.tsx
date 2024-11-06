@@ -9,6 +9,13 @@ import colorTheory4 from './images/color-theory-4.png'
 import colorTheory5 from './images/color-theory-5.png'
 import colorTheory6 from './images/color-theory-6.png'
 import colorTheory7 from './images/color-theory-7.png'
+import colorTheory8 from './images/color-theory-8.png'
+import colorTheory9 from './images/color-theory-9.png'
+import colorTheory10 from './images/color-theory-10.png'
+import colorTheory11 from './images/color-theory-11.png'
+import colorTheory12 from './images/color-theory-12.png'
+import colorTheory13 from './images/color-theory-13.png'
+import colorTheory14 from './images/color-theory-14.png'
 
 const ColorTheory = (): React.JSX.Element => {
   useEffect(() => {
@@ -200,6 +207,17 @@ const ColorTheory = (): React.JSX.Element => {
             These are colors that sit next to each other on the color wheel.
             They usually work well together and create harmonious designs.
           </p>
+          
+          <div className="container-fluid no-space">
+          <div className="row g-3 align-items-center justify-content-center">
+            <div className="article-images-container">
+                <img src={colorTheory8} />
+              </div>
+              <div className="article-images-container">
+                <img src={colorTheory9} />
+              </div>
+            </div>
+          </div>
           <h6 className="font-family-quicksand gray-2 text-medium">
             Triadic Colors
           </h6>
@@ -215,6 +233,17 @@ const ColorTheory = (): React.JSX.Element => {
             complementary color. It offers contrast but is more subtle than
             complementary schemes.
           </p>
+          
+          <div className="container-fluid no-space">
+          <div className="row g-3 align-items-center justify-content-center">
+            <div className="article-images-container">
+                <img src={colorTheory10} />
+              </div>
+              <div className="article-images-container">
+                <img src={colorTheory11} />
+              </div>
+            </div>
+          </div>
           <h6 className="font-family-quicksand gray-2 text-medium">
             Monochromatic Colors
           </h6>
@@ -230,6 +259,17 @@ const ColorTheory = (): React.JSX.Element => {
             This harmony uses four colors that form two complementary pairs. It
             provides a wide variety of colors but can be tricky to balance.
           </p>
+          
+          <div className="container-fluid no-space">
+          <div className="row g-3 align-items-center justify-content-center">
+            <div className="article-images-container">
+                <img src={colorTheory12} />
+              </div>
+              <div className="article-images-container">
+                <img src={colorTheory14} />
+              </div>
+            </div>
+          </div>
           <h6 className="font-family-quicksand gray-2 text-medium">
             Square Color Scheme
           </h6>
@@ -237,7 +277,14 @@ const ColorTheory = (): React.JSX.Element => {
             This scheme uses four colors evenly spaced around the color wheel,
             forming a square. It’s similar to the tetradic scheme but offers
             more balance.
-          </p>
+          </p>          
+          <div className="container-fluid no-space">
+          <div className="row g-3 align-items-center justify-content-center">
+            <div className="article-images-container">
+                <img src={colorTheory13} />
+              </div>
+            </div>
+          </div>
           <h6 className="font-family-quicksand gray-2 text-medium"></h6>
           <p className="py-2 text-medium gray-4"></p>
         </div>
