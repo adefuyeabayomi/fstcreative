@@ -80,7 +80,7 @@ export function Header(): React.JSX.Element {
             <div className="col no-space"></div>
             <div className="w-max-content no-space d-none d-sm-block">
               <div>
-                <FButtonMain>Get In Touch</FButtonMain>
+                <FButtonMain iconLeft={true} icon={<FontAwesomeIcon icon={faPhone} />}> Get In Touch</FButtonMain>
               </div>
             </div>
             <div className="w-max-content no-space d-block d-lg-none">

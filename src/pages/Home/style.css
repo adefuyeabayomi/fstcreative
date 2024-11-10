@@ -12,3 +12,6 @@
     max-width: 320px;
   }
 }
+.hero-img-container img {
+    max-width: 450px;
+}

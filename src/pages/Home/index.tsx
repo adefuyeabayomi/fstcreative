@@ -1,6 +1,7 @@
 import "./style.css";
 
 import heroImg from "../../assets/images/Hero-section.png";
+import s2 from "../../assets/images/s2.png"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLocationArrow,
@@ -17,8 +18,8 @@ const Home = () => {
           <div className="row no-space align-items-center">
             <div className="col-12 col-md-6">
               <div className="hero-text-contents-container text-lg-left text-center">
-                <div className="py-4" />
-                <div className="hero-accent-container center d-block d-md-none">
+              <div className="py-4" />
+              <div className="hero-accent-container center d-block d-md-none">
                   <p>
                     <FontAwesomeIcon icon={faStarHalfStroke} /> Hi, Welcome{" "}
                     <span className="d-inline d-md-none">to FST</span>
@@ -70,8 +71,33 @@ const Home = () => {
             <div className="col-12 col-md-6">
               
             <div className="py-4 py-md-0" />
-              <div className="hero-img-container img-container">
+              <div className="img-container">
                 <img src={heroImg} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="d-divider-1 gray-11-bg my-5" />
+        
+        <div className="container-fluid no-space">
+          <div className="row no-space align-items-end">
+            
+          <div className="col-12 col-lg-6 order-last order-md-first d-md-none d-lg-block">
+              <div className="py-4 py-md-0" />
+                <div className="img-container">
+                  <img src={s2} />
+                </div>
+              </div>
+            <div className="col-12 col-lg-6">
+              <div className="hero-text-contents-container text-lg-left text-center">
+                <div className="py-2" />
+                <h1 className="font-family-quicksand text-semibold">
+                  TAKE ADVANTAGE OF <span className="text-main">MODERN INNOVATIONS</span>{" "} TO SPEED UP YOUR BUSINESS OPERATIONS AND EXPOSURE.
+                </h1>
+                <div className="py-2" />
+                <p className="text-regular">
+                Having a website and a mobile application brings you just clicks away from getting a new client, making a new sale, getting one more prospect to see your business. Let's help you get visibility for your business.
+                </p>
               </div>
             </div>
           </div>
