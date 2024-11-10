@@ -6,6 +6,15 @@ import { Link } from "react-router-dom";
 import FButtonMain from "../Button/Main";
 import Overlay from "../overlay";
 import { Twirl as Hamburger } from "hamburger-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHome,
+  faBoxes,
+  faBullseye,
+  faTabletAlt,
+  faPhone,
+  faBlog,
+} from "@fortawesome/free-solid-svg-icons";
 
 export function Header(): React.JSX.Element {
   function toggleHamburger() {
@@ -77,12 +86,81 @@ export function Header(): React.JSX.Element {
             <div className="w-max-content no-space d-block d-lg-none">
               <Hamburger
                 toggled={isOpen}
-                color="#000000"
-                size={19}
+                color="#0533aa"
+                size={18}
                 toggle={toggleHamburger}
               />
               <Overlay isOpen={isOpen} toggle={toggleHamburger}>
-                <div className="mobile-menu-container"></div>
+                <div className="py-4" />
+                <div className="mobile-menu-container p-3">
+                  <nav>
+                    <ul className="text-medium">
+                      <li className="">
+                        <Link
+                          onClick={toggleHamburger}
+                          className="text-none gray-1 text-medium"
+                          to={"/"}
+                        >
+                          <FontAwesomeIcon color="#608aff" icon={faHome} /> Home
+                        </Link>
+                      </li>
+                      <div className="mobile-list-divider" />
+                      <li className="">
+                        <Link
+                          onClick={toggleHamburger}
+                          className="text-none gray-1 text-medium"
+                          to={"/services"}
+                        >
+                          <FontAwesomeIcon color="#608aff" icon={faBoxes} />{" "}
+                          Services
+                        </Link>
+                      </li>
+                      <div className="mobile-list-divider" />
+                      <li className="">
+                        <Link
+                          onClick={toggleHamburger}
+                          className="text-none gray-1 text-medium"
+                          to={"/exhibits"}
+                        >
+                          <FontAwesomeIcon color="#608aff" icon={faBullseye} />{" "}
+                          Exhibits
+                        </Link>
+                      </li>
+                      <div className="mobile-list-divider" />
+                      <li className="">
+                        <Link
+                          onClick={toggleHamburger}
+                          className="text-none gray-1 text-medium"
+                          to={"/products"}
+                        >
+                          <FontAwesomeIcon color="#608aff" icon={faTabletAlt} />{" "}
+                          Products
+                        </Link>
+                      </li>
+                      <div className="mobile-list-divider" />
+                      <li className="">
+                        <Link
+                          onClick={toggleHamburger}
+                          className="text-none gray-1 text-medium"
+                          to={"/blog"}
+                        >
+                          <FontAwesomeIcon color="#608aff" icon={faPhone} />{" "}
+                          Contact
+                        </Link>
+                      </li>
+                      <div className="mobile-list-divider" />
+                      <li className="">
+                        <Link
+                          onClick={toggleHamburger}
+                          className="text-none gray-1 text-medium"
+                          to={"/blog"}
+                        >
+                          <FontAwesomeIcon color="#608aff" icon={faBlog} /> Blog
+                        </Link>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
               </Overlay>
             </div>
           </div>

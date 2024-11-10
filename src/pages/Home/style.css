@@ -1,0 +1,14 @@
+/*hero styles*/
+.hero-accent-container {
+  background-color: #e9efff;
+  padding: 5px 35px;
+  width: max-content;
+  border-radius: 40px;
+  text-align: center;
+}
+
+@media screen and (max-width: 400px) {
+  .hero-accent-container {
+    max-width: 320px;
+  }
+}

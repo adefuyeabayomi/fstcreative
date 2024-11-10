@@ -30,7 +30,7 @@ function Overlay({ styles, children, toggle, isOpen }: OverlayPropsType) {
       <div ref={overlayRef}></div>
       <div ref={divRef} style={styles} className="jg-overlay-container">
         <div className="green-color-main jg-overlay-close-container">
-          <Hamburger toggled={true} color="#9d82ff" size={17} toggle={toggle} />
+          <Hamburger toggled={true} color="#0533aa" size={17} toggle={toggle} />
         </div>
         {children}
       </div>

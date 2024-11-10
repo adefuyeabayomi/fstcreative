@@ -1,19 +1,25 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import "./style.css";
 
 interface ButtonPropType {
   children: React.JSX.Element | string;
   icon?: React.JSX.Element;
   iconLeft?: boolean;
+  style?: CSSProperties;
 }
 
-const FButtonMain = ({ children, icon, iconLeft }: ButtonPropType) => {
+const FButtonMain = ({
+  children,
+  icon,
+  iconLeft,
+  style = {},
+}: ButtonPropType) => {
   let button = iconLeft ? (
-    <button className="fbuttonmain">
+    <button style={style} className="fbuttonmain">
       {icon} {children}{" "}
     </button>
   ) : (
-    <button className="fbuttonmain">
+    <button style={style} className="fbuttonmain">
       {children} {icon}
     </button>
   );

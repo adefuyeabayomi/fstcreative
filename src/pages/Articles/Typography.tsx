@@ -209,25 +209,30 @@ const Typography = (): React.JSX.Element => {
         <div className="py-3" />
         <div>
           <h4 className="font-family-quicksand gray-2 text-semibold">
-          Best Practices in Typography
+            Best Practices in Typography
           </h4>
           <h6 className="font-family-quicksand gray-2 text-semibold">
-          Consistency and Legibility
+            Consistency and Legibility
           </h6>
           <p className="py-2 text-medium gray-4">
-          Consistency in font choice, color, and spacing creates a unified design. Legibility ensures that text is easy to read, regardless of screen size or resolution.
+            Consistency in font choice, color, and spacing creates a unified
+            design. Legibility ensures that text is easy to read, regardless of
+            screen size or resolution.
           </p>
           <h6 className="font-family-quicksand gray-2 text-semibold">
-          Using White Space Effectively
+            Using White Space Effectively
           </h6>
           <p className="py-2 text-medium gray-4">
-          White space, or negative space, around text and elements gives the design breathing room, preventing clutter and enhancing readability.
+            White space, or negative space, around text and elements gives the
+            design breathing room, preventing clutter and enhancing readability.
           </p>
           <h6 className="font-family-quicksand gray-2 text-semibold">
-          Pairing Fonts and Creating Contrast
+            Pairing Fonts and Creating Contrast
           </h6>
           <p className="py-2 text-medium gray-4">
-          Combining two complementary fonts, such as a serif for headers and sans serif for body text, creates contrast and visual interest without overwhelming the design.
+            Combining two complementary fonts, such as a serif for headers and
+            sans serif for body text, creates contrast and visual interest
+            without overwhelming the design.
           </p>
 
           <div className="container-fluid no-space">
@@ -242,31 +247,40 @@ const Typography = (): React.JSX.Element => {
         <div className="py-3" />
         <div>
           <h4 className="font-family-quicksand gray-2 text-semibold">
-          Common Mistakes in Typography
+            Common Mistakes in Typography
           </h4>
           <h6 className="font-family-quicksand gray-2 text-semibold">
-          Overuse of Fonts
+            Overuse of Fonts
           </h6>
           <p className="py-2 text-medium gray-4">
-          Using too many fonts can make designs appear chaotic. Limit font choices to one or two that work well together.
+            Using too many fonts can make designs appear chaotic. Limit font
+            choices to one or two that work well together.
           </p>
           <h6 className="font-family-quicksand gray-2 text-semibold">
-          Insufficient Line Spacing
+            Insufficient Line Spacing
           </h6>
           <p className="py-2 text-medium gray-4">
-          Tight line spacing can reduce readability, making text feel dense. Generous spacing enhances comfort and flow, especially in paragraphs.
+            Tight line spacing can reduce readability, making text feel dense.
+            Generous spacing enhances comfort and flow, especially in
+            paragraphs.
           </p>
           <h6 className="font-family-quicksand gray-2 text-semibold">
-          Ignoring Mobile Responsiveness
+            Ignoring Mobile Responsiveness
           </h6>
           <p className="py-2 text-medium gray-4">
-          Text that looks good on a desktop may not on mobile. Ensure typography is responsive and adjusts seamlessly for readability on smaller screens.
+            Text that looks good on a desktop may not on mobile. Ensure
+            typography is responsive and adjusts seamlessly for readability on
+            smaller screens.
           </p>
         </div>
       </div>
       <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
         <p className="py-2 text-medium gray-4">
-        Typography is a powerful element that shapes the way people experience design. From readability to branding, it influences perception and usability. By mastering typography’s fundamentals, using it consistently, and applying best practices, designers can elevate their work and create designs that resonate.
+          Typography is a powerful element that shapes the way people experience
+          design. From readability to branding, it influences perception and
+          usability. By mastering typography’s fundamentals, using it
+          consistently, and applying best practices, designers can elevate their
+          work and create designs that resonate.
         </p>
       </div>
     </section>

@@ -35,8 +35,8 @@ Body Styles
 }
 
 body {
-  font-family: "Quicksand";
-  color: #0d0b56;
+  font-family: Quicksand, Poppin, sans-serif;
+  color: #0e0e29;
   overflow-x: hidden;
 }
 
@@ -232,7 +232,7 @@ small {
 }
 
 /* Responsive Text Alignment for Medium Devices (tablets) */
-@media (min-width: 576px) and (max-width: 768px) {
+@media (min-width: 576px)  {
   .text-md-center {
     text-align: center;
   }
@@ -255,7 +255,7 @@ small {
 }
 
 /* Responsive Text Alignment for Large Devices (desktops) */
-@media (min-width: 768px) and (max-width: 992px) {
+@media (min-width: 768px)  {
   .text-lg-center {
     text-align: center;
   }
