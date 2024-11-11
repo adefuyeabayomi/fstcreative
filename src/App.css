@@ -232,7 +232,7 @@ small {
 }
 
 /* Responsive Text Alignment for Medium Devices (tablets) */
-@media (min-width: 576px)  {
+@media (min-width: 576px) {
   .text-md-center {
     text-align: center;
   }
@@ -255,7 +255,7 @@ small {
 }
 
 /* Responsive Text Alignment for Large Devices (desktops) */
-@media (min-width: 768px)  {
+@media (min-width: 768px) {
   .text-lg-center {
     text-align: center;
   }
@@ -366,7 +366,7 @@ small {
 }
 
 .text-dark {
-  color: #343a40; /* Example dark color */
+  color: #0e0e29; /* Example dark color */
 }
 
 /* Text Spacing */
@@ -682,6 +682,7 @@ colors definition
 .gray-11-bg {
   background-color: #dcdcdc;
 }
+
 
 /*
     Utility Definitions

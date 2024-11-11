@@ -13,5 +13,31 @@
   }
 }
 .hero-img-container img {
-    max-width: 450px;
+  max-width: 450px;
+}
+
+.service-list {
+  margin-left: 18px;
+}
+.service-list li {
+  line-height: 240%;
+}
+
+.contact-image {
+  width: 70px !important;
+  height: 70px !important;
+}
+
+.w-70 {
+  width: 70px !important;
+}
+.mw-150 {
+  min-width: 150px !important;
+}
+
+.contact-item {
+  border: 1px solid #ceccff;
+  padding: 16px;
+  border-radius: 10px;
+  padding: 20px !important;
 }
