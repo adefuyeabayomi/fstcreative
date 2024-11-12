@@ -16,6 +16,7 @@ import DesignPrinciples from "../pages/Articles/DesignPrinciples";
 import ColorTheory from "../pages/Articles/ColorTheory";
 import FigmaIntro from "../pages/Articles/FigmaIntro";
 import Typography from "../pages/Articles/Typography";
+import QuotationRequest from "../pages/QuotationRequest";
 
 function Navigation(): React.JSX.Element {
   return (
@@ -30,6 +31,7 @@ function Navigation(): React.JSX.Element {
           <Route path="/forgot-password" Component={ForgotPassword} />
           <Route path="/reset-password" Component={PasswordReset} />
           <Route path="/chat" Component={ChatPage} />
+          <Route path="/quotation-request" Component={QuotationRequest} />
           <Route path="/blog" Component={Blog} />
           <Route
             path="/blog/visual-design-elements"

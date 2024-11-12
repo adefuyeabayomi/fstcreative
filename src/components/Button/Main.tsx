@@ -6,6 +6,7 @@ interface ButtonPropType {
   icon?: React.JSX.Element;
   iconLeft?: boolean;
   style?: CSSProperties;
+  actionFn?: () => void;
 }
 
 const FButtonMain = ({
@@ -13,13 +14,14 @@ const FButtonMain = ({
   icon,
   iconLeft,
   style = {},
+  actionFn,
 }: ButtonPropType) => {
   let button = iconLeft ? (
-    <button style={style} className="fbuttonmain">
+    <button onClick={actionFn} style={style} className="fbuttonmain">
       {icon} {children}{" "}
     </button>
   ) : (
-    <button style={style} className="fbuttonmain">
+    <button onClick={actionFn} style={style} className="fbuttonmain">
       {children} {icon}
     </button>
   );

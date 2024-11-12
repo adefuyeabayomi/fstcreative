@@ -1,19 +1,19 @@
 .footer {
-    background-color: #000617;
+  background-color: #000617;
 }
 .footer-list li {
-    list-style-type: none;
-    line-height: 250%;
+  list-style-type: none;
+  line-height: 250%;
 }
 footer h6 {
-    letter-spacing: 0px;
+  letter-spacing: 0px;
 }
 .footer-logo {
-    width: 120px;
-    height: 120px;
+  width: 120px;
+  height: 120px;
 }
 .footer-logo-container {
-    padding: 10px 0;
-    border: 1px solid #0035C0;
-    border-radius: 12px;
+  padding: 10px 0;
+  border: 1px solid #0035c0;
+  border-radius: 12px;
 }

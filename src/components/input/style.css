@@ -1,0 +1,29 @@
+.fst-input-main {
+  border: 1px solid #e4e4e4;
+  background-color: #f4f4f4;
+  border-radius: 6px;
+  width: 100%;
+  height: 44px;
+}
+
+.fst-textarea-main {
+  border: 1px solid #e4e4e4;
+  background-color: #f4f4f4;
+  border-radius: 6px;
+  width: 100%;
+  height: 150px;
+  padding: 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.fst-textarea-main:focus {
+  border: 1px solid gray;
+  outline-color: rgb(209, 209, 209);
+  outline-width: 1px;
+}
+
+.fst-input-main:focus {
+  border: 1px solid gray;
+  outline-color: rgb(209, 209, 209);
+  outline-width: 1px;
+}

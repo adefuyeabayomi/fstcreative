@@ -84,7 +84,6 @@ export function Header(): React.JSX.Element {
                   iconLeft={true}
                   icon={<FontAwesomeIcon icon={faPhone} />}
                 >
-                  
                   Get In Touch
                 </FButtonMain>
               </div>

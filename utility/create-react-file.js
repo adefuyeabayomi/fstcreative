@@ -35,8 +35,17 @@ if (!fs.existsSync(filePath)) {
   const fileContent = `
 import React from 'react';
 import './style.css';
+import { animateScroll as scroll } from "react-scroll";
 
 const ${name.charAt(0).toUpperCase() + name.slice(1)} = (): React.JSX.Element => {
+    useEffect(() => {
+    // Scroll to top when the component mounts
+    scroll.scrollToTop({
+      duration: 1000, // duration of the scrolling animation in milliseconds
+      smooth: "easeInOutQuart", // the type of easing
+    });
+  }, []);
+  
     return (
         <div>
             ${name.charAt(0).toUpperCase() + name.slice(1)} component

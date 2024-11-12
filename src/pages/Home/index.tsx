@@ -9,6 +9,7 @@ import service4 from "../../assets/images/service4.png";
 import contactCall from "../../assets/images/contact-call.png";
 import contactWhatsapp from "../../assets/images/contact-whatsapp.png";
 import contactEmail from "../../assets/images/contact-email.png";
+import { animateScroll as scroll } from "react-scroll";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,9 +17,28 @@ import {
   faStarHalfStroke,
 } from "@fortawesome/free-solid-svg-icons";
 import FButtonMain from "../../components/Button/Main";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Home = () => {
+  let navigate = useNavigate();
+  useEffect(() => {
+    // Scroll to top when the component mounts
+    scroll.scrollToTop({
+      duration: 1000, // duration of the scrolling animation in milliseconds
+      smooth: "easeInOutQuart", // the type of easing
+    });
+  }, []);
+  function scrollToServices() {
+    let element = document.querySelector("#services") as HTMLElement;
+    window.scrollTo({
+      top: element.offsetTop - 70, // Adjust the offset value as needed
+      behavior: "smooth",
+    });
+  }
+  function goToQuotationRequest(qGroup: string) {
+    navigate(`/quotation-request#${qGroup}`);
+  }
   return (
     <main id="home" className="homepage-container">
       <div className="main-spacing-x">
@@ -62,7 +82,7 @@ const Home = () => {
                   growth and success for your business.
                 </p>
                 <div className="py-2" />
-                <div>
+                <div className="w-max-content" onClick={scrollToServices}>
                   <FButtonMain
                     style={{
                       borderRadius: "50px",
@@ -72,7 +92,7 @@ const Home = () => {
                     icon={<FontAwesomeIcon icon={faLocationArrow} />}
                     iconLeft={false}
                   >
-                    Explore
+                    Our Services
                   </FButtonMain>
                 </div>
               </div>
@@ -147,6 +167,9 @@ const Home = () => {
                   <div className="py-2" />
                   <FButtonMain
                     style={{ paddingLeft: "70px", paddingRight: "70px" }}
+                    actionFn={() => {
+                      goToQuotationRequest("product-development");
+                    }}
                   >
                     Get Quotation
                   </FButtonMain>
@@ -177,6 +200,9 @@ const Home = () => {
                   <div className="py-2" />
                   <FButtonMain
                     style={{ paddingLeft: "70px", paddingRight: "70px" }}
+                    actionFn={() => {
+                      goToQuotationRequest("content-creation");
+                    }}
                   >
                     Get Quotation
                   </FButtonMain>
@@ -209,6 +235,9 @@ const Home = () => {
                   <div className="py-2" />
                   <FButtonMain
                     style={{ paddingLeft: "70px", paddingRight: "70px" }}
+                    actionFn={() => {
+                      goToQuotationRequest("animations");
+                    }}
                   >
                     Get Quotation
                   </FButtonMain>
@@ -228,7 +257,7 @@ const Home = () => {
                 <div className="py-2 py-lg-0" />
                 <div className="s-content">
                   <h5 className="font-family-quicksand text-semibold">
-                    Design & Coding Classes.
+                    Design Classes.
                   </h5>
                   <div className="py-1" />
                   <ul className="service-list text-p text-regular">
@@ -240,8 +269,11 @@ const Home = () => {
                   <div className="py-2" />
                   <FButtonMain
                     style={{ paddingLeft: "70px", paddingRight: "70px" }}
+                    actionFn={() => {
+                      goToQuotationRequest("coding-school");
+                    }}
                   >
-                    Get Quotation
+                    Go To Class
                   </FButtonMain>
                 </div>
               </div>
