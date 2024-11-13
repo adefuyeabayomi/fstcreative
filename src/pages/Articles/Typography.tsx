@@ -1,5 +1,13 @@
 import React, { useEffect } from "react";
 import { animateScroll as scroll } from "react-scroll";
+
+import typography1 from './images/typography-1.png'
+import typography2 from './images/typography-2.png'
+import typography3 from './images/typography-3.png'
+import typography4 from './images/typography-4.png'
+import typography5 from './images/typography-5.png'
+import designElement6 from "./images/design-elements-6.png";
+
 import "./style.css";
 
 const Typography = (): React.JSX.Element => {
@@ -76,6 +84,16 @@ const Typography = (): React.JSX.Element => {
             </li>
           </ul>
 
+          <div className="container-fluid no-space">
+          <div className="row g-3 align-items-center justify-content-center">
+            <div className="article-images-container">
+              <img src={typography1} />
+            </div>
+            <div className="article-images-container">
+              <img src={typography2} />
+            </div>
+          </div>
+        </div>
           <h6 className="font-family-quicksand gray-2 text-semibold">
             Font Size and Scale{" "}
           </h6>
@@ -102,6 +120,13 @@ const Typography = (): React.JSX.Element => {
             </li>
           </ul>
 
+          <div className="container-fluid no-space">
+          <div className="row g-3 align-items-center justify-content-center">
+            <div className="article-images-container">
+              <img src={designElement6} />
+            </div>
+          </div>
+        </div>
           <div className="container-fluid no-space">
             <div className="row no-space g-3 align-items-center">
               <div className="no-space col-12 col-md-6"></div>
@@ -151,6 +176,17 @@ const Typography = (): React.JSX.Element => {
               and modern, with no added strokes (e.g., Helvetica).
             </li>
           </ul>
+          
+          <div className="container-fluid no-space">
+          <div className="row g-3 align-items-center justify-content-center">
+            <div className="article-images-container">
+              <img src={typography3} />
+            </div>
+            <div className="article-images-container">
+              <img src={typography4} />
+            </div>
+          </div>
+        </div>
 
           <h6 className="font-family-quicksand gray-2 text-semibold">
             Monospace and Modern Fonts
@@ -167,6 +203,14 @@ const Typography = (): React.JSX.Element => {
               modern, with no added strokes (e.g., Helvetica).
             </li>
           </ul>
+          
+          <div className="container-fluid no-space">
+          <div className="row g-3 align-items-center justify-content-center">
+            <div className="article-images-container">
+              <img src={typography5} />
+            </div>
+          </div>
+        </div>
 
           <h4 className="font-family-quicksand gray-2 text-semibold">
             Typography in UI/UX DesignFont Size and Scale{" "}

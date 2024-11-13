@@ -1,6 +1,15 @@
 import React, { useEffect } from "react";
 import { animateScroll as scroll } from "react-scroll";
 import { Link } from "react-router-dom";
+import figma1 from './images/f-intro-1.png';
+import figma2 from './images/f-intro-2.png';
+import figma3 from './images/f-intro-3.png';
+import figma4 from './images/f-intro-4.png';
+import figma5 from './images/f-intro-5.png';
+import figma6 from './images/f-intro-6.png';
+import figma7 from './images/f-intro-7.png';
+
+
 import "./style.css";
 
 const FigmaIntro = (): React.JSX.Element => {
@@ -40,7 +49,16 @@ const FigmaIntro = (): React.JSX.Element => {
             collaboration, designers, developers, and stakeholders can work
             together on the same design file, simplifying communication and
             speeding up the design process.
-          </p>
+          </p>          
+        <div className="py-3" />
+          <div className="container-fluid no-space">
+          <div className="row g-3 align-items-center justify-content-center">
+            <div className="co1">
+              <img src={figma1} />
+            </div>
+          </div>
+        </div>
+        <div className="py-3" />
           <h6 className="font-family-quicksand gray-2 text-semibold">
             Why Use Figma?
           </h6>
@@ -65,9 +83,17 @@ const FigmaIntro = (): React.JSX.Element => {
               <span className="text-semibold"></span>Community and Resources
             </li>
           </ul>
+          <div className="py-3" />
+          
+          <div className="container-fluid no-space">
+          <div className="row g-3 align-items-center justify-content-center">
+            <div className="co1">
+              <img src={figma2} />
+            </div>
+          </div>
+        </div>
         </div>
       </div>
-
       <div className="article-contents-main  gray-2  px-0 px-sm-2 px-md-4 px-lg-5">
         <div className="py-3" />
         <div>
@@ -88,7 +114,16 @@ const FigmaIntro = (): React.JSX.Element => {
             to access your dashboard, where you can create and manage design
             projects.
           </p>
+        <div className="py-3" />
 
+          <div className="container-fluid no-space">
+          <div className="row g-3 align-items-center justify-content-center">
+            <div className="co1">
+              <img src={figma3} />
+            </div>
+          </div>
+        </div>
+        <div className="py-3" />
           <h6 className="font-family-quicksand gray-2 text-semibold">
             The Figma Interface
           </h6>
@@ -100,6 +135,16 @@ const FigmaIntro = (): React.JSX.Element => {
               can open new files, start templates, and join or create teams.
             </dd>
 
+            <div className="py-3" />
+
+<div className="container-fluid no-space">
+<div className="row g-3 align-items-center justify-content-center">
+  <div className="co1">
+    <img src={figma4} />
+  </div>
+</div>
+</div>
+<div className="py-3" />
             <dt className="text-semibold"> The Toolbar</dt>
             <dd className="text-p text-medium">
               Located at the bottom, the toolbar contains essential design tools
@@ -128,6 +173,17 @@ const FigmaIntro = (): React.JSX.Element => {
               effects, and text styles.
             </dd>
           </dl>
+          
+          <div className="py-3" />
+
+<div className="container-fluid no-space">
+<div className="row g-3 align-items-center justify-content-center">
+  <div className="co1">
+    <img src={figma5} />
+  </div>
+</div>
+</div>
+<div className="py-3" />
 
           <p className="py-2 text-medium gray-4"></p>
 
@@ -187,6 +243,16 @@ const FigmaIntro = (): React.JSX.Element => {
             for buttons, backgrounds, icons, and more.
           </p>
 
+          <div className="py-3" />
+
+<div className="container-fluid no-space">
+<div className="row g-3 align-items-center justify-content-center">
+  <div className="co1">
+    <img src={figma6} />
+  </div>
+</div>
+</div>
+<div className="py-3" />
           <h6 className="font-family-quicksand gray-2 text-semibold">
             Pen Tool and Bezier Curves
           </h6>
@@ -260,6 +326,17 @@ const FigmaIntro = (): React.JSX.Element => {
               depth and emphasis within your designs.
             </dd>
           </dl>
+          
+          <div className="py-3" />
+
+<div className="container-fluid no-space">
+<div className="row g-3 align-items-center justify-content-center">
+  <div className="co1">
+    <img src={figma7} />
+  </div>
+</div>
+</div>
+<div className="py-3" />
           <h6 className="font-family-quicksand gray-2 text-semibold">
             Creating Styles
           </h6>
