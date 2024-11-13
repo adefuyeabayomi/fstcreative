@@ -82,7 +82,20 @@ const Home = () => {
                   growth and success for your business.
                 </p>
                 <div className="py-2" />
-                <div className="w-max-content" onClick={scrollToServices}>
+                <div className="w-max-content center d-block d-md-none" onClick={scrollToServices}>
+                  <FButtonMain
+                    style={{
+                      borderRadius: "50px",
+                      paddingLeft: "70px",
+                      paddingRight: "70px",
+                    }}
+                    icon={<FontAwesomeIcon icon={faLocationArrow} />}
+                    iconLeft={false}
+                  >
+                    Our Services
+                  </FButtonMain>
+                </div>
+                <div className="w-max-content d-none d-md-block" onClick={scrollToServices}>
                   <FButtonMain
                     style={{
                       borderRadius: "50px",
