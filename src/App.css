@@ -7,17 +7,8 @@ font import definitions
   src: url("./assets/Quicksand-VariableFont_wght.ttf") format("truetype");
 }
 
-@font-face {
-  font-family: "Poppins";
-  src: url("./assets/Poppins-Regular.ttf") format("truetype");
-}
-
-.font-family-bruno {
-  font-family: "Bruno Ace";
-}
-
-.font-family-radio-canada {
-  font-family: "Poppins";
+.font-family-dm-sans {
+  font-family: "Quicksand";
 }
 
 .font-family-quicksand {
@@ -34,7 +25,8 @@ Body Styles
   box-sizing: border-box;
 }
 
-body {
+body,
+button {
   font-family: Quicksand, Poppin, sans-serif;
   color: #0e0e29;
   overflow-x: hidden;
@@ -66,10 +58,10 @@ body {
   --line-height-mini: 1.9;
 
   /* Letter Spacing */
-  --letter-spacing-h1: -0.15rem;
-  --letter-spacing-h2: -0.135rem;
-  --letter-spacing-h3: -0.12rem;
-  --letter-spacing-h4: -0.105rem;
+  --letter-spacing-h1: -0.095rem;
+  --letter-spacing-h2: -0.095rem;
+  --letter-spacing-h3: -0.095rem;
+  --letter-spacing-h4: -0.095rem;
   --letter-spacing-h5: -0.095rem;
   --letter-spacing-h6: -0.065rem;
   --letter-spacing-p: -0.035rem;
@@ -83,7 +75,7 @@ h1 {
   font-size: var(--font-size-h1);
   line-height: var(--line-height-h1);
   letter-spacing: var(--letter-spacing-h1);
-  font-family: "Poppins";
+  font-family: "Quicksand";
 }
 
 .text-h2,
@@ -91,7 +83,7 @@ h2 {
   font-size: var(--font-size-h2);
   line-height: var(--line-height-h2);
   letter-spacing: var(--letter-spacing-h2);
-  font-family: "Poppins";
+  font-family: "Quicksand";
 }
 
 .text-h3,
@@ -99,7 +91,7 @@ h3 {
   font-size: var(--font-size-h3);
   line-height: var(--line-height-h3);
   letter-spacing: var(--letter-spacing-h3);
-  font-family: "Poppins";
+  font-family: "Quicksand";
 }
 
 .text-h4,
@@ -107,7 +99,7 @@ h4 {
   font-size: var(--font-size-h4);
   line-height: var(--line-height-h4);
   letter-spacing: var(--letter-spacing-h4);
-  font-family: "Poppins";
+  font-family: "Quicksand";
 }
 
 .text-h5,
@@ -115,7 +107,7 @@ h5 {
   font-size: var(--font-size-h5);
   line-height: var(--line-height-h5);
   letter-spacing: var(--letter-spacing-h5);
-  font-family: "Poppins";
+  font-family: "Quicksand";
 }
 
 .text-h6,
@@ -123,7 +115,7 @@ h6 {
   font-size: var(--font-size-h6);
   line-height: var(--line-height-h6);
   letter-spacing: var(--letter-spacing-h6);
-  font-family: "Poppins";
+  font-family: "Quicksand";
 }
 
 /* Paragraph Styles */
@@ -579,6 +571,94 @@ colors definition
   background-clip: text;
 }
 
+.royal {
+  color: #0035c0;
+}
+
+.royal-bg {
+  background-color: #0035c0;
+}
+
+.royal-shade-1 {
+  color: #1b4ac6;
+}
+
+.royal-shade-1-bg {
+  background-color: #1b4ac6;
+}
+
+.royal-shade-2 {
+  color: #002585;
+}
+
+.royal-shade-2-bg {
+  background-color: #002585;
+}
+
+.royal-shade-3 {
+  color: #001b63;
+}
+
+.royal-shade-3-bg {
+  background-color: #001b63;
+}
+
+.royal-shade-4 {
+  color: #00113c;
+}
+
+.royal-shade-4-bg {
+  background-color: #00113c;
+}
+
+.royal-shade-5 {
+  color: #000617;
+}
+
+.royal-shade-5-bg {
+  background-color: #000617;
+}
+
+.royal-tint-1 {
+  color: #dfe6f7;
+}
+
+.royal-tint-1-bg {
+  background-color: #dfe6f7;
+}
+
+.royal-tint-2 {
+  color: #afc0eb;
+}
+
+.royal-tint-2-bg {
+  background-color: #afc0eb;
+}
+
+.royal-tint-3 {
+  color: #7e99df;
+}
+
+.royal-tint-3-bg {
+  background-color: #7e99df;
+}
+
+.royal-tint-4 {
+  color: #4c72d3;
+}
+
+.royal-tint-4-bg {
+  background-color: #4c72d3;
+}
+
+.royal-tint-5 {
+  color: #1b4ac6;
+}
+
+.royal-tint-5-bg {
+  background-color: #1b4ac6;
+}
+
 .white {
   color: white;
 }
@@ -687,6 +767,11 @@ colors definition
     Utility Definitions
 */
 
+.d-divider-half {
+  height: 0.6px;
+  border-radius: 1px;
+}
+
 .d-divider-1 {
   height: 1px;
   border-radius: 1px;
@@ -703,4 +788,50 @@ colors definition
 }
 .word-break {
   word-break: break-all;
+}
+
+.layout-container {
+  position: relative;
+}
+
+.route-container-main {
+  position: relative;
+  top: 0px;
+}
+
+.pr-1 {
+  padding-right: 10px;
+}
+
+.mr-1 {
+  margin-right: 10px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 250px 1fr; /* Sidebar fixed at 250px, main content takes remaining space */
+}
+
+.layout-one {
+  grid-template-columns: 1fr;
+}
+
+.sidebar-main {
+  overflow-x: auto; /* Allows table to scroll horizontally */
+}
+
+.main-content {
+  overflow: auto;
+}
+
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr; /* Only the main content takes up the full width */
+  }
+  .layout-one {
+    grid-template-columns: 1fr;
+  }
+  .sidebar-main {
+    display: none; /* Hide the sidebar on screens smaller than 768px */
+  }
 }

@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import { Checkbox } from "antd";
 import type { CheckboxProps } from "antd";
 import FButtonMain from "../../components/Button/Main";
+import { useDash } from "../../contexts/DashContext";
 
 const QuotationRequest = (): React.JSX.Element => {
   let [description, setDescription] = useState("");
@@ -14,15 +15,14 @@ const QuotationRequest = (): React.JSX.Element => {
   const [animationsList, setAnimationsList] = useState<string[]>([]);
   const [productDevList, setProductDevList] = useState<string[]>([]);
   const [contentCreationList, setContentCreationList] = useState<string[]>([]);
-  
+
   let location = useLocation();
 
-  
   // Determine which list to update based on location.hash
-  const onChange: CheckboxProps['onChange'] = (e) => {
+  const onChange: CheckboxProps["onChange"] = (e) => {
     const { checked, value } = e.target;
     let updater;
-  
+
     switch (location.hash) {
       case "#product-development":
         updater = setProductDevList;
@@ -36,7 +36,7 @@ const QuotationRequest = (): React.JSX.Element => {
       default:
         updater = null;
     }
-  
+
     if (updater) {
       updater((prevList) => {
         // Add or remove the item based on the checkbox state
@@ -47,7 +47,11 @@ const QuotationRequest = (): React.JSX.Element => {
         }
       });
     }
-    console.log(`Checked = ${checked}, Value = ${value}`, {animationsList, contentCreationList, productDevList});
+    console.log(`Checked = ${checked}, Value = ${value}`, {
+      animationsList,
+      contentCreationList,
+      productDevList,
+    });
   };
   let locationString = "";
   console.log({ locationHash: location.hash });
@@ -70,7 +74,9 @@ const QuotationRequest = (): React.JSX.Element => {
     }
   }
 
+  let { updateDashStatus } = useDash();
   useEffect(() => {
+    updateDashStatus(false);
     // Scroll to top when the component mounts
     scroll.scrollToTop({
       duration: 1000, // duration of the scrolling animation in milliseconds
@@ -95,68 +101,86 @@ const QuotationRequest = (): React.JSX.Element => {
         <div className="py-3" />
         <form>
           <div className="input-outline-group r-15 p-3">
-            {
-                location.hash == '#product-development' && (
-                    
-            <div className="">
-            <label className="text-p text-medium">
-              Pick the services you need from this group below.
-            </label>
-            <p>
-              <Checkbox value={'Web Development'} onChange={onChange}>Web Development</Checkbox>
-            </p>
-            <p>
-              <Checkbox value={'Mobile App Development'} onChange={onChange}>Mobile App Development</Checkbox>
-            </p>
-            <p>
-              <Checkbox value={'UI/UX Design'} onChange={onChange}>UI/UX Design</Checkbox>
-            </p>
-            <p>
-              <Checkbox value={'Product Management'} onChange={onChange}>Product Management</Checkbox>
-            </p>
-            
-          </div>
-                )
-            }
-            {
-                location.hash == '#content-creation' && (
-                    
-            <div className="">
-            <label className="text-p text-medium">
-              Pick the services you need from this group below.
-            </label>
-            <p>
-              <Checkbox value={'Copywriting'} onChange={onChange}>Copywriting</Checkbox>
-            </p>
-            <p>
-              <Checkbox value={'Social Media Management'} onChange={onChange}>Social Media Management</Checkbox>
-            </p>
-            <p>
-              <Checkbox value={'Blog Management'} onChange={onChange}>Blog Management</Checkbox>
-            </p>
-            
-          </div>
-                )
-            }
-            {
-                location.hash == '#animations' && (
-                    
-            <div className="">
-            <label className="text-p text-medium">
-              Pick the services you need from this group below.
-            </label>
-            <p>
-              <Checkbox value={'2d Animations'} onChange={onChange}>2d Animations</Checkbox>
-            </p>
-            <p>
-              <Checkbox value={'Story Illustrations'} onChange={onChange}>Story Illustrations</Checkbox>
-            </p>
-            <p>
-              <Checkbox value={'Product Ads Video & Animations'} onChange={onChange}>Product Ads Video & Animations</Checkbox>
-            </p>
-          </div>
-                )
-            }
+            {location.hash == "#product-development" && (
+              <div className="">
+                <label className="text-p text-medium">
+                  Pick the services you need from this group below.
+                </label>
+                <p>
+                  <Checkbox value={"Web Development"} onChange={onChange}>
+                    Web Development
+                  </Checkbox>
+                </p>
+                <p>
+                  <Checkbox
+                    value={"Mobile App Development"}
+                    onChange={onChange}
+                  >
+                    Mobile App Development
+                  </Checkbox>
+                </p>
+                <p>
+                  <Checkbox value={"UI/UX Design"} onChange={onChange}>
+                    UI/UX Design
+                  </Checkbox>
+                </p>
+                <p>
+                  <Checkbox value={"Product Management"} onChange={onChange}>
+                    Product Management
+                  </Checkbox>
+                </p>
+              </div>
+            )}
+            {location.hash == "#content-creation" && (
+              <div className="">
+                <label className="text-p text-medium">
+                  Pick the services you need from this group below.
+                </label>
+                <p>
+                  <Checkbox value={"Copywriting"} onChange={onChange}>
+                    Copywriting
+                  </Checkbox>
+                </p>
+                <p>
+                  <Checkbox
+                    value={"Social Media Management"}
+                    onChange={onChange}
+                  >
+                    Social Media Management
+                  </Checkbox>
+                </p>
+                <p>
+                  <Checkbox value={"Blog Management"} onChange={onChange}>
+                    Blog Management
+                  </Checkbox>
+                </p>
+              </div>
+            )}
+            {location.hash == "#animations" && (
+              <div className="">
+                <label className="text-p text-medium">
+                  Pick the services you need from this group below.
+                </label>
+                <p>
+                  <Checkbox value={"2d Animations"} onChange={onChange}>
+                    2d Animations
+                  </Checkbox>
+                </p>
+                <p>
+                  <Checkbox value={"Story Illustrations"} onChange={onChange}>
+                    Story Illustrations
+                  </Checkbox>
+                </p>
+                <p>
+                  <Checkbox
+                    value={"Product Ads Video & Animations"}
+                    onChange={onChange}
+                  >
+                    Product Ads Video & Animations
+                  </Checkbox>
+                </p>
+              </div>
+            )}
             <div className="py-2" />
             <label className="text-p text-medium">
               Describe Some specifics you would need the product for.
@@ -215,7 +239,9 @@ const QuotationRequest = (): React.JSX.Element => {
           </div>
           <div className="py-3" />
           <div className="input-outline-group r-15 p-3">
-              <FButtonMain style={{width: '100%'}}>Request For Quotation</FButtonMain>
+            <FButtonMain style={{ width: "100%" }}>
+              Request For Quotation
+            </FButtonMain>
           </div>
         </form>
       </div>

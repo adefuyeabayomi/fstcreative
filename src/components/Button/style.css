@@ -17,3 +17,43 @@
 .img-container img {
   width: 100%;
 }
+
+.d-s-button img {
+  position: relative;
+  top: 5px;
+  width: 25px;
+}
+
+.d-button-social button {
+  width: 100%;
+  display: block;
+  border: 1px solid #cdcdcd;
+  border-radius: 8px;
+  background-color: transparent;
+  padding: 7px 19px;
+  padding-right: 0px;
+}
+
+.d-button-gradient-1 button {
+  width: 100%;
+  display: block;
+  border: 0px solid;
+  border-radius: 42px;
+  padding: 5px 5px;
+}
+
+.d-button-container button {
+  background-color: #070622;
+  color: white;
+  border: 0px solid;
+  width: 100%;
+  border-radius: 5px;
+  padding: 5px;
+  transition-property: all;
+  scale: 1;
+  transition-duration: 800ms; /* Add transition for background color */
+}
+
+.d-button-container button:hover {
+  background-color: #514dc9;
+}

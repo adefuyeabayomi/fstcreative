@@ -1,0 +1,41 @@
+.d-page {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.filter-button {
+  padding: 14px 17px;
+  border: 1px solid #e6e6e6;
+  border-radius: 35px;
+}
+
+.transaction-table-container {
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+
+.transaction-table-container table {
+  width: 100%;
+  min-width: 700px;
+}
+
+.transaction-table-container table thead {
+  background-color: #dde3e9;
+  color: #4d4962;
+}
+.transaction-table-container table th,
+.transaction-table-container table td {
+  border: 0px solid;
+  padding: 13px 10px;
+}
+.transaction-table-container tr :nth-child(1) {
+  width: 60px;
+}
+.transaction-table-container tr :nth-child(6) {
+  width: 90px;
+}
+.transaction-table-container tbody tr td {
+  border-bottom: 1px solid rgb(221, 221, 221);
+}

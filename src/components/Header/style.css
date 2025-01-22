@@ -4,12 +4,9 @@
 
 .desktop-nav-links {
   display: inline-block;
-  padding: 5px 15px;
+  padding: 5px 7px;
 }
 
-.desktop-nav-links a {
-  color: #061d5a;
-}
 .mobile-menu-container li a {
   color: #0036ca;
 }
@@ -17,17 +14,30 @@
 #header {
   position: fixed;
   top: 0px;
-  box-shadow: 0px 0px 4px #e4e4e4;
+  box-shadow: 0px 0px 0px #e4e4e4;
+  border-bottom: 1px solid rgb(239, 239, 239);
   z-index: 10;
   width: 100%;
   background-color: white;
 }
+
 .mobile-menu-container li {
   list-style-type: none;
   padding: 10px 0px;
 }
+
 .mobile-list-divider {
   background-color: rgb(231, 231, 231);
   height: 1px;
   margin: 12px auto;
+}
+
+.h-icon {
+  width: 18px;
+  position: relative;
+  bottom: -3px;
+}
+
+.mobile-sidebar-container {
+  padding-right: 10px;
 }

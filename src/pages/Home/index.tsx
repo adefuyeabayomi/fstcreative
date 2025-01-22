@@ -19,10 +19,14 @@ import {
 import FButtonMain from "../../components/Button/Main";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useDash } from "../../contexts/DashContext";
 
 const Home = () => {
   let navigate = useNavigate();
+
+  let { updateDashStatus } = useDash();
   useEffect(() => {
+    updateDashStatus(false);
     // Scroll to top when the component mounts
     scroll.scrollToTop({
       duration: 1000, // duration of the scrolling animation in milliseconds
@@ -69,7 +73,7 @@ const Home = () => {
                   </p>
                 </div>
                 <div className="py-2" />
-                <h1 className="font-family-quicksand text-semibold">
+                <h1 className="text-bold font-family-quicksand">
                   WE CREATE <span className="text-main">RESULT DRIVEN</span>{" "}
                   DIGITAL SOLUTIONS
                 </h1>
@@ -82,7 +86,10 @@ const Home = () => {
                   growth and success for your business.
                 </p>
                 <div className="py-2" />
-                <div className="w-max-content center d-block d-md-none" onClick={scrollToServices}>
+                <div
+                  className="w-max-content center d-block d-md-none"
+                  onClick={scrollToServices}
+                >
                   <FButtonMain
                     style={{
                       borderRadius: "50px",
@@ -95,7 +102,10 @@ const Home = () => {
                     Our Services
                   </FButtonMain>
                 </div>
-                <div className="w-max-content d-none d-md-block" onClick={scrollToServices}>
+                <div
+                  className="w-max-content d-none d-md-block"
+                  onClick={scrollToServices}
+                >
                   <FButtonMain
                     style={{
                       borderRadius: "50px",
@@ -133,8 +143,8 @@ const Home = () => {
                 <div className="py-2" />
                 <h1 className="font-family-quicksand text-semibold">
                   TAKE ADVANTAGE OF{" "}
-                  <span className="text-main">MODERN INNOVATIONS</span> TO SPEED
-                  UP YOUR BUSINESS OPERATIONS AND EXPOSURE.
+                  <span className="text-main">MODERN INNOVATIONS</span> AND
+                  SPEED UP YOUR BUSINESS OPERATIONS AND EXPOSURE.
                 </h1>
                 <div className="py-2" />
                 <p className="text-regular">
@@ -184,7 +194,7 @@ const Home = () => {
                       goToQuotationRequest("product-development");
                     }}
                   >
-                    Get Quotation
+                    See Service Plans
                   </FButtonMain>
                 </div>
               </div>
@@ -217,7 +227,7 @@ const Home = () => {
                       goToQuotationRequest("content-creation");
                     }}
                   >
-                    Get Quotation
+                    See Service Plans
                   </FButtonMain>
                 </div>
               </div>
@@ -252,7 +262,7 @@ const Home = () => {
                       goToQuotationRequest("animations");
                     }}
                   >
-                    Get Quotation
+                    See Service Plans
                   </FButtonMain>
                 </div>
               </div>
@@ -286,7 +296,7 @@ const Home = () => {
                       goToQuotationRequest("coding-school");
                     }}
                   >
-                    Go To Class
+                    See Available Classes
                   </FButtonMain>
                 </div>
               </div>

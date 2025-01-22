@@ -1,0 +1,80 @@
+.sidebar {
+  width: 260px;
+  background-color: white;
+  border: 1px solid rgb(239, 239, 239);
+  height: 100vh;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  z-index: 1;
+  top: 0px;
+  position: fixed;
+  padding: 50px 20px 40px 0px;
+}
+
+.sidebar-container {
+  width: 260px;
+} /* Apply styles to the scrollbar of the sidebar */
+.sidebar::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+/* Track of the scrollbar */
+.sidebar::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Grayish background for the track */
+  border-radius: 10px; /* Rounded corners for the track */
+}
+
+.sidebar-resizer {
+  width: 10px; /* Width of the draggable area */
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: col-resize;
+}
+
+/* Handle of the scrollbar (the part that you drag) */
+.sidebar::-webkit-scrollbar-thumb {
+  background: #888; /* Darker gray for the handle */
+  border-radius: 10px; /* Rounded corners for the handle */
+}
+
+/* Handle on hover */
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: #868686; /* Even darker gray on hover */
+}
+
+.sidebar-list-container li {
+  list-style-type: none;
+  margin: 6px auto;
+}
+
+.slitem {
+  padding: 13px 10px 10px 10px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  transition: all;
+  transition-duration: 700ms;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition-delay: 0ms;
+}
+
+.slitem:hover {
+  background-color: #eff1ff;
+  background-image: linear-gradient(-90deg, white, #eff1ff);
+}
+
+.sblist-icon {
+  width: 25px;
+  height: 25px;
+  position: relative;
+  bottom: 0px;
+}
+
+.slitem.active {
+  background-image: linear-gradient(-90deg, white, #eff1ff);
+  border: 1px solid rgb(240, 240, 240);
+}
+.slitem.active p {
+  color: #001b63 !important;
+}

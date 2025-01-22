@@ -23,7 +23,7 @@ const defaultAuthContext: AuthContextType = {
   isAuthenticated: false,
   login: dummyLogin,
   logout: dummyLogout,
-  user: undefined, // or you can use emptyUser if a user object is always required import the user type.
+  user: undefined, // or you can use emptyUser if a user object is always required, import the user type.
   email: "",
   token: "",
 };
@@ -54,6 +54,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   if (userFromStore) {
     userData = JSON.parse(userFromStore);
   }
+
   const [user] = useState(userData);
 
   const login = (accessToken: string, email: string) => {

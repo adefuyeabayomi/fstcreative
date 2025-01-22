@@ -33,7 +33,7 @@ const filePath = path.join(folderPath, `${fileName}.tsx`);
 let name = compName ? compName : fileName;
 if (!fs.existsSync(filePath)) {
   const fileContent = `
-import React from 'react';
+import React, {useEffect} from 'react';
 import './style.css';
 import { animateScroll as scroll } from "react-scroll";
 

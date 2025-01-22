@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useSocket } from "../../contexts/SocketContext";
+import { useDash } from "../../contexts/DashContext";
 
 const ChatPage: React.FC = () => {
   const { socket } = useSocket();
   const [messages, setMessages] = useState<string[]>([]);
   const [input, setInput] = useState<string>("");
 
+  let { updateDashStatus } = useDash();
   useEffect(() => {
+    updateDashStatus(false);
     if (socket) {
       // Listen for messages from the server
       socket.on("message", (message: string) => {

@@ -1,0 +1,20 @@
+.fcard-image-container img {
+  width: 100%;
+  border-radius: 30px;
+}
+.f-card-avatar-container img {
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
+}
+
+.featured-card {
+  padding-right: 20px;
+}
+
+@media (min-width: 992px) {
+  .feature .fcontent {
+    padding-left: 20px !important;
+    padding-top: 0px !important;
+  }
+}

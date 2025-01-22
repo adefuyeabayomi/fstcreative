@@ -1,17 +1,21 @@
 import React, { useEffect } from "react";
 import { animateScroll as scroll } from "react-scroll";
 
-import typography1 from './images/typography-1.png'
-import typography2 from './images/typography-2.png'
-import typography3 from './images/typography-3.png'
-import typography4 from './images/typography-4.png'
-import typography5 from './images/typography-5.png'
+import typography1 from "./images/typography-1.png";
+import typography2 from "./images/typography-2.png";
+import typography3 from "./images/typography-3.png";
+import typography4 from "./images/typography-4.png";
+import typography5 from "./images/typography-5.png";
 import designElement6 from "./images/design-elements-6.png";
 
 import "./style.css";
+import { useDash } from "../../contexts/DashContext";
 
 const Typography = (): React.JSX.Element => {
+  let { updateDashStatus } = useDash();
+  let [category, duration] = ["TECH INNOVATION", "2mins"];
   useEffect(() => {
+    updateDashStatus(false);
     // Scroll to top when the component mounts
     scroll.scrollToTop({
       duration: 1000, // duration of the scrolling animation in milliseconds
@@ -20,16 +24,23 @@ const Typography = (): React.JSX.Element => {
   }, []);
   return (
     <section className="main-spacing-x">
-      <div className="py-3" />
-      <div className="article-title-backdrop py-4 p-3">
-        <h2 className="font-family-quicksand text-medium">
-          Mastering Typography: fonts, readability, and pairing.
-        </h2>
-        <div className="py-1" />
-        <p className="white">
-          <span>Date: 11th November, 2024</span>{" "}
-          <span>Tags: Visual Design, Introduction, Design Elements</span>
-        </p>
+      <div className="py-4" />
+      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+        <div className="container-fluid no-space">
+          <div className="row no-space">
+            <div className="w-max-content no-space">
+              <p className="royal text-semibold">{category}</p>
+            </div>
+            <div className="col"></div>
+            <div className="w-max-content no-space">
+              <p className="text-semibold royal-shade-5">{duration} Read</p>
+            </div>
+          </div>
+        </div>
+        <div className="py-2" />
+        <h1 className="text-bold font-family-quicksand royal-shade-5">
+          Introduction to Visual Design (I) - Design Elements
+        </h1>
       </div>
 
       <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
@@ -85,15 +96,15 @@ const Typography = (): React.JSX.Element => {
           </ul>
 
           <div className="container-fluid no-space">
-          <div className="row g-3 align-items-center justify-content-center">
-            <div className="article-images-container">
-              <img src={typography1} />
-            </div>
-            <div className="article-images-container">
-              <img src={typography2} />
+            <div className="row g-3 align-items-center justify-content-center">
+              <div className="article-images-container">
+                <img src={typography1} />
+              </div>
+              <div className="article-images-container">
+                <img src={typography2} />
+              </div>
             </div>
           </div>
-        </div>
           <h6 className="font-family-quicksand gray-2 text-semibold">
             Font Size and Scale{" "}
           </h6>
@@ -121,12 +132,12 @@ const Typography = (): React.JSX.Element => {
           </ul>
 
           <div className="container-fluid no-space">
-          <div className="row g-3 align-items-center justify-content-center">
-            <div className="article-images-container">
-              <img src={designElement6} />
+            <div className="row g-3 align-items-center justify-content-center">
+              <div className="article-images-container">
+                <img src={designElement6} />
+              </div>
             </div>
           </div>
-        </div>
           <div className="container-fluid no-space">
             <div className="row no-space g-3 align-items-center">
               <div className="no-space col-12 col-md-6"></div>
@@ -176,17 +187,17 @@ const Typography = (): React.JSX.Element => {
               and modern, with no added strokes (e.g., Helvetica).
             </li>
           </ul>
-          
+
           <div className="container-fluid no-space">
-          <div className="row g-3 align-items-center justify-content-center">
-            <div className="article-images-container">
-              <img src={typography3} />
-            </div>
-            <div className="article-images-container">
-              <img src={typography4} />
+            <div className="row g-3 align-items-center justify-content-center">
+              <div className="article-images-container">
+                <img src={typography3} />
+              </div>
+              <div className="article-images-container">
+                <img src={typography4} />
+              </div>
             </div>
           </div>
-        </div>
 
           <h6 className="font-family-quicksand gray-2 text-semibold">
             Monospace and Modern Fonts
@@ -203,14 +214,14 @@ const Typography = (): React.JSX.Element => {
               modern, with no added strokes (e.g., Helvetica).
             </li>
           </ul>
-          
+
           <div className="container-fluid no-space">
-          <div className="row g-3 align-items-center justify-content-center">
-            <div className="article-images-container">
-              <img src={typography5} />
+            <div className="row g-3 align-items-center justify-content-center">
+              <div className="article-images-container">
+                <img src={typography5} />
+              </div>
             </div>
           </div>
-        </div>
 
           <h4 className="font-family-quicksand gray-2 text-semibold">
             Typography in UI/UX DesignFont Size and Scale{" "}

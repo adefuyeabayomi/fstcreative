@@ -11,9 +11,14 @@ import designElement8 from "./images/design-elements-8.png";
 import designElement9 from "./images/design-elements-9.png";
 import designElement10 from "./images/design-elements-10.png";
 import { animateScroll as scroll } from "react-scroll";
+import { useDash } from "../../contexts/DashContext";
 
 const DesignElements = () => {
+  let [category, duration] = ["TECH INNOVATION", "2mins"];
+
+  let { updateDashStatus } = useDash();
   useEffect(() => {
+    updateDashStatus(false);
     // Scroll to top when the component mounts
     scroll.scrollToTop({
       duration: 1000, // duration of the scrolling animation in milliseconds
@@ -22,17 +27,24 @@ const DesignElements = () => {
   }, []);
 
   return (
-    <section className="main-spacing-x">
-      <div className="py-3" />
-      <div className="article-title-backdrop py-4 p-3">
-        <h2 className="font-family-quicksand text-medium">
+    <section className="main-spacing-x royal-shade-5">
+      <div className="py-4" />
+      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+        <div className="container-fluid no-space">
+          <div className="row no-space">
+            <div className="w-max-content no-space">
+              <p className="royal text-semibold">{category}</p>
+            </div>
+            <div className="col"></div>
+            <div className="w-max-content no-space">
+              <p className="text-semibold royal-shade-5">{duration} Read</p>
+            </div>
+          </div>
+        </div>
+        <div className="py-2" />
+        <h1 className="text-bold font-family-quicksand royal-shade-5">
           Introduction to Visual Design (I) - Design Elements
-        </h2>
-        <div className="py-1" />
-        <p className="white">
-          <span>Date: 6 October, 2024</span>{" "}
-          <span>Tags: Visual Design, Introduction, Design Elements</span>
-        </p>
+        </h1>
       </div>
       <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
         <div className="py-3" />

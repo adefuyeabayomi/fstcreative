@@ -5,6 +5,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { LoadingContextProvider } from "./contexts/LoadingContext";
 import { NotificationTriggerProvider } from "./contexts/notificationTrigger";
 import { SocketProvider } from "./contexts/SocketContext";
+import { DashProvider } from "./contexts/DashContext";
 
 function App(): React.JSX.Element {
   return (
@@ -14,7 +15,9 @@ function App(): React.JSX.Element {
           <SocketProvider>
             <LoadingContextProvider>
               <NotificationTriggerProvider>
-                <Navigation />
+                <DashProvider>
+                  <Navigation />
+                </DashProvider>
               </NotificationTriggerProvider>
             </LoadingContextProvider>
           </SocketProvider>

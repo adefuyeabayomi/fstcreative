@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
 import { animateScroll as scroll } from "react-scroll";
 import "./style.css";
+import { useDash } from "../../contexts/DashContext";
 
 const TempArticle = (): React.JSX.Element => {
+  let [category, duration] = ["TECH INNOVATION", "2mins"];
+  let { updateDashStatus } = useDash();
   useEffect(() => {
+    updateDashStatus(false);
     // Scroll to top when the component mounts
     scroll.scrollToTop({
       duration: 1000, // duration of the scrolling animation in milliseconds
@@ -12,14 +16,23 @@ const TempArticle = (): React.JSX.Element => {
   }, []);
   return (
     <section className="main-spacing-x">
-      <div className="py-3" />
-      <div className="article-title-backdrop py-4 p-3">
-        <h2 className="font-family-quicksand text-medium"></h2>
-        <div className="py-1" />
-        <p className="white">
-          <span>Date: 6 October, 2024</span>{" "}
-          <span>Tags: Visual Design, Introduction, Design Elements</span>
-        </p>
+      <div className="py-4" />
+      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+        <div className="container-fluid no-space">
+          <div className="row no-space">
+            <div className="w-max-content no-space">
+              <p className="royal text-semibold">{category}</p>
+            </div>
+            <div className="col"></div>
+            <div className="w-max-content no-space">
+              <p className="text-semibold royal-shade-5">{duration} Read</p>
+            </div>
+          </div>
+        </div>
+        <div className="py-2" />
+        <h1 className="text-bold font-family-quicksand royal-shade-5">
+          Introduction to Visual Design (I) - Design Elements
+        </h1>
       </div>
       <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
         <div className="py-3" />
