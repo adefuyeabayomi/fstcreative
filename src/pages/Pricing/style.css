@@ -1,0 +1,19 @@
+.plan-list li {
+  list-style-type: none;
+  line-height: 30px;
+}
+.plan-container {
+  border: 0px solid rgb(21 21 21);
+  box-shadow: 0px 0px 10px #dddddd;
+}
+
+.package-regular {
+  color: #32aecd;
+}
+
+.package-standard {
+  color: #3ccd32;
+}
+.package-premium {
+  color: #eac400;
+}

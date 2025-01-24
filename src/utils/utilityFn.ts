@@ -10,6 +10,28 @@ export async function getRandomText() {
     console.error("Error fetching random text:", error);
   }
 }
+
+export function capitalizeString(str: string): string {
+  if (!str) return str; // Handle empty strings gracefully
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+
+export function generateReadableName(input: string): string {
+  if (input == "uiUxDesign") {
+    return "UI/UX Design";
+  }
+  if (!input) return input; // Handle empty or undefined inputs gracefully
+
+  // Add a space before each uppercase letter and capitalize the first letter of the string
+  const readableName = input
+    .replace(/([A-Z])/g, " $1") // Insert a space before each uppercase letter
+    .trim() // Remove leading and trailing spaces
+    // Convert to lowercase for consistent capitalization
+    .replace(/^./, (str) => str.toUpperCase()); // Capitalize the first letter
+
+  return readableName;
+}
+
 export function generateRandomUsername() {
   const prefix = "user";
   const getRandomDigit = () => Math.floor(Math.random() * 10); // Generates a digit between 0-9

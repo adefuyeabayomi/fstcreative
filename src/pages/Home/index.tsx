@@ -40,8 +40,8 @@ const Home = () => {
       behavior: "smooth",
     });
   }
-  function goToQuotationRequest(qGroup: string) {
-    navigate(`/quotation-request#${qGroup}`);
+  function goToPricing(qGroup: string) {
+    navigate(`/pricing#${qGroup}`);
   }
   return (
     <main id="home" className="homepage-container">
@@ -178,20 +178,24 @@ const Home = () => {
                 <div className="py-2 py-lg-0" />
                 <div className="s-content">
                   <h5 className="font-family-quicksand text-semibold">
-                    Digital product design and development.
+                    Creative Design & Software Development
                   </h5>
                   <div className="py-1" />
                   <ul className="service-list text-p text-regular">
-                    <li className="text-medium">Web Development</li>
-                    <li className="text-medium">Mobile App Development</li>
+                    <li className="text-medium">Branding & Identity Design</li>
+                    <li className="text-medium">
+                      Creative Graphics Design (Posters, Flyers, Social Media
+                      etc.)
+                    </li>
                     <li className="text-medium">UI/UX Design</li>
-                    <li className="text-medium">Product Management</li>
+                    <li className="text-medium">Web Development </li>
+                    <li className="text-medium">Mobile App Development</li>
                   </ul>
                   <div className="py-2" />
                   <FButtonMain
                     style={{ paddingLeft: "70px", paddingRight: "70px" }}
                     actionFn={() => {
-                      goToQuotationRequest("product-development");
+                      goToPricing("creativeDesignAndSoftwareDevelopment");
                     }}
                   >
                     See Service Plans
@@ -224,7 +228,9 @@ const Home = () => {
                   <FButtonMain
                     style={{ paddingLeft: "70px", paddingRight: "70px" }}
                     actionFn={() => {
-                      goToQuotationRequest("content-creation");
+                      goToPricing(
+                        "digitalContentCreationAndSocialMediaManagement",
+                      );
                     }}
                   >
                     See Service Plans
@@ -245,7 +251,7 @@ const Home = () => {
                 <div className="py-2 py-lg-0" />
                 <div className="s-content">
                   <h5 className="font-family-quicksand text-semibold">
-                    Animation and Story Illustration.
+                    Video Edits And Creation
                   </h5>
                   <div className="py-1" />
                   <ul className="service-list text-p text-regular">
@@ -259,7 +265,7 @@ const Home = () => {
                   <FButtonMain
                     style={{ paddingLeft: "70px", paddingRight: "70px" }}
                     actionFn={() => {
-                      goToQuotationRequest("animations");
+                      goToPricing("videoEditsAndCreation");
                     }}
                   >
                     See Service Plans
@@ -280,7 +286,7 @@ const Home = () => {
                 <div className="py-2 py-lg-0" />
                 <div className="s-content">
                   <h5 className="font-family-quicksand text-semibold">
-                    Design Classes.
+                    Design and Coding Classes
                   </h5>
                   <div className="py-1" />
                   <ul className="service-list text-p text-regular">
@@ -293,7 +299,7 @@ const Home = () => {
                   <FButtonMain
                     style={{ paddingLeft: "70px", paddingRight: "70px" }}
                     actionFn={() => {
-                      goToQuotationRequest("coding-school");
+                      goToPricing("designAndCodingBootcamps");
                     }}
                   >
                     See Available Classes

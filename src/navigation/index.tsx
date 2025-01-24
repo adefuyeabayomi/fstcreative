@@ -28,6 +28,7 @@ import { SideBar } from "../components/sidebar";
 import Careers from "../pages/Careers";
 import { useDash } from "../contexts/DashContext";
 import AuthGuard from "../pages/AuthGuard";
+import Pricing from "../pages/Pricing";
 
 function Navigation(): React.JSX.Element {
   let { isDash } = useDash();
@@ -59,6 +60,7 @@ function Navigation(): React.JSX.Element {
                 <Route path="/reset-password" Component={PasswordReset} />
                 <Route path="/auth-guard" Component={AuthGuard} />
                 <Route path="/careers" Component={Careers} />
+                <Route path="/pricing" Component={Pricing} />
                 <Route path="/dashboard" Component={DashboardHome} />
                 <Route
                   path="/dashboard/account-settings"

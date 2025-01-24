@@ -173,7 +173,7 @@ export function Header(): React.JSX.Element {
                     <span className="px-1">
                       <FontAwesomeIcon size={"sm"} icon={faPhone} />
                     </span>
-                    Get In Touch
+                    Contact
                   </Link>
                 </div>
               </div>

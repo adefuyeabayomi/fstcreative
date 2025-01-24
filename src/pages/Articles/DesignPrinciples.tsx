@@ -24,7 +24,7 @@ const DesignPrinciples = () => {
   return (
     <section className="main-spacing-x">
       <div className="py-4" />
-      
+
       <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
         <div className="container-fluid no-space">
           <div className="row no-space">
@@ -39,7 +39,7 @@ const DesignPrinciples = () => {
         </div>
         <div className="py-2" />
         <h1 className="text-bold font-family-quicksand royal-shade-5">
-        Introduction to Visual Design (II) - Design Principles
+          Introduction to Visual Design (II) - Design Principles
         </h1>
       </div>
       <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
