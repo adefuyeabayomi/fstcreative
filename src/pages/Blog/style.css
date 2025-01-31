@@ -37,8 +37,17 @@
   width: 40px;
   height: 40px;
 }
+.ad-container * {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+.font-family-arial {
+  font-family: Arial, Helvetica, sans-serif;
+}
 .ad-heading {
-  color: #ec9200;
+  color: #343434;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+
 }
 
 .blog-ad-img {
@@ -47,8 +56,10 @@
 }
 
 .ad-list-container li {
-  margin-left: 20px;
-  line-height: 2rem;
+  margin-left: 0px;
+  line-height: 2.4rem;
+  list-style-type: none;
+
 }
 
 .featured-item-container {

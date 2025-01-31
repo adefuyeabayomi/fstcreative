@@ -219,7 +219,7 @@ const Blog = (): React.JSX.Element => {
                   </div>
                 </div>
               </div>
-              <div className="col-12 col-md-6 col-lg-5 col-xl-4 px-1">
+              <div className="col-12 col-md-6 col-lg-5 col-xl-4 px-1 ad-container">
                 <div className="fade-border p-3 r-10">
                   <div className="py-2"></div>
                   <div className="container-fluid no-space">
@@ -263,25 +263,25 @@ const Blog = (): React.JSX.Element => {
                     </div>
                   </div>
                   <div className="py-2" />
-                  <div>
-                    <h6 className="text-semibold ad-heading">
-                      Register For Our 3 month Product Design Bootcamp! (
+                  <div >
+                    <h4 className="ad-heading">
+                      3 month Product Design Bootcamp! (
                       Beginner to Advanced )
-                    </h6>
+                    </h4>
+                    <div className="py-2" />
+                    <p className="text-medium">🚀 REGISTER NOW – Limited Slots Available!</p>
                   </div>
-                  <div className="py-1" />
+                  <div className="py-2" />
                   <div>
-                    <p className="royal text-semibold">
-                      STARTS 14TH MARCH, 2025
+                    <p className="royal text-semibold font-family-arial">
+                    📅 Starts: March 14, 2025
                     </p>
                   </div>
                   <div className="py-1" />
                   <div>
-                    <p
-                      className={`${activeCat == "" ? "active" : ""} text-medium pointer`}
-                    >
-                      Go From Total Beginner to Advanced Level With This
-                      Simplified and Practical Oriented Course.
+                    <h6 className="font-family-arial">Master Product Design from Scratch!</h6>
+                    <p className="text-medium font-family arial">
+Go from a total beginner to an advanced designer with our simplified, practical, and hands-on training.
                     </p>
                   </div>
                   <div className="py-1" />
@@ -294,12 +294,15 @@ const Blog = (): React.JSX.Element => {
                     <h6 className="text-semibold">What You'll Cover</h6>
                   </div>
                   <div>
-                    <ul className="font-family-quicksand text-medium text-p ad-list-container">
-                      <li>Basics of Visual Design</li>
-                      <li>Logo Design & Vector Editing ( Inkscape )</li>
-                      <li>Fundamentals of UI/UX Design ( Figma )</li>
-                      <li>Design Systems and Library</li>
-                      <li>Advanced UI Design</li>
+                    <ul className="font-family-quicksand gray-3 text-medium-1 text-p ad-list-container">
+                      <li>✅ Visual Design Fundamentals – Build a strong design foundation</li>
+                      <li>✅ Logo Design & Vector Editing (Inkscape) – Create professional branding assets</li>
+                      <li>✅ UI/UX Design Essentials (Figma) – Learn user-friendly design techniques</li>
+                      <li>✅ Design Systems & Libraries – Streamline and scale your designs</li>
+                      <li>✅ Advanced UI Design – Create stunning, functional interfaces</li>
+                      <li>✅ Product Development Lifecycle - Learn Collaboration and Team work in a the real world setting</li>
+                      <li>✅ Interaction and Motion Design - Learn to create a fun Immersive experience for users</li>
+                        <li>✅ Live Sessions & Portfolio Projects – Gain real-world experience</li>
                     </ul>
                   </div>
                   <div className="py-2" />
@@ -311,17 +314,16 @@ const Blog = (): React.JSX.Element => {
                   <div className="py-1" />
                   <div>
                     <p
-                      className={`${activeCat == "" ? "active" : ""} text-medium pointer`}
+                      className="text-medium-1 gray-2"
                     >
-                      Finish The Bootcamp and Begin Building / Collaborating on
-                      Exciting Projects that would be on your portfolio.
+                      🎯 Graduate with a portfolio & collaborate on real projects!
                     </p>
                   </div>
 
                   <div className="py-1" />
                   <div>
                     <FButtonMain style={{ width: "100%" }} iconLeft={false}>
-                      <span className="text-none text-semibold">REGISTER</span>
+                      <span className="text-none text-semibold">🔗 Register Now!</span>
                     </FButtonMain>
                   </div>
 
