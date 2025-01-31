@@ -13,16 +13,17 @@
   list-style-type: none;
   display: inline-block;
   padding: 5px 15px;
-  margin-top: 7px;
-  margin-bottom: 7px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .blog-cat-list li.active {
-  padding: 10px 35px;
+  padding: 10px 25px;
   background-color: #dfe6f7;
-  border-radius: 20px;
+  border-radius: 7px;
   font-weight: 600;
   color: #001b63;
+  border: 1.5px solid rgb(220 220 236);
 }
 
 .blog-category-container {

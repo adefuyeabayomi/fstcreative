@@ -1,11 +1,5 @@
 import "./style.css";
-import React, {
-  Dispatch,
-  SetStateAction,
-  useState,
-  useEffect,
-  CSSProperties,
-} from "react";
+import React, { Dispatch, SetStateAction, useState, useEffect } from "react";
 
 //icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

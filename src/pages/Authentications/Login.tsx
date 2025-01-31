@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { D_TextInput } from "../../components/input/input";
 import FButtonMain, { SocialButton } from "../../components/Button/Main";
-import { Spin, Modal } from "antd";
+import { Modal } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 
 //import validation function
@@ -40,7 +40,6 @@ export default function Login({}: LoginPropType): React.JSX.Element {
   const [passwordValid, setPasswordValid] = useState<boolean | null>(false);
   const [pfeedbackText, setPFeedbackText] = useState("");
   const [feedbackText, setFeedbackText] = useState("");
-  const [spinning, setSpinning] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalBody, setModalBody] = useState("");
   const [modalTitle, setModalTitle] = useState("");
@@ -96,6 +95,7 @@ export default function Login({}: LoginPropType): React.JSX.Element {
 
     // begin-loading
     setLoading(true);
+    setLoadingText("Authenticating. Please Wait...");
 
     Auth.postAuthLogin(user, password, "user")
       .then((response) => {
@@ -113,10 +113,6 @@ export default function Login({}: LoginPropType): React.JSX.Element {
         setShowModal(true);
         setLoading(false);
       });
-  }
-
-  function sendLoginDummy() {
-    navigate("/dashboard");
   }
 
   useEffect(() => {
@@ -246,12 +242,6 @@ export default function Login({}: LoginPropType): React.JSX.Element {
         </div>
         <div className="py-2" />
         <div className="py-2" />
-
-        <Spin
-          fullscreen
-          tip={"Logging In, Please Wait"}
-          spinning={spinning}
-        ></Spin>
       </div>
     </main>
   );

@@ -71,7 +71,7 @@ export function Header(): React.JSX.Element {
                     <li className="desktop-nav-links">
                       <Link
                         className="text-none royal-shade-5 text-medium-1"
-                        to={"/services"}
+                        to={"/#services"}
                       >
                         Services
                       </Link>
@@ -111,9 +111,9 @@ export function Header(): React.JSX.Element {
                     <li className="desktop-nav-links">
                       <Link
                         className="text-none royal-shade-5 text-medium-1"
-                        to={"/designschool"}
+                        to={"/bootcamps"}
                       >
-                        Design School
+                        Bootcamps
                       </Link>
                     </li>
                   </ul>
@@ -168,7 +168,7 @@ export function Header(): React.JSX.Element {
                 <div className="desktop-nav-links">
                   <Link
                     className="text-none royal-shade-5 text-medium-1"
-                    to={"/"}
+                    to={"/#contact"}
                   >
                     <span className="px-1">
                       <FontAwesomeIcon size={"sm"} icon={faPhone} />

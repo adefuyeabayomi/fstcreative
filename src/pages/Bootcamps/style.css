@@ -1,0 +1,24 @@
+.bHicon {
+  width: 80%;
+  border-radius: 100%;
+}
+
+.bHeroImgMain {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.bHSubline {
+  max-width: 450px;
+}
+
+.bExploreArrow {
+  position: relative;
+  top: 7px;
+  transform: rotate(90deg);
+  width: 30px;
+}
+
+.bPageList li {
+  margin-left: 20px;
+}

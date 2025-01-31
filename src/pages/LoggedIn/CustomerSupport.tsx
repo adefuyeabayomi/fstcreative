@@ -56,7 +56,7 @@ const CustomerSupport = (): React.JSX.Element => {
           <InputPlain
             value={fullName}
             onChange={(e) => {
-              setEmail(e);
+              setFullName(e);
             }}
           />
         </div>
@@ -67,7 +67,7 @@ const CustomerSupport = (): React.JSX.Element => {
           <TextAreaPlain
             value={feedback}
             onChange={(e) => {
-              setEmail(e);
+              setFeedBack(e);
             }}
           />
         </div>

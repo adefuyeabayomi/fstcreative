@@ -29,6 +29,9 @@ import Careers from "../pages/Careers";
 import { useDash } from "../contexts/DashContext";
 import AuthGuard from "../pages/AuthGuard";
 import Pricing from "../pages/Pricing";
+import JobApplication from "../pages/Careers/JobApplication";
+import BootCampApplication from "../pages/BootCampApplication";
+import Bootcamps from "../pages/Bootcamps";
 
 function Navigation(): React.JSX.Element {
   let { isDash } = useDash();
@@ -61,7 +64,13 @@ function Navigation(): React.JSX.Element {
                 <Route path="/auth-guard" Component={AuthGuard} />
                 <Route path="/careers" Component={Careers} />
                 <Route path="/pricing" Component={Pricing} />
+                <Route path="/fst-careers-apply" Component={JobApplication} />
+                <Route
+                  path="/bootcamp-registration"
+                  Component={BootCampApplication}
+                />
                 <Route path="/dashboard" Component={DashboardHome} />
+                <Route path="/bootcamps" Component={Bootcamps} />
                 <Route
                   path="/dashboard/account-settings"
                   Component={AccountSettings}

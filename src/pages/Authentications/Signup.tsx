@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { D_TextInput } from "../../components/input/input";
-import FButtonMain, {
-  ButtonGradientMain,
-  SocialButton,
-} from "../../components/Button/Main";
-import { Spin, Modal } from "antd";
+import FButtonMain, { SocialButton } from "../../components/Button/Main";
+import { Modal } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 
 //import validation function
@@ -21,11 +18,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 const envelope = <FontAwesomeIcon icon={faEnvelope} />;
 
-//import request function
-import { AuthService } from "../../services/auth";
-
 import "./style.css";
-import { generateRandomUsername } from "../../utils/utilityFn";
+
 import { animateScroll as scroll } from "react-scroll";
 import { useLoading } from "../../contexts/LoadingContext";
 import { Auth } from "../../apiSdks/Auth";
@@ -41,7 +35,6 @@ export default function SignUp({}: SignUpPropType): React.JSX.Element {
   const [password, setPassword] = useState("");
   const [passwordValid, setPasswordValid] = useState<boolean | null>(false);
   const [pfeedbackText, setPFeedbackText] = useState("");
-  const [spinning, setSpinning] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalBody, setModalBody] = useState("");
   const [modalTitle, setModalTitle] = useState("");
@@ -106,9 +99,10 @@ export default function SignUp({}: SignUpPropType): React.JSX.Element {
 
     // begin-loading
     setLoading(true);
+    setLoadingText("Creating Account. Please Wait...");
     Auth.postAuthSignupEmailandpassword(user, password, "user")
       .then(() => {
-        setSpinning(false);
+        setLoading(false);
         setModalTitle("Success. Verify Your Account");
         setModalBody(
           `Thank you for signing up. A verification mail has been sent to your email. Please verify your mail to continue using our service.`,
@@ -120,7 +114,7 @@ export default function SignUp({}: SignUpPropType): React.JSX.Element {
         setModalTitle("Signup Error");
         setModalBody(`Reason: ${err.message}`);
         setShowModal(true);
-        setSpinning(false);
+        setLoading(false);
       });
   }
 
@@ -265,11 +259,6 @@ export default function SignUp({}: SignUpPropType): React.JSX.Element {
         </div>
         <div className="py-2" />
         <div className="py-2" />
-        <Spin
-          fullscreen
-          tip={"Creating Account. Please Wait"}
-          spinning={spinning}
-        ></Spin>
       </div>
     </main>
   );

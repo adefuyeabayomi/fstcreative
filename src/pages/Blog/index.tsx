@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
-import BlogCardMain, {
+import {
   BlogCardProp,
   FeaturedCard,
 } from "../../components/BlogCard/BlogCardMain";
@@ -13,6 +13,7 @@ import figmaIntro from "../../assets/images/figma-intro.png";
 import typography from "../../assets/images/typography.png";
 import FButtonMain from "../../components/Button/Main";
 import { useDash } from "../../contexts/DashContext";
+import { useNavigate } from "react-router-dom";
 
 const blogCards: BlogCardProp[] = [
   {
@@ -58,6 +59,7 @@ Color theory enables you to pick colors that go well together and convey the rig
 
 const Blog = (): React.JSX.Element => {
   let [activeCat, setActiveCat] = useState("all");
+  let navigate = useNavigate();
 
   let { updateDashStatus } = useDash();
   useEffect(() => {
@@ -224,7 +226,10 @@ const Blog = (): React.JSX.Element => {
                     <div className="row no-space align-items-center">
                       <div className="w-max-content no-space">
                         {" "}
-                        <FButtonMain iconLeft={false}>
+                        <FButtonMain
+                          actionFn={() => navigate("/bootcamp-registration")}
+                          iconLeft={false}
+                        >
                           <span className="text-none text-semibold">
                             REGISTER
                           </span>

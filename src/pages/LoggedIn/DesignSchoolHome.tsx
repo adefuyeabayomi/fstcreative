@@ -36,7 +36,10 @@ const DesignSchoolHome = (): React.JSX.Element => {
           <div className="row no-space">
             {[1, 2, 3, 4, 5, 6].map((x) => {
               return (
-                <div className="col-12 col-md-6 col-lg-4 col-xl-3 no-space">
+                <div
+                  key={x}
+                  className="col-12 col-md-6 col-lg-4 col-xl-3 no-space"
+                >
                   <div style={{ paddingRight: "15px", paddingTop: "15px" }}>
                     <DashHomeCard />
                   </div>

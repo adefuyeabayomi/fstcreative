@@ -253,14 +253,17 @@ export const Profile: ProfileApi = {
     if (typeof userId !== "string") {
       throw new Error("Argument 'userId' should be of type string ");
     }
-    if (!Array.isArray(files) && !files.every((item) => item instanceof File)) {
+    if (
+      !Array.isArray(files) &&
+      !files.every((item: any) => item instanceof File)
+    ) {
       throw new Error(
         "Argument 'files' should be of type array and the items should be of the type in the {'type':'array','items':{'type':'string','format':'binary'}} format",
       );
     }
 
     let formData = new FormData();
-    files.forEach((x) => {
+    files.forEach((x: any) => {
       formData.append("files", x); // Add each file to the "files" key
     });
 

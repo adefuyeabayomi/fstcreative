@@ -564,6 +564,7 @@ colors definition
   -webkit-background-clip: text;
   background-clip: text;
 }
+
 .gradient-main-light {
   background-image: linear-gradient(62deg, #d4d3ff, #ffc9e9);
   color: transparent;

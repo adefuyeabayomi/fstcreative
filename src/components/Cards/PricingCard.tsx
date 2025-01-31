@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -22,20 +22,19 @@ const PricingCard = ({
   serviceSubgroup,
   serviceGroup,
   priceNGN,
-  priceDollar,
   label,
   packageDeal,
   packageType,
 }: PCardPropType): React.JSX.Element => {
   let packageStyle = "";
-  if(packageType == "regular"){
-    packageStyle = "package-regular"
+  if (packageType == "regular") {
+    packageStyle = "package-regular";
   }
-  if(packageType == "standard"){
-    packageStyle = "package-standard"
+  if (packageType == "standard") {
+    packageStyle = "package-standard";
   }
-  if(packageType == "premium"){
-    packageStyle = "package-premium"
+  if (packageType == "premium") {
+    packageStyle = "package-premium";
   }
 
   return (

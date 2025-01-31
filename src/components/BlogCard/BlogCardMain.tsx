@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import blogImgTemp from "../../assets/images/Leonardo_Kino_XL_Picture_the_Mona_Lisa_as_a_cyberpunk_hacker_i_4 1.png";
 import avatar from "../../assets/images/avatar.png";
 export interface BlogCardProp {
   title: string;

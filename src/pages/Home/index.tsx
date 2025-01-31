@@ -17,12 +17,13 @@ import {
   faStarHalfStroke,
 } from "@fortawesome/free-solid-svg-icons";
 import FButtonMain from "../../components/Button/Main";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useDash } from "../../contexts/DashContext";
 
 const Home = () => {
   let navigate = useNavigate();
+  let location = useLocation();
 
   let { updateDashStatus } = useDash();
   useEffect(() => {
@@ -33,6 +34,18 @@ const Home = () => {
       smooth: "easeInOutQuart", // the type of easing
     });
   }, []);
+  useEffect(() => {
+    if (location.hash === "#services") {
+      scrollToServices();
+    } else if (location.hash === "#contact") {
+      scrollToContact();
+    } else {
+      scroll.scrollToTop({
+        duration: 1000, // duration of the scrolling animation in milliseconds
+        smooth: "easeInOutQuart", // the type of easing
+      });
+    }
+  }, [location]);
   function scrollToServices() {
     let element = document.querySelector("#services") as HTMLElement;
     window.scrollTo({
@@ -40,6 +53,15 @@ const Home = () => {
       behavior: "smooth",
     });
   }
+
+  function scrollToContact() {
+    let element = document.querySelector("#contact") as HTMLElement;
+    window.scrollTo({
+      top: element.offsetTop - 70, // Adjust the offset value as needed
+      behavior: "smooth",
+    });
+  }
+
   function goToPricing(qGroup: string) {
     navigate(`/pricing#${qGroup}`);
   }
@@ -158,6 +180,7 @@ const Home = () => {
           </div>
         </div>
         <div className="d-divider-1 gray-11-bg my-5" />
+
         <div id="services">
           <div className="text-center service-text container">
             <div className="py-2" />
@@ -178,24 +201,30 @@ const Home = () => {
                 <div className="py-2 py-lg-0" />
                 <div className="s-content">
                   <h5 className="font-family-quicksand text-semibold">
-                    Creative Design & Software Development
+                    Branding & Identity Design
                   </h5>
                   <div className="py-1" />
                   <ul className="service-list text-p text-regular">
-                    <li className="text-medium">Branding & Identity Design</li>
+                    <li className="text-medium">Strategic Brand Development</li>
                     <li className="text-medium">
-                      Creative Graphics Design (Posters, Flyers, Social Media
-                      etc.)
+                      Custom Logo Creation. Distinctive and Timeless logos
+                      tailored to your brand’s personality and vision.
                     </li>
-                    <li className="text-medium">UI/UX Design</li>
-                    <li className="text-medium">Web Development </li>
-                    <li className="text-medium">Mobile App Development</li>
+                    <li className="text-medium">
+                      Visual Identity Systems (Reusable) with cohesive branding
+                      assets, including iconography, patterns, and graphic
+                      elements, for consistent communication
+                    </li>
+                    <li className="text-medium">Brand Story Design</li>
+                    <li className="text-medium">
+                      Packaging & Merchandise Branding
+                    </li>
                   </ul>
                   <div className="py-2" />
                   <FButtonMain
                     style={{ paddingLeft: "70px", paddingRight: "70px" }}
                     actionFn={() => {
-                      goToPricing("creativeDesignAndSoftwareDevelopment");
+                      goToPricing("branding");
                     }}
                   >
                     See Service Plans
@@ -216,21 +245,29 @@ const Home = () => {
                 <div className="py-2 py-lg-0" />
                 <div className="s-content">
                   <h5 className="font-family-quicksand text-semibold">
-                    Digital Content Creation and Social Media Management.
+                    Creative Graphics Design
                   </h5>
                   <div className="py-1" />
                   <ul className="service-list text-p text-regular">
-                    <li className="text-medium">Copywriting</li>
-                    <li className="text-medium">Social Media Management</li>
-                    <li className="text-medium">Blog Management</li>
+                    <li className="text-medium">
+                      High-Impact Poster & Flyer Designs to promote events,
+                      products, or campaigns with maximum visual appeal.
+                    </li>
+                    <li className="text-medium">
+                      Social Media Graphics optimized for all social platforms,
+                      ensuring consistent branding across all channels.
+                    </li>
+                    <li className="text-medium">
+                      Advertorial Style Graphics Stunning visuals specifically
+                      created for ads, ensuring high click-through rates and
+                      conversions.
+                    </li>
                   </ul>
                   <div className="py-2" />
                   <FButtonMain
                     style={{ paddingLeft: "70px", paddingRight: "70px" }}
                     actionFn={() => {
-                      goToPricing(
-                        "digitalContentCreationAndSocialMediaManagement",
-                      );
+                      goToPricing("creativeGraphicsDesign");
                     }}
                   >
                     See Service Plans
@@ -251,21 +288,27 @@ const Home = () => {
                 <div className="py-2 py-lg-0" />
                 <div className="s-content">
                   <h5 className="font-family-quicksand text-semibold">
-                    Video Edits And Creation
+                    UI/UX Design
                   </h5>
                   <div className="py-1" />
                   <ul className="service-list text-p text-regular">
-                    <li className="text-medium">2d Animations</li>
-                    <li className="text-medium">Story Illustrations </li>
                     <li className="text-medium">
-                      Product Ads Video & Animations
+                      Full User Research (surveys, interviews, journey maps)
+                    </li>
+                    <li className="text-medium">Low-Fi and High Fi Designs </li>
+                    <li className="text-medium">
+                      Fully Interactive Prototyping for Proper User Testing.
+                    </li>
+                    <li className="text-medium">
+                      Style Guide + Design System (detailed with icons and
+                      reusable components for scalability)
                     </li>
                   </ul>
                   <div className="py-2" />
                   <FButtonMain
                     style={{ paddingLeft: "70px", paddingRight: "70px" }}
                     actionFn={() => {
-                      goToPricing("videoEditsAndCreation");
+                      goToPricing("uiUxDesign");
                     }}
                   >
                     See Service Plans
@@ -286,23 +329,74 @@ const Home = () => {
                 <div className="py-2 py-lg-0" />
                 <div className="s-content">
                   <h5 className="font-family-quicksand text-semibold">
-                    Design and Coding Classes
+                    Web Development
                   </h5>
                   <div className="py-1" />
                   <ul className="service-list text-p text-regular">
-                    <li className="text-medium">Design Basics</li>
-                    <li className="text-medium">Basic Web Development</li>
-                    <li className="text-medium">Front End Frameworks </li>
-                    <li className="text-medium">UI / UX Design Classes</li>
+                    <li className="text-medium">
+                      Fully Accessible Website Design. User Friendly Interface
+                      which ensures A great experience for your customers{" "}
+                    </li>
+                    <li className="text-medium">
+                      Simplified Deployment and Assistance
+                    </li>
+                    <li className="text-medium">
+                      SEO Optimization and SSL Security{" "}
+                    </li>
+                    <li className="text-medium">
+                      API and Database Integrations
+                    </li>
                   </ul>
                   <div className="py-2" />
                   <FButtonMain
                     style={{ paddingLeft: "70px", paddingRight: "70px" }}
                     actionFn={() => {
-                      goToPricing("designAndCodingBootcamps");
+                      goToPricing("webDevelopment");
                     }}
                   >
-                    See Available Classes
+                    See Service Plans
+                  </FButtonMain>
+                </div>
+              </div>
+              <div className="col-12 col-lg-7">
+                <div className="img-container s-image">
+                  <img src={service4} />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="py-4" />
+          <div className="container-fluid no-space">
+            <div className="row no-space align-items-center col-12 col-xxl-10 center">
+              <div className="col-12 col-lg-5 order-last order-lg-first">
+                <div className="py-2 py-lg-0" />
+                <div className="s-content">
+                  <h5 className="font-family-quicksand text-semibold">
+                    Design and Coding Classes
+                  </h5>
+                  <div className="py-1" />
+                  <ul className="service-list text-p text-regular">
+                    <li className="text-medium">
+                      Design Fundamentals - Bootcamp{" "}
+                    </li>
+                    <li className="text-medium">
+                      Web Design Fundamentals (HTML & CSS) - Bootcamp{" "}
+                    </li>
+                    <li className="text-medium">
+                      JavaScript and The Web, React.js - Bootcamp{" "}
+                    </li>
+                    <li className="text-medium">
+                      Beginner To Advanced UI Design With Figma - Bootcamp
+                    </li>
+                  </ul>
+                  <div className="py-2" />
+                  <FButtonMain
+                    style={{ paddingLeft: "70px", paddingRight: "70px" }}
+                    actionFn={() => {
+                      navigate('/bootcamps');
+                    }}
+                  >
+                    Register For a Bootcamp
                   </FButtonMain>
                 </div>
               </div>

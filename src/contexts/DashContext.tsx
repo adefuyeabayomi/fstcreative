@@ -5,7 +5,9 @@ interface DashContextType {
   updateDashStatus: (val: boolean) => void;
 }
 
-const dummyUpdate = (val: boolean): void => {};
+const dummyUpdate = (val: boolean): void => {
+  console.log(val);
+};
 
 const defaultContextValue: DashContextType = {
   isDash: false,

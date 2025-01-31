@@ -6,11 +6,6 @@ import { useDash } from "../../contexts/DashContext";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-interface DHomeCardPropType {
-  title: string;
-  link: string;
-}
-
 const DashboardHome = (): React.JSX.Element => {
   let { updateDashStatus } = useDash();
   let navigate = useNavigate();

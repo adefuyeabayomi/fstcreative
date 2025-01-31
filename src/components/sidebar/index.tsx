@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
-import { Spin, Modal } from "antd";
+import { Modal } from "antd";
 //import icon images
 import iconHome from "../../assets/images/d-icon-home.svg";
 import iconProjects from "../../assets/images/d-icon-projects.svg";

@@ -1,22 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { D_TextInput } from "../../components/input/input";
-import FButtonMain, {
-  ButtonGradientMain,
-  SocialButton,
-} from "../../components/Button/Main";
+import FButtonMain from "../../components/Button/Main";
 import { Spin, Modal } from "antd";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-//import validation function
-import { emailIsValid } from "../../utils/validation";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { AuthService } from "../../services/auth";
 import { useNotificationTrigger } from "../../contexts/notificationTrigger";
-import { animateScroll as scroll } from "react-scroll";
-
-const envelope = <FontAwesomeIcon icon={faEnvelope} />;
 
 interface ForgotPasswordPropType {}
 
