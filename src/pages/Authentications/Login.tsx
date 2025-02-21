@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { D_TextInput } from "../../components/input/input";
 import FButtonMain, { SocialButton } from "../../components/Button/Main";
 import { Modal } from "antd";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 //import validation function
 import { emailIsValid, passwordIsValid } from "../../utils/validation";
@@ -33,6 +33,7 @@ interface LoginPropType {}
 export default function Login({}: LoginPropType): React.JSX.Element {
   const navigate = useNavigate();
   let auth = useAuth();
+  let location = useLocation();
   let { setLoading, setLoadingText } = useLoading();
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
@@ -44,8 +45,16 @@ export default function Login({}: LoginPropType): React.JSX.Element {
   const [modalBody, setModalBody] = useState("");
   const [modalTitle, setModalTitle] = useState("");
   const { triggerInfo } = useNotificationTrigger();
+    const [searchParams] = useSearchParams();
+  let next = searchParams.get("next")
+
   function goToSignup() {
-    navigate("/signup");
+    if(location.search){
+      navigate(`/signup${location.search}`)
+    }
+    else {
+      navigate("/signup");
+    }
   }
   function goToDashboard() {
     navigate("/dashboard");
@@ -99,12 +108,16 @@ export default function Login({}: LoginPropType): React.JSX.Element {
 
     Auth.postAuthLogin(user, password, "user")
       .then((response) => {
-        console.log({ response });
         setShowModal(true);
         setLoading(false);
         triggerInfo({ title: "Login Successful", message: "" });
-        auth.login(response.token, user);
+        auth.login(response.token, user,response.tokenExpiresAt,response.id);
+        if(next){
+          navigate(`/${next}${location.search}`)
+        }
+        else {
         goToDashboard();
+        }
       })
       .catch((err) => {
         console.error({ err });

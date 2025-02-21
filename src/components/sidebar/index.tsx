@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./style.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Modal } from "antd";
 //import icon images
 import iconHome from "../../assets/images/d-icon-home.svg";
@@ -18,6 +18,11 @@ export function SideBar() {
   let [active, setActive] = useState("");
   let auth = useAuth();
   let navigate = useNavigate();
+  let location = useLocation()
+  useEffect(()=>{
+    let currPage = getActive(location.pathname)
+    setActive(currPage)
+  }, [location])
   const [showModal, setShowModal] = useState(false);
 
   function getActive(val: string) {
@@ -34,6 +39,8 @@ export function SideBar() {
 
   function logOut() {
     auth.logout();
+    closeModal();
+    navigate("/auth-guard")
   }
 
   useEffect(() => {

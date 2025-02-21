@@ -263,25 +263,29 @@ const Blog = (): React.JSX.Element => {
                     </div>
                   </div>
                   <div className="py-2" />
-                  <div >
+                  <div>
                     <h4 className="ad-heading">
-                      3 month Product Design Bootcamp! (
-                      Beginner to Advanced )
+                      3 month Product Design Bootcamp! ( Beginner to Advanced )
                     </h4>
                     <div className="py-2" />
-                    <p className="text-medium">🚀 REGISTER NOW – Limited Slots Available!</p>
+                    <p className="text-medium">
+                      🚀 REGISTER NOW – Limited Slots Available!
+                    </p>
                   </div>
                   <div className="py-2" />
                   <div>
                     <p className="royal text-semibold font-family-arial">
-                    📅 Starts: March 14, 2025
+                      📅 Starts: March 14, 2025
                     </p>
                   </div>
                   <div className="py-1" />
                   <div>
-                    <h6 className="font-family-arial">Master Product Design from Scratch!</h6>
+                    <h6 className="font-family-arial">
+                      Master Product Design from Scratch!
+                    </h6>
                     <p className="text-medium font-family arial">
-Go from a total beginner to an advanced designer with our simplified, practical, and hands-on training.
+                      Go from a total beginner to an advanced designer with our
+                      simplified, practical, and hands-on training.
                     </p>
                   </div>
                   <div className="py-1" />
@@ -295,14 +299,38 @@ Go from a total beginner to an advanced designer with our simplified, practical,
                   </div>
                   <div>
                     <ul className="font-family-quicksand gray-3 text-medium-1 text-p ad-list-container">
-                      <li>✅ Visual Design Fundamentals – Build a strong design foundation</li>
-                      <li>✅ Logo Design & Vector Editing (Inkscape) – Create professional branding assets</li>
-                      <li>✅ UI/UX Design Essentials (Figma) – Learn user-friendly design techniques</li>
-                      <li>✅ Design Systems & Libraries – Streamline and scale your designs</li>
-                      <li>✅ Advanced UI Design – Create stunning, functional interfaces</li>
-                      <li>✅ Product Development Lifecycle - Learn Collaboration and Team work in a the real world setting</li>
-                      <li>✅ Interaction and Motion Design - Learn to create a fun Immersive experience for users</li>
-                        <li>✅ Live Sessions & Portfolio Projects – Gain real-world experience</li>
+                      <li>
+                        ✅ Visual Design Fundamentals – Build a strong design
+                        foundation
+                      </li>
+                      <li>
+                        ✅ Logo Design & Vector Editing (Inkscape) – Create
+                        professional branding assets
+                      </li>
+                      <li>
+                        ✅ UI/UX Design Essentials (Figma) – Learn user-friendly
+                        design techniques
+                      </li>
+                      <li>
+                        ✅ Design Systems & Libraries – Streamline and scale
+                        your designs
+                      </li>
+                      <li>
+                        ✅ Advanced UI Design – Create stunning, functional
+                        interfaces
+                      </li>
+                      <li>
+                        ✅ Product Development Lifecycle - Learn Collaboration
+                        and Team work in a the real world setting
+                      </li>
+                      <li>
+                        ✅ Interaction and Motion Design - Learn to create a fun
+                        Immersive experience for users
+                      </li>
+                      <li>
+                        ✅ Live Sessions & Portfolio Projects – Gain real-world
+                        experience
+                      </li>
                     </ul>
                   </div>
                   <div className="py-2" />
@@ -313,17 +341,18 @@ Go from a total beginner to an advanced designer with our simplified, practical,
                   </div>
                   <div className="py-1" />
                   <div>
-                    <p
-                      className="text-medium-1 gray-2"
-                    >
-                      🎯 Graduate with a portfolio & collaborate on real projects!
+                    <p className="text-medium-1 gray-2">
+                      🎯 Graduate with a portfolio & collaborate on real
+                      projects!
                     </p>
                   </div>
 
                   <div className="py-1" />
                   <div>
                     <FButtonMain style={{ width: "100%" }} iconLeft={false}>
-                      <span className="text-none text-semibold">🔗 Register Now!</span>
+                      <span className="text-none text-semibold">
+                        🔗 Register Now!
+                      </span>
                     </FButtonMain>
                   </div>
 

@@ -14,10 +14,10 @@ const CustomerSupport = (): React.JSX.Element => {
   let { updateDashStatus } = useDash();
   let navigate = useNavigate();
   let auth = useAuth();
+  useEffect(() => {
   if (!auth.isAuthenticated) {
     navigate("/auth-guard");
   }
-  useEffect(() => {
     updateDashStatus(true);
 
     // Scroll to top when the component mounts

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 import { animateScroll as scroll } from "react-scroll";
 import { useDash } from "../../contexts/DashContext";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import {
   brandingAndIdentityDesign,
   creativeGraphicsDesign,
@@ -10,7 +10,23 @@ import {
   webDevelopment,
 } from "./fstprices";
 import PricingCard from "../../components/Cards/PricingCard";
+import { useAuth } from "../../contexts/AuthContext";
+import { useLoading } from "../../contexts/LoadingContext";
 const Pricing = (): React.JSX.Element => {
+  let auth = useAuth()
+      const [searchParams] = useSearchParams();
+    let next = searchParams.get("next")
+    let serviceGroup = searchParams.get("serviceGroup") || ""
+    let packageType = searchParams.get("packageType") || ""
+
+  let navigate = useNavigate()
+
+  useEffect(()=>{
+    if(next == "pricing"){
+      // call reque3st function here
+      handleChoosePlan(serviceGroup,packageType)
+    }
+  }, [])
   let cats = {
     branding: "Branding & Identity Design",
     creativeGraphicsDesign: "Creative Graphic Design",
@@ -20,13 +36,37 @@ const Pricing = (): React.JSX.Element => {
   type CatKeys = keyof typeof cats;
   let { updateDashStatus } = useDash();
 
+  let {setLoading,setLoadingText} = useLoading()
   let location = useLocation();
 
   let page = location.hash.slice(1, location.hash.length);
 
-  let [activeCatCode, setActiveCatCode] = useState<CatKeys>(page as CatKeys);
+  let [activeCatCode, setActiveCatCode] = useState<CatKeys>(page as CatKeys || "branding");
 
   let catObj = brandingAndIdentityDesign;
+
+  function handleChoosePlan(serviceGroup:string,packageType: string){
+    console.log({serviceGroup,packageType, auth})
+    if(!auth.isAuthenticated){
+      // redirect to the login / signup page
+      // Now the page has a reference page.
+      // next=choosePlan&serviceGroup=groupname&serviceSubgroup=subgroupname&packageType
+      setLoading(true)
+      setLoadingText("You need to Login to Choose A Service Plan. Redirecting to Login Page")
+      setTimeout(()=>{
+        setLoading(false)
+        setLoadingText("")
+      let path = `login?next=pricing&serviceGroup=${serviceGroup}&packageType=${packageType}`
+      console.log(path)
+      navigate(`/${path}`)
+      },5000)
+    }
+    else {
+      // time for some algorithms
+      // send a post request to the endpoint with the relevant data. user data and product data.
+
+    }
+  }
 
   switch (activeCatCode) {
     case "branding": {
@@ -114,6 +154,7 @@ const Pricing = (): React.JSX.Element => {
                       label={x.label}
                       packageDeal={x.packageDeal}
                       packageType={x.packageType}
+                      actionFn={()=>handleChoosePlan(activeCatCode,x.packageType)}
                     />
                   </div>
                 );

@@ -11,9 +11,17 @@ import bIconUI from "../../assets/images/bIconUI.png";
 import angArrow from "../../assets/images/ang45arrow.svg";
 import FButtonMain from "../../components/Button/Main";
 import { useDash } from "../../contexts/DashContext";
+import { useAuth } from "../../contexts/AuthContext";
+import { useLoading } from "../../contexts/LoadingContext";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Bootcamps = (): React.JSX.Element => {
+  let auth = useAuth()
+  let {setLoading,setLoadingText} = useLoading()
+  let navigate = useNavigate()
   let { updateDashStatus } = useDash();
+  const [searchParams] = useSearchParams();
+  let next = searchParams.get("next")
   useEffect(() => {
     updateDashStatus(false);
     // Scroll to top when the component mounts
@@ -22,16 +30,34 @@ const Bootcamps = (): React.JSX.Element => {
       smooth: "easeInOutQuart", // the type of easing
     });
   }, []);
+  
+  function handleRegisterForBootcamp(){
+    if(!auth.isAuthenticated){
+      // redirect to the login / signup page
+      // Now the page has a reference page.
+      // next=choosePlan&serviceGroup=groupname&serviceSubgroup=subgroupname&packageType
+      setLoading(true)
+      setLoadingText("You need to Login to Register For Bootcamp. Redirecting to Login Page")
+      setTimeout(()=>{
+        setLoading(false)
+        setLoadingText("")
+      let path = `login?next=bootcamps&register=true`
+      console.log(path)
+      navigate(`/${path}`)
+      },5000)
+    }
+  }
+
   return (
     <div className="main-spacing-x royal-shade-5">
       <div className="py-4" />
       <div className="py-2" />
       <div className="container-fluid no-space  text-center text-lg-left">
-        <div className="row no-space align-items-end align-items-lg-center justify-content-center">
-          <div className="col-12 col-md-6 col-lg-5 no-space">
+        <div className="row no-space align-items-center justify-content-center">
+          <div className="col-12 col-md-6 col-lg-6 no-space">
             <div>
               <h1 className="text-semibold">
-                Go From Complete Beginner To Your First Internship
+                Kickstart Your Tech Career with Hands-On Learning
               </h1>
             </div>
             <div className="py-2" />
@@ -58,14 +84,24 @@ const Bootcamps = (): React.JSX.Element => {
             </div>
             <div className="py-2" />
             <div>
-              <h6 className="text-medium bHSubline center d-block d-lg-none">
-                Explore our available bootcamp sessions and begin your design &
-                coding journey.
+              <h6 className="text-medium-1 bHSubline center d-block d-lg-none">
+                Start Your Design Journey with Our Bootcamp—Coding Coming Soon!
               </h6>
-              <h6 className="text-medium bHSubline center d-none d-lg-block">
-                Explore our available bootcamp sessions and begin your design &
-                coding journey.
+              <h6 className="text-medium-1 bHSubline d-none d-lg-block">
+                Start Your Design Journey with Our Bootcamp—Coding Coming Soon!
               </h6>
+              <p className="bHSubline text-medium  center d-block d-lg-none">
+                Explore our current Product Design Bootcamp and gain hands-on
+                experience in UI/UX, visual design, and interactive prototyping.
+                As we grow, expect even more opportunities, including coding
+                bootcamps!
+              </p>
+              <p className="bHSubline text-medium d-none d-lg-block">
+                Explore our current Product Design Bootcamp and gain hands-on
+                experience in UI/UX, visual design, and interactive prototyping.
+                As we grow, expect even more opportunities, including coding
+                bootcamps!
+              </p>
               <div className="py-4 py-md-0" />
             </div>
           </div>
@@ -104,11 +140,34 @@ const Bootcamps = (): React.JSX.Element => {
 
           <div>
             <h3 className="text-semibold">
-              UI/UX Design - Beginner To Advanced
+              Product Design Bootcamp (Beginner to Advanced)
             </h3>
-            <h6 className="text-medium">
-              Becoming a UI/UX Designer is a Interesting and Challenging Process. This Course is designed to help you become a better Creative Designer, Collaborator and Team Player.
+            <div className="py-2" />
+            <h6 className="text-semibold">
+              🚀 Master UI/UX & Visual Design in Just 3 Months!
             </h6>
+
+            <div className="py-2" />
+            <div>
+              <ul className="font-family-quicksand gray-3 text-medium-1 text-p ad-list-container">
+                <li>
+                  ✅ <span className="text-semibold gray-2">Start Date:</span>{" "}
+                  14th March, 2025
+                </li>
+                <li>
+                  ✅ <span className="text-semibold gray-2">Duration:</span> 12
+                  Weeks (Live Sessions + Hands-on Practicals)
+                </li>
+                <li>
+                  ✅ <span className="text-semibold gray-2">Skill Level:</span>{" "}
+                  Total Beginner to Advanced
+                </li>
+                <li>
+                  ✅ <span className="text-semibold gray-2">Mode:</span> Online
+                  (Live + Recorded Sessions)
+                </li>
+              </ul>
+            </div>
           </div>
           <div className="py-2" />
           <div className="fade-border r-10 p-2">
@@ -116,60 +175,150 @@ const Bootcamps = (): React.JSX.Element => {
           </div>
           <div className="py-3" />
           <div>
-            <h6 className="text-semibold">
-              What You'll Gain From This Bootcamp
-            </h6>
+            <h6 className="text-semibold">What You'll Learn</h6>
 
             <div className="py-2" />
-            <ul className="bPageList">
+            <ul className=" bPageList font-family-quicksand gray-3 text-medium-1 text-p ad-list-container">
               <li>
-                <p className="text-medium">
-                  The Fundamentals of Creative Design
-                </p>
+                🔹{" "}
+                <span className="text-semibold gray-2">
+                  Basics of Visual Design –{" "}
+                </span>{" "}
+                Master design principles, color theory, and typography.
               </li>
               <li>
-                <p className="text-medium">
-                  Explore our available bootcamp sessions and begin your design
-                  & coding journey.
-                </p>
+                🔹{" "}
+                <span className="text-semibold gray-2">
+                  Logo Design & Vector Editing (Inkscape) –{" "}
+                </span>{" "}
+                Create stunning logos and scalable vector graphics.
               </li>
               <li>
-                <p className="text-medium">
-                  Explore our available bootcamp sessions and begin your design
-                  & coding journey.
-                </p>
+                🔹{" "}
+                <span className="text-semibold gray-2">
+                  Fundamentals of UI/UX Design (Figma) –
+                </span>{" "}
+                Learn wireframing, prototyping, and user research.
+              </li>
+              <li>
+                🔹{" "}
+                <span className="text-semibold gray-2">
+                  Design Systems and Libraries –{" "}
+                </span>{" "}
+                Build reusable UI components for scalable projects.
+              </li>
+              <li>
+                🔹{" "}
+                <span className="text-semibold gray-2">
+                  Advanced UI Design –{" "}
+                </span>{" "}
+                Craft polished, high-quality interfaces that stand out.
+              </li>
+              <li>
+                🔹{" "}
+                <span className="text-semibold gray-2">
+                  Interaction & Motion Design –{" "}
+                </span>{" "}
+                Create immersive experiences with animations and
+                micro-interactions.
+              </li>
+              <li>
+                🔹{" "}
+                <span className="text-semibold gray-2">
+                  Product Development Lifecycle –{" "}
+                </span>{" "}
+                Work in a team setting, collaborate on projects, and understand
+                real-world workflows.
+              </li>
+              <li>
+                🔹{" "}
+                <span className="text-semibold gray-2">
+                  Live Sessions & Portfolio Projects –{" "}
+                </span>{" "}
+                Gain hands-on experience and showcase your work to potential
+                employers.
               </li>
             </ul>
           </div>
           <div className="py-3" />
           <div>
-            <h6 className="text-semibold">Special Benefits</h6>
+            <h6 className="text-semibold">Why This Bootcamp?</h6>
+
+            <div className="py-2" />
+            <ul className=" bPageList font-family-quicksand gray-3 text-medium-1 text-p ad-list-container">
+              <li>
+                💡{" "}
+                <span className="text-semibold gray-2">
+                  {" "}
+                  Industry-Relevant Training –{" "}
+                </span>{" "}
+                Learn exactly what top companies look for in designers.
+              </li>
+              <li>
+                🖥{" "}
+                <span className="text-semibold gray-2">
+                  {" "}
+                  Practical Hands-on Approach –{" "}
+                </span>{" "}
+                Apply your knowledge through real-world projects.
+              </li>
+              <li>
+                📂{" "}
+                <span className="text-semibold gray-2">
+                  {" "}
+                  Build a Portfolio That Stands Out –{" "}
+                </span>{" "}
+                Work on projects that impress recruiters.
+              </li>
+              <li>
+                👨‍🏫{" "}
+                <span className="text-semibold gray-2">
+                  {" "}
+                  Expert Mentorship & Guidance –{" "}
+                </span>{" "}
+                Get personalized feedback from industry professionals.
+              </li>
+              <li>
+                🤝{" "}
+                <span className="text-semibold gray-2">
+                  {" "}
+                  Community & Collaboration –{" "}
+                </span>{" "}
+                Join a network of aspiring designers and start working on real
+                products.
+              </li>
+            </ul>
           </div>
-          <div className="py-2" />
-          <ul className="bPageList">
-            <li>
-              <p className="text-medium">
-                Explore our available bootcamp sessions and begin your design &
-                coding journey.
-              </p>
-            </li>
-            <li>
-              <p className="text-medium">
-                Explore our available bootcamp sessions and begin your design &
-                coding journey.
-              </p>
-            </li>
-            <li>
-              <p className="text-medium">
-                Explore our available bootcamp sessions and begin your design &
-                coding journey.
-              </p>
-            </li>
-          </ul>
+          <div className="py-3" />
+          <div>
+            <h6 className="text-semibold">
+              By the End of This Bootcamp, You’ll Be Able To:
+            </h6>
+
+            <div className="py-2" />
+            <ul className=" bPageList font-family-quicksand gray-3 text-medium-1 text-p ad-list-container">
+              <li>
+                ✅ Design high-quality user interfaces & experiences from
+                scratch.
+              </li>
+              <li>✅ Work with modern design tools (Figma, Inkscape, etc.).</li>
+              <li>✅ Build and contribute to real-world products.</li>
+              <li>
+                ✅ Create a compelling portfolio that attracts job offers.
+              </li>
+            </ul>
+          </div>
           <div className="py-3" />
 
+          <h6 className="text-bold font-family-arial">
+            Ready to Start Your Design Journey?
+          </h6>
+          <div className="py-1" />
+          <p className="text-semibold">🚀 Register Now and Secure Your Spot!</p>
+
+          <div className="py-3" />
           <div>
-            <FButtonMain style={{ width: "100%" }}>Register</FButtonMain>
+            <FButtonMain actionFn={handleRegisterForBootcamp} style={{ width: "100%" }}>Register</FButtonMain>
           </div>
         </div>
       </div>

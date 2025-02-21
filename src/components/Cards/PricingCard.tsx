@@ -18,14 +18,15 @@ export interface PCardPropType {
   packageType: "regular" | "standard" | "premium";
 }
 
-const PricingCard = ({
+const PricingCard: React.FC<PCardPropType & { actionFn: () => void }> = ({
   serviceSubgroup,
   serviceGroup,
   priceNGN,
   label,
   packageDeal,
   packageType,
-}: PCardPropType): React.JSX.Element => {
+  actionFn
+}): React.JSX.Element => {
   let packageStyle = "";
   if (packageType == "regular") {
     packageStyle = "package-regular";
@@ -66,9 +67,9 @@ const PricingCard = ({
         <div className="py-2" />
         <div>
           <ul className="plan-list">
-            {packageDeal.map((x) => {
+            {packageDeal.map((x,index) => {
               return (
-                <li className="text-semibold royal-shade-5">
+                <li key={index} className="text-semibold royal-shade-5">
                   <FontAwesomeIcon color="#181a1f" icon={faCheckSquare} /> {x}
                 </li>
               );
@@ -85,6 +86,7 @@ const PricingCard = ({
               borderRadius: "30px",
               color: "#8f9298",
             }}
+            actionFn={actionFn}
           >
             <span className="gray-2 text-semibold"> Choose This Plan </span>
           </FButtonMain>

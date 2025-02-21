@@ -3,11 +3,12 @@ import React, { createContext, useState, useContext } from "react";
 // Define the shape of your auth context
 interface AuthContextType {
   isAuthenticated: boolean;
-  login: (token: string, user: string) => void;
+  login: (token: string, email: string,expiresAt: number, userID: string) => void;
   logout: () => void;
-  user: undefined;
+  user: string;
   email: string;
   token: string;
+  expiresAt: string;
 }
 
 // Dummy login function
@@ -23,9 +24,10 @@ const defaultAuthContext: AuthContextType = {
   isAuthenticated: false,
   login: dummyLogin,
   logout: dummyLogout,
-  user: undefined, // or you can use emptyUser if a user object is always required, import the user type.
+  user: "", // or you can use emptyUser if a user object is always required, import the user type.
   email: "",
   token: "",
+  expiresAt: ''
 };
 
 // Create the context with initial values
@@ -46,32 +48,33 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [email, setEmail] = useState("");
+  const [expiresAt, setExpiresAt] = useState<number>(new Date().getTime());
   const [token, setToken] = useState("");
+  const [user,setUser] = useState("")
   //default auth state is not authenticated. then use effect checks if there is an accessToken
-  let userFromStore = window.localStorage.getItem("user");
-  let userData;
-
-  if (userFromStore) {
-    userData = JSON.parse(userFromStore);
-  }
-
-  const [user] = useState(userData);
-
-  const login = (accessToken: string, email: string) => {
-    setIsAuthenticated(true);
-    setEmail(email);
-    setToken(accessToken);
+  
+  const login = (accessToken: string, email: string,expiresAt: number,userID: string) => {
+    setExpiresAt(expiresAt)
+    setIsAuthenticated(true)
+    setEmail(email)
+    setToken(accessToken)
+    setUser(userID)
     window.localStorage.setItem("access_token", accessToken);
+    window.localStorage.setItem("user_email", email);
+    window.localStorage.setItem("user_id", userID);
+    window.localStorage.setItem("token_expires_at", String(expiresAt));
   };
 
   const logout = () => {
     setIsAuthenticated(false);
-    window.localStorage.clear();
+    window.localStorage.setItem("access_token", "");
+    window.localStorage.setItem("token_expires_at", "");
+
   };
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, login, logout, user, email, token }}
+      value={{ isAuthenticated, login, logout, user, email, token,expiresAt: String(expiresAt) }}
     >
       {children}
     </AuthContext.Provider>

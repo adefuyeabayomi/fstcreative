@@ -393,7 +393,7 @@ const Home = () => {
                   <FButtonMain
                     style={{ paddingLeft: "70px", paddingRight: "70px" }}
                     actionFn={() => {
-                      navigate('/bootcamps');
+                      navigate("/bootcamps");
                     }}
                   >
                     Register For a Bootcamp

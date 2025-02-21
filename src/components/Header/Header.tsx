@@ -79,6 +79,14 @@ export function Header(): React.JSX.Element {
                     <li className="desktop-nav-links">
                       <Link
                         className="text-none royal-shade-5 text-medium-1"
+                        to={"/pricing"}
+                      >
+                        Pricing
+                      </Link>
+                    </li>
+                    <li className="desktop-nav-links">
+                      <Link
+                        className="text-none royal-shade-5 text-medium-1"
                         to={"/exhibits"}
                       >
                         Exhibits

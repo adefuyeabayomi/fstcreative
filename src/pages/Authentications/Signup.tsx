@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { D_TextInput } from "../../components/input/input";
 import FButtonMain, { SocialButton } from "../../components/Button/Main";
 import { Modal } from "antd";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 //import validation function
 import { emailIsValid, passwordIsValid } from "../../utils/validation";
@@ -39,9 +39,15 @@ export default function SignUp({}: SignUpPropType): React.JSX.Element {
   const [modalBody, setModalBody] = useState("");
   const [modalTitle, setModalTitle] = useState("");
   const [okayText, setOkayText] = useState("Okay");
+    let location = useLocation();
 
   function goToLogin() {
-    navigate("/login");
+    if(location.search){
+      navigate(`/login${location.search}`)
+    }
+    else {
+      navigate("/login");
+    }
   }
 
   function closeModal() {

@@ -68,9 +68,7 @@ const JobApplication = (): React.JSX.Element => {
         <div className="py-4" />
         <div>
           <FButtonMain style={{ width: "100%" }} actionFn={() => {}}>
-            <span>
-              Submit Application
-            </span>            
+            <span>Submit Application</span>
           </FButtonMain>
         </div>
         <div className="py-2" />

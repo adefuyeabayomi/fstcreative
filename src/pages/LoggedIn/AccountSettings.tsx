@@ -13,12 +13,12 @@ const AccountSettings = (): React.JSX.Element => {
   let { updateDashStatus } = useDash();
   let navigate = useNavigate();
   let auth = useAuth();
-  if (!auth.isAuthenticated) {
-    navigate("/auth-guard");
-  }
   let [username, setUsername] = useState("");
   // i should not allow them get here.
   useEffect(() => {
+  if (!auth.isAuthenticated) {
+    navigate("/auth-guard");
+  }
     updateDashStatus(true);
     // Scroll to top when the component mounts
     scroll.scrollToTop({

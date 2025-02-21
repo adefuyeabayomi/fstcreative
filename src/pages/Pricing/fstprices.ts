@@ -184,7 +184,7 @@ export const uiUxDesign: ServicePriceObjType = {
     ],
     packageType: "premium",
   },
-}
+};
 
 export const webDevelopment: ServicePriceObjType = {
   regular: {
