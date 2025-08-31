@@ -12,9 +12,9 @@ const DesignSchoolHome = (): React.JSX.Element => {
   let auth = useAuth();
 
   useEffect(() => {
-  if (!auth.isAuthenticated) {
-    navigate("/auth-guard");
-  }
+    if (!auth.isAuthenticated) {
+      navigate("/auth-guard");
+    }
     updateDashStatus(true);
     // Scroll to top when the component mounts
     scroll.scrollToTop({

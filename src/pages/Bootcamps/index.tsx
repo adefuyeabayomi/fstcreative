@@ -13,15 +13,15 @@ import FButtonMain from "../../components/Button/Main";
 import { useDash } from "../../contexts/DashContext";
 import { useAuth } from "../../contexts/AuthContext";
 import { useLoading } from "../../contexts/LoadingContext";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Bootcamps = (): React.JSX.Element => {
-  let auth = useAuth()
-  let {setLoading,setLoadingText} = useLoading()
-  let navigate = useNavigate()
+  let auth = useAuth();
+  let { setLoading, setLoadingText } = useLoading();
+  let navigate = useNavigate();
   let { updateDashStatus } = useDash();
-  const [searchParams] = useSearchParams();
-  let next = searchParams.get("next")
+  //const [searchParams] = useSearchParams();
+  //let next = searchParams.get("next")
   useEffect(() => {
     updateDashStatus(false);
     // Scroll to top when the component mounts
@@ -30,21 +30,23 @@ const Bootcamps = (): React.JSX.Element => {
       smooth: "easeInOutQuart", // the type of easing
     });
   }, []);
-  
-  function handleRegisterForBootcamp(){
-    if(!auth.isAuthenticated){
+
+  function handleRegisterForBootcamp() {
+    if (!auth.isAuthenticated) {
       // redirect to the login / signup page
       // Now the page has a reference page.
       // next=choosePlan&serviceGroup=groupname&serviceSubgroup=subgroupname&packageType
-      setLoading(true)
-      setLoadingText("You need to Login to Register For Bootcamp. Redirecting to Login Page")
-      setTimeout(()=>{
-        setLoading(false)
-        setLoadingText("")
-      let path = `login?next=bootcamps&register=true`
-      console.log(path)
-      navigate(`/${path}`)
-      },5000)
+      setLoading(true);
+      setLoadingText(
+        "You need to Login to Register For Bootcamp. Redirecting to Login Page",
+      );
+      setTimeout(() => {
+        setLoading(false);
+        setLoadingText("");
+        let path = `login?next=bootcamps&register=true`;
+        console.log(path);
+        navigate(`/${path}`);
+      }, 5000);
     }
   }
 
@@ -318,7 +320,12 @@ const Bootcamps = (): React.JSX.Element => {
 
           <div className="py-3" />
           <div>
-            <FButtonMain actionFn={handleRegisterForBootcamp} style={{ width: "100%" }}>Register</FButtonMain>
+            <FButtonMain
+              actionFn={handleRegisterForBootcamp}
+              style={{ width: "100%" }}
+            >
+              Register
+            </FButtonMain>
           </div>
         </div>
       </div>

@@ -15,9 +15,9 @@ const CustomerSupport = (): React.JSX.Element => {
   let navigate = useNavigate();
   let auth = useAuth();
   useEffect(() => {
-  if (!auth.isAuthenticated) {
-    navigate("/auth-guard");
-  }
+    if (!auth.isAuthenticated) {
+      navigate("/auth-guard");
+    }
     updateDashStatus(true);
 
     // Scroll to top when the component mounts

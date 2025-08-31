@@ -18,11 +18,11 @@ export function SideBar() {
   let [active, setActive] = useState("");
   let auth = useAuth();
   let navigate = useNavigate();
-  let location = useLocation()
-  useEffect(()=>{
-    let currPage = getActive(location.pathname)
-    setActive(currPage)
-  }, [location])
+  let location = useLocation();
+  useEffect(() => {
+    let currPage = getActive(location.pathname);
+    setActive(currPage);
+  }, [location]);
   const [showModal, setShowModal] = useState(false);
 
   function getActive(val: string) {
@@ -40,7 +40,7 @@ export function SideBar() {
   function logOut() {
     auth.logout();
     closeModal();
-    navigate("/auth-guard")
+    navigate("/auth-guard");
   }
 
   useEffect(() => {

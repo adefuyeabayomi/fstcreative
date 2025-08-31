@@ -20,6 +20,7 @@ interface AuthApi {
     role: any,
   ) => Promise<any>;
 }
+
 export const Auth: AuthApi = {
   /**
    * User Login

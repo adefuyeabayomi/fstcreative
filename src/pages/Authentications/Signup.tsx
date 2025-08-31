@@ -39,13 +39,12 @@ export default function SignUp({}: SignUpPropType): React.JSX.Element {
   const [modalBody, setModalBody] = useState("");
   const [modalTitle, setModalTitle] = useState("");
   const [okayText, setOkayText] = useState("Okay");
-    let location = useLocation();
+  let location = useLocation();
 
   function goToLogin() {
-    if(location.search){
-      navigate(`/login${location.search}`)
-    }
-    else {
+    if (location.search) {
+      navigate(`/login${location.search}`);
+    } else {
       navigate("/login");
     }
   }

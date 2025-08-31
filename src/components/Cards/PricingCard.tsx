@@ -25,7 +25,7 @@ const PricingCard: React.FC<PCardPropType & { actionFn: () => void }> = ({
   label,
   packageDeal,
   packageType,
-  actionFn
+  actionFn,
 }): React.JSX.Element => {
   let packageStyle = "";
   if (packageType == "regular") {
@@ -67,7 +67,7 @@ const PricingCard: React.FC<PCardPropType & { actionFn: () => void }> = ({
         <div className="py-2" />
         <div>
           <ul className="plan-list">
-            {packageDeal.map((x,index) => {
+            {packageDeal.map((x, index) => {
               return (
                 <li key={index} className="text-semibold royal-shade-5">
                   <FontAwesomeIcon color="#181a1f" icon={faCheckSquare} /> {x}

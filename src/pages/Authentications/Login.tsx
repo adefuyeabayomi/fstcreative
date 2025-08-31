@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import { D_TextInput } from "../../components/input/input";
 import FButtonMain, { SocialButton } from "../../components/Button/Main";
 import { Modal } from "antd";
-import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 
 //import validation function
 import { emailIsValid, passwordIsValid } from "../../utils/validation";
@@ -45,14 +50,13 @@ export default function Login({}: LoginPropType): React.JSX.Element {
   const [modalBody, setModalBody] = useState("");
   const [modalTitle, setModalTitle] = useState("");
   const { triggerInfo } = useNotificationTrigger();
-    const [searchParams] = useSearchParams();
-  let next = searchParams.get("next")
+  const [searchParams] = useSearchParams();
+  let next = searchParams.get("next");
 
   function goToSignup() {
-    if(location.search){
-      navigate(`/signup${location.search}`)
-    }
-    else {
+    if (location.search) {
+      navigate(`/signup${location.search}`);
+    } else {
       navigate("/signup");
     }
   }
@@ -111,12 +115,11 @@ export default function Login({}: LoginPropType): React.JSX.Element {
         setShowModal(true);
         setLoading(false);
         triggerInfo({ title: "Login Successful", message: "" });
-        auth.login(response.token, user,response.tokenExpiresAt,response.id);
-        if(next){
-          navigate(`/${next}${location.search}`)
-        }
-        else {
-        goToDashboard();
+        auth.login(response.token, user, response.tokenExpiresAt, response.id);
+        if (next) {
+          navigate(`/${next}${location.search}`);
+        } else {
+          goToDashboard();
         }
       })
       .catch((err) => {
