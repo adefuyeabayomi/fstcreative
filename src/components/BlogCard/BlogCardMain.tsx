@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import avatar from "../../assets/images/avatar.png";
 export interface BlogCardProp {
   title: string;
@@ -31,7 +31,7 @@ const BlogCardMain = ({
           <p className="word-break gray-4">{highlightText}</p>
         </div>
         <div className="py-1"></div>
-        <Link className="text-none gray-1" to={linkPath}>
+        <Link className="text-none gray-1" href={linkPath}>
           <div className="blog-text-container text-p">
             <div className="container-fluid no-space">
               <div className="row no-space align-items-center">
@@ -84,7 +84,7 @@ export const FeaturedCard = ({
             <div className="fcard-image-container">{image}</div>
           </div>
           <div className={gridStyle + " fcontent"}>
-            <Link className="text-none" to={linkPath}>
+            <Link className="text-none" href={linkPath}>
               <div className="container-fluid no-space">
                 <div className="row no-space">
                   <div className="w-max-content no-space">
@@ -116,7 +116,7 @@ export const FeaturedCard = ({
               <div className="row no-space">
                 <div className="w-max-content no-space">
                   <div className="f-card-avatar-container">
-                    <img className="" src={avatar} />
+                    <img className="" src={avatar.src} />
                   </div>
                 </div>
                 <div className="col no-space px-2">

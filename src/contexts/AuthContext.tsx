@@ -1,99 +1,165 @@
-import React, { createContext, useState, useContext } from "react";
+"use client";
 
-// Define the shape of your auth context
-interface AuthContextType {
-  isAuthenticated: boolean;
-  login: (
-    token: string,
-    email: string,
-    expiresAt: number,
-    userID: string,
-  ) => void;
-  logout: () => void;
-  user: string;
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+import { userAuthApi, type SessionUser } from "@/api/userAuth";
+
+export type { SessionUser };
+
+interface RegisterInput {
+  firstName: string;
+  lastName: string;
   email: string;
-  token: string;
-  expiresAt: string;
+  password: string;
 }
 
-// Dummy login function
-const dummyLogin = (): void => {};
+interface AuthContextType {
+  /** False until the initial session lookup finishes. */
+  isReady: boolean;
+  isAuthenticated: boolean;
+  user: SessionUser | null;
+  email: string;
 
-// Dummy logout function
-const dummyLogout = (): void => {
-  console.log("Logout function called");
-};
+  /** Step 1 of password login. Returns true when an OTP is required. */
+  login: (email: string, password: string) => Promise<{ requiresOtp: boolean }>;
+  /** Step 2: exchange the emailed code for a session. */
+  verifyOtp: (email: string, otp: string) => Promise<void>;
 
-// Default initializer for AuthContextType
-const defaultAuthContext: AuthContextType = {
-  isAuthenticated: false,
-  login: dummyLogin,
-  logout: dummyLogout,
-  user: "", // or you can use emptyUser if a user object is always required, import the user type.
-  email: "",
-  token: "",
-  expiresAt: "",
-};
+  register: (input: RegisterInput) => Promise<void>;
+  verifyEmail: (email: string, otp: string) => Promise<void>;
+  googleSignIn: (idToken: string) => Promise<void>;
 
-// Create the context with initial values
-const AuthContext = createContext<AuthContextType>(defaultAuthContext);
+  logout: () => Promise<void>;
+  refreshUser: () => Promise<void>;
 
-// Custom hook to use the auth context
-export const useAuth = () => {
+  forgotPassword: (email: string) => Promise<string>;
+  resetPassword: (email: string, otp: string, newPassword: string) => Promise<string>;
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const [isReady, setIsReady] = useState(false);
+  const [user, setUser] = useState<SessionUser | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    (async () => {
+      try {
+        const session = await userAuthApi.me();
+        if (!cancelled) setUser(session.user);
+      } catch {
+        if (!cancelled) setUser(null);
+      } finally {
+        if (!cancelled) setIsReady(true);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const login = useCallback(async (email: string, password: string) => {
+    const result = await userAuthApi.login(email, password);
+    // The backend always requires the emailed OTP for password sign-in.
+    return { requiresOtp: result.requiresOtp !== false };
+  }, []);
+
+  const verifyOtp = useCallback(async (email: string, otp: string) => {
+    const session = await userAuthApi.verifyOtp(email, otp);
+    setUser(session.user);
+  }, []);
+
+  const register = useCallback(async (input: RegisterInput) => {
+    await userAuthApi.register(input);
+  }, []);
+
+  const verifyEmail = useCallback(async (email: string, otp: string) => {
+    const session = await userAuthApi.verifyEmail(email, otp);
+    setUser(session.user);
+  }, []);
+
+  const googleSignIn = useCallback(async (idToken: string) => {
+    const session = await userAuthApi.google(idToken);
+    setUser(session.user);
+  }, []);
+
+  const logout = useCallback(async () => {
+    try {
+      await userAuthApi.logout();
+    } finally {
+      setUser(null);
+    }
+  }, []);
+
+  const refreshUser = useCallback(async () => {
+    try {
+      const session = await userAuthApi.me();
+      setUser(session.user);
+    } catch {
+      setUser(null);
+    }
+  }, []);
+
+  const forgotPassword = useCallback(async (email: string) => {
+    const result = await userAuthApi.forgotPassword(email);
+    return result.message;
+  }, []);
+
+  const resetPassword = useCallback(
+    async (email: string, otp: string, newPassword: string) => {
+      const result = await userAuthApi.resetPassword(email, otp, newPassword);
+      return result.message;
+    },
+    [],
+  );
+
+  const value = useMemo<AuthContextType>(
+    () => ({
+      isReady,
+      isAuthenticated: Boolean(user),
+      user,
+      email: user?.email ?? "",
+      login,
+      verifyOtp,
+      register,
+      verifyEmail,
+      googleSignIn,
+      logout,
+      refreshUser,
+      forgotPassword,
+      resetPassword,
+    }),
+    [
+      isReady,
+      user,
+      login,
+      verifyOtp,
+      register,
+      verifyEmail,
+      googleSignIn,
+      logout,
+      refreshUser,
+      forgotPassword,
+      resetPassword,
+    ],
+  );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+}
+
+export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
-};
-
-// AuthProvider component to wrap your app and provide context
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [email, setEmail] = useState("");
-  const [expiresAt, setExpiresAt] = useState<number>(new Date().getTime());
-  const [token, setToken] = useState("");
-  const [user, setUser] = useState("");
-  //default auth state is not authenticated. then use effect checks if there is an accessToken
-
-  const login = (
-    accessToken: string,
-    email: string,
-    expiresAt: number,
-    userID: string,
-  ) => {
-    setExpiresAt(expiresAt);
-    setIsAuthenticated(true);
-    setEmail(email);
-    setToken(accessToken);
-    setUser(userID);
-    window.localStorage.setItem("access_token", accessToken);
-    window.localStorage.setItem("user_email", email);
-    window.localStorage.setItem("user_id", userID);
-    window.localStorage.setItem("token_expires_at", String(expiresAt));
-  };
-
-  const logout = () => {
-    setIsAuthenticated(false);
-    window.localStorage.setItem("access_token", "");
-    window.localStorage.setItem("token_expires_at", "");
-  };
-
-  return (
-    <AuthContext.Provider
-      value={{
-        isAuthenticated,
-        login,
-        logout,
-        user,
-        email,
-        token,
-        expiresAt: String(expiresAt),
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
-  );
-};
+}

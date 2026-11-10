@@ -1,9 +1,15 @@
 import axios from "axios";
-let localUrl = "http://localhost:3000";
-let productionURL = "https://api.denateonlineservice.com";
+
+const localUrl = "http://localhost:3000";
+const productionURL =
+  process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.denateonlineservice.com";
 
 function backendUrl() {
-  console.log({ LOCATION: window.location.hostname });
+  // During server-side rendering `window` is not available.
+  if (typeof window === "undefined") {
+    return productionURL;
+  }
+
   const hostname = window.location.hostname;
   return hostname === "localhost" || hostname === "127.0.0.1"
     ? localUrl

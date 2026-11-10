@@ -42,7 +42,7 @@ export const DashHomeCard = ({
                 <p className="text-medium">{buttonText || "Go To Page"}</p>
               </div>
               <div className="w-max-content no-space">
-                <img src={ang45Arrow} className="d-home-card-img" />
+                <img src={ang45Arrow.src} className="d-home-card-img" />
               </div>
             </div>
           </div>
@@ -75,7 +75,7 @@ export const ProjectCard = ({}: DProjectCardPropType) => {
                 </div>
                 <div className="w-max-content no-space">
                   <div className="pcardtitleimg-container">
-                    <img className="pcardTitleImg" src={pIconTitle} />
+                    <img className="pcardTitleImg" src={pIconTitle.src} />
                   </div>
                 </div>
               </div>
