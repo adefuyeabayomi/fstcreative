@@ -118,6 +118,12 @@ export const userAuthApi = {
       body: JSON.stringify({ email }),
     }),
 
+  changePassword: (oldPassword: string, newPassword: string) =>
+    request<{ message: string }>("/change-password", {
+      method: "POST",
+      body: JSON.stringify({ oldPassword, newPassword }),
+    }),
+
   resetPassword: (email: string, otp: string, newPassword: string) =>
     request<{ message: string }>("/reset-password", {
       method: "POST",

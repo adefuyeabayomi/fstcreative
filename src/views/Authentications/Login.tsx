@@ -1,310 +1,242 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { D_TextInput } from "../../components/input/input";
-import FButtonMain from "../../components/Button/Main";
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faShieldAlt } from "@fortawesome/free-solid-svg-icons";
-import { animateScroll as scroll } from "react-scroll";
-
-import { emailIsValid, passwordIsValid } from "../../utils/validation";
-import { useNotificationTrigger } from "../../contexts/notificationTrigger";
-import { useAuth } from "../../contexts/AuthContext";
-import { useLoading } from "../../contexts/LoadingContext";
+import { AuthShell } from "@/components/ui/AuthShell";
+import { Alert } from "@/components/ui/Alert";
+import { Button } from "@/components/ui/Button";
+import { Field } from "@/components/ui/Field";
+import { ArrowRightIcon, LockIcon, MailIcon, ShieldIcon } from "@/components/ui/icons";
+import { GoogleAuthButton } from "@/components/GoogleAuthButton";
+import { useAuth } from "@/contexts/AuthContext";
 import { userAuthApi } from "@/api/userAuth";
-import { GoogleAuthButton } from "../../components/GoogleAuthButton";
-
-const envelope = <FontAwesomeIcon icon={faEnvelope} />;
-const shield = <FontAwesomeIcon icon={faShieldAlt} />;
+import { emailIsValid, passwordIsValid } from "@/utils/validation";
 
 type Step = "credentials" | "otp";
 
 export default function Login(): React.JSX.Element {
   const router = useRouter();
   const auth = useAuth();
-  const { setLoading, setLoadingText } = useLoading();
-  const { triggerError, triggerInfo, triggerSuccess } = useNotificationTrigger();
+  const searchParams = useSearchParams() ?? new URLSearchParams();
+  const next = searchParams.get("next");
+  const callbackUrl = searchParams.get("callbackUrl");
 
   const [step, setStep] = useState<Step>("credentials");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [otp, setOtp] = useState("");
-  const [emailValid, setEmailValid] = useState<boolean | null>(false);
-  const [passwordValid, setPasswordValid] = useState<boolean | null>(false);
-  const [pfeedbackText, setPFeedbackText] = useState("");
-  const [feedbackText, setFeedbackText] = useState("");
-
-  const searchParams = useSearchParams() ?? new URLSearchParams();
-  const next = searchParams.get("next");
-  const callbackUrl = searchParams.get("callbackUrl");
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [info, setInfo] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<{ email?: string; password?: string }>({});
 
   function finishLogin() {
-    if (callbackUrl) {
-      router.push(callbackUrl);
-    } else if (next) {
-      router.push(`/${next}?${searchParams.toString()}`);
-    } else {
-      router.push("/dashboard");
-    }
+    if (callbackUrl) router.push(callbackUrl);
+    else if (next) router.push(`/${next}?${searchParams.toString()}`);
+    else router.push("/dashboard");
   }
 
-  function goToSignup() {
-    router.push(
-      searchParams.toString() ? `/signup?${searchParams.toString()}` : "/signup",
-    );
-  }
+  async function submitCredentials() {
+    const errors: typeof fieldErrors = {};
+    if (!emailIsValid(email)) errors.email = "Enter a valid email address.";
+    if (!passwordIsValid(password)) errors.password = "Use at least 8 characters.";
+    setFieldErrors(errors);
+    if (Object.keys(errors).length > 0) return;
 
-  function validateEmail() {
-    setEmailValid(emailIsValid(email));
-    if (!emailIsValid(email)) setFeedbackText("Input a valid email");
-    else setFeedbackText("Email is valid");
-  }
-
-  function validatePassword() {
-    setPasswordValid(passwordIsValid(password));
-    if (!passwordIsValid(password)) {
-      setPFeedbackText("Password should be 8 or more characters");
-    } else {
-      setPFeedbackText("Password valid");
-    }
-  }
-
-  async function sendLogin() {
-    validateEmail();
-    validatePassword();
-    if (!emailIsValid(email) || !passwordIsValid(password)) return;
-
-    setLoading(true);
-    setLoadingText("Authenticating. Please wait...");
+    setSubmitting(true);
+    setError(null);
     try {
       const result = await auth.login(email, password);
       if (result.requiresOtp) {
         setStep("otp");
         setOtp("");
-        triggerInfo({
-          title: "Verification code sent",
-          message: "Check your email for the 6-digit code.",
-        });
+        setInfo("Enter the 6-digit code sent to your email.");
       } else {
-        triggerSuccess({ title: "Login successful", message: "" });
         finishLogin();
       }
-    } catch (error) {
-      triggerError({
-        title: "Login error",
-        message: error instanceof Error ? error.message : "Please try again.",
-      });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Unable to sign in.");
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
   }
 
-  async function verifyLoginOtp() {
+  async function submitOtp() {
     if (!/^\d{6}$/.test(otp)) {
-      triggerError({
-        title: "Invalid code",
-        message: "Enter the 6-digit code from your email.",
-      });
+      setError("Enter the 6-digit code from your email.");
       return;
     }
-
-    setLoading(true);
-    setLoadingText("Verifying. Please wait...");
+    setSubmitting(true);
+    setError(null);
     try {
       await auth.verifyOtp(email, otp);
-      triggerSuccess({ title: "Login successful", message: "" });
       finishLogin();
-    } catch (error) {
-      triggerError({
-        title: "Verification failed",
-        message: error instanceof Error ? error.message : "Please try again.",
-      });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Verification failed.");
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
   }
 
-  async function resendOtp() {
+  async function resendCode() {
+    setError(null);
     try {
       await userAuthApi.resendOtp(email, "login");
-      triggerInfo({
-        title: "Code resent",
-        message: "A new verification code has been sent.",
-      });
-    } catch (error) {
-      triggerError({
-        title: "Could not resend",
-        message: error instanceof Error ? error.message : "Please try again.",
-      });
+      setInfo("A new verification code has been sent.");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not resend the code.");
     }
   }
 
-  async function handleGoogleCredential(idToken: string) {
-    setLoading(true);
-    setLoadingText("Signing in with Google...");
+  async function handleGoogle(idToken: string) {
+    setSubmitting(true);
+    setError(null);
     try {
       await auth.googleSignIn(idToken);
-      triggerSuccess({ title: "Login successful", message: "" });
       finishLogin();
-    } catch (error) {
-      triggerError({
-        title: "Google sign-in failed",
-        message: error instanceof Error ? error.message : "Please try again.",
-      });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Google sign-in failed.");
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
   }
 
-  useEffect(() => {
-    scroll.scrollToTop({
-      duration: 1000,
-      smooth: "easeInOutQuart",
-    });
-  }, []);
-
   return (
-    <main id="login">
-      <div className="main-spacing-x w-100">
-        <div className="py-4" />
-        <div className="py-2" />
-        <div id="signup-contents-main-container">
-          <div className="container-fluid no-space">
-            <div className="row no-space justify-content-center align-items-center">
-              <div className="col-12 col-md-8 col-lg-7 no-space">
-                <div className="signup-contents py-5 px-3">
-                  <div className="text-center">
-                    <h1 className="text-bold font-family-quicksand">
-                      {step === "credentials" ? "LOGIN" : "VERIFY YOUR EMAIL"}
-                    </h1>
-                    <p className="text-medium">
-                      {step === "credentials"
-                        ? "Input Your Valid Credentials"
-                        : `Enter the 6-digit code sent to ${email}`}
-                    </p>
-                  </div>
-                  <div className="py-3" />
+    <AuthShell
+      title={step === "credentials" ? "Welcome back" : "Verify your email"}
+      subtitle={
+        step === "credentials"
+          ? "Sign in to manage your projects, classes and account."
+          : `We sent a 6-digit code to ${email}.`
+      }
+      footer={
+        <span>
+          New to Five &amp; Six?{" "}
+          <Link
+            href={searchParams.toString() ? `/signup?${searchParams.toString()}` : "/signup"}
+            className="font-semibold text-brand no-underline hover:underline"
+          >
+            Create an account
+          </Link>
+        </span>
+      }
+    >
+      {error && <Alert tone="error" className="mb-4">{error}</Alert>}
+      {info && step === "otp" && <Alert tone="info" className="mb-4">{info}</Alert>}
 
-                  {step === "credentials" ? (
-                    <>
-                      <div>
-                        <D_TextInput
-                          valid={emailValid}
-                          feedbackText={feedbackText}
-                          onFocus={() => setEmailValid(null)}
-                          value={email}
-                          onChange={setEmail}
-                          leftIcon={envelope}
-                          placeholder="User ID / Email"
-                          dark={false}
-                        />
-                      </div>
-                      <div className="py-2" />
-                      <div>
-                        <D_TextInput
-                          valid={passwordValid}
-                          onFocus={() => setPasswordValid(null)}
-                          feedbackText={pfeedbackText}
-                          value={password}
-                          onChange={setPassword}
-                          type="password"
-                          placeholder="Password"
-                          dark={false}
-                        />
-                      </div>
-                      <div className="py-2" />
-                      <div>
-                        <FButtonMain style={{ width: "100%" }} actionFn={sendLogin}>
-                          <span className="text-none text-semibold">Login</span>
-                        </FButtonMain>
-                      </div>
-                      <div className="py-2" />
-                      <div className="text-center">
-                        <span className="text-medium text-p">
-                          Don't have an account?{" "}
-                          <span className="text-bold pointer" onClick={goToSignup}>
-                            Create Account Here
-                          </span>
-                        </span>
-                        <br />
-                        <Link
-                          href={"/forgot-password"}
-                          className="text-none text-main"
-                        >
-                          <small className="text-bold">Forgot password?</small>
-                        </Link>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div>
-                        <D_TextInput
-                          valid={/^\d{6}$/.test(otp) ? true : null}
-                          feedbackText=""
-                          value={otp}
-                          onChange={setOtp}
-                          leftIcon={shield}
-                          placeholder="6-digit verification code"
-                          dark={false}
-                        />
-                      </div>
-                      <div className="py-2" />
-                      <div>
-                        <FButtonMain
-                          style={{ width: "100%" }}
-                          actionFn={verifyLoginOtp}
-                        >
-                          <span className="text-none text-semibold">
-                            Verify & Login
-                          </span>
-                        </FButtonMain>
-                      </div>
-                      <div className="py-2" />
-                      <div className="text-center">
-                        <span
-                          className="text-bold pointer text-main"
-                          onClick={resendOtp}
-                        >
-                          Resend code
-                        </span>
-                        <span className="px-2">|</span>
-                        <span
-                          className="text-bold pointer"
-                          onClick={() => {
-                            setStep("credentials");
-                            setOtp("");
-                          }}
-                        >
-                          Back
-                        </span>
-                      </div>
-                    </>
-                  )}
-                  <div className="py-2" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      {step === "credentials" ? (
+        <>
+          <form
+            className="space-y-4"
+            onSubmit={(event) => {
+              event.preventDefault();
+              void submitCredentials();
+            }}
+          >
+            <Field
+              label="Email address"
+              value={email}
+              onChange={setEmail}
+              type="email"
+              placeholder="you@company.com"
+              autoComplete="email"
+              inputMode="email"
+              icon={<MailIcon />}
+              error={fieldErrors.email}
+              required
+            />
+            <Field
+              label="Password"
+              value={password}
+              onChange={setPassword}
+              type="password"
+              placeholder="Your password"
+              autoComplete="current-password"
+              icon={<LockIcon />}
+              error={fieldErrors.password}
+              required
+            />
 
-        <div className="container-fluid no-space">
-          <div className="row no-space col-12 col-lg-10 col-xl-8 center">
-            <div className="col-11 center col-md-5 no-space">
-              <div className="py-1" />
-              <div className="px-1">
-                <GoogleAuthButton
-                  mode="signin"
-                  onCredential={handleGoogleCredential}
-                />
-              </div>
+            <div className="flex justify-end">
+              <Link
+                href="/forgot-password"
+                className="text-[13px] font-medium text-brand no-underline hover:underline"
+              >
+                Forgot password?
+              </Link>
             </div>
+
+            <Button type="submit" fullWidth loading={submitting}>
+              Sign in
+              <ArrowRightIcon />
+            </Button>
+          </form>
+
+          <div className="my-5 flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.12em] text-ink-subdued">
+            <span className="h-px flex-1 bg-black/[0.06]" />
+            or
+            <span className="h-px flex-1 bg-black/[0.06]" />
           </div>
-        </div>
-        <div className="py-2" />
-        <div className="py-2" />
-      </div>
-    </main>
+
+          <GoogleAuthButton
+            mode="signin"
+            onCredential={handleGoogle}
+            onError={setError}
+            onUnavailable={() =>
+              setError("Google sign-in is not configured yet.")
+            }
+          />
+        </>
+      ) : (
+        <form
+          className="space-y-4"
+          onSubmit={(event) => {
+            event.preventDefault();
+            void submitOtp();
+          }}
+        >
+          <Field
+            label="Verification code"
+            value={otp}
+            onChange={(value) => setOtp(value.replace(/\D/g, "").slice(0, 6))}
+            type="text"
+            placeholder="123456"
+            inputMode="numeric"
+            maxLength={6}
+            autoComplete="one-time-code"
+            icon={<ShieldIcon />}
+            required
+          />
+
+          <Button type="submit" fullWidth loading={submitting}>
+            Verify &amp; sign in
+            <ArrowRightIcon />
+          </Button>
+
+          <div className="flex items-center justify-between pt-1 text-[13px] font-medium">
+            <button
+              type="button"
+              onClick={resendCode}
+              className="text-brand transition-colors hover:text-brand-600"
+            >
+              Resend code
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setStep("credentials");
+                setOtp("");
+                setError(null);
+                setInfo(null);
+              }}
+              className="text-ink-muted transition-colors hover:text-ink"
+            >
+              Back to sign in
+            </button>
+          </div>
+        </form>
+      )}
+    </AuthShell>
   );
 }

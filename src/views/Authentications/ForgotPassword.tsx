@@ -1,32 +1,27 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { D_TextInput } from "../../components/input/input";
-import FButtonMain from "../../components/Button/Main";
-import { Modal } from "antd";
+import { useState } from "react";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AuthShell } from "@/components/ui/AuthShell";
+import { Alert } from "@/components/ui/Alert";
+import { Button } from "@/components/ui/Button";
+import { Field } from "@/components/ui/Field";
 import {
-  faEnvelope,
-  faLock,
-  faShieldAlt,
-} from "@fortawesome/free-solid-svg-icons";
-import { animateScroll as scroll } from "react-scroll";
+  ArrowRightIcon,
+  CheckIcon,
+  LockIcon,
+  MailIcon,
+  ShieldIcon,
+} from "@/components/ui/icons";
+import { useAuth } from "@/contexts/AuthContext";
+import { emailIsValid } from "@/utils/validation";
 
-import { emailIsValid } from "../../utils/validation";
-import { useNotificationTrigger } from "../../contexts/notificationTrigger";
-import { useAuth } from "../../contexts/AuthContext";
-
-const envelope = <FontAwesomeIcon icon={faEnvelope} />;
-const shield = <FontAwesomeIcon icon={faShieldAlt} />;
-const lock = <FontAwesomeIcon icon={faLock} />;
-
-type Step = "email" | "reset";
+type Step = "email" | "reset" | "done";
 
 export default function ForgotPassword(): React.JSX.Element {
   const router = useRouter();
   const auth = useAuth();
-  const { triggerError, triggerInfo } = useNotificationTrigger();
   const searchParams = useSearchParams() ?? new URLSearchParams();
 
   const [step, setStep] = useState<Step>("email");
@@ -34,9 +29,10 @@ export default function ForgotPassword(): React.JSX.Element {
   const [otp, setOtp] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [emailValid, setEmailValid] = useState<boolean | null>(false);
-  const [feedbackText, setFeedbackText] = useState("");
-  const [showModal, setShowModal] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [info, setInfo] = useState<string | null>(null);
+  const [emailError, setEmailError] = useState<string | undefined>();
 
   function goToLogin() {
     router.push(
@@ -44,215 +40,206 @@ export default function ForgotPassword(): React.JSX.Element {
     );
   }
 
-  function validateEmail() {
-    setEmailValid(emailIsValid(email));
-    if (!emailIsValid(email)) setFeedbackText("Input a valid email");
-    else setFeedbackText("Email is valid");
-  }
-
-  async function requestResetCode() {
-    validateEmail();
-    if (!emailIsValid(email)) return;
-
+  async function requestCode() {
+    if (!emailIsValid(email)) {
+      setEmailError("Enter a valid email address.");
+      return;
+    }
+    setEmailError(undefined);
+    setSubmitting(true);
+    setError(null);
     try {
       const message = await auth.forgotPassword(email);
       setStep("reset");
       setOtp("");
-      triggerInfo({
-        title: "Check your email",
-        message,
-      });
-    } catch (error) {
-      triggerError({
-        title: "Could not send recovery code",
-        message: error instanceof Error ? error.message : "Please try again.",
-      });
+      setInfo(message);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not send the code.");
+    } finally {
+      setSubmitting(false);
     }
   }
 
-  async function submitReset() {
+  async function resetPassword() {
     if (!/^\d{6}$/.test(otp)) {
-      triggerError({
-        title: "Invalid code",
-        message: "Enter the 6-digit code from your email.",
-      });
+      setError("Enter the 6-digit code from your email.");
       return;
     }
     if (newPassword.length < 8) {
-      triggerError({
-        title: "Weak password",
-        message: "Use at least 8 characters.",
-      });
+      setError("Use at least 8 characters for your new password.");
       return;
     }
     if (newPassword !== confirmPassword) {
-      triggerError({
-        title: "Passwords do not match",
-        message: "Re-enter the same password in both fields.",
-      });
+      setError("Passwords do not match.");
       return;
     }
 
+    setSubmitting(true);
+    setError(null);
     try {
       await auth.resetPassword(email, otp, newPassword);
-      setShowModal(true);
-    } catch (error) {
-      triggerError({
-        title: "Could not reset password",
-        message: error instanceof Error ? error.message : "Please try again.",
-      });
+      setStep("done");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not reset the password.");
+    } finally {
+      setSubmitting(false);
     }
   }
 
-  useEffect(() => {
-    scroll.scrollToTop({
-      duration: 1000,
-      smooth: "easeInOutQuart",
-    });
-  }, []);
+  async function resendCode() {
+    setError(null);
+    try {
+      const message = await auth.forgotPassword(email);
+      setInfo(message);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not resend the code.");
+    }
+  }
+
+  if (step === "done") {
+    return (
+      <AuthShell
+        title="Password updated"
+        subtitle="Your password has been changed. You can now sign in with your new password."
+        footer={
+          <Link href="/login" className="font-semibold text-brand no-underline hover:underline">
+            Back to sign in
+          </Link>
+        }
+      >
+        <div className="flex flex-col items-center gap-5 py-2">
+          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-success/10 text-success">
+            <CheckIcon className="h-7 w-7" />
+          </span>
+          <Button fullWidth onClick={goToLogin}>
+            Continue to sign in
+            <ArrowRightIcon />
+          </Button>
+        </div>
+      </AuthShell>
+    );
+  }
 
   return (
-    <main id="ForgotPassword">
-      <Modal
-        onCancel={goToLogin}
-        onOk={goToLogin}
-        open={showModal}
-        closable={true}
-        okText={"Go To Login"}
-      >
-        <div className="py-3" />
-        <p className="text-bold text-center">
-          PASSWORD RESET SUCCESSFUL. LOGIN NOW.
-        </p>
-        <div className="py-2" />
-      </Modal>
+    <AuthShell
+      title={step === "email" ? "Forgot password?" : "Choose a new password"}
+      subtitle={
+        step === "email"
+          ? "Enter the email on your account and we'll send a recovery code."
+          : `Enter the code sent to ${email} and pick a new password.`
+      }
+      footer={
+        <span>
+          Remembered it?{" "}
+          <Link href="/login" className="font-semibold text-brand no-underline hover:underline">
+            Sign in
+          </Link>
+        </span>
+      }
+    >
+      {error && <Alert tone="error" className="mb-4">{error}</Alert>}
+      {info && step === "reset" && <Alert tone="info" className="mb-4">{info}</Alert>}
 
-      <div className="main-spacing-x w-100">
-        <div className="py-4" />
-        <div className="py-2" />
-        <div id="signup-contents-main-container">
-          <div className="container-fluid no-space">
-            <div className="row no-space justify-content-center align-items-center">
-              <div className="col-12 col-md-8 col-lg-7 no-space">
-                <div className="signup-contents py-5 px-3">
-                  <div className="text-center">
-                    <h1 className="text-bold font-family-quicksand">
-                      {step === "email" ? "FORGOT PASSWORD" : "RESET PASSWORD"}
-                    </h1>
-                    <p className="text-medium">
-                      {step === "email"
-                        ? "Input the email you used to create your account. If it exists, we will send you a 6-digit recovery code."
-                        : `Enter the code sent to ${email} and choose a new password.`}
-                    </p>
-                  </div>
-                  <div className="py-3" />
+      {step === "email" ? (
+        <form
+          className="space-y-4"
+          onSubmit={(event) => {
+            event.preventDefault();
+            void requestCode();
+          }}
+        >
+          <Field
+            label="Email address"
+            value={email}
+            onChange={setEmail}
+            type="email"
+            placeholder="you@company.com"
+            autoComplete="email"
+            inputMode="email"
+            icon={<MailIcon />}
+            error={emailError}
+            required
+          />
+          <Button type="submit" fullWidth loading={submitting}>
+            Send recovery code
+            <ArrowRightIcon />
+          </Button>
+        </form>
+      ) : (
+        <form
+          className="space-y-4"
+          onSubmit={(event) => {
+            event.preventDefault();
+            void resetPassword();
+          }}
+        >
+          <Field
+            label="Recovery code"
+            value={otp}
+            onChange={(value) => setOtp(value.replace(/\D/g, "").slice(0, 6))}
+            placeholder="123456"
+            inputMode="numeric"
+            maxLength={6}
+            autoComplete="one-time-code"
+            icon={<ShieldIcon />}
+            required
+          />
+          <Field
+            label="New password"
+            value={newPassword}
+            onChange={setNewPassword}
+            type="password"
+            placeholder="At least 8 characters"
+            autoComplete="new-password"
+            icon={<LockIcon />}
+            required
+          />
+          <Field
+            label="Confirm new password"
+            value={confirmPassword}
+            onChange={setConfirmPassword}
+            type="password"
+            placeholder="Repeat your new password"
+            autoComplete="new-password"
+            icon={<LockIcon />}
+            error={
+              confirmPassword.length > 0 && confirmPassword !== newPassword
+                ? "Passwords do not match."
+                : undefined
+            }
+            required
+          />
 
-                  {step === "email" ? (
-                    <>
-                      <div>
-                        <D_TextInput
-                          valid={emailValid}
-                          feedbackText={feedbackText}
-                          onFocus={() => setEmailValid(null)}
-                          value={email}
-                          onChange={setEmail}
-                          leftIcon={envelope}
-                          placeholder="User ID / Email"
-                          dark={false}
-                        />
-                      </div>
-                      <div className="py-2" />
-                      <div>
-                        <FButtonMain
-                          style={{ width: "100%" }}
-                          actionFn={requestResetCode}
-                        >
-                          <span className="text-none text-semibold">
-                            Send Recovery Code
-                          </span>
-                        </FButtonMain>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div>
-                        <D_TextInput
-                          valid={/^\d{6}$/.test(otp) ? true : null}
-                          feedbackText=""
-                          value={otp}
-                          onChange={setOtp}
-                          leftIcon={shield}
-                          placeholder="6-digit recovery code"
-                          dark={false}
-                        />
-                      </div>
-                      <div className="py-2" />
-                      <div>
-                        <D_TextInput
-                          valid={newPassword.length >= 8 ? true : null}
-                          feedbackText=""
-                          value={newPassword}
-                          onChange={setNewPassword}
-                          type="password"
-                          leftIcon={lock}
-                          placeholder="New Password"
-                          dark={false}
-                        />
-                      </div>
-                      <div className="py-2" />
-                      <div>
-                        <D_TextInput
-                          valid={
-                            confirmPassword.length > 0
-                              ? confirmPassword === newPassword
-                              : null
-                          }
-                          feedbackText={
-                            confirmPassword.length > 0 &&
-                            confirmPassword !== newPassword
-                              ? "Passwords do not match"
-                              : ""
-                          }
-                          value={confirmPassword}
-                          onChange={setConfirmPassword}
-                          type="password"
-                          leftIcon={lock}
-                          placeholder="Confirm New Password"
-                          dark={false}
-                        />
-                      </div>
-                      <div className="py-2" />
-                      <div>
-                        <FButtonMain
-                          style={{ width: "100%" }}
-                          actionFn={submitReset}
-                        >
-                          <span className="text-none text-semibold">
-                            Reset Password
-                          </span>
-                        </FButtonMain>
-                      </div>
-                      <div className="py-2" />
-                      <div className="text-center">
-                        <span
-                          className="text-bold pointer text-main"
-                          onClick={() => setStep("email")}
-                        >
-                          Use a different email
-                        </span>
-                        <span className="px-2">|</span>
-                        <span className="text-bold pointer" onClick={goToLogin}>
-                          Back to login
-                        </span>
-                      </div>
-                    </>
-                  )}
-                </div>
-              </div>
-            </div>
+          <Button type="submit" fullWidth loading={submitting}>
+            Reset password
+            <ArrowRightIcon />
+          </Button>
+
+          <div className="flex items-center justify-between pt-1 text-[13px] font-medium">
+            <button
+              type="button"
+              onClick={resendCode}
+              className="text-brand transition-colors hover:text-brand-600"
+            >
+              Resend code
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setStep("email");
+                setOtp("");
+                setNewPassword("");
+                setConfirmPassword("");
+                setError(null);
+                setInfo(null);
+              }}
+              className="text-ink-muted transition-colors hover:text-ink"
+            >
+              Use a different email
+            </button>
           </div>
-        </div>
-      </div>
-    </main>
+        </form>
+      )}
+    </AuthShell>
   );
 }

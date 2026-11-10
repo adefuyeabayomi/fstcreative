@@ -1,274 +1,158 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import "./style.css";
-import { useRouter, usePathname } from "next/navigation";
-import { Modal } from "antd";
-//import icon images
-import iconHome from "../../assets/images/d-icon-home.svg";
-import iconProjects from "../../assets/images/d-icon-projects.svg";
-import iconDSchool from "../../assets/images/d-icon-design-school.png";
-import iconNotification from "../../assets/images/d-icon-notification.svg";
-import iconTransactions from "../../assets/images/d-icon-transactions.svg";
-import iconSupport from "../../assets/images/d-icon-support.svg";
-import iconAccountSettings from "../../assets/images/d-icon-account.svg";
-import iconLogout from "../../assets/images/d-icon-logout.svg";
-import { useAuth } from "../../contexts/AuthContext";
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useAuth } from "@/contexts/AuthContext";
+import { cn } from "@/lib/cn";
+import { Button } from "@/components/ui/Button";
+
+import iconHome from "@/assets/images/d-icon-home.svg";
+import iconProjects from "@/assets/images/d-icon-projects.svg";
+import iconDSchool from "@/assets/images/d-icon-design-school.png";
+import iconNotification from "@/assets/images/d-icon-notification.svg";
+import iconTransactions from "@/assets/images/d-icon-transactions.svg";
+import iconSupport from "@/assets/images/d-icon-support.svg";
+import iconAccountSettings from "@/assets/images/d-icon-account.svg";
+import iconLogout from "@/assets/images/d-icon-logout.svg";
+
+const links = [
+  { label: "Overview", href: "/dashboard", icon: iconHome, exact: true },
+  {
+    label: "Projects & Activities",
+    href: "/dashboard/projects-and-activities",
+    icon: iconProjects,
+  },
+  { label: "Design School", href: "/dashboard/design-school", icon: iconDSchool },
+  { label: "Notifications", href: "/dashboard/notifications", icon: iconNotification },
+  { label: "Transactions", href: "/dashboard/transactions", icon: iconTransactions },
+  {
+    label: "Feedback & Complaints",
+    href: "/dashboard/customer-support",
+    icon: iconSupport,
+  },
+  {
+    label: "Account Settings",
+    href: "/dashboard/account-settings",
+    icon: iconAccountSettings,
+  },
+];
 
 export function SideBar() {
-  const [sidebarStyle, setSidebarStyle] = useState({});
-  let [active, setActive] = useState("");
-  let auth = useAuth();
-  let router = useRouter();
-  let pathname = usePathname();
-  useEffect(() => {
-    let currPage = getActive(pathname || "");
-    setActive(currPage);
-  }, [pathname]);
-  const [showModal, setShowModal] = useState(false);
+  const pathname = usePathname() ?? "";
+  const router = useRouter();
+  const { user, logout } = useAuth();
+  const [confirming, setConfirming] = useState(false);
 
-  function getActive(val: string) {
-    return val.replace("/dashboard", "");
-  }
+  const isActive = (href: string, exact?: boolean) =>
+    exact ? pathname === href : pathname === href || pathname.startsWith(`${href}/`);
 
-  function closeModal() {
-    setShowModal(false);
-  }
-
-  function openModal() {
-    setShowModal(true);
-  }
-
-  function logOut() {
-    void auth.logout();
-    closeModal();
-    router.push("/login");
-  }
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sidebar = document.querySelector(".sidebar") as HTMLElement | null;
-      const footer = document.querySelector(".footer") as HTMLElement | null;
-      if (!sidebar || !footer) return;
-      const sidebarHeight = sidebar.offsetHeight;
-      const footerOffsetTop = footer.offsetTop;
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-      if (scrollY + windowHeight >= footerOffsetTop) {
-        setSidebarStyle({
-          position: "absolute",
-          top: `${footerOffsetTop - sidebarHeight}px`,
-        });
-      } else {
-        setSidebarStyle({
-          position: "fixed",
-        });
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const displayName =
+    `${user?.firstName ?? ""} ${user?.lastName ?? ""}`.trim() || "Account";
 
   return (
-    <div className="d-none d-md-block text-main">
-      <Modal
-        onCancel={closeModal}
-        onOk={logOut}
-        open={showModal}
-        closable={true}
-        okText={"Log Out"}
-      >
-        <div className="py-3" />
-        <h5 className="text-bold text-center">Log Out</h5>
-        <div className="py-1" />
-        <p className="text-small text-center">
-          Are You Sure You Want to Log Out?
-        </p>
-        <div className="py-2" />
-      </Modal>
-      <section className={`sidebar-container`}>
-        <section className="sidebar pl-5" style={{ ...sidebarStyle }}>
-          <div className="py-2" />
+    <>
+      <aside className="sticky top-[68px] hidden h-[calc(100vh-68px)] w-[264px] shrink-0 overflow-y-auto border-r border-white/60 bg-white/80 backdrop-blur-xl md:block">
+        <div className="flex h-full flex-col p-4">
+          <div className="mb-3 rounded-card border border-white/60 bg-surface-primary px-3.5 py-3 shadow-card">
+            <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-subdued">
+              Signed in as
+            </p>
+            <p className="mt-1 truncate text-sm font-semibold text-ink">
+              {displayName}
+            </p>
+            <p className="truncate text-[12px] text-ink-subdued">{user?.email}</p>
+          </div>
 
-          <ul className="sidebar-list-container font-family-quicksand text-medium">
-            <li className="sidebar-list-item">
-              <div
-                className={`slitem pointer ${getActive(active) == "" ? "active" : ""}`}
-                onClick={() => {
-                  router.push("/dashboard");
-                  setActive("/dashboard");
-                }}
-              >
-                <div className="container-fluid no-space">
-                  <div className="row no-space align-items-center">
-                    <div className="w-max-content no-space">
-                      <img className="sblist-icon" src={iconHome.src} />
-                    </div>
-                    <div className="w-max-content no-space">
-                      <p className="text-semibold px-1 royal-shade-5">Home</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li className="sidebar-list-item">
-              <div
-                className={`slitem pointer ${getActive(active) == "/projects-and-activities" ? "active" : ""}`}
-                onClick={() => {
-                  router.push("/dashboard/projects-and-activities");
-                  setActive("/dashboard/projects-and-activities");
-                }}
-              >
-                <div className="container-fluid no-space">
-                  <div className="row no-space align-items-center">
-                    <div className="w-max-content no-space">
-                      <img className="sblist-icon" src={iconProjects.src} />
-                    </div>
-                    <div className="w-max-content no-space">
-                      <p className="text-semibold px-1 royal-shade-5">
-                        Projects & Activities
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li className="sidebar-list-item">
-              <div
-                className={`slitem pointer ${getActive(active) == "/design-school" ? "active" : ""}`}
-                onClick={() => {
-                  router.push("/dashboard/design-school");
-                  setActive("/dashboard/design-school");
-                }}
-              >
-                <div className="container-fluid no-space">
-                  <div className="row no-space align-items-center">
-                    <div className="w-max-content no-space">
-                      <img className="sblist-icon" src={iconDSchool.src} />
-                    </div>
-                    <div className="w-max-content no-space">
-                      <p className="text-semibold px-1 royal-shade-5">
-                        Design School
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li className="sidebar-list-item">
-              <div
-                className={`slitem pointer ${getActive(active) == "/notifications" ? "active" : ""}`}
-                onClick={() => {
-                  router.push("/dashboard/notifications");
-                  setActive("/dashboard/notifications");
-                }}
-              >
-                <div className="container-fluid no-space">
-                  <div className="row no-space align-items-center">
-                    <div className="w-max-content no-space">
-                      <img className="sblist-icon" src={iconNotification.src} />
-                    </div>
-                    <div className="w-max-content no-space">
-                      <p className="text-semibold px-1 royal-shade-5">
-                        Notifications
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li className="sidebar-list-item">
-              <div
-                className={`slitem pointer ${getActive(active) == "/transactions" ? "active" : ""}`}
-                onClick={() => {
-                  router.push("/dashboard/transactions");
-                  setActive("/dashboard/transactions");
-                }}
-              >
-                <div className="container-fluid no-space">
-                  <div className="row no-space align-items-center">
-                    <div className="w-max-content no-space">
-                      <img className="sblist-icon" src={iconTransactions.src} />
-                    </div>
-                    <div className="w-max-content no-space">
-                      <p className="text-semibold px-1 royal-shade-5">
-                        Transactions
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li className="sidebar-list-item">
-              <div
-                className={`slitem pointer ${getActive(active) == "/customer-support" ? "active" : ""}`}
-                onClick={() => {
-                  router.push("/dashboard/customer-support");
-                  setActive("/dashboard/customer-support");
-                }}
-              >
-                <div className="container-fluid no-space">
-                  <div className="row no-space align-items-center">
-                    <div className="w-max-content no-space">
-                      <img className="sblist-icon" src={iconSupport.src} />
-                    </div>
-                    <div className="w-max-content no-space">
-                      <p className="text-semibold px-1 royal-shade-5">
-                        Feedback & Complaints
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li className="sidebar-list-item">
-              <div
-                className={`slitem pointer ${getActive(active) == "/account-settings" ? "active" : ""}`}
-                onClick={() => {
-                  router.push("/dashboard/account-settings");
-                  setActive("/dashboard/account-settings");
-                }}
-              >
-                <div className="container-fluid no-space">
-                  <div className="row no-space align-items-center">
-                    <div className="w-max-content no-space">
-                      <img className="sblist-icon" src={iconAccountSettings.src} />
-                    </div>
-                    <div className="w-max-content no-space">
-                      <p className="text-semibold px-1 royal-shade-5">
-                        Account Settings
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li className="sidebar-list-item">
-              <div
-                onClick={openModal}
-                className={`slitem pointer ${getActive(active) == "/logout" ? "active" : ""}`}
-              >
-                <div className="container-fluid no-space">
-                  <div className="row no-space align-items-center">
-                    <div className="w-max-content no-space">
-                      <img className="sblist-icon" src={iconLogout.src} />
-                    </div>
-                    <div className="w-max-content no-space">
-                      <p className="text-semibold px-1 royal-shade-5">
-                        Log OUt
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
+          <p className="px-3 pb-2 pt-1 text-[10px] font-medium uppercase tracking-[0.14em] text-ink-subdued">
+            Dashboard
+          </p>
 
-          <div className="py-4" />
-          <div className="py-4" />
-        </section>
-      </section>
-    </div>
+          <nav aria-label="Dashboard navigation">
+            <ul className="space-y-1">
+              {links.map((item) => {
+                const active = isActive(item.href, item.exact);
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        "group flex items-center gap-3 rounded-control px-3 py-2.5 text-[14px] font-medium transition-colors",
+                        active
+                          ? "bg-brand-50 text-brand shadow-card"
+                          : "text-ink-muted hover:bg-surface-secondary hover:text-ink",
+                      )}
+                    >
+                      <img
+                        src={item.icon.src}
+                        alt=""
+                        className={cn(
+                          "h-5 w-5 object-contain transition-opacity",
+                          active ? "opacity-100" : "opacity-70 group-hover:opacity-100",
+                        )}
+                      />
+                      <span className="truncate">{item.label}</span>
+                      {active && (
+                        <span className="ml-auto h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                      )}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+
+          <div className="mt-auto pt-6">
+            <button
+              type="button"
+              onClick={() => setConfirming(true)}
+              className="flex w-full items-center gap-3 rounded-control px-3 py-2.5 text-[14px] font-medium text-ink-muted transition-colors hover:bg-alert/[0.06] hover:text-alert"
+            >
+              <img src={iconLogout.src} alt="" className="h-5 w-5 object-contain opacity-70" />
+              Log out
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      {confirming && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="logout-title"
+        >
+          <div
+            className="absolute inset-0 bg-ink/40 backdrop-blur-sm"
+            onClick={() => setConfirming(false)}
+          />
+          <div className="relative w-full max-w-sm rounded-container border border-white/60 bg-surface-primary p-6 shadow-modal">
+            <h2
+              id="logout-title"
+              className="text-[20px] font-semibold tracking-[-0.01em] text-ink"
+            >
+              Log out?
+            </h2>
+            <p className="mt-1.5 text-[14px] leading-6 text-ink-muted">
+              You will need to verify your email again to sign back in.
+            </p>
+            <div className="mt-5 flex justify-end gap-2">
+              <Button variant="ghost" onClick={() => setConfirming(false)}>
+                Cancel
+              </Button>
+              <Button
+                variant="danger"
+                onClick={async () => {
+                  await logout();
+                  router.push("/login");
+                }}
+              >
+                Log out
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
