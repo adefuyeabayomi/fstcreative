@@ -20,7 +20,7 @@ if (!validTypes.includes(type)) {
 }
 
 // Determine the base path depending on the type
-const basePath = type === "page" ? "src/pages" : "src/components";
+const basePath = type === "page" ? "src/views" : "src/components";
 const fullPath = path.join(basePath, folderName);
 
 // Create the folder if it doesn't exist

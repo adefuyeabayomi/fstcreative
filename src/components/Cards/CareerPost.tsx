@@ -46,7 +46,7 @@ const CareerPost = ({
           <div className="col" />
           <div className="w-max-content no-space">
             <div className="cpost-icon-container">
-              <img src={cIcon} />
+              <img src={cIcon.src} />
             </div>
           </div>
         </div>
@@ -76,8 +76,8 @@ const CareerPost = ({
       <div>
         <p className="text-bold gray-3">Additional Informations</p>
         <ul className="text-medium gray-4 text-p text-gray-9 text-p cpj-description">
-          {additional?.key_responsibilities.map((x) => {
-            return <li>{x}</li>;
+          {additional?.key_responsibilities.map((x, index) => {
+            return <li key={index}>{x}</li>;
           })}
           <li>
             <span className="text-semibold">Required Skills: </span>{" "}
@@ -95,8 +95,8 @@ const CareerPost = ({
       <div>
         <p className="text-bold gray-3">Benefits</p>
         <ul className="text-medium gray-4 text-p text-gray-9 text-p cpj-description">
-          {additional?.perks_and_benefits.map((x) => {
-            return <li>{x}</li>;
+          {additional?.perks_and_benefits.map((x, index) => {
+            return <li key={index}>{x}</li>;
           })}
         </ul>
       </div>
@@ -121,7 +121,7 @@ const CareerPost = ({
                 <p className="text-semibold">Apply</p>
               </div>
               <div className="w-max-content no-space">
-                <img src={ang45Arrow} className="d-home-card-img" />
+                <img src={ang45Arrow.src} className="d-home-card-img" />
               </div>
             </div>
           </div>

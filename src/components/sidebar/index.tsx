@@ -1,6 +1,8 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import "./style.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useRouter, usePathname } from "next/navigation";
 import { Modal } from "antd";
 //import icon images
 import iconHome from "../../assets/images/d-icon-home.svg";
@@ -17,12 +19,12 @@ export function SideBar() {
   const [sidebarStyle, setSidebarStyle] = useState({});
   let [active, setActive] = useState("");
   let auth = useAuth();
-  let navigate = useNavigate();
-  let location = useLocation();
+  let router = useRouter();
+  let pathname = usePathname();
   useEffect(() => {
-    let currPage = getActive(location.pathname);
+    let currPage = getActive(pathname || "");
     setActive(currPage);
-  }, [location]);
+  }, [pathname]);
   const [showModal, setShowModal] = useState(false);
 
   function getActive(val: string) {
@@ -38,9 +40,9 @@ export function SideBar() {
   }
 
   function logOut() {
-    auth.logout();
+    void auth.logout();
     closeModal();
-    navigate("/auth-guard");
+    router.push("/login");
   }
 
   useEffect(() => {
@@ -94,14 +96,14 @@ export function SideBar() {
               <div
                 className={`slitem pointer ${getActive(active) == "" ? "active" : ""}`}
                 onClick={() => {
-                  navigate("/dashboard");
+                  router.push("/dashboard");
                   setActive("/dashboard");
                 }}
               >
                 <div className="container-fluid no-space">
                   <div className="row no-space align-items-center">
                     <div className="w-max-content no-space">
-                      <img className="sblist-icon" src={iconHome} />
+                      <img className="sblist-icon" src={iconHome.src} />
                     </div>
                     <div className="w-max-content no-space">
                       <p className="text-semibold px-1 royal-shade-5">Home</p>
@@ -114,14 +116,14 @@ export function SideBar() {
               <div
                 className={`slitem pointer ${getActive(active) == "/projects-and-activities" ? "active" : ""}`}
                 onClick={() => {
-                  navigate("/dashboard/projects-and-activities");
+                  router.push("/dashboard/projects-and-activities");
                   setActive("/dashboard/projects-and-activities");
                 }}
               >
                 <div className="container-fluid no-space">
                   <div className="row no-space align-items-center">
                     <div className="w-max-content no-space">
-                      <img className="sblist-icon" src={iconProjects} />
+                      <img className="sblist-icon" src={iconProjects.src} />
                     </div>
                     <div className="w-max-content no-space">
                       <p className="text-semibold px-1 royal-shade-5">
@@ -136,14 +138,14 @@ export function SideBar() {
               <div
                 className={`slitem pointer ${getActive(active) == "/design-school" ? "active" : ""}`}
                 onClick={() => {
-                  navigate("/dashboard/design-school");
+                  router.push("/dashboard/design-school");
                   setActive("/dashboard/design-school");
                 }}
               >
                 <div className="container-fluid no-space">
                   <div className="row no-space align-items-center">
                     <div className="w-max-content no-space">
-                      <img className="sblist-icon" src={iconDSchool} />
+                      <img className="sblist-icon" src={iconDSchool.src} />
                     </div>
                     <div className="w-max-content no-space">
                       <p className="text-semibold px-1 royal-shade-5">
@@ -158,14 +160,14 @@ export function SideBar() {
               <div
                 className={`slitem pointer ${getActive(active) == "/notifications" ? "active" : ""}`}
                 onClick={() => {
-                  navigate("/dashboard/notifications");
+                  router.push("/dashboard/notifications");
                   setActive("/dashboard/notifications");
                 }}
               >
                 <div className="container-fluid no-space">
                   <div className="row no-space align-items-center">
                     <div className="w-max-content no-space">
-                      <img className="sblist-icon" src={iconNotification} />
+                      <img className="sblist-icon" src={iconNotification.src} />
                     </div>
                     <div className="w-max-content no-space">
                       <p className="text-semibold px-1 royal-shade-5">
@@ -180,14 +182,14 @@ export function SideBar() {
               <div
                 className={`slitem pointer ${getActive(active) == "/transactions" ? "active" : ""}`}
                 onClick={() => {
-                  navigate("/dashboard/transactions");
+                  router.push("/dashboard/transactions");
                   setActive("/dashboard/transactions");
                 }}
               >
                 <div className="container-fluid no-space">
                   <div className="row no-space align-items-center">
                     <div className="w-max-content no-space">
-                      <img className="sblist-icon" src={iconTransactions} />
+                      <img className="sblist-icon" src={iconTransactions.src} />
                     </div>
                     <div className="w-max-content no-space">
                       <p className="text-semibold px-1 royal-shade-5">
@@ -202,14 +204,14 @@ export function SideBar() {
               <div
                 className={`slitem pointer ${getActive(active) == "/customer-support" ? "active" : ""}`}
                 onClick={() => {
-                  navigate("/dashboard/customer-support");
+                  router.push("/dashboard/customer-support");
                   setActive("/dashboard/customer-support");
                 }}
               >
                 <div className="container-fluid no-space">
                   <div className="row no-space align-items-center">
                     <div className="w-max-content no-space">
-                      <img className="sblist-icon" src={iconSupport} />
+                      <img className="sblist-icon" src={iconSupport.src} />
                     </div>
                     <div className="w-max-content no-space">
                       <p className="text-semibold px-1 royal-shade-5">
@@ -224,14 +226,14 @@ export function SideBar() {
               <div
                 className={`slitem pointer ${getActive(active) == "/account-settings" ? "active" : ""}`}
                 onClick={() => {
-                  navigate("/dashboard/account-settings");
+                  router.push("/dashboard/account-settings");
                   setActive("/dashboard/account-settings");
                 }}
               >
                 <div className="container-fluid no-space">
                   <div className="row no-space align-items-center">
                     <div className="w-max-content no-space">
-                      <img className="sblist-icon" src={iconAccountSettings} />
+                      <img className="sblist-icon" src={iconAccountSettings.src} />
                     </div>
                     <div className="w-max-content no-space">
                       <p className="text-semibold px-1 royal-shade-5">
@@ -250,7 +252,7 @@ export function SideBar() {
                 <div className="container-fluid no-space">
                   <div className="row no-space align-items-center">
                     <div className="w-max-content no-space">
-                      <img className="sblist-icon" src={iconLogout} />
+                      <img className="sblist-icon" src={iconLogout.src} />
                     </div>
                     <div className="w-max-content no-space">
                       <p className="text-semibold px-1 royal-shade-5">

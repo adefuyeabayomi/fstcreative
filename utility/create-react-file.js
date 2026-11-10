@@ -13,7 +13,7 @@ if (!type || !folderName || !fileName) {
 }
 
 // Determine if type is "page" or "component"
-const folderType = type === "page" ? "pages" : "components";
+const folderType = type === "page" ? "views" : "components";
 
 // Construct the folder path
 const folderPath = path.join(process.cwd(), "src", folderType, folderName);
@@ -33,6 +33,8 @@ const filePath = path.join(folderPath, `${fileName}.tsx`);
 let name = compName ? compName : fileName;
 if (!fs.existsSync(filePath)) {
   const fileContent = `
+"use client";
+
 import React, {useEffect} from 'react';
 import './style.css';
 import { animateScroll as scroll } from "react-scroll";

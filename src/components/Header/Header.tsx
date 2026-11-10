@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import logo from "../../assets/images/Logo Main.svg";
 import hIconNotif from "../../assets/images/hIconNotification.svg";
@@ -13,7 +15,8 @@ import iconAccountSettings from "../../assets/images/d-icon-account.svg";
 import iconLogout from "../../assets/images/d-icon-logout.svg";
 
 import "./style.css";
-import { Link, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import FButtonMain from "../Button/Main";
 import Overlay from "../overlay";
 import { Twirl as Hamburger } from "hamburger-react";
@@ -31,7 +34,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { useDash } from "../../contexts/DashContext";
 
 export function Header(): React.JSX.Element {
-  let navigate = useNavigate();
+  let router = useRouter();
   let auth = useAuth();
   let { isDash } = useDash();
   function toggleHamburger() {
@@ -50,8 +53,8 @@ export function Header(): React.JSX.Element {
           <div className="row no-space align-items-center">
             <div className="no-space w-max-content">
               <div className="logo-container">
-                <Link to={"/"}>
-                  <img className="logo-img" src={logo} />
+                <Link href={"/"}>
+                  <img className="logo-img" src={logo.src} />
                 </Link>
               </div>
             </div>
@@ -63,7 +66,7 @@ export function Header(): React.JSX.Element {
                     <li className="desktop-nav-links">
                       <Link
                         className="text-none royal-shade-5 text-medium-1"
-                        to={"/"}
+                        href={"/"}
                       >
                         Home
                       </Link>
@@ -71,7 +74,7 @@ export function Header(): React.JSX.Element {
                     <li className="desktop-nav-links">
                       <Link
                         className="text-none royal-shade-5 text-medium-1"
-                        to={"/#services"}
+                        href={"/#services"}
                       >
                         Services
                       </Link>
@@ -79,7 +82,7 @@ export function Header(): React.JSX.Element {
                     <li className="desktop-nav-links">
                       <Link
                         className="text-none royal-shade-5 text-medium-1"
-                        to={"/pricing"}
+                        href={"/pricing"}
                       >
                         Pricing
                       </Link>
@@ -87,7 +90,7 @@ export function Header(): React.JSX.Element {
                     <li className="desktop-nav-links">
                       <Link
                         className="text-none royal-shade-5 text-medium-1"
-                        to={"/exhibits"}
+                        href={"/exhibits"}
                       >
                         Exhibits
                       </Link>
@@ -95,7 +98,7 @@ export function Header(): React.JSX.Element {
                     <li className="desktop-nav-links">
                       <Link
                         className="text-none royal-shade-5 text-medium-1"
-                        to={"/products"}
+                        href={"/products"}
                       >
                         Products
                       </Link>
@@ -103,7 +106,7 @@ export function Header(): React.JSX.Element {
                     <li className="desktop-nav-links">
                       <Link
                         className="text-none royal-shade-5 text-medium-1"
-                        to={"/blog"}
+                        href={"/blog"}
                       >
                         Blog
                       </Link>
@@ -111,7 +114,7 @@ export function Header(): React.JSX.Element {
                     <li className="desktop-nav-links">
                       <Link
                         className="text-none royal-shade-5 text-medium-1"
-                        to={"/careers"}
+                        href={"/careers"}
                       >
                         Careers
                       </Link>
@@ -119,7 +122,7 @@ export function Header(): React.JSX.Element {
                     <li className="desktop-nav-links">
                       <Link
                         className="text-none royal-shade-5 text-medium-1"
-                        to={"/bootcamps"}
+                        href={"/bootcamps"}
                       >
                         Bootcamps
                       </Link>
@@ -134,7 +137,7 @@ export function Header(): React.JSX.Element {
                 <div className="desktop-nav-links">
                   <Link
                     className="text-none royal-shade-5 text-medium-1"
-                    to={"/dashboard"}
+                    href={"/dashboard"}
                   >
                     My Dashboard
                   </Link>
@@ -148,9 +151,9 @@ export function Header(): React.JSX.Element {
                 <div className="desktop-nav-links">
                   <Link
                     className="text-none royal-shade-5 text-medium-1"
-                    to={"/dashboard/notifications"}
+                    href={"/dashboard/notifications"}
                   >
-                    <img src={hIconNotif} className="h-icon" />
+                    <img src={hIconNotif.src} className="h-icon" />
                   </Link>
                 </div>
               </div>
@@ -162,9 +165,10 @@ export function Header(): React.JSX.Element {
                 <div className="desktop-nav-links">
                   <Link
                     className="text-none royal-shade-5 text-medium-1"
-                    to={"/dashboard"}
+                    href={"/dashboard"}
                   >
-                    <img src={hIconUser} className="h-icon" /> Abayomi
+                    <img src={hIconUser.src} className="h-icon" />{" "}
+                    {auth.user?.firstName || "Account"}
                   </Link>
                 </div>
               </div>
@@ -176,7 +180,7 @@ export function Header(): React.JSX.Element {
                 <div className="desktop-nav-links">
                   <Link
                     className="text-none royal-shade-5 text-medium-1"
-                    to={"/#contact"}
+                    href={"/#contact"}
                   >
                     <span className="px-1">
                       <FontAwesomeIcon size={"sm"} icon={faPhone} />
@@ -193,7 +197,7 @@ export function Header(): React.JSX.Element {
                 <div className="desktop-nav-links">
                   <Link
                     className="text-none royal-shade-5 text-medium-1"
-                    to={"/login"}
+                    href={"/login"}
                   >
                     Login
                   </Link>
@@ -213,7 +217,7 @@ export function Header(): React.JSX.Element {
                   <FButtonMain
                     iconLeft={false}
                     icon={<FontAwesomeIcon icon={faArrowRight} size={"1x"} />}
-                    actionFn={() => navigate("/signup")}
+                    actionFn={() => router.push("/signup")}
                   >
                     <span className="text-none text-semibold">Sign Up</span>
                   </FButtonMain>
@@ -245,7 +249,7 @@ export function Header(): React.JSX.Element {
                         <div
                           className={`slitem pointer ${getActive(active) == "" ? "active" : ""}`}
                           onClick={() => {
-                            navigate("/dashboard");
+                            router.push("/dashboard");
                             toggleHamburger();
                             setActive("/dashboard");
                           }}
@@ -253,7 +257,7 @@ export function Header(): React.JSX.Element {
                           <div className="container-fluid no-space">
                             <div className="row no-space align-items-center">
                               <div className="w-max-content no-space">
-                                <img className="sblist-icon" src={iconHome} />
+                                <img className="sblist-icon" src={iconHome.src} />
                               </div>
                               <div className="w-max-content no-space">
                                 <p className="text-semibold px-1 royal-shade-5">
@@ -268,7 +272,7 @@ export function Header(): React.JSX.Element {
                         <div
                           className={`slitem pointer ${getActive(active) == "/projects-and-activities" ? "active" : ""}`}
                           onClick={() => {
-                            navigate("/dashboard/projects-and-activities");
+                            router.push("/dashboard/projects-and-activities");
                             toggleHamburger();
                             setActive("/dashboard/projects-and-activities");
                           }}
@@ -278,7 +282,7 @@ export function Header(): React.JSX.Element {
                               <div className="w-max-content no-space">
                                 <img
                                   className="sblist-icon"
-                                  src={iconProjects}
+                                  src={iconProjects.src}
                                 />
                               </div>
                               <div className="w-max-content no-space">
@@ -294,7 +298,7 @@ export function Header(): React.JSX.Element {
                         <div
                           className={`slitem pointer ${getActive(active) == "/design-school" ? "active" : ""}`}
                           onClick={() => {
-                            navigate("/dashboard/design-school");
+                            router.push("/dashboard/design-school");
                             toggleHamburger();
                             setActive("/dashboard/design-school");
                           }}
@@ -304,7 +308,7 @@ export function Header(): React.JSX.Element {
                               <div className="w-max-content no-space">
                                 <img
                                   className="sblist-icon"
-                                  src={iconDSchool}
+                                  src={iconDSchool.src}
                                 />
                               </div>
                               <div className="w-max-content no-space">
@@ -320,7 +324,7 @@ export function Header(): React.JSX.Element {
                         <div
                           className={`slitem pointer ${getActive(active) == "/notifications" ? "active" : ""}`}
                           onClick={() => {
-                            navigate("/dashboard/notifications");
+                            router.push("/dashboard/notifications");
                             toggleHamburger();
                             setActive("/dashboard/notifications");
                           }}
@@ -330,7 +334,7 @@ export function Header(): React.JSX.Element {
                               <div className="w-max-content no-space">
                                 <img
                                   className="sblist-icon"
-                                  src={iconNotification}
+                                  src={iconNotification.src}
                                 />
                               </div>
                               <div className="w-max-content no-space">
@@ -346,7 +350,7 @@ export function Header(): React.JSX.Element {
                         <div
                           className={`slitem pointer ${getActive(active) == "/transactions" ? "active" : ""}`}
                           onClick={() => {
-                            navigate("/dashboard/transactions");
+                            router.push("/dashboard/transactions");
                             toggleHamburger();
                             setActive("/dashboard/transactions");
                           }}
@@ -356,7 +360,7 @@ export function Header(): React.JSX.Element {
                               <div className="w-max-content no-space">
                                 <img
                                   className="sblist-icon"
-                                  src={iconTransactions}
+                                  src={iconTransactions.src}
                                 />
                               </div>
                               <div className="w-max-content no-space">
@@ -372,7 +376,7 @@ export function Header(): React.JSX.Element {
                         <div
                           className={`slitem pointer ${getActive(active) == "/customer-support" ? "active" : ""}`}
                           onClick={() => {
-                            navigate("/dashboard/customer-support");
+                            router.push("/dashboard/customer-support");
                             toggleHamburger();
                             setActive("/dashboard/customer-support");
                           }}
@@ -382,7 +386,7 @@ export function Header(): React.JSX.Element {
                               <div className="w-max-content no-space">
                                 <img
                                   className="sblist-icon"
-                                  src={iconSupport}
+                                  src={iconSupport.src}
                                 />
                               </div>
                               <div className="w-max-content no-space">
@@ -398,7 +402,7 @@ export function Header(): React.JSX.Element {
                         <div
                           className={`slitem pointer ${getActive(active) == "/account-settings" ? "active" : ""}`}
                           onClick={() => {
-                            navigate("/dashboard/account-settings");
+                            router.push("/dashboard/account-settings");
                             toggleHamburger();
                             setActive("/dashboard/account-settings");
                           }}
@@ -408,7 +412,7 @@ export function Header(): React.JSX.Element {
                               <div className="w-max-content no-space">
                                 <img
                                   className="sblist-icon"
-                                  src={iconAccountSettings}
+                                  src={iconAccountSettings.src}
                                 />
                               </div>
                               <div className="w-max-content no-space">
@@ -427,7 +431,7 @@ export function Header(): React.JSX.Element {
                           <div className="container-fluid no-space">
                             <div className="row no-space align-items-center">
                               <div className="w-max-content no-space">
-                                <img className="sblist-icon" src={iconLogout} />
+                                <img className="sblist-icon" src={iconLogout.src} />
                               </div>
                               <div className="w-max-content no-space">
                                 <p className="text-semibold px-1 royal-shade-5">
@@ -455,7 +459,7 @@ export function Header(): React.JSX.Element {
                         <Link
                           onClick={toggleHamburger}
                           className="text-none royal-shade-5 text-medium-1"
-                          to={"/"}
+                          href={"/"}
                         >
                           <FontAwesomeIcon color="#608aff" icon={faHome} /> Home
                         </Link>
@@ -465,7 +469,7 @@ export function Header(): React.JSX.Element {
                         <Link
                           onClick={toggleHamburger}
                           className="text-none royal-shade-5 text-medium-1"
-                          to={"/services"}
+                          href={"/services"}
                         >
                           <FontAwesomeIcon color="#608aff" icon={faBoxes} />{" "}
                           Services
@@ -476,7 +480,7 @@ export function Header(): React.JSX.Element {
                         <Link
                           onClick={toggleHamburger}
                           className="text-none royal-shade-5 text-medium-1"
-                          to={"/exhibits"}
+                          href={"/exhibits"}
                         >
                           <FontAwesomeIcon color="#608aff" icon={faBullseye} />{" "}
                           Exhibits
@@ -487,7 +491,7 @@ export function Header(): React.JSX.Element {
                         <Link
                           onClick={toggleHamburger}
                           className="text-none royal-shade-5 text-medium-1"
-                          to={"/products"}
+                          href={"/products"}
                         >
                           <FontAwesomeIcon color="#608aff" icon={faTabletAlt} />{" "}
                           Products
@@ -498,7 +502,7 @@ export function Header(): React.JSX.Element {
                         <Link
                           onClick={toggleHamburger}
                           className="text-none royal-shade-5 text-medium-1"
-                          to={"/blog"}
+                          href={"/blog"}
                         >
                           <FontAwesomeIcon color="#608aff" icon={faPhone} />{" "}
                           Contact
@@ -509,7 +513,7 @@ export function Header(): React.JSX.Element {
                         <Link
                           onClick={toggleHamburger}
                           className="text-none royal-shade-5 text-medium-1"
-                          to={"/blog"}
+                          href={"/blog"}
                         >
                           <FontAwesomeIcon color="#608aff" icon={faBlog} /> Blog
                         </Link>
@@ -519,7 +523,7 @@ export function Header(): React.JSX.Element {
                         <Link
                           onClick={toggleHamburger}
                           className="text-none royal-shade-5 text-medium-1"
-                          to={"/blog"}
+                          href={"/blog"}
                         >
                           <FontAwesomeIcon color="#608aff" icon={faBlog} />{" "}
                           Careers
@@ -531,7 +535,7 @@ export function Header(): React.JSX.Element {
                         <Link
                           onClick={toggleHamburger}
                           className="text-none royal-shade-5 text-medium-1"
-                          to={"/blog"}
+                          href={"/blog"}
                         >
                           <FontAwesomeIcon color="#608aff" icon={faBlog} />{" "}
                           Design School
@@ -550,7 +554,7 @@ export function Header(): React.JSX.Element {
                           <FontAwesomeIcon icon={faArrowRight} size={"1x"} />
                         }
                         actionFn={() => {
-                          navigate("/login");
+                          router.push("/login");
                           toggleHamburger();
                         }}
                         style={{
@@ -575,7 +579,7 @@ export function Header(): React.JSX.Element {
                           <FontAwesomeIcon icon={faArrowRight} size={"1x"} />
                         }
                         actionFn={() => {
-                          navigate("/signup");
+                          router.push("/signup");
                           toggleHamburger();
                         }}
                         style={{ width: "100%" }}

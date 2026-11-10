@@ -27,7 +27,7 @@ export const useDash = () => {
 export function DashProvider({
   children,
 }: {
-  children: React.JSX.Element;
+  children: React.ReactNode;
 }): React.JSX.Element {
   let [isDash, setIsDash] = useState(false);
   function updateDashStatus(val: boolean) {

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 import logoBlue from "../../assets/images/logo-blue.svg";
 
@@ -15,7 +15,7 @@ export function Footer(): React.JSX.Element {
               <div className="py-4 py-md-0" />
               <div className="footer-logo-container white">
                 <div className="w-max-content center">
-                  <img src={logoBlue} className="footer-logo" />
+                  <img src={logoBlue.src} className="footer-logo" />
                 </div>
                 <div className="text-center">
                   <p className="text-semibold">Five and Six Technologies</p>
@@ -34,27 +34,27 @@ export function Footer(): React.JSX.Element {
                 <div className="py-1" />
                 <ul className="footer-list text-p text-medium">
                   <li>
-                    <Link className="text-none white text-regular" to={""}>
+                    <Link className="text-none white text-regular" href={"/"}>
                       Home
                     </Link>
                   </li>
                   <li>
-                    <Link className="text-none white text-regular" to={""}>
+                    <Link className="text-none white text-regular" href={"/"}>
                       Services
                     </Link>
                   </li>
                   <li>
-                    <Link className="text-none white text-regular" to={""}>
+                    <Link className="text-none white text-regular" href={"/"}>
                       Our Works
                     </Link>
                   </li>
                   <li>
-                    <Link className="text-none white text-regular" to={""}>
+                    <Link className="text-none white text-regular" href={"/"}>
                       Products
                     </Link>
                   </li>
                   <li>
-                    <Link className="text-none white text-regular" to={""}>
+                    <Link className="text-none white text-regular" href={"/"}>
                       Blog
                     </Link>
                   </li>
@@ -71,22 +71,22 @@ export function Footer(): React.JSX.Element {
                   <div className="py-1" />
                   <ul className="footer-list text-p text-medium">
                     <li>
-                      <Link className="text-none text-regular white" to={""}>
+                      <Link className="text-none text-regular white" href={"/"}>
                         Web & Mobile Development
                       </Link>
                     </li>
                     <li>
-                      <Link className="text-none white text-regular" to={""}>
+                      <Link className="text-none white text-regular" href={"/"}>
                         UI/UX Design
                       </Link>
                     </li>
                     <li>
-                      <Link className="text-none white text-regular" to={""}>
+                      <Link className="text-none white text-regular" href={"/"}>
                         Digital Content Creation
                       </Link>
                     </li>
                     <li>
-                      <Link className="text-none white text-regular" to={""}>
+                      <Link className="text-none white text-regular" href={"/"}>
                         Animations and Ad's Creation
                       </Link>
                     </li>
@@ -104,12 +104,12 @@ export function Footer(): React.JSX.Element {
                   <div className="py-1" />
                   <ul className="footer-list text-p text-medium">
                     <li>
-                      <Link className="text-none text-regular white" to={""}>
+                      <Link className="text-none text-regular white" href={"/"}>
                         Nikko Blogger
                       </Link>
                     </li>
                     <li>
-                      <Link className="text-none white text-regular" to={""}>
+                      <Link className="text-none white text-regular" href={"/"}>
                         Showa
                       </Link>
                     </li>
@@ -127,12 +127,12 @@ export function Footer(): React.JSX.Element {
                   <div className="py-1" />
                   <ul className="footer-list text-p text-medium">
                     <li>
-                      <Link className="text-none text-regular white" to={""}>
+                      <Link className="text-none text-regular white" href={"/"}>
                         Design Basics
                       </Link>
                     </li>
                     <li>
-                      <Link className="text-none white text-regular" to={""}>
+                      <Link className="text-none white text-regular" href={"/"}>
                         Intermidiate UI Design
                       </Link>
                     </li>
