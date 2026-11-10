@@ -142,7 +142,7 @@ export default function Home(): React.JSX.Element {
   return (
     <main id="home" className="overflow-hidden bg-white text-royal-ink">
       {/* Hero */}
-      <section className="relative">
+      <section className="relative pt-16 lg:pt-6">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -right-40 -top-32 h-96 w-96 rounded-full bg-royal/5 blur-3xl"
