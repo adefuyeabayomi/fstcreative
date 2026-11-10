@@ -111,8 +111,8 @@ const contactChannels = [
   },
   {
     label: "Email",
-    value: "adefuyeabayomi16@gmail.com",
-    href: "mailto:adefuyeabayomi16@gmail.com",
+    value: "yomi@fiveandsixtechnologies.com",
+    href: "mailto:yomi@fiveandsixtechnologies.com",
     image: contactEmail,
   },
 ];
@@ -225,7 +225,7 @@ export default function Home(): React.JSX.Element {
             </p>
           </div>
 
-          <div className="lg:order-2">
+          <div className="">
             <div className="rounded-canvas border border-white/70 p-3 shadow-card">
               <img
                 src={s2.src}

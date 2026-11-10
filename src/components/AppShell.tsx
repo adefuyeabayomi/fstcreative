@@ -45,7 +45,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     return (
       <>
         <Header />
-        <div className="bg-surface-canvas pt-[68px] font-sans text-ink">
+        <div className="min-h-screen bg-slate-50 pt-[68px] font-sans text-ink">
           {children}
         </div>
       </>

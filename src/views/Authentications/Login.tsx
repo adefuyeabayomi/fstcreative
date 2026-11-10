@@ -3,17 +3,22 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { AuthShell } from "@/components/ui/AuthShell";
-import { Alert } from "@/components/ui/Alert";
 import { Button } from "@/components/ui/Button";
-import { Field } from "@/components/ui/Field";
-import { ArrowRightIcon, LockIcon, MailIcon, ShieldIcon } from "@/components/ui/icons";
+import { AuthField } from "@/components/ui/AuthField";
+import { AuthNotice } from "@/components/ui/AuthNotice";
+import { AuthSplitLayout } from "@/components/ui/AuthSplitLayout";
 import { GoogleAuthButton } from "@/components/GoogleAuthButton";
+import { ArrowRightIcon, LockIcon, MailIcon, ShieldIcon } from "@/components/ui/icons";
 import { useAuth } from "@/contexts/AuthContext";
 import { userAuthApi } from "@/api/userAuth";
 import { emailIsValid, passwordIsValid } from "@/utils/validation";
 
 type Step = "credentials" | "otp";
+
+interface FieldErrors {
+  email?: string;
+  password?: string;
+}
 
 export default function Login(): React.JSX.Element {
   const router = useRouter();
@@ -26,10 +31,10 @@ export default function Login(): React.JSX.Element {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [otp, setOtp] = useState("");
+  const [errors, setErrors] = useState<FieldErrors>({});
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [info, setInfo] = useState<string | null>(null);
-  const [fieldErrors, setFieldErrors] = useState<{ email?: string; password?: string }>({});
 
   function finishLogin() {
     if (callbackUrl) router.push(callbackUrl);
@@ -38,20 +43,23 @@ export default function Login(): React.JSX.Element {
   }
 
   async function submitCredentials() {
-    const errors: typeof fieldErrors = {};
-    if (!emailIsValid(email)) errors.email = "Enter a valid email address.";
-    if (!passwordIsValid(password)) errors.password = "Use at least 8 characters.";
-    setFieldErrors(errors);
-    if (Object.keys(errors).length > 0) return;
+    setError(null);
+
+    const nextErrors: FieldErrors = {};
+    if (!emailIsValid(email)) nextErrors.email = "Enter a valid email address";
+    if (!passwordIsValid(password)) {
+      nextErrors.password = "Password should be at least 8 characters";
+    }
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) return;
 
     setSubmitting(true);
-    setError(null);
     try {
       const result = await auth.login(email, password);
       if (result.requiresOtp) {
         setStep("otp");
         setOtp("");
-        setInfo("Enter the 6-digit code sent to your email.");
+        setInfo(`Enter the 6-digit code sent to ${email}.`);
       } else {
         finishLogin();
       }
@@ -63,12 +71,13 @@ export default function Login(): React.JSX.Element {
   }
 
   async function submitOtp() {
+    setError(null);
     if (!/^\d{6}$/.test(otp)) {
       setError("Enter the 6-digit code from your email.");
       return;
     }
+
     setSubmitting(true);
-    setError(null);
     try {
       await auth.verifyOtp(email, otp);
       finishLogin();
@@ -90,8 +99,8 @@ export default function Login(): React.JSX.Element {
   }
 
   async function handleGoogle(idToken: string) {
-    setSubmitting(true);
     setError(null);
+    setSubmitting(true);
     try {
       await auth.googleSignIn(idToken);
       finishLogin();
@@ -103,7 +112,7 @@ export default function Login(): React.JSX.Element {
   }
 
   return (
-    <AuthShell
+    <AuthSplitLayout
       title={step === "credentials" ? "Welcome back" : "Verify your email"}
       subtitle={
         step === "credentials"
@@ -111,72 +120,87 @@ export default function Login(): React.JSX.Element {
           : `We sent a 6-digit code to ${email}.`
       }
       footer={
-        <span>
-          New to Five &amp; Six?{" "}
+        <>
+          Don&apos;t have an account?{" "}
           <Link
-            href={searchParams.toString() ? `/signup?${searchParams.toString()}` : "/signup"}
-            className="font-semibold text-brand no-underline hover:underline"
+            href={
+              searchParams.toString()
+                ? `/signup?${searchParams.toString()}`
+                : "/signup"
+            }
+            className="font-semibold text-brand no-underline transition hover:text-brand-600"
           >
             Create an account
           </Link>
-        </span>
+        </>
       }
     >
-      {error && <Alert tone="error" className="mb-4">{error}</Alert>}
-      {info && step === "otp" && <Alert tone="info" className="mb-4">{info}</Alert>}
+      {error && <AuthNotice tone="error">{error}</AuthNotice>}
+      {info && step === "otp" && <AuthNotice tone="info">{info}</AuthNotice>}
 
       {step === "credentials" ? (
-        <>
-          <form
-            className="space-y-4"
-            onSubmit={(event) => {
-              event.preventDefault();
-              void submitCredentials();
-            }}
-          >
-            <Field
-              label="Email address"
-              value={email}
-              onChange={setEmail}
-              type="email"
-              placeholder="you@company.com"
-              autoComplete="email"
-              inputMode="email"
-              icon={<MailIcon />}
-              error={fieldErrors.email}
-              required
-            />
-            <Field
+        <form
+          className="space-y-5"
+          onSubmit={(event) => {
+            event.preventDefault();
+            void submitCredentials();
+          }}
+        >
+          <AuthField
+            label="Email address"
+            value={email}
+            onChange={setEmail}
+            type="email"
+            placeholder="you@company.com"
+            autoComplete="email"
+            inputMode="email"
+            icon={<MailIcon className="h-[18px] w-[18px]" />}
+            error={errors.email}
+            required
+          />
+
+          <div>
+            <AuthField
               label="Password"
               value={password}
               onChange={setPassword}
               type="password"
-              placeholder="Your password"
+              placeholder="Enter your password"
               autoComplete="current-password"
-              icon={<LockIcon />}
-              error={fieldErrors.password}
+              icon={<LockIcon className="h-[18px] w-[18px]" />}
+              error={errors.password}
               required
             />
-
-            <div className="flex justify-end">
+            <div className="mt-2 flex justify-end">
               <Link
                 href="/forgot-password"
-                className="text-[13px] font-medium text-brand no-underline hover:underline"
+                className="text-sm font-medium text-brand no-underline transition hover:text-brand-600"
               >
                 Forgot password?
               </Link>
             </div>
+          </div>
 
-            <Button type="submit" fullWidth loading={submitting}>
-              Sign in
-              <ArrowRightIcon />
-            </Button>
-          </form>
+          <Button
+            type="submit"
+            variant="primary"
+            size="lg"
+            shape="xl"
+            fullWidth
+            loading={submitting}
+            className="group !font-semibold"
+          >
+            Sign in
+            <ArrowRightIcon className="h-[17px] w-[17px] transition-transform group-hover:translate-x-0.5" />
+          </Button>
 
-          <div className="my-5 flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.12em] text-ink-subdued">
-            <span className="h-px flex-1 bg-black/[0.06]" />
-            or
-            <span className="h-px flex-1 bg-black/[0.06]" />
+          <div className="relative py-2">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-slate-200" />
+            </div>
+            <div className="relative flex justify-center">
+              <span className="bg-white px-4 text-xs text-slate-400">OR</span>
+            </div>
           </div>
 
           <GoogleAuthButton
@@ -187,38 +211,45 @@ export default function Login(): React.JSX.Element {
               setError("Google sign-in is not configured yet.")
             }
           />
-        </>
+        </form>
       ) : (
         <form
-          className="space-y-4"
+          className="space-y-5"
           onSubmit={(event) => {
             event.preventDefault();
             void submitOtp();
           }}
         >
-          <Field
+          <AuthField
             label="Verification code"
             value={otp}
             onChange={(value) => setOtp(value.replace(/\D/g, "").slice(0, 6))}
-            type="text"
             placeholder="123456"
             inputMode="numeric"
             maxLength={6}
             autoComplete="one-time-code"
-            icon={<ShieldIcon />}
+            icon={<ShieldIcon className="h-[18px] w-[18px]" />}
             required
           />
 
-          <Button type="submit" fullWidth loading={submitting}>
+          <Button
+            type="submit"
+            variant="primary"
+            size="lg"
+            shape="xl"
+            fullWidth
+            loading={submitting}
+            className="group !font-semibold"
+          >
             Verify &amp; sign in
-            <ArrowRightIcon />
+            <ArrowRightIcon className="h-[17px] w-[17px] transition-transform group-hover:translate-x-0.5" />
           </Button>
 
-          <div className="flex items-center justify-between pt-1 text-[13px] font-medium">
+          <div className="flex items-center justify-between pt-1 text-sm font-medium">
             <button
               type="button"
               onClick={resendCode}
-              className="text-brand transition-colors hover:text-brand-600"
+              className="text-brand transition hover:text-brand-600"
             >
               Resend code
             </button>
@@ -230,13 +261,13 @@ export default function Login(): React.JSX.Element {
                 setError(null);
                 setInfo(null);
               }}
-              className="text-ink-muted transition-colors hover:text-ink"
+              className="text-slate-500 transition hover:text-slate-700"
             >
               Back to sign in
             </button>
           </div>
         </form>
       )}
-    </AuthShell>
+    </AuthSplitLayout>
   );
 }

@@ -11,10 +11,11 @@ type Variant =
   | "danger"
   | "nav"
   | "royal"
-  | "royalOutline";
+  | "royalOutline"
+;
 
 type Size = "sm" | "md" | "lg";
-type Shape = "default" | "pill";
+type Shape = "default" | "pill" | "xl";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant;
@@ -36,6 +37,7 @@ const sizes: Record<Size, string> = {
 const shapes: Record<Shape, string> = {
   default: "rounded-control",
   pill: "rounded-full",
+  xl: "rounded-xl",
 };
 
 const variants: Record<Variant, string> = {

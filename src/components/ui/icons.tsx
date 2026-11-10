@@ -63,3 +63,31 @@ export function CheckIcon({ className }: IconProps) {
     </svg>
   );
 }
+
+export function EyeIcon({ className }: IconProps) {
+  return (
+    <svg {...props(className)}>
+      <path
+        d="M2.5 10.9a1.8 1.8 0 0 0 0 1.8C3.6 14.6 7 19 12 19s8.4-4.4 9.5-6.1a1.8 1.8 0 0 0 0-1.8C20.4 9.4 17 5 12 5S3.6 9.4 2.5 10.9z"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.75" />
+    </svg>
+  );
+}
+
+export function EyeOffIcon({ className }: IconProps) {
+  return (
+    <svg {...props(className)}>
+      <path
+        d="M3 3l18 18M10.6 10.6a2 2 0 002.8 2.8M9.9 5.2A9.7 9.7 0 0112 5c5 0 8.5 4.4 9.5 6.1a1.8 1.8 0 010 1.8c-.4.7-1.3 1.9-2.6 3M6.3 6.3C4.5 7.6 3.2 9.3 2.5 10.9a1.8 1.8 0 000 1.8C3.6 14.6 7 19 12 19c1.3 0 2.5-.3 3.6-.8"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
