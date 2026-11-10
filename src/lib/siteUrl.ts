@@ -1,14 +1,34 @@
 /**
  * Canonical public site URL.
  *
- * Prefers NEXT_PUBLIC_SITE_URL, but never emits localhost URLs in a production
- * build (`.env.local` is loaded during builds too, which would otherwise leak
- * `http://localhost:3000` into sitemap.xml and Open Graph tags).
+ * Vercel/host env vars are often set to a bare domain (`example.com`) or a URL
+ * with a path/trailing slash. Normalise everything to a valid origin so
+ * `new URL(...)` never throws during `next build` (page-data collection).
  */
 const PRODUCTION_FALLBACK = "https://fiveandsixtechnologies.com";
 
+function normalise(raw: string | undefined): string | null {
+  if (!raw) return null;
+
+  let value = raw.trim();
+  if (!value) return null;
+
+  // Add a protocol when the env var is a bare domain.
+  if (!/^[a-z][a-z0-9+.-]*:\/\//i.test(value)) {
+    value = `https://${value}`;
+  }
+
+  try {
+    const url = new URL(value);
+    if (!url.hostname) return null;
+    return `${url.protocol}//${url.host}`;
+  } catch {
+    return null;
+  }
+}
+
 export function getSiteUrl(): string {
-  const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/+$/, "");
+  const configured = normalise(process.env.NEXT_PUBLIC_SITE_URL);
 
   if (configured) {
     const isLocal = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(configured);
