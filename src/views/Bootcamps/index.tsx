@@ -1,8 +1,13 @@
 "use client";
 
-import React, { useEffect } from "react";
-import "./style.css";
-import { animateScroll as scroll } from "react-scroll";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useDash } from "../../contexts/DashContext";
+import { useAuth } from "../../contexts/AuthContext";
+import { useLoading } from "../../contexts/LoadingContext";
+import { Button } from "@/components/ui/Button";
+import { widthControlClass } from "@/styles/widthControl";
+
 import heroImg from "../../assets/images/Default_A_techsavvy_young_black_man_smiling_as_he_works_on_his_2 1.png";
 import dUIImg from "../../assets/images/dUIimg.png";
 import bIconAi from "../../assets/images/bIconAi.png";
@@ -11,328 +16,308 @@ import bIconCode from "../../assets/images/bIconCode.png";
 import bIconFigma from "../../assets/images/bIconFigma.png";
 import bIconUI from "../../assets/images/bIconUI.png";
 import angArrow from "../../assets/images/ang45arrow.svg";
-import FButtonMain from "../../components/Button/Main";
-import { useDash } from "../../contexts/DashContext";
-import { useAuth } from "../../contexts/AuthContext";
-import { useLoading } from "../../contexts/LoadingContext";
-import { useRouter } from "next/navigation";
 
-const Bootcamps = (): React.JSX.Element => {
-  let auth = useAuth();
-  let { setLoading, setLoadingText } = useLoading();
-  let router = useRouter();
-  let { updateDashStatus } = useDash();
-  //const [searchParams] = useSearchParams();
-  //let next = searchParams.get("next")
+const featureIcons = [bIconFigma, bIconCode, bIconBezier, bIconUI, bIconAi];
+
+function Checklist({ items }: { items: React.ReactNode[] }) {
+  return (
+    <ul className="list-none space-y-2.5 text-[15px] leading-7 text-slate-600">
+      {items.map((item, index) => (
+        <li key={index} className="flex gap-2.5">
+          <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-royal" />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default function Bootcamps(): React.JSX.Element {
+  const auth = useAuth();
+  const { setLoading, setLoadingText } = useLoading();
+  const router = useRouter();
+  const { updateDashStatus } = useDash();
+
   useEffect(() => {
     updateDashStatus(false);
-    // Scroll to top when the component mounts
-    scroll.scrollToTop({
-      duration: 1000, // duration of the scrolling animation in milliseconds
-      smooth: "easeInOutQuart", // the type of easing
-    });
-  }, []);
+    window.scrollTo(0, 0);
+  }, [updateDashStatus]);
 
-  function handleRegisterForBootcamp() {
+  function register() {
     if (!auth.isAuthenticated) {
-      // redirect to the login / signup page
-      // Now the page has a reference page.
-      // next=choosePlan&serviceGroup=groupname&serviceSubgroup=subgroupname&packageType
       setLoading(true);
       setLoadingText(
-        "You need to Login to Register For Bootcamp. Redirecting to Login Page",
+        "You need to log in to register for a bootcamp. Redirecting to the login page.",
       );
       setTimeout(() => {
         setLoading(false);
         setLoadingText("");
-        let path = `login?next=bootcamps&register=true`;
-        console.log(path);
-        router.push(`/${path}`);
+        router.push("/login?next=bootcamps&register=true");
       }, 5000);
+      return;
     }
+    router.push("/bootcamp-registration");
   }
 
   return (
-    <div className="main-spacing-x royal-shade-5">
-      <div className="py-4" />
-      <div className="py-2" />
-      <div className="container-fluid no-space  text-center text-lg-left">
-        <div className="row no-space align-items-center justify-content-center">
-          <div className="col-12 col-md-6 col-lg-6 no-space">
-            <div>
-              <h1 className="text-semibold">
-                Kickstart Your Tech Career with Hands-On Learning
-              </h1>
+    <main className="bg-white pb-20">
+      <div className={widthControlClass}>
+        <section className="grid items-center gap-10 pt-14 lg:grid-cols-2">
+          <div className="text-center lg:text-left">
+            <span className="inline-flex h-7 items-center rounded-full bg-royal/5 px-3 text-[12px] font-medium text-royal">
+              Bootcamps
+            </span>
+            <h1 className="mt-4 font-quicksand text-[32px] font-semibold leading-tight tracking-[-0.02em] text-royal-ink sm:text-[42px]">
+              Kickstart your tech career with hands-on learning
+            </h1>
+
+            <div className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
+              {featureIcons.map((icon, index) => (
+                <img
+                  key={index}
+                  src={icon.src}
+                  alt=""
+                  className="h-11 w-11 rounded-full object-contain"
+                />
+              ))}
             </div>
-            <div className="py-2" />
-            <div>
-              <div className="container-fluid no-space">
-                <div className="row no-space">
-                  <div className="col no-space">
-                    <img src={bIconFigma.src} className="bHicon" />
-                  </div>
-                  <div className="col no-space">
-                    <img className="bHicon" src={bIconCode.src} />
-                  </div>
-                  <div className="col no-space">
-                    <img className="bHicon" src={bIconBezier.src} />
-                  </div>
-                  <div className="col no-space">
-                    <img className="bHicon" src={bIconUI.src} />
-                  </div>
-                  <div className="col no-space">
-                    <img className="bHicon" src={bIconAi.src} />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="py-2" />
-            <div>
-              <h6 className="text-medium-1 bHSubline center d-block d-lg-none">
-                Start Your Design Journey with Our Bootcamp—Coding Coming Soon!
-              </h6>
-              <h6 className="text-medium-1 bHSubline d-none d-lg-block">
-                Start Your Design Journey with Our Bootcamp—Coding Coming Soon!
-              </h6>
-              <p className="bHSubline text-medium  center d-block d-lg-none">
-                Explore our current Product Design Bootcamp and gain hands-on
-                experience in UI/UX, visual design, and interactive prototyping.
-                As we grow, expect even more opportunities, including coding
-                bootcamps!
-              </p>
-              <p className="bHSubline text-medium d-none d-lg-block">
-                Explore our current Product Design Bootcamp and gain hands-on
-                experience in UI/UX, visual design, and interactive prototyping.
-                As we grow, expect even more opportunities, including coding
-                bootcamps!
-              </p>
-              <div className="py-4 py-md-0" />
-            </div>
+
+            <h2 className="mt-6 font-quicksand text-lg font-semibold text-royal-ink">
+              Start your design journey with our bootcamp — coding coming soon!
+            </h2>
+            <p className="mx-auto mt-2 max-w-md text-[15px] leading-7 text-slate-600 lg:mx-0">
+              Explore our current Product Design Bootcamp and gain hands-on
+              experience in UI/UX, visual design, and interactive prototyping. As
+              we grow, expect even more opportunities, including coding bootcamps.
+            </p>
           </div>
-          <div className="col-12 col-md-6 no-space">
-            <div className="p-2 py-md-0 py-lg-2">
-              <img className="bHeroImgMain" src={heroImg.src} />
-            </div>
+
+          <div className="rounded-canvas border border-slate-200 bg-surface-canvas p-3 shadow-card">
+            <img
+              src={heroImg.src}
+              alt="Bootcamp"
+              className="h-auto w-full rounded-card object-cover"
+            />
           </div>
+        </section>
+
+        <div className="my-14 h-px bg-slate-200" />
+
+        <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-royal">
+          Explore
+          <img src={angArrow.src} alt="" className="h-6 w-6 rotate-90" />
         </div>
-      </div>
 
-      <div className="py-4" />
-      <div className="d-divider-half gray-11-bg"></div>
-      <div className="py-4" />
-      <div>
-        <h5 className="royal">
-          EXPLORE <img className="bExploreArrow" src={angArrow.src} />
-        </h5>
-      </div>
-      <div>
-        <div className="py-4" />
-        <div className="">
-          <div className="container-fluid no-space">
-            <div className="row no-space align-items-center">
-              <div className="w-max-content no-space">
-                <p className="text-semibold">3 Months Bootcamp</p>
-              </div>
-              <div className="col no-space" />
-              <div className="w-max-content  no-space">
-                <p className="text-semibold p-2 fade-border">
-                  Starts March 14<sup>th</sup>
-                </p>
-              </div>
-            </div>
-          </div>
-
+        <div className="mt-8 grid items-start gap-10 lg:grid-cols-[1.2fr_0.8fr]">
           <div>
-            <h3 className="text-semibold">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <p className="text-sm font-semibold text-royal-ink">3 Months Bootcamp</p>
+              <p className="rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-600">
+                Starts March 14<sup>th</sup>
+              </p>
+            </div>
+
+            <h2 className="mt-4 font-quicksand text-[26px] font-semibold tracking-[-0.01em] text-royal-ink sm:text-[32px]">
               Product Design Bootcamp (Beginner to Advanced)
-            </h3>
-            <div className="py-2" />
-            <h6 className="text-semibold">
-              🚀 Master UI/UX & Visual Design in Just 3 Months!
-            </h6>
+            </h2>
+            <p className="mt-2 text-lg font-semibold text-royal-ink">
+              🚀 Master UI/UX &amp; visual design in just 3 months!
+            </p>
 
-            <div className="py-2" />
-            <div>
-              <ul className="font-family-quicksand gray-3 text-medium-1 text-p ad-list-container">
-                <li>
-                  ✅ <span className="text-semibold gray-2">Start Date:</span>{" "}
-                  14th March, 2025
-                </li>
-                <li>
-                  ✅ <span className="text-semibold gray-2">Duration:</span> 12
-                  Weeks (Live Sessions + Hands-on Practicals)
-                </li>
-                <li>
-                  ✅ <span className="text-semibold gray-2">Skill Level:</span>{" "}
-                  Total Beginner to Advanced
-                </li>
-                <li>
-                  ✅ <span className="text-semibold gray-2">Mode:</span> Online
-                  (Live + Recorded Sessions)
-                </li>
-              </ul>
+            <div className="mt-6">
+              <Checklist
+                items={[
+                  <>
+                    <span className="font-semibold text-royal-ink">Start date:</span>{" "}
+                    14th March, 2025
+                  </>,
+                  <>
+                    <span className="font-semibold text-royal-ink">Duration:</span> 12
+                    weeks (live sessions + hands-on practicals)
+                  </>,
+                  <>
+                    <span className="font-semibold text-royal-ink">Skill level:</span>{" "}
+                    Total beginner to advanced
+                  </>,
+                  <>
+                    <span className="font-semibold text-royal-ink">Mode:</span> Online
+                    (live + recorded sessions)
+                  </>,
+                ]}
+              />
+            </div>
+
+            <div className="mt-8 overflow-hidden rounded-container border border-slate-200 bg-white p-2 shadow-card">
+              <img src={dUIImg.src} alt="" className="w-full rounded-card object-cover" />
+            </div>
+
+            <div className="mt-8">
+              <h3 className="text-lg font-semibold text-royal-ink">What you&apos;ll learn</h3>
+              <div className="mt-3">
+                <Checklist
+                  items={[
+                    <>
+                      <span className="font-semibold text-royal-ink">
+                        Basics of visual design —
+                      </span>{" "}
+                      master design principles, colour theory and typography.
+                    </>,
+                    <>
+                      <span className="font-semibold text-royal-ink">
+                        Logo design &amp; vector editing (Inkscape) —
+                      </span>{" "}
+                      create stunning logos and scalable vector graphics.
+                    </>,
+                    <>
+                      <span className="font-semibold text-royal-ink">
+                        Fundamentals of UI/UX design (Figma) —
+                      </span>{" "}
+                      learn wireframing, prototyping and user research.
+                    </>,
+                    <>
+                      <span className="font-semibold text-royal-ink">
+                        Design systems and libraries —
+                      </span>{" "}
+                      build reusable UI components for scalable projects.
+                    </>,
+                    <>
+                      <span className="font-semibold text-royal-ink">
+                        Advanced UI design —
+                      </span>{" "}
+                      craft polished, high-quality interfaces that stand out.
+                    </>,
+                    <>
+                      <span className="font-semibold text-royal-ink">
+                        Interaction &amp; motion design —
+                      </span>{" "}
+                      create immersive experiences with animations and
+                      micro-interactions.
+                    </>,
+                    <>
+                      <span className="font-semibold text-royal-ink">
+                        Product development lifecycle —
+                      </span>{" "}
+                      work in a team setting and understand real-world workflows.
+                    </>,
+                    <>
+                      <span className="font-semibold text-royal-ink">
+                        Live sessions &amp; portfolio projects —
+                      </span>{" "}
+                      gain hands-on experience and showcase your work.
+                    </>,
+                  ]}
+                />
+              </div>
+            </div>
+
+            <div className="mt-8">
+              <h3 className="text-lg font-semibold text-royal-ink">Why this bootcamp?</h3>
+              <div className="mt-3">
+                <Checklist
+                  items={[
+                    <>
+                      <span className="font-semibold text-royal-ink">
+                        Industry-relevant training —
+                      </span>{" "}
+                      learn exactly what top companies look for in designers.
+                    </>,
+                    <>
+                      <span className="font-semibold text-royal-ink">
+                        Practical hands-on approach —
+                      </span>{" "}
+                      apply your knowledge through real-world projects.
+                    </>,
+                    <>
+                      <span className="font-semibold text-royal-ink">
+                        Build a portfolio that stands out —
+                      </span>{" "}
+                      work on projects that impress recruiters.
+                    </>,
+                    <>
+                      <span className="font-semibold text-royal-ink">
+                        Expert mentorship &amp; guidance —
+                      </span>{" "}
+                      get personalised feedback from industry professionals.
+                    </>,
+                    <>
+                      <span className="font-semibold text-royal-ink">
+                        Community &amp; collaboration —
+                      </span>{" "}
+                      join a network of aspiring designers.
+                    </>,
+                  ]}
+                />
+              </div>
+            </div>
+
+            <div className="mt-8">
+              <h3 className="text-lg font-semibold text-royal-ink">
+                By the end of this bootcamp, you&apos;ll be able to:
+              </h3>
+              <div className="mt-3">
+                <Checklist
+                  items={[
+                    "Design high-quality user interfaces and experiences from scratch.",
+                    "Work with modern design tools (Figma, Inkscape, etc.).",
+                    "Build and contribute to real-world products.",
+                    "Create a compelling portfolio that attracts job offers.",
+                  ]}
+                />
+              </div>
+            </div>
+
+            <div className="mt-10">
+              <h3 className="font-quicksand text-lg font-semibold text-royal-ink">
+                Ready to start your design journey?
+              </h3>
+              <p className="mt-1 text-sm text-slate-600">
+                🚀 Register now and secure your spot!
+              </p>
+              <Button
+                type="button"
+                variant="royal"
+                size="lg"
+                fullWidth
+                className="mt-4"
+                onClick={register}
+              >
+                Register
+              </Button>
             </div>
           </div>
-          <div className="py-2" />
-          <div className="fade-border r-10 p-2">
-            <img src={dUIImg.src} className="r-5 w-100" />
-          </div>
-          <div className="py-3" />
-          <div>
-            <h6 className="text-semibold">What You'll Learn</h6>
 
-            <div className="py-2" />
-            <ul className=" bPageList font-family-quicksand gray-3 text-medium-1 text-p ad-list-container">
-              <li>
-                🔹{" "}
-                <span className="text-semibold gray-2">
-                  Basics of Visual Design –{" "}
-                </span>{" "}
-                Master design principles, color theory, and typography.
+          <aside className="rounded-container border border-slate-200 bg-surface-canvas p-6 shadow-card lg:sticky lg:top-24">
+            <p className="text-sm font-semibold text-royal-ink">Cohort details</p>
+            <ul className="mt-4 list-none space-y-3 text-sm text-slate-600">
+              <li className="flex items-center justify-between gap-3">
+                <span>Start date</span>
+                <span className="font-medium text-royal-ink">14 Mar 2025</span>
               </li>
-              <li>
-                🔹{" "}
-                <span className="text-semibold gray-2">
-                  Logo Design & Vector Editing (Inkscape) –{" "}
-                </span>{" "}
-                Create stunning logos and scalable vector graphics.
+              <li className="flex items-center justify-between gap-3">
+                <span>Duration</span>
+                <span className="font-medium text-royal-ink">12 weeks</span>
               </li>
-              <li>
-                🔹{" "}
-                <span className="text-semibold gray-2">
-                  Fundamentals of UI/UX Design (Figma) –
-                </span>{" "}
-                Learn wireframing, prototyping, and user research.
+              <li className="flex items-center justify-between gap-3">
+                <span>Format</span>
+                <span className="font-medium text-royal-ink">Live + recorded</span>
               </li>
-              <li>
-                🔹{" "}
-                <span className="text-semibold gray-2">
-                  Design Systems and Libraries –{" "}
-                </span>{" "}
-                Build reusable UI components for scalable projects.
-              </li>
-              <li>
-                🔹{" "}
-                <span className="text-semibold gray-2">
-                  Advanced UI Design –{" "}
-                </span>{" "}
-                Craft polished, high-quality interfaces that stand out.
-              </li>
-              <li>
-                🔹{" "}
-                <span className="text-semibold gray-2">
-                  Interaction & Motion Design –{" "}
-                </span>{" "}
-                Create immersive experiences with animations and
-                micro-interactions.
-              </li>
-              <li>
-                🔹{" "}
-                <span className="text-semibold gray-2">
-                  Product Development Lifecycle –{" "}
-                </span>{" "}
-                Work in a team setting, collaborate on projects, and understand
-                real-world workflows.
-              </li>
-              <li>
-                🔹{" "}
-                <span className="text-semibold gray-2">
-                  Live Sessions & Portfolio Projects –{" "}
-                </span>{" "}
-                Gain hands-on experience and showcase your work to potential
-                employers.
+              <li className="flex items-center justify-between gap-3">
+                <span>Level</span>
+                <span className="font-medium text-royal-ink">Beginner+</span>
               </li>
             </ul>
-          </div>
-          <div className="py-3" />
-          <div>
-            <h6 className="text-semibold">Why This Bootcamp?</h6>
-
-            <div className="py-2" />
-            <ul className=" bPageList font-family-quicksand gray-3 text-medium-1 text-p ad-list-container">
-              <li>
-                💡{" "}
-                <span className="text-semibold gray-2">
-                  {" "}
-                  Industry-Relevant Training –{" "}
-                </span>{" "}
-                Learn exactly what top companies look for in designers.
-              </li>
-              <li>
-                🖥{" "}
-                <span className="text-semibold gray-2">
-                  {" "}
-                  Practical Hands-on Approach –{" "}
-                </span>{" "}
-                Apply your knowledge through real-world projects.
-              </li>
-              <li>
-                📂{" "}
-                <span className="text-semibold gray-2">
-                  {" "}
-                  Build a Portfolio That Stands Out –{" "}
-                </span>{" "}
-                Work on projects that impress recruiters.
-              </li>
-              <li>
-                👨‍🏫{" "}
-                <span className="text-semibold gray-2">
-                  {" "}
-                  Expert Mentorship & Guidance –{" "}
-                </span>{" "}
-                Get personalized feedback from industry professionals.
-              </li>
-              <li>
-                🤝{" "}
-                <span className="text-semibold gray-2">
-                  {" "}
-                  Community & Collaboration –{" "}
-                </span>{" "}
-                Join a network of aspiring designers and start working on real
-                products.
-              </li>
-            </ul>
-          </div>
-          <div className="py-3" />
-          <div>
-            <h6 className="text-semibold">
-              By the End of This Bootcamp, You’ll Be Able To:
-            </h6>
-
-            <div className="py-2" />
-            <ul className=" bPageList font-family-quicksand gray-3 text-medium-1 text-p ad-list-container">
-              <li>
-                ✅ Design high-quality user interfaces & experiences from
-                scratch.
-              </li>
-              <li>✅ Work with modern design tools (Figma, Inkscape, etc.).</li>
-              <li>✅ Build and contribute to real-world products.</li>
-              <li>
-                ✅ Create a compelling portfolio that attracts job offers.
-              </li>
-            </ul>
-          </div>
-          <div className="py-3" />
-
-          <h6 className="text-bold font-family-arial">
-            Ready to Start Your Design Journey?
-          </h6>
-          <div className="py-1" />
-          <p className="text-semibold">🚀 Register Now and Secure Your Spot!</p>
-
-          <div className="py-3" />
-          <div>
-            <FButtonMain
-              actionFn={handleRegisterForBootcamp}
-              style={{ width: "100%" }}
+            <Button
+              type="button"
+              variant="royalOutline"
+              fullWidth
+              className="mt-5"
+              onClick={register}
             >
-              Register
-            </FButtonMain>
-          </div>
+              Secure your spot
+            </Button>
+          </aside>
         </div>
       </div>
-    </div>
+    </main>
   );
-};
-
-export default Bootcamps;
+}

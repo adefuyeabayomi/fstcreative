@@ -2,19 +2,12 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
-  // The marketing pages still use Bootstrap grid + App.css. Keeping preflight
-  // off lets the dashboard/auth surfaces be Tailwind-only without resetting the
-  // rest of the site.
-  corePlugins: {
-    preflight: false,
-  },
   theme: {
     extend: {
       spacing: {
         30: "7.5rem",
       },
       colors: {
-        // Header / marketing brand (kept from the existing design).
         royal: {
           DEFAULT: "#0533aa",
           dark: "#00113c",
@@ -22,7 +15,6 @@ const config: Config = {
           link: "#0036ca",
           light: "#608aff",
         },
-        // Dashboard/auth brand from agent_area/design/spec.json.
         brand: {
           DEFAULT: "#006FFF",
           50: "#EBF3FF",
@@ -30,7 +22,6 @@ const config: Config = {
           600: "#0055CC",
           secondary: "#3B82F6",
           tertiary: "#60A5FA",
-          // Legacy Header tokens.
           main: "#1a48c5",
           tint: "#dfe6f7",
         },

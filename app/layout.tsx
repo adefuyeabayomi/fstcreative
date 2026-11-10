@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 
-import "../src/externals/bootstrap-grid.min.css";
-import "../src/App.css";
 import "./tailwind.css";
 
 import { Providers } from "@/components/Providers";
@@ -52,7 +50,7 @@ export default function RootLayout({
         />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap"
         />
         <Providers>
           <AppShell>{children}</AppShell>

@@ -7,7 +7,13 @@ import { Footer } from "@/components/Footer/Footer";
 import { SideBar } from "@/components/sidebar";
 import { useDash } from "@/contexts/DashContext";
 
-const AUTH_ROUTES = ["/login", "/signup", "/forgot-password", "/reset-password"];
+const AUTH_ROUTES = [
+  "/login",
+  "/signup",
+  "/forgot-password",
+  "/reset-password",
+  "/auth-guard",
+];
 
 /**
  * Shared page chrome. Auth screens are full-bleed on the canvas, dashboard
@@ -55,13 +61,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Header />
-      <div className="py-4" />
-      <div className="layout-one">
-        <div className="main-content">
-          <section className="layout-container">{children}</section>
-        </div>
-      </div>
-      <div className="py-4" />
+      <div className="h-6" />
+      <main>{children}</main>
       <Footer />
     </>
   );

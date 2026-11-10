@@ -1,378 +1,246 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import "./style.css";
-import {
-  BlogCardProp,
-  FeaturedCard,
-} from "../../components/BlogCard/BlogCardMain";
-import blogImgTemp from "../../assets/images/Leonardo_Kino_XL_Picture_the_Mona_Lisa_as_a_cyberpunk_hacker_i_4 1.png";
-import { animateScroll as scroll } from "react-scroll";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { BlogCardProp, FeaturedCard } from "../../components/BlogCard/BlogCardMain";
+import { useDash } from "../../contexts/DashContext";
+import { Button } from "@/components/ui/Button";
+import { widthControlClass } from "@/styles/widthControl";
+import { cn } from "@/lib/cn";
+
 import img1 from "../../assets/images/blog-img.png";
 import dP from "../../assets/images/dprinciples.png";
 import colorTheory from "../../assets/images/color-theory.png";
 import figmaIntro from "../../assets/images/figma-intro.png";
 import typography from "../../assets/images/typography.png";
-import FButtonMain from "../../components/Button/Main";
-import { useDash } from "../../contexts/DashContext";
-import { useRouter } from "next/navigation";
+import blogImgTemp from "../../assets/images/Leonardo_Kino_XL_Picture_the_Mona_Lisa_as_a_cyberpunk_hacker_i_4 1.png";
 
 const blogCards: BlogCardProp[] = [
   {
     title: "Introduction to Visual Design (I) - Design Elements",
     linkPath: "/blog/visual-design-elements",
-    highlightText: `The term design is used in many contexts. From architecture and structural design, to fashion, to information technology, infographics, presentation, branding and strategy, Product, Advertising, Layout design.
-Some things can be picked out as common to all these areas listed. Design is created for a purpose. Every design is made to fulfill a goal. Architectural designs would one day be a majestic buildings, `,
-    img: <img src={img1.src} className="blog-card-image" />,
+    highlightText:
+      "The term design is used in many contexts. From architecture and structural design, to fashion, information technology, branding and strategy. Design is created for a purpose — every design is made to fulfil a goal.",
+    img: <img src={img1.src} alt="" className="h-full w-full object-cover" />,
   },
   {
     title: "Introduction to Visual Design (II) - Design Principles",
     linkPath: "/blog/visual-design-principles",
-    highlightText: `Design principles help designers create useful designs that are effective and cohesive and pass information to the viewers properly.
-There are Many different design principles, Let's dive straight into the list
-
-Unity and Variety
-Unity ensures all elements in a design work together harmoniously, creating a sense of cohesion.`,
-    img: <img src={dP.src} className="blog-card-image" />,
+    highlightText:
+      "Design principles help designers create useful, effective and cohesive work. From unity and variety to hierarchy and balance, these principles shape how information reaches the viewer.",
+    img: <img src={dP.src} alt="" className="h-full w-full object-cover" />,
   },
   {
-    title: "Color Theory in design.",
+    title: "Color Theory in Design",
     linkPath: "/blog/color-theory",
-    highlightText: `Color theory is the study of how colors work together and how they affect our emotions and perceptions. It's like a toolbox for artists, designers, and creators to help them choose the right colors for their projects.
-
-Color theory enables you to pick colors that go well together and convey the right mood`,
-    img: <img src={colorTheory.src} className="blog-card-image" />,
+    highlightText:
+      "Color theory is the study of how colors work together and how they affect our emotions and perceptions. It helps you choose colors that convey the right mood and work together.",
+    img: <img src={colorTheory.src} alt="" className="h-full w-full object-cover" />,
   },
   {
     title: "Mastering Typography: The Power of Fonts in Design",
     linkPath: "/blog/typography",
     highlightText:
-      "Explore typography’s role in creating readable, impactful, and visually compelling designs.",
-    img: <img src={typography.src} className="blog-card-image" />,
+      "Explore typography's role in creating readable, impactful and visually compelling designs.",
+    img: <img src={typography.src} alt="" className="h-full w-full object-cover" />,
   },
   {
     title: "Introduction to Figma",
     linkPath: "/blog/figma-intro",
     highlightText:
       "Learn the essentials of Figma for creating intuitive and polished user interfaces from scratch.",
-    img: <img src={figmaIntro.src} className="blog-card-image" />,
+    img: <img src={figmaIntro.src} alt="" className="h-full w-full object-cover" />,
   },
 ];
 
-const Blog = (): React.JSX.Element => {
-  let [activeCat, setActiveCat] = useState("all");
-  let router = useRouter();
+const categories = [
+  "all",
+  "featured",
+  "tech",
+  "content",
+  "design",
+  "inspiration",
+  "life",
+  "stories",
+];
 
-  let { updateDashStatus } = useDash();
-  useEffect(() => {
-    updateDashStatus(false);
-    // Scroll to top when the component mounts
-    scroll.scrollToTop({
-      duration: 1000, // duration of the scrolling animation in milliseconds
-      smooth: "easeInOutQuart", // the type of easing
-    });
-  }, []);
-
-  return (
-    <section id="blog" className="blog-container royal-shade-5">
-      <div className="main-spacing-x">
-        <div className="py-3 w-100" />
-        <div className="py-3 w-100" />
-        <div>
-          <h1 className="text-bold text-center royal-shade-5 font-family-quicksand">
-            Get Exciting Updates in the Creative world!
-          </h1>
-
-          <div className="py-3 w-100" />
-          <p className="text-center text-medium col-md-10 col-lg-8 col-xl-6 center">
-            Delve in spaces of creative design, tech innovations, software
-            development, physics, entrepreneurship and life.
-          </p>
-        </div>
-        <div className="py-3 w-100" />
-        <div id="category-container" className="blog-category-container">
-          <div className="d-divider-half gray-11-bg"></div>
-          <div className="py-1"></div>
-          <div className="cat-container-div">
-            <ul className="blog-cat-list center text-center">
-              <li
-                onClick={() => setActiveCat("all")}
-                className={`${activeCat == "all" ? "active" : ""} text-medium pointer`}
-              >
-                All
-              </li>
-              <li
-                onClick={() => setActiveCat("featured")}
-                className={`${activeCat == "featured" ? "active" : ""} text-medium pointer`}
-              >
-                Featured
-              </li>
-              <li
-                onClick={() => setActiveCat("tech")}
-                className={`${activeCat == "tech" ? "active" : ""} text-medium pointer`}
-              >
-                Tech Innovations
-              </li>
-              <li
-                onClick={() => setActiveCat("content")}
-                className={`${activeCat == "content" ? "active" : ""} text-medium pointer`}
-              >
-                Content Creation
-              </li>
-              <li
-                onClick={() => setActiveCat("design")}
-                className={`${activeCat == "design" ? "active" : ""} text-medium pointer`}
-              >
-                Design & Creativity
-              </li>
-              <li
-                onClick={() => setActiveCat("inspiration")}
-                className={`${activeCat == "inspiration" ? "active" : ""} text-medium pointer`}
-              >
-                Inspiration
-              </li>
-              <li
-                onClick={() => setActiveCat("life")}
-                className={`${activeCat == "life" ? "active" : ""} text-medium pointer`}
-              >
-                Life
-              </li>
-              <li
-                onClick={() => setActiveCat("stories")}
-                className={`${activeCat == "stories" ? "active" : ""} text-medium pointer`}
-              >
-                Short Stories
-              </li>
-            </ul>
-          </div>
-          <div className="py-1"></div>
-          <div className="d-divider-half gray-11-bg"></div>
-        </div>
-
-        <div className="py-4"></div>
-        <div className="featured-container">
-          <h6 className="royal-shade-4">Featured Updates</h6>
-          <div className="py-2"></div>
-          <FeaturedCard
-            duration={"2mins"}
-            cat={"TECH INNOVATION"}
-            image={blogCards[0].img}
-            highlightText={blogCards[0].highlightText}
-            title={blogCards[0].title}
-            linkPath={blogCards[0].linkPath}
-            feature={true}
-          />
-        </div>
-
-        <div className="py-3"></div>
-        <div className="py-4"></div>
-        <div className="featured-container">
-          <h6 className="royal-shade-4">Latest Updates</h6>
-          <div className="py-2"></div>
-          <div className="container-fluid no-space">
-            <div className="row no-space">
-              <div className="col-12 col-md-6 col-lg-8">
-                <div className="container-fluid no-space">
-                  <div className="row gx-2">
-                    <div className="featured-item-container no-space">
-                      <FeaturedCard
-                        duration={"3mins"}
-                        cat={"TECH INNOVATION"}
-                        image={blogCards[1].img}
-                        highlightText={blogCards[1].highlightText}
-                        title={blogCards[1].title}
-                        linkPath={blogCards[1].linkPath}
-                        feature={false}
-                      />
-                    </div>
-                    <div className="featured-item-container no-space">
-                      <FeaturedCard
-                        duration={"2mins"}
-                        cat={"TECH INNOVATION"}
-                        image={blogCards[2].img}
-                        highlightText={blogCards[2].highlightText}
-                        title={blogCards[2].title}
-                        linkPath={blogCards[2].linkPath}
-                        feature={false}
-                      />
-                    </div>
-                    <div className="featured-item-container no-space">
-                      <FeaturedCard
-                        duration={"5mins"}
-                        cat={"TECH INNOVATION"}
-                        image={blogCards[3].img}
-                        highlightText={blogCards[3].highlightText}
-                        title={blogCards[3].title}
-                        linkPath={blogCards[3].linkPath}
-                        feature={false}
-                      />
-                    </div>
-                    <div className="featured-item-container no-space">
-                      <FeaturedCard
-                        duration={"1mins"}
-                        cat={"TECH INNOVATION"}
-                        image={blogCards[4].img}
-                        highlightText={blogCards[4].highlightText}
-                        title={blogCards[4].title}
-                        linkPath={blogCards[4].linkPath}
-                        feature={false}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-12 col-md-6 col-lg-5 col-xl-4 px-1 ad-container">
-                <div className="fade-border p-3 r-10">
-                  <div className="py-2"></div>
-                  <div className="container-fluid no-space">
-                    <div className="row no-space align-items-center">
-                      <div className="w-max-content no-space">
-                        {" "}
-                        <FButtonMain
-                          actionFn={() => router.push("/bootcamp-registration")}
-                          iconLeft={false}
-                        >
-                          <span className="text-none text-semibold">
-                            REGISTER
-                          </span>
-                        </FButtonMain>
-                      </div>
-                      <div className="col"></div>
-                      <div className="w-max-content no-space">
-                        <div className="container-fluid no-space">
-                          <div className="row no-space align-items-center">
-                            <div className="w-max-content no-space">
-                              <div className="p-2 fade-border text-center time-value r-5">
-                                31
-                              </div>
-                            </div>
-                            <div className="w-max-content no-space"></div>
-                            <div className="w-max-content no-space">
-                              <div className="text-semibold px-1">Days</div>
-                            </div>
-                            <div className="w-max-content no-space">
-                              <div className="p-2 fade-border text-center time-value r-5">
-                                45
-                              </div>
-                            </div>
-                            <div className="w-max-content no-space"></div>
-                            <div className="w-max-content no-space">
-                              <div className="text-semibold px-1">Mins</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="py-2" />
-                  <div>
-                    <h4 className="ad-heading">
-                      3 month Product Design Bootcamp! ( Beginner to Advanced )
-                    </h4>
-                    <div className="py-2" />
-                    <p className="text-medium">
-                      🚀 REGISTER NOW – Limited Slots Available!
-                    </p>
-                  </div>
-                  <div className="py-2" />
-                  <div>
-                    <p className="royal text-semibold font-family-arial">
-                      📅 Starts: March 14, 2025
-                    </p>
-                  </div>
-                  <div className="py-1" />
-                  <div>
-                    <h6 className="font-family-arial">
-                      Master Product Design from Scratch!
-                    </h6>
-                    <p className="text-medium font-family arial">
-                      Go from a total beginner to an advanced designer with our
-                      simplified, practical, and hands-on training.
-                    </p>
-                  </div>
-                  <div className="py-1" />
-                  <div>
-                    <img src={blogImgTemp.src} className="blog-ad-img" />
-                  </div>
-
-                  <div className="py-2" />
-                  <div>
-                    <h6 className="text-semibold">What You'll Cover</h6>
-                  </div>
-                  <div>
-                    <ul className="font-family-quicksand gray-3 text-medium-1 text-p ad-list-container">
-                      <li>
-                        ✅ Visual Design Fundamentals – Build a strong design
-                        foundation
-                      </li>
-                      <li>
-                        ✅ Logo Design & Vector Editing (Inkscape) – Create
-                        professional branding assets
-                      </li>
-                      <li>
-                        ✅ UI/UX Design Essentials (Figma) – Learn user-friendly
-                        design techniques
-                      </li>
-                      <li>
-                        ✅ Design Systems & Libraries – Streamline and scale
-                        your designs
-                      </li>
-                      <li>
-                        ✅ Advanced UI Design – Create stunning, functional
-                        interfaces
-                      </li>
-                      <li>
-                        ✅ Product Development Lifecycle - Learn Collaboration
-                        and Team work in a the real world setting
-                      </li>
-                      <li>
-                        ✅ Interaction and Motion Design - Learn to create a fun
-                        Immersive experience for users
-                      </li>
-                      <li>
-                        ✅ Live Sessions & Portfolio Projects – Gain real-world
-                        experience
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="py-2" />
-                  <div>
-                    <h6 className="text-semibold royal">
-                      With Live Sessions, Practicals and Portfolio Building!
-                    </h6>
-                  </div>
-                  <div className="py-1" />
-                  <div>
-                    <p className="text-medium-1 gray-2">
-                      🎯 Graduate with a portfolio & collaborate on real
-                      projects!
-                    </p>
-                  </div>
-
-                  <div className="py-1" />
-                  <div>
-                    <FButtonMain style={{ width: "100%" }} iconLeft={false}>
-                      <span className="text-none text-semibold">
-                        🔗 Register Now!
-                      </span>
-                    </FButtonMain>
-                  </div>
-
-                  <div className="py-2"></div>
-                  <div className="container-fluid no-space">
-                    <div className="row no-space">
-                      <div className="col-12 no-space"></div>
-                      <div className="col-12  no-space"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+const categoryLabels: Record<string, string> = {
+  all: "All",
+  featured: "Featured",
+  tech: "Tech Innovations",
+  content: "Content Creation",
+  design: "Design & Creativity",
+  inspiration: "Inspiration",
+  life: "Life",
+  stories: "Short Stories",
 };
 
-export default Blog;
+export default function Blog(): React.JSX.Element {
+  const [activeCat, setActiveCat] = useState("all");
+  const router = useRouter();
+  const { updateDashStatus } = useDash();
+
+  useEffect(() => {
+    updateDashStatus(false);
+    window.scrollTo(0, 0);
+  }, [updateDashStatus]);
+
+  return (
+    <main className="bg-white pb-20">
+      <div className={widthControlClass}>
+        <div className="pt-14 text-center">
+          <span className="inline-flex h-7 items-center rounded-full bg-royal/5 px-3 text-[12px] font-medium text-royal">
+            Blog
+          </span>
+          <h1 className="mx-auto mt-4 max-w-3xl font-quicksand text-[32px] font-semibold leading-tight tracking-[-0.02em] text-royal-ink sm:text-[42px]">
+            Get exciting updates in the creative world
+          </h1>
+          <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-7 text-slate-600">
+            Delve into creative design, tech innovations, software development,
+            physics, entrepreneurship and life.
+          </p>
+        </div>
+
+        <div className="mt-8 flex justify-center">
+          <div className="flex w-full max-w-4xl gap-1 overflow-x-auto rounded-full border border-slate-200 bg-white p-1.5 shadow-card [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {categories.map((category) => {
+              const active = activeCat === category;
+              return (
+                <button
+                  key={category}
+                  type="button"
+                  onClick={() => setActiveCat(category)}
+                  className={cn(
+                    "whitespace-nowrap rounded-full px-4 py-2.5 text-[13px] font-medium transition-colors",
+                    active
+                      ? "bg-royal text-white shadow-card"
+                      : "text-slate-500 hover:bg-slate-100 hover:text-royal-ink",
+                  )}
+                >
+                  {categoryLabels[category]}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <section className="mt-12">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">
+            Featured updates
+          </h2>
+          <div className="mt-4">
+            <FeaturedCard
+              duration="2mins"
+              cat="TECH INNOVATION"
+              image={blogCards[0].img}
+              highlightText={blogCards[0].highlightText}
+              title={blogCards[0].title}
+              linkPath={blogCards[0].linkPath}
+              feature
+            />
+          </div>
+        </section>
+
+        <section className="mt-12">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">
+            Latest updates
+          </h2>
+
+          <div className="mt-4 grid gap-5 lg:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 lg:col-span-2">
+              {blogCards.slice(1).map((card) => (
+                <FeaturedCard
+                  key={card.linkPath}
+                  duration="3mins"
+                  cat="TECH INNOVATION"
+                  image={card.img}
+                  highlightText={card.highlightText}
+                  title={card.title}
+                  linkPath={card.linkPath}
+                  feature={false}
+                />
+              ))}
+            </div>
+
+            <aside className="h-max rounded-container border border-slate-200 bg-surface-canvas p-5 shadow-card">
+              <div className="flex items-center justify-between gap-3">
+                <Button
+                  variant="royal"
+                  shape="pill"
+                  onClick={() => router.push("/bootcamp-registration")}
+                >
+                  Register
+                </Button>
+                <div className="flex items-center gap-2 text-xs font-semibold text-slate-600">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white">
+                    31
+                  </span>
+                  Days
+                  <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white">
+                    45
+                  </span>
+                  Mins
+                </div>
+              </div>
+
+              <h3 className="mt-5 font-sans text-lg font-black leading-snug text-slate-800">
+                3 month Product Design Bootcamp! (Beginner to Advanced)
+              </h3>
+              <p className="mt-2 text-sm text-slate-600">
+                🚀 Register now — limited slots available!
+              </p>
+              <p className="mt-3 text-sm font-semibold text-royal">
+                📅 Starts: March 14, 2025
+              </p>
+              <p className="mt-3 text-sm leading-6 text-slate-600">
+                Go from a total beginner to an advanced designer with our
+                simplified, practical and hands-on training.
+              </p>
+
+              <img
+                src={blogImgTemp.src}
+                alt="Bootcamp"
+                className="mt-4 w-full rounded-card object-cover"
+              />
+
+              <h4 className="mt-5 text-sm font-semibold text-royal-ink">What you&apos;ll cover</h4>
+              <ul className="mt-2 list-none space-y-2 text-[13px] leading-6 text-slate-600">
+                {[
+                  "Visual design fundamentals — build a strong design foundation",
+                  "Logo design & vector editing (Inkscape)",
+                  "UI/UX design essentials (Figma)",
+                  "Design systems & libraries",
+                  "Advanced UI design",
+                  "Product development lifecycle",
+                  "Interaction and motion design",
+                  "Live sessions & portfolio projects",
+                ].map((item) => (
+                  <li key={item} className="flex gap-2">
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-royal" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <p className="mt-4 text-sm font-semibold text-royal">
+                With live sessions, practicals and portfolio building!
+              </p>
+              <p className="mt-1 text-[13px] text-slate-500">
+                🎯 Graduate with a portfolio & collaborate on real projects!
+              </p>
+
+              <Button
+                variant="royal"
+                fullWidth
+                className="mt-4"
+                onClick={() => router.push("/bootcamp-registration")}
+              >
+                🔗 Register now
+              </Button>
+            </aside>
+          </div>
+        </section>
+      </div>
+    </main>
+  );
+}

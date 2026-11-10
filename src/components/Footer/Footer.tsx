@@ -1,8 +1,7 @@
 import Link from "next/link";
-
 import logoBlue from "../../assets/images/logo-blue.svg";
-
-import "./style.css";
+import { widthControlClass } from "@/styles/widthControl";
+import { cn } from "@/lib/cn";
 
 const exploreLinks = [
   { label: "Home", href: "/" },
@@ -32,73 +31,71 @@ const designSchoolLinks = [
   { label: "Apply for a Job", href: "/fst-careers-apply" },
 ];
 
-const linkClass = "text-none white text-regular";
-
 function FooterColumn({
   title,
   links,
+  className,
 }: {
   title: string;
   links: Array<{ label: string; href: string }>;
+  className?: string;
 }) {
   return (
-    <div className="col-12 col-md-6 col-lg-3 col-xl-2 no-space">
-      <div className="py-4 py-md-0" />
-      <div className="footer-contents-container white">
-        <h6 className="font-family-quicksand text-semibold">{title}</h6>
-        <div className="py-1" />
-        <ul className="footer-list text-p text-medium">
-          {links.map((link) => (
-            <li key={link.label}>
-              <Link className={linkClass} href={link.href}>
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div className={className}>
+      <h6 className="font-quicksand text-sm font-semibold text-white">{title}</h6>
+      <ul className="mt-4 list-none space-y-2.5">
+        {links.map((link) => (
+          <li key={link.label}>
+            <Link
+              href={link.href}
+              className="text-sm text-slate-300 no-underline transition-colors hover:text-white"
+            >
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
 
 export function Footer(): React.JSX.Element {
   return (
-    <footer className="footer text-center text-lg-left">
-      <div className="main-spacing-x">
-        <div className="py-4" />
-        <div className="container-fluid no-space">
-          <div className="row no-space justify-content-center">
-            <div className="col-12 col-md-6 col-lg-3 col-xl-3 order-last order-xl-first d-md-none d-xl-block">
-              <div className="py-4 py-md-0" />
-              <div className="footer-logo-container white">
-                <div className="w-max-content center">
-                  <Link href="/" aria-label="Five and Six Technologies — home">
-                    <img
-                      src={logoBlue.src}
-                      className="footer-logo"
-                      alt="Five and Six Technologies"
-                    />
-                  </Link>
-                </div>
-                <div className="text-center">
-                  <p className="text-semibold">Five and Six Technologies</p>
-                  <p className="text-regular">Art & Design</p>
-                  <p className="text-regular">Systems & Structure</p>
-                  <p className="text-regular">Brilliance & Collaboration</p>
-                </div>
-              </div>
+    <footer className="bg-royal-ink text-white">
+      <div className={cn(widthControlClass, "py-12 lg:py-16")}>
+        <div className="grid gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <div className="rounded-container border border-white/10 bg-white/[0.03] p-6 text-center">
+              <Link href="/" aria-label="Five and Six Technologies — home">
+                <img
+                  src={logoBlue.src}
+                  alt="Five and Six Technologies"
+                  className="mx-auto h-20 w-20 object-contain"
+                />
+              </Link>
+              <p className="mt-4 text-sm font-semibold">Five and Six Technologies</p>
+              <p className="mt-1 text-xs text-slate-400">Art &amp; Design</p>
+              <p className="text-xs text-slate-400">Systems &amp; Structure</p>
+              <p className="text-xs text-slate-400">Brilliance &amp; Collaboration</p>
             </div>
-            <div className="col-xl-1 d-none d-xl-block"></div>
+          </div>
 
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-8">
             <FooterColumn title="Explore" links={exploreLinks} />
             <FooterColumn title="Services" links={serviceLinks} />
             <FooterColumn title="Company" links={companyLinks} />
             <FooterColumn title="Design School" links={designSchoolLinks} />
           </div>
         </div>
-      </div>
 
-      <div className="py-4" />
+        <div className="mt-12 border-t border-white/10 pt-6 text-center text-xs text-slate-400 sm:flex sm:items-center sm:justify-between sm:text-left">
+          <p>
+            © {new Date().getFullYear()} Five and Six Technologies. All rights
+            reserved.
+          </p>
+          <p className="mt-2 sm:mt-0">Art &amp; Design · Systems &amp; Structure</p>
+        </div>
+      </div>
     </footer>
   );
 }
