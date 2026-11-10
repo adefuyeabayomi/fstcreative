@@ -6,9 +6,8 @@ import InputPlain from "../../components/input/input";
 import { TextAreaPlain } from "../../components/input/input";
 import { animateScroll as scroll } from "react-scroll";
 import { useHash } from "@/hooks/useHash";
-import { Checkbox } from "antd";
-import type { CheckboxProps } from "antd";
 import FButtonMain from "../../components/Button/Main";
+import { Checkbox } from "../../components/ui/Checkbox";
 import { useDash } from "../../contexts/DashContext";
 
 const QuotationRequest = (): React.JSX.Element => {
@@ -20,10 +19,9 @@ const QuotationRequest = (): React.JSX.Element => {
 
   let hash = useHash();
 
-  // Determine which list to update based on hash
-  const onChange: CheckboxProps["onChange"] = (e) => {
-    const { checked, value } = e.target;
-    let updater;
+  // Determine which list to update based on the hash.
+  function handleToggle(value: string, checked: boolean) {
+    let updater: React.Dispatch<React.SetStateAction<string[]>> | null = null;
 
     switch (hash) {
       case "#product-development":
@@ -40,21 +38,14 @@ const QuotationRequest = (): React.JSX.Element => {
     }
 
     if (updater) {
-      updater((prevList) => {
-        // Add or remove the item based on the checkbox state
-        if (checked) {
-          return [...prevList, value];
-        } else {
-          return prevList.filter((item) => item !== value);
-        }
-      });
+      updater((prevList) =>
+        checked
+          ? [...prevList, value]
+          : prevList.filter((item) => item !== value),
+      );
     }
-    console.log(`Checked = ${checked}, Value = ${value}`, {
-      animationsList,
-      contentCreationList,
-      productDevList,
-    });
-  };
+  }
+
   let locationString = "";
   console.log({ locationHash: hash });
   switch (hash) {
@@ -109,25 +100,25 @@ const QuotationRequest = (): React.JSX.Element => {
                   Pick the services you need from this group below.
                 </label>
                 <p>
-                  <Checkbox value={"Web Development"} onChange={onChange}>
+                  <Checkbox value={"Web Development"} onCheckedChange={handleToggle}>
                     Web Development
                   </Checkbox>
                 </p>
                 <p>
                   <Checkbox
                     value={"Mobile App Development"}
-                    onChange={onChange}
+                    onCheckedChange={handleToggle}
                   >
                     Mobile App Development
                   </Checkbox>
                 </p>
                 <p>
-                  <Checkbox value={"UI/UX Design"} onChange={onChange}>
+                  <Checkbox value={"UI/UX Design"} onCheckedChange={handleToggle}>
                     UI/UX Design
                   </Checkbox>
                 </p>
                 <p>
-                  <Checkbox value={"Product Management"} onChange={onChange}>
+                  <Checkbox value={"Product Management"} onCheckedChange={handleToggle}>
                     Product Management
                   </Checkbox>
                 </p>
@@ -139,20 +130,20 @@ const QuotationRequest = (): React.JSX.Element => {
                   Pick the services you need from this group below.
                 </label>
                 <p>
-                  <Checkbox value={"Copywriting"} onChange={onChange}>
+                  <Checkbox value={"Copywriting"} onCheckedChange={handleToggle}>
                     Copywriting
                   </Checkbox>
                 </p>
                 <p>
                   <Checkbox
                     value={"Social Media Management"}
-                    onChange={onChange}
+                    onCheckedChange={handleToggle}
                   >
                     Social Media Management
                   </Checkbox>
                 </p>
                 <p>
-                  <Checkbox value={"Blog Management"} onChange={onChange}>
+                  <Checkbox value={"Blog Management"} onCheckedChange={handleToggle}>
                     Blog Management
                   </Checkbox>
                 </p>
@@ -164,19 +155,19 @@ const QuotationRequest = (): React.JSX.Element => {
                   Pick the services you need from this group below.
                 </label>
                 <p>
-                  <Checkbox value={"2d Animations"} onChange={onChange}>
+                  <Checkbox value={"2d Animations"} onCheckedChange={handleToggle}>
                     2d Animations
                   </Checkbox>
                 </p>
                 <p>
-                  <Checkbox value={"Story Illustrations"} onChange={onChange}>
+                  <Checkbox value={"Story Illustrations"} onCheckedChange={handleToggle}>
                     Story Illustrations
                   </Checkbox>
                 </p>
                 <p>
                   <Checkbox
                     value={"Product Ads Video & Animations"}
-                    onChange={onChange}
+                    onCheckedChange={handleToggle}
                   >
                     Product Ads Video & Animations
                   </Checkbox>

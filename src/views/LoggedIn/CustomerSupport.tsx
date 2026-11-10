@@ -121,7 +121,7 @@ export default function CustomerSupport(): React.JSX.Element {
         <div className="space-y-4">
           <Card>
             <h2 className="text-[16px] font-semibold text-ink">Response times</h2>
-            <ul className="mt-3 space-y-3 text-[13px] leading-5 text-ink-muted">
+            <ul className="mt-3 list-none space-y-3 text-[13px] leading-5 text-ink-muted">
               <li className="flex items-center justify-between gap-3">
                 <span>General enquiries</span>
                 <span className="font-medium text-ink">1 business day</span>

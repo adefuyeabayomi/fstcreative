@@ -52,7 +52,7 @@ export function SideBar() {
 
   return (
     <>
-      <aside className="sticky top-[68px] hidden h-[calc(100vh-68px)] w-[264px] shrink-0 overflow-y-auto border-r border-white/60 bg-white/80 backdrop-blur-xl md:block">
+      <aside className="sticky top-[68px] hidden h-[calc(100vh-68px)] w-[264px] shrink-0 overflow-y-auto border-r border-white/60 bg-white/80 backdrop-blur-xl [&_a]:no-underline [&_ul]:list-none md:block">
         <div className="flex h-full flex-col p-4">
           <div className="mb-3 rounded-card border border-white/60 bg-surface-primary px-3.5 py-3 shadow-card">
             <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-subdued">
@@ -69,7 +69,7 @@ export function SideBar() {
           </p>
 
           <nav aria-label="Dashboard navigation">
-            <ul className="space-y-1">
+            <ul className="list-none space-y-3">
               {links.map((item) => {
                 const active = isActive(item.href, item.exact);
                 return (
@@ -77,7 +77,7 @@ export function SideBar() {
                     <Link
                       href={item.href}
                       className={cn(
-                        "group flex items-center gap-3 rounded-control px-3 py-2.5 text-[14px] font-medium transition-colors",
+                        "no-underline group flex items-center gap-3 rounded-control px-3 py-2.5 text-[14px] font-medium transition-colors",
                         active
                           ? "bg-brand-50 text-brand shadow-card"
                           : "text-ink-muted hover:bg-surface-secondary hover:text-ink",
@@ -103,14 +103,16 @@ export function SideBar() {
           </nav>
 
           <div className="mt-auto pt-6">
-            <button
+            <Button
               type="button"
+              variant="nav"
+              fullWidth
               onClick={() => setConfirming(true)}
-              className="flex w-full items-center gap-3 rounded-control px-3 py-2.5 text-[14px] font-medium text-ink-muted transition-colors hover:bg-alert/[0.06] hover:text-alert"
+              className="hover:bg-alert/[0.06] hover:text-alert"
             >
               <img src={iconLogout.src} alt="" className="h-5 w-5 object-contain opacity-70" />
               Log out
-            </button>
+            </Button>
           </div>
         </div>
       </aside>
