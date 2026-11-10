@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import "./style.css";
-import { animateScroll as scroll } from "react-scroll";
-import { useDash } from "../../contexts/DashContext";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useHash } from "@/hooks/useHash";
+import { widthControlClass } from "@/styles/widthControl";
+import { cn } from "@/lib/cn";
+import { useDash } from "../../contexts/DashContext";
 import {
   brandingAndIdentityDesign,
   creativeGraphicsDesign,
@@ -15,171 +16,182 @@ import {
 import PricingCard from "../../components/Cards/PricingCard";
 import { useAuth } from "../../contexts/AuthContext";
 import { useLoading } from "../../contexts/LoadingContext";
+
+const categories = {
+  branding: "Branding & Identity Design",
+  creativeGraphicsDesign: "Creative Graphic Design",
+  uiUxDesign: "UI/UX Design",
+  webDevelopment: "Web Development",
+} as const;
+
+type CatKeys = keyof typeof categories;
+
 const Pricing = (): React.JSX.Element => {
-  let auth = useAuth();
+  const auth = useAuth();
+  const router = useRouter();
   const searchParams = useSearchParams() ?? new URLSearchParams();
-  let next = searchParams.get("next");
-  let serviceGroup = searchParams.get("serviceGroup") || "";
-  let packageType = searchParams.get("packageType") || "";
+  const { updateDashStatus } = useDash();
+  const { setLoading, setLoadingText } = useLoading();
+  const hash = useHash();
 
-  let router = useRouter();
+  const next = searchParams.get("next");
+  const serviceGroup = searchParams.get("serviceGroup") || "";
+  const packageType = searchParams.get("packageType") || "";
+  const page = hash.slice(1);
 
-  useEffect(() => {
-    if (next == "pricing") {
-      // call reque3st function here
-      handleChoosePlan(serviceGroup, packageType);
-    }
-  }, []);
-  let cats = {
-    branding: "Branding & Identity Design",
-    creativeGraphicsDesign: "Creative Graphic Design",
-    uiUxDesign: "UI/UX Design",
-    webDevelopment: "Web Development",
-  };
-  type CatKeys = keyof typeof cats;
-  let { updateDashStatus } = useDash();
-
-  let { setLoading, setLoadingText } = useLoading();
-  let hash = useHash();
-
-  let page = hash.slice(1);
-
-  let [activeCatCode, setActiveCatCode] = useState<CatKeys>(
+  const [activeCatCode, setActiveCatCode] = useState<CatKeys>(
     (page as CatKeys) || "branding",
   );
 
   // Keep the selected category in sync with the URL hash, e.g.
   // /pricing#webDevelopment.
   useEffect(() => {
-    if (page && page in cats) {
+    if (page && page in categories) {
       setActiveCatCode(page as CatKeys);
     }
   }, [page]);
 
-  let catObj = brandingAndIdentityDesign;
+  useEffect(() => {
+    updateDashStatus(false);
+    window.scrollTo(0, 0);
+  }, [updateDashStatus]);
 
-  function handleChoosePlan(serviceGroup: string, packageType: string) {
-    console.log({ serviceGroup, packageType, auth });
+  function handleChoosePlan(group: string, type: string) {
     if (!auth.isAuthenticated) {
-      // redirect to the login / signup page
-      // Now the page has a reference page.
-      // next=choosePlan&serviceGroup=groupname&serviceSubgroup=subgroupname&packageType
       setLoading(true);
       setLoadingText(
-        "You need to Login to Choose A Service Plan. Redirecting to Login Page",
+        "You need to log in to choose a service plan. Redirecting to the login page.",
       );
       setTimeout(() => {
         setLoading(false);
         setLoadingText("");
-        let path = `login?next=pricing&serviceGroup=${serviceGroup}&packageType=${packageType}`;
-        console.log(path);
-        router.push(`/${path}`);
+        router.push(`/login?next=pricing&serviceGroup=${group}&packageType=${type}`);
       }, 5000);
-    } else {
-      // time for some algorithms
-      // send a post request to the endpoint with the relevant data. user data and product data.
+      return;
     }
-  }
-
-  switch (activeCatCode) {
-    case "branding": {
-      catObj = brandingAndIdentityDesign;
-      break;
-    }
-    case "webDevelopment": {
-      catObj = webDevelopment;
-      break;
-    }
-    case "creativeGraphicsDesign": {
-      catObj = creativeGraphicsDesign;
-      break;
-    }
-    case "uiUxDesign": {
-      catObj = uiUxDesign;
-    }
+    // Authenticated checkout is handled by the dashboard project flow.
   }
 
   useEffect(() => {
-    updateDashStatus(false);
-    // Scroll to top when the component mounts
-    scroll.scrollToTop({
-      duration: 1000, // duration of the scrolling animation in milliseconds
-      smooth: "easeInOutQuart", // the type of easing
-    });
+    if (next === "pricing") {
+      handleChoosePlan(serviceGroup, packageType);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
-    <div className="main-spacing-x royal-shade-5">
-      <div className="py-5" />
-      <div>
-        <h1 className="text-semibold font-family-quicksand text-center">
-          Pricing Plans
-        </h1>{" "}
-        <div className="py-2" />
-        <p className="text-center gray-6 text-medium col-12 col-md-9 col-lg-7 center">
-          Explore our thoughtfully crafted packages designed to deliver
-          exceptional value across our diverse service categories. Choose a plan
-          that aligns perfectly with your needs and goals.
-        </p>
-      </div>
+  let catObj = brandingAndIdentityDesign;
+  switch (activeCatCode) {
+    case "webDevelopment":
+      catObj = webDevelopment;
+      break;
+    case "creativeGraphicsDesign":
+      catObj = creativeGraphicsDesign;
+      break;
+    case "uiUxDesign":
+      catObj = uiUxDesign;
+      break;
+    default:
+      catObj = brandingAndIdentityDesign;
+  }
 
-      <div className="py-3" />
-      <div>
-        <div id="category-container" className="blog-category-container">
-          <div className="cat-container-div">
-            <ul className="blog-cat-list center text-center fade-border r-15 py-2 px-2">
-              {Object.keys(cats).map((code, index) => {
-                const typedCode = code as keyof typeof cats;
-                return (
-                  <li
-                    key={index}
-                    onClick={() => setActiveCatCode(typedCode)}
-                    className={`${activeCatCode == code ? "active" : ""} text-medium pointer`}
-                  >
-                    {cats[typedCode]}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+  return (
+    <main className="relative overflow-hidden bg-white pb-20 font-sans text-ink">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-32 top-0 h-72 w-72 rounded-full bg-royal/5 blur-3xl"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-32 top-24 h-72 w-72 rounded-full bg-brand/5 blur-3xl"
+      />
+
+      <div className={cn(widthControlClass, "relative")}>
+        <div className="pt-14 text-center">
+          <span className="inline-flex h-7 items-center rounded-full bg-royal/5 px-3 text-[12px] font-medium text-royal">
+            Pricing
+          </span>
+          <h1 className="mx-auto mt-4 max-w-3xl font-quicksand text-[32px] font-semibold leading-tight tracking-[-0.02em] text-royal-ink sm:text-[42px]">
+            Plans that scale with your business
+          </h1>
+          <p className="mx-auto mt-3 max-w-2xl text-[15px] leading-7 text-ink-muted">
+            Explore thoughtfully crafted packages across our service categories.
+            Choose a plan that fits your goals, or request a tailored quote for
+            something custom.
+          </p>
         </div>
-        <div className="py-3" />
-        <div className="container-fluid no-space">
-          <div className="row no-space">
-            <div className="py-4">
-              <h4 className="text-semibold text-center royal-shade-5">
-                Pricing For{" "}
-                <span className="royal"> {cats[activeCatCode]}</span>
-              </h4>
-            </div>
-            {[catObj.regular, catObj.standard, catObj.premium].map(
-              (x, index) => {
+
+        {/* Category selector */}
+        <div className="mt-8 flex justify-center">
+          <div
+            role="tablist"
+            aria-label="Service categories"
+            className="flex w-full max-w-3xl gap-1 overflow-x-auto rounded-full border border-black/[0.06] bg-white p-1.5 shadow-card [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {(Object.entries(categories) as Array<[CatKeys, string]>).map(
+              ([code, label]) => {
+                const active = activeCatCode === code;
                 return (
-                  <div
-                    key={index}
-                    className="col-12 col-md-6 col-lg-4 no-space"
+                  <button
+                    key={code}
+                    type="button"
+                    role="tab"
+                    aria-selected={active}
+                    onClick={() => setActiveCatCode(code)}
+                    className={cn(
+                      "flex-1 whitespace-nowrap rounded-full px-4 py-2.5 text-[13px] font-medium transition-colors sm:text-sm",
+                      active
+                        ? "bg-royal text-white shadow-card"
+                        : "text-ink-muted hover:bg-surface-secondary hover:text-royal-ink",
+                    )}
                   >
-                    <PricingCard
-                      serviceSubgroup={x.serviceSubgroup}
-                      serviceGroup={x.serviceGroup}
-                      priceNGN={x.priceNGN}
-                      priceDollar={x.priceDollar}
-                      label={x.label}
-                      packageDeal={x.packageDeal}
-                      packageType={x.packageType}
-                      actionFn={() =>
-                        handleChoosePlan(activeCatCode, x.packageType)
-                      }
-                    />
-                  </div>
+                    {label}
+                  </button>
                 );
               },
             )}
           </div>
         </div>
+
+        <div className="mt-10 text-center">
+          <h2 className="font-quicksand text-[20px] font-semibold tracking-[-0.01em] text-royal-ink">
+            Pricing for{" "}
+            <span className="text-royal">{categories[activeCatCode]}</span>
+          </h2>
+          <p className="mt-1 text-[13px] text-ink-subdued">
+            One-time project pricing. Every plan includes a discovery session.
+          </p>
+        </div>
+
+        <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-3">
+          {[catObj.regular, catObj.standard, catObj.premium].map((plan) => (
+            <PricingCard
+              key={plan.packageType}
+              serviceSubgroup={plan.serviceSubgroup}
+              serviceGroup={plan.serviceGroup}
+              priceNGN={plan.priceNGN}
+              priceDollar={plan.priceDollar}
+              label={plan.label}
+              packageDeal={plan.packageDeal}
+              packageType={plan.packageType}
+              actionFn={() => handleChoosePlan(activeCatCode, plan.packageType)}
+            />
+          ))}
+        </div>
+
+        <div className="mt-10 rounded-container border border-white/70 bg-surface-canvas p-6 text-center shadow-card">
+          <p className="text-[14px] leading-6 text-ink-muted">
+            Need something outside these packages?{" "}
+            <Link
+              href="/quotation-request"
+              className="font-semibold text-royal no-underline transition-colors hover:text-royal-dark"
+            >
+              Request a tailored quote
+            </Link>
+            .
+          </p>
+        </div>
       </div>
-      <div className="py-3" />
-    </div>
+    </main>
   );
 };
 

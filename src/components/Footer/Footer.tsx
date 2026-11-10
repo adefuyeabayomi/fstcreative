@@ -4,6 +4,63 @@ import logoBlue from "../../assets/images/logo-blue.svg";
 
 import "./style.css";
 
+const exploreLinks = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/#services" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Blog", href: "/blog" },
+  { label: "Careers", href: "/careers" },
+];
+
+const serviceLinks = [
+  { label: "Branding & Identity Design", href: "/pricing#branding" },
+  { label: "Creative Graphics Design", href: "/pricing#creativeGraphicsDesign" },
+  { label: "UI/UX Design", href: "/pricing#uiUxDesign" },
+  { label: "Web Development", href: "/pricing#webDevelopment" },
+];
+
+const companyLinks = [
+  { label: "Why Five & Six", href: "/#section-2" },
+  { label: "Bootcamps", href: "/bootcamps" },
+  { label: "Request a Quote", href: "/quotation-request" },
+  { label: "Contact", href: "/#contact" },
+];
+
+const designSchoolLinks = [
+  { label: "All Bootcamps", href: "/bootcamps" },
+  { label: "Register for a Bootcamp", href: "/bootcamp-registration" },
+  { label: "Apply for a Job", href: "/fst-careers-apply" },
+];
+
+const linkClass = "text-none white text-regular";
+
+function FooterColumn({
+  title,
+  links,
+}: {
+  title: string;
+  links: Array<{ label: string; href: string }>;
+}) {
+  return (
+    <div className="col-12 col-md-6 col-lg-3 col-xl-2 no-space">
+      <div className="py-4 py-md-0" />
+      <div className="footer-contents-container white">
+        <h6 className="font-family-quicksand text-semibold">{title}</h6>
+        <div className="py-1" />
+        <ul className="footer-list text-p text-medium">
+          {links.map((link) => (
+            <li key={link.label}>
+              <Link className={linkClass} href={link.href}>
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
 export function Footer(): React.JSX.Element {
   return (
     <footer className="footer text-center text-lg-left">
@@ -15,7 +72,13 @@ export function Footer(): React.JSX.Element {
               <div className="py-4 py-md-0" />
               <div className="footer-logo-container white">
                 <div className="w-max-content center">
-                  <img src={logoBlue.src} className="footer-logo" />
+                  <Link href="/" aria-label="Five and Six Technologies — home">
+                    <img
+                      src={logoBlue.src}
+                      className="footer-logo"
+                      alt="Five and Six Technologies"
+                    />
+                  </Link>
                 </div>
                 <div className="text-center">
                   <p className="text-semibold">Five and Six Technologies</p>
@@ -27,119 +90,10 @@ export function Footer(): React.JSX.Element {
             </div>
             <div className="col-xl-1 d-none d-xl-block"></div>
 
-            <div className="col-12 col-md-6 col-lg-3 col-xl-2 no-space">
-              <div className="py-0 py-md-0" />
-              <div className="footer-contents-container white">
-                <h6 className="font-family-quicksand text-semibold">Explore</h6>
-                <div className="py-1" />
-                <ul className="footer-list text-p text-medium">
-                  <li>
-                    <Link className="text-none white text-regular" href={"/"}>
-                      Home
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="text-none white text-regular" href={"/"}>
-                      Services
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="text-none white text-regular" href={"/"}>
-                      Our Works
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="text-none white text-regular" href={"/"}>
-                      Products
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="text-none white text-regular" href={"/"}>
-                      Blog
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-12 col-md-6 col-lg-3 col-xl-2 no-space">
-              <div className="py-4 py-md-0" />
-              <div className="footer-contents-container white">
-                <div className="footer-contents-container white">
-                  <h6 className="font-family-quicksand text-semibold">
-                    Services
-                  </h6>
-                  <div className="py-1" />
-                  <ul className="footer-list text-p text-medium">
-                    <li>
-                      <Link className="text-none text-regular white" href={"/"}>
-                        Web & Mobile Development
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="text-none white text-regular" href={"/"}>
-                        UI/UX Design
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="text-none white text-regular" href={"/"}>
-                        Digital Content Creation
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="text-none white text-regular" href={"/"}>
-                        Animations and Ad's Creation
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="col-12 col-md-6 col-lg-3 col-xl-2 no-space">
-              <div className="py-4 py-md-2 py-lg-0" />
-              <div className="footer-contents-container white">
-                <div className="footer-contents-container white">
-                  <h6 className="font-family-quicksand text-semibold">
-                    Products
-                  </h6>
-                  <div className="py-1" />
-                  <ul className="footer-list text-p text-medium">
-                    <li>
-                      <Link className="text-none text-regular white" href={"/"}>
-                        Nikko Blogger
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="text-none white text-regular" href={"/"}>
-                        Showa
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="col-12 col-md-6 col-lg-3 col-xl-2 no-space">
-              <div className="py-4 py-md-2 py-lg-0" />
-              <div className="footer-contents-container white">
-                <div className="footer-contents-container white">
-                  <h6 className="font-family-quicksand text-semibold">
-                    Design School
-                  </h6>
-                  <div className="py-1" />
-                  <ul className="footer-list text-p text-medium">
-                    <li>
-                      <Link className="text-none text-regular white" href={"/"}>
-                        Design Basics
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="text-none white text-regular" href={"/"}>
-                        Intermidiate UI Design
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <FooterColumn title="Explore" links={exploreLinks} />
+            <FooterColumn title="Services" links={serviceLinks} />
+            <FooterColumn title="Company" links={companyLinks} />
+            <FooterColumn title="Design School" links={designSchoolLinks} />
           </div>
         </div>
       </div>

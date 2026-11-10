@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*
+ * Tailwind preflight is intentionally disabled while the marketing pages still
+ * use Bootstrap/App.css. Without preflight the browser's default button chrome
+ * (a grey border + grey background) leaks into every Tailwind button, so reset
+ * just those properties here. `border`/`bg-*` utilities still win because they
+ * live in the utilities layer, which is emitted after this base layer.
+ */
+@layer base {
+  button {
+    border-width: 0;
+    border-style: solid;
+    background-color: transparent;
+    background-image: none;
+    font: inherit;
+  }
+}
