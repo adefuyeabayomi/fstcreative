@@ -20,11 +20,13 @@ import service4 from "../../assets/images/service4.png";
 import contactCall from "../../assets/images/contact-call.png";
 import contactWhatsapp from "../../assets/images/contact-whatsapp.png";
 import contactEmail from "../../assets/images/contact-email.png";
+import dUIImg from "../../assets/images/dUIimg.png";
 
 import { useHash } from "@/hooks/useHash";
 import { widthControlClass } from "@/styles/widthControl";
 import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/Button";
+import { blogPosts } from "@/data/blogPosts";
 import { useDash } from "../../contexts/DashContext";
 
 const services: Array<{
@@ -318,6 +320,156 @@ export default function Home(): React.JSX.Element {
                   </div>
                 );
               })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Bootcamp overview */}
+      <section id="bootcamp" className="scroll-mt-24 bg-surface-canvas/60">
+        <div className={widthControlClass}>
+          <div className="grid items-center gap-10 py-14 sm:py-16 lg:grid-cols-2 lg:gap-14">
+            <div className="text-center lg:text-left">
+              <span className="inline-flex h-7 items-center rounded-full bg-royal/5 px-3 text-[12px] font-medium text-royal">
+                Bootcamp
+              </span>
+              <h2 className="mt-4 font-quicksand text-[30px] font-semibold leading-tight tracking-[-0.02em] text-royal-ink sm:text-[38px]">
+                Product Design Bootcamp
+              </h2>
+              <p className="mx-auto mt-3 max-w-xl text-[15px] leading-7 text-ink-muted lg:mx-0">
+                Go from total beginner to advanced designer in 12 weeks. Learn
+                UI/UX, visual design and interactive prototyping through live
+                sessions, practical projects and expert mentorship.
+              </p>
+
+              <ul className="mx-auto mt-5 grid max-w-xl list-none gap-2.5 text-left text-[14px] text-ink-muted sm:grid-cols-2 lg:mx-0">
+                {[
+                  "3 months · 12 weeks",
+                  "Live + recorded sessions",
+                  "Beginner to advanced",
+                  "Portfolio projects",
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <FontAwesomeIcon icon={faCheck} className="h-3 w-3 text-royal" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <p className="mt-4 text-xs font-medium uppercase tracking-[0.12em] text-ink-subdued">
+                Next cohort starts March 14th · Limited slots
+              </p>
+
+              <div className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
+                <Button
+                  variant="royal"
+                  size="lg"
+                  shape="pill"
+                  onClick={() => router.push("/bootcamp-registration")}
+                >
+                  Register for bootcamp
+                  <FontAwesomeIcon icon={faArrowRight} className="h-3.5 w-3.5" />
+                </Button>
+                <Button
+                  variant="royalOutline"
+                  size="lg"
+                  shape="pill"
+                  onClick={() => router.push("/bootcamps")}
+                >
+                  Learn more
+                </Button>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="rounded-canvas border border-white/70 bg-white p-3 shadow-floating">
+                <img
+                  src={dUIImg.src}
+                  alt="Product Design Bootcamp"
+                  className="h-auto w-full rounded-card object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-4 left-4 rounded-card bg-royal px-4 py-3 text-white shadow-floating sm:left-6">
+                <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-white/70">
+                  Starts
+                </p>
+                <p className="text-lg font-semibold leading-tight">March 14</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className={widthControlClass}>
+        <div className="h-px bg-black/[0.06]" />
+      </div>
+
+      {/* Blog overview */}
+      <section id="blog" className="scroll-mt-24">
+        <div className={widthControlClass}>
+          <div className="py-14 sm:py-16">
+            <div className="mx-auto max-w-2xl text-center">
+              <span className="inline-flex h-7 items-center rounded-full bg-royal/5 px-3 text-[12px] font-medium text-royal">
+                Blog
+              </span>
+              <h2 className="mt-4 font-quicksand text-[30px] font-semibold tracking-[-0.02em] text-royal-ink sm:text-[38px]">
+                Insights &amp; ideas
+              </h2>
+              <p className="mt-3 text-[15px] leading-7 text-ink-muted">
+                Practical notes on design, technology and building better digital
+                products.
+              </p>
+            </div>
+
+            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {blogPosts.slice(0, 4).map((post) => (
+                <Link
+                  key={post.linkPath}
+                  href={post.linkPath}
+                  className="group no-underline"
+                >
+                  <article className="flex h-full flex-col overflow-hidden rounded-container border border-white/70 bg-white shadow-card transition-shadow hover:shadow-floating">
+                    <div className="overflow-hidden rounded-card">
+                      <img
+                        src={post.image.src}
+                        alt={post.title}
+                        className="h-44 w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                    <div className="flex flex-1 flex-col p-5">
+                      <div className="flex items-center justify-between gap-3 text-[10px] font-semibold uppercase tracking-[0.1em]">
+                        <span className="text-royal">{post.category}</span>
+                        <span className="text-ink-subdued">{post.duration}</span>
+                      </div>
+                      <h3 className="mt-2 font-quicksand text-[16px] font-semibold leading-snug text-royal-ink">
+                        {post.title}
+                      </h3>
+                      <p className="mt-2 line-clamp-3 text-[13px] leading-6 text-ink-muted">
+                        {post.highlightText}
+                      </p>
+                      <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-[13px] font-semibold text-royal">
+                        Read more
+                        <FontAwesomeIcon
+                          icon={faArrowRight}
+                          className="h-3 w-3 transition-transform group-hover:translate-x-0.5"
+                        />
+                      </span>
+                    </div>
+                  </article>
+                </Link>
+              ))}
+            </div>
+
+            <div className="mt-8 flex justify-center">
+              <Button
+                variant="royalOutline"
+                size="lg"
+                shape="pill"
+                onClick={() => router.push("/blog")}
+              >
+                See all articles
+                <FontAwesomeIcon icon={faArrowRight} className="h-3.5 w-3.5" />
+              </Button>
             </div>
           </div>
         </div>

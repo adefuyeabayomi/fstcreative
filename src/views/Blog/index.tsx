@@ -7,51 +7,16 @@ import { useDash } from "../../contexts/DashContext";
 import { Button } from "@/components/ui/Button";
 import { widthControlClass } from "@/styles/widthControl";
 import { cn } from "@/lib/cn";
+import { blogPosts } from "@/data/blogPosts";
 
-import img1 from "../../assets/images/blog-img.png";
-import dP from "../../assets/images/dprinciples.png";
-import colorTheory from "../../assets/images/color-theory.png";
-import figmaIntro from "../../assets/images/figma-intro.png";
-import typography from "../../assets/images/typography.png";
 import blogImgTemp from "../../assets/images/Leonardo_Kino_XL_Picture_the_Mona_Lisa_as_a_cyberpunk_hacker_i_4 1.png";
 
-const blogCards: BlogCardProp[] = [
-  {
-    title: "Introduction to Visual Design (I) - Design Elements",
-    linkPath: "/blog/visual-design-elements",
-    highlightText:
-      "The term design is used in many contexts. From architecture and structural design, to fashion, information technology, branding and strategy. Design is created for a purpose — every design is made to fulfil a goal.",
-    img: <img src={img1.src} alt="" className="h-full w-full object-cover" />,
-  },
-  {
-    title: "Introduction to Visual Design (II) - Design Principles",
-    linkPath: "/blog/visual-design-principles",
-    highlightText:
-      "Design principles help designers create useful, effective and cohesive work. From unity and variety to hierarchy and balance, these principles shape how information reaches the viewer.",
-    img: <img src={dP.src} alt="" className="h-full w-full object-cover" />,
-  },
-  {
-    title: "Color Theory in Design",
-    linkPath: "/blog/color-theory",
-    highlightText:
-      "Color theory is the study of how colors work together and how they affect our emotions and perceptions. It helps you choose colors that convey the right mood and work together.",
-    img: <img src={colorTheory.src} alt="" className="h-full w-full object-cover" />,
-  },
-  {
-    title: "Mastering Typography: The Power of Fonts in Design",
-    linkPath: "/blog/typography",
-    highlightText:
-      "Explore typography's role in creating readable, impactful and visually compelling designs.",
-    img: <img src={typography.src} alt="" className="h-full w-full object-cover" />,
-  },
-  {
-    title: "Introduction to Figma",
-    linkPath: "/blog/figma-intro",
-    highlightText:
-      "Learn the essentials of Figma for creating intuitive and polished user interfaces from scratch.",
-    img: <img src={figmaIntro.src} alt="" className="h-full w-full object-cover" />,
-  },
-];
+const blogCards: BlogCardProp[] = blogPosts.map((post) => ({
+  title: post.title,
+  linkPath: post.linkPath,
+  highlightText: post.highlightText,
+  img: <img src={post.image.src} alt="" className="h-full w-full object-cover" />,
+}));
 
 const categories = [
   "all",
