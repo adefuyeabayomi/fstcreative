@@ -1,5 +1,6 @@
+"use client";
+
 import React, { createContext, useState, useContext } from "react";
-import { Spin } from "antd";
 
 interface LoadingContextType {
   setLoading: (bool: boolean) => void;
@@ -23,15 +24,30 @@ export const LoadingContextProvider: React.FC<{
 
   const setLoading = (bool: boolean) => {
     setLoadingState(bool);
-    setTimeout(() => {
-      setLoadingState(false);
-      setLoadingText("");
-    }, 20000);
+    if (bool) {
+      setTimeout(() => {
+        setLoadingState(false);
+        setLoadingText("");
+      }, 20000);
+    }
   };
 
   return (
     <LoadingContext.Provider value={{ setLoading, setLoadingText }}>
-      <Spin fullscreen tip={loadingText} spinning={loading} />
+      {loading && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/30 backdrop-blur-sm"
+          role="status"
+          aria-live="polite"
+        >
+          <div className="flex items-center gap-3 rounded-container border border-white/70 bg-surface-primary px-5 py-4 shadow-modal">
+            <span className="h-5 w-5 animate-spin rounded-full border-2 border-brand/25 border-t-brand" />
+            <p className="text-[14px] font-medium text-ink">
+              {loadingText || "Loading..."}
+            </p>
+          </div>
+        </div>
+      )}
       {children}
     </LoadingContext.Provider>
   );

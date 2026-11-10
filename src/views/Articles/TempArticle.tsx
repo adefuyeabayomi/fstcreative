@@ -2,7 +2,6 @@
 
 import React, { useEffect } from "react";
 import { animateScroll as scroll } from "react-scroll";
-import "./style.css";
 import { useDash } from "../../contexts/DashContext";
 
 const TempArticle = (): React.JSX.Element => {
@@ -17,48 +16,48 @@ const TempArticle = (): React.JSX.Element => {
     });
   }, []);
   return (
-    <section className="main-spacing-x">
+    <section className="mx-auto w-full max-w-6xl px-4 sm:px-6">
       <div className="py-4" />
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
-        <div className="container-fluid no-space">
-          <div className="row no-space">
-            <div className="w-max-content no-space">
-              <p className="royal text-semibold">{category}</p>
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
+        <div className="w-full">
+          <div className="flex flex-wrap">
+            <div className="w-max">
+              <p className="text-royal font-semibold">{category}</p>
             </div>
-            <div className="col"></div>
-            <div className="w-max-content no-space">
-              <p className="text-semibold royal-shade-5">{duration} Read</p>
+            <div className="flex-1"></div>
+            <div className="w-max">
+              <p className="font-semibold text-royal-ink">{duration} Read</p>
             </div>
           </div>
         </div>
         <div className="py-2" />
-        <h1 className="text-bold font-family-quicksand royal-shade-5">
+        <h1 className="font-bold font-quicksand text-royal-ink text-[28px] leading-tight sm:text-[36px]">
           Introduction to Visual Design (I) - Design Elements
         </h1>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold"></h4>
-          <p className="py-2 text-medium gray-4"></p>
-          <div className="container-fluid no-space">
-            <div className="row no-space g-3 align-items-center">
-              <div className="no-space col-12 col-md-6"></div>
-              <div className="no-space col-12 col-md-6"></div>
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug"></h4>
+          <p className="py-2 font-medium text-slate-600"></p>
+          <div className="w-full">
+            <div className="flex flex-wrap gap-4 items-center">
+              <div className="w-full md:w-[calc(50%-0.5rem)]"></div>
+              <div className="w-full md:w-[calc(50%-0.5rem)]"></div>
             </div>
           </div>
-          <ul className="text-p text-medium gray-4">
+          <ul className="text-[15px] font-medium text-slate-600">
             <li>
-              <span className="text-semibold"></span>
+              <span className="font-semibold"></span>
             </li>
             <li>
-              <span className="text-semibold"></span>
+              <span className="font-semibold"></span>
             </li>
             <li>
-              <span className="text-semibold"></span>
+              <span className="font-semibold"></span>
             </li>
             <li>
-              <span className="text-semibold"></span>
+              <span className="font-semibold"></span>
             </li>
           </ul>
         </div>

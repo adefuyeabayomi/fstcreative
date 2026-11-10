@@ -1,17 +1,16 @@
 import Link from "next/link";
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons/faChevronCircleRight";
 import avatar from "../../assets/images/avatar.png";
+import { cn } from "@/lib/cn";
+
 export interface BlogCardProp {
   title: string;
   linkPath: string;
   highlightText: string;
   img: React.JSX.Element;
 }
-
-import "./style.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons/faChevronCircleRight";
-import React from "react";
 
 const BlogCardMain = ({
   title,
@@ -20,33 +19,21 @@ const BlogCardMain = ({
   img,
 }: BlogCardProp) => {
   return (
-    <div id="blog-card" className="blog-card-container gray-3">
-      <div className="blog-card-image-container">{img}</div>
-      <div className="py-1"></div>
-      <div className="px-2">
-        <div className="blog-text-container text-main">
-          <h6 className="text-medium font-family-quicksand ">{title}</h6>
-        </div>
-        <div className="blog-text-container" style={{ fontWeight: "550" }}>
-          <p className="word-break gray-4">{highlightText}</p>
-        </div>
-        <div className="py-1"></div>
-        <Link className="text-none gray-1" href={linkPath}>
-          <div className="blog-text-container text-p">
-            <div className="container-fluid no-space">
-              <div className="row no-space align-items-center">
-                <div className="no-space w-max-content">
-                  <span className="text-semibold">Read More</span>
-                </div>
-                <div className="no-space" style={{ width: "5px" }} />
-                <div className="w-max-content no-space">
-                  <div>
-                    <FontAwesomeIcon icon={faChevronCircleRight} />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div className="overflow-hidden rounded-container border border-white/70 bg-white shadow-card">
+      <div className="overflow-hidden rounded-card [&_img]:h-full [&_img]:w-full [&_img]:object-cover">
+        {img}
+      </div>
+      <div className="p-5">
+        <h6 className="font-quicksand text-base font-semibold text-royal-ink">
+          {title}
+        </h6>
+        <p className="mt-2 text-sm leading-6 text-slate-600">{highlightText}</p>
+        <Link
+          href={linkPath}
+          className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-royal no-underline transition-colors hover:text-royal-dark"
+        >
+          Read more
+          <FontAwesomeIcon icon={faChevronCircleRight} className="h-3.5 w-3.5" />
         </Link>
       </div>
     </div>
@@ -72,76 +59,59 @@ export const FeaturedCard = ({
   cat,
   duration,
 }: BCardProps) => {
-  let gridStyle = feature
-    ? "col-12 col-lg-6 no-space py-2 py-lg-0 "
-    : "col-12 no-space py-2 ";
-  // implement logic to maximize user experience on the blog item.
   return (
-    <div className={`${feature ? "feature" : ""} featured-card`}>
-      <div className="container-fluid no-space">
-        <div className="row no-space">
-          <div className={gridStyle}>
-            <div className="fcard-image-container">{image}</div>
-          </div>
-          <div className={gridStyle + " fcontent"}>
-            <Link className="text-none" href={linkPath}>
-              <div className="container-fluid no-space">
-                <div className="row no-space">
-                  <div className="w-max-content no-space">
-                    <p className="royal text-semibold">
-                      {feature ? "FEATURED" : cat.toUpperCase()}
-                    </p>
-                  </div>
-                  <div className="col"></div>
-                  <div className="w-max-content no-space">
-                    <p className="text-semibold royal-shade-5">
-                      {duration} Read
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="pointer">
-                <h6 className="text-semibold royal-shade-5">{title}</h6>
-              </div>
-              <div className="py-1" />
-              <div className="pointer">
-                <p className=" royal-shade-5 text-medium">
-                  {highlightText}{" "}
-                  <span className="text-semibold">...Read More.</span>
-                </p>
-              </div>
-              <div className="py-2" />
-            </Link>
-            <div className="container-fluid no-space">
-              <div className="row no-space">
-                <div className="w-max-content no-space">
-                  <div className="f-card-avatar-container">
-                    <img className="" src={avatar.src} />
-                  </div>
-                </div>
-                <div className="col no-space px-2">
-                  <p className="royal-shade-4 text-semibold">Adefuye Abayomi</p>
-                  <p className="royal-shade-4 text-medium">
-                    Creative Designer at Five and Six Technologies
-                  </p>
-                </div>
-              </div>
+    <article
+      className={cn(
+        "overflow-hidden rounded-container border border-white/70 bg-white shadow-card transition-shadow hover:shadow-floating",
+        feature ? "p-5" : "p-4",
+      )}
+    >
+      <div
+        className={cn(
+          "grid gap-5",
+          feature ? "lg:grid-cols-2" : "grid-cols-1",
+        )}
+      >
+        <div className="overflow-hidden rounded-card [&_img]:h-full [&_img]:w-full [&_img]:object-cover">
+          {image}
+        </div>
+
+        <div className="flex flex-col justify-center">
+          <Link href={linkPath} className="no-underline">
+            <div className="flex items-center justify-between gap-3 text-xs font-semibold uppercase tracking-wide">
+              <span className="text-royal">{feature ? "Featured" : cat}</span>
+              <span className="text-slate-400">{duration} read</span>
+            </div>
+
+            <h6 className="mt-3 font-quicksand text-lg font-semibold leading-snug text-royal-ink">
+              {title}
+            </h6>
+
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              {highlightText}{" "}
+              <span className="font-semibold text-royal">...Read more.</span>
+            </p>
+          </Link>
+
+          <div className="mt-5 flex items-center gap-3">
+            <img
+              src={avatar.src}
+              alt="Adefuye Abayomi"
+              className="h-11 w-11 rounded-full object-cover"
+            />
+            <div>
+              <p className="text-sm font-semibold text-royal-ink">Adefuye Abayomi</p>
+              <p className="text-xs text-slate-500">
+                Creative Designer at Five and Six Technologies
+              </p>
             </div>
           </div>
         </div>
       </div>
-      <div className="py-3" />
-    </div>
+    </article>
   );
 };
-export const Placeholder = () => {
-  return (
-    <div className="container-fluid no-space">
-      <div className="row no-space">
-        <div className="col-12 no-space"></div>
-        <div className="col-12  no-space"></div>
-      </div>
-    </div>
-  );
-};
+
+export const Placeholder = () => <div className="h-24 rounded-card bg-surface-secondary" />;
+
 export default BlogCardMain;

@@ -1,10 +1,13 @@
 import React from "react";
-import "./style.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowRight,
+  faBriefcase,
+  faLocationDot,
+  faMoneyBillWave,
+} from "@fortawesome/free-solid-svg-icons";
 import ang45Arrow from "../../assets/images/ang45arrow.svg";
-
-import cIcon from "../../assets/images/iconJobPost.svg";
-
-//type employment_type = "Full-time" | "Part-time" | "Contract" | "Internship";
+import { Button } from "@/components/ui/Button";
 
 interface JobPosting {
   essential: {
@@ -32,102 +35,101 @@ const CareerPost = ({
   additional,
 }: JobPosting): React.JSX.Element => {
   return (
-    <div className="career-post p-3 fade-border r-10 royal-shade-4">
-      <div className="container-fluid no-space">
-        <div className="row no-space align-items-center">
-          <div className="w-max-content no-space">
-            <div>
-              <h6 className="royal text-semibold">
-                <span className="text-bold"></span>
-                {essential.job_title}
-              </h6>
-            </div>
+    <article className="rounded-container border border-white/70 bg-white p-6 shadow-card">
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <img src={ang45Arrow.src} alt="" className="h-5 w-5" />
+          <h5 className="font-quicksand text-xl font-semibold text-royal-ink">
+            {essential.job_title}
+          </h5>
+        </div>
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand">
+          <FontAwesomeIcon icon={faBriefcase} className="h-3 w-3" />
+          {essential.employment_type}
+        </span>
+      </div>
+
+      <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-600">
+        <span className="inline-flex items-center gap-1.5">
+          <FontAwesomeIcon icon={faLocationDot} className="h-3.5 w-3.5 text-royal" />
+          {essential.location}
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <FontAwesomeIcon icon={faMoneyBillWave} className="h-3.5 w-3.5 text-royal" />
+          {essential.salary_range}
+        </span>
+        <span>{essential.experience_level}</span>
+      </div>
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        {essential.technology_stack.map((tech) => (
+          <span
+            key={tech}
+            className="rounded-full bg-surface-secondary px-2.5 py-1 text-xs font-medium text-slate-600"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+
+      {additional && (
+        <div className="mt-6 grid gap-6 md:grid-cols-2">
+          <div>
+            <h6 className="text-sm font-semibold text-royal-ink">
+              Key responsibilities
+            </h6>
+            <ul className="mt-2 list-none space-y-1.5 text-sm leading-6 text-slate-600">
+              {additional.key_responsibilities.map((item) => (
+                <li key={item} className="flex gap-2">
+                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-royal" />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="col" />
-          <div className="w-max-content no-space">
-            <div className="cpost-icon-container">
-              <img src={cIcon.src} />
-            </div>
+
+          <div>
+            <h6 className="text-sm font-semibold text-royal-ink">Benefits</h6>
+            <ul className="mt-2 list-none space-y-1.5 text-sm leading-6 text-slate-600">
+              {additional.perks_and_benefits.map((item) => (
+                <li key={item} className="flex gap-2">
+                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-royal" />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      </div>
-      <div>
-        <p className="text-medium text-small gray-4">
-          <span className="text-semibold">Location: </span> {essential.location}
-        </p>
-        <p className="text-medium text-small gray-4">
-          <span className="text-semibold">Tech Stack: </span>
-          {essential.technology_stack.join(", ")}
-        </p>
-        <p className="text-medium text-small gray-4">
-          <span className="text-semibold">Employment Type: </span>{" "}
-          {essential.employment_type}
-        </p>
-        <p className="text-medium text-small gray-4">
-          <span className="text-semibold">Salary Range: </span>
-          {essential.salary_range}
-        </p>
-        <p className="text-medium text-small gray-4">
-          <span className="text-semibold">Experience Level: </span>
-          {essential.experience_level}
-        </p>
-      </div>
-      <div className="py-2" />
-      <div>
-        <p className="text-bold gray-3">Additional Informations</p>
-        <ul className="text-medium gray-4 text-p text-gray-9 text-p cpj-description">
-          {additional?.key_responsibilities.map((x, index) => {
-            return <li key={index}>{x}</li>;
-          })}
-          <li>
-            <span className="text-semibold">Required Skills: </span>{" "}
-            {additional?.required_skills.join(", ")}
-          </li>
-          <li>
-            <span className="text-semibold">Nice To Have: </span>{" "}
-            {additional?.preferred_skills
-              ? additional?.preferred_skills.join(", ")
-              : ""}
-          </li>
-        </ul>
-      </div>
-      <div className="py-2" />
-      <div>
-        <p className="text-bold gray-3">Benefits</p>
-        <ul className="text-medium gray-4 text-p text-gray-9 text-p cpj-description">
-          {additional?.perks_and_benefits.map((x, index) => {
-            return <li key={index}>{x}</li>;
-          })}
-        </ul>
-      </div>
-      <div className="py-2" />
-      <div>
-        <p className="text-medium medium gray-4">
-          <span className="text-semibold">Application Deadline </span>
-          {additional?.application_deadline}
-        </p>
-      </div>
+      )}
 
-      <div className="py-2" />
+      {additional && (
+        <div className="mt-5 space-y-1.5 text-sm text-slate-600">
+          <p>
+            <span className="font-semibold text-royal-ink">Required skills: </span>
+            {additional.required_skills.join(", ")}
+          </p>
+          {additional.preferred_skills?.length ? (
+            <p>
+              <span className="font-semibold text-royal-ink">Nice to have: </span>
+              {additional.preferred_skills.join(", ")}
+            </p>
+          ) : null}
+        </div>
+      )}
 
-      <div>
-        <button
-          onClick={actionFn}
-          className="text-center royal-shade-2 text-center cpbtn"
-        >
-          <div className="container-fluid no-space">
-            <div className="row no-space align-items-center justify-content-center center">
-              <div className="w-max-content no-space">
-                <p className="text-semibold">Apply</p>
-              </div>
-              <div className="w-max-content no-space">
-                <img src={ang45Arrow.src} className="d-home-card-img" />
-              </div>
-            </div>
-          </div>
-        </button>
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200 pt-5">
+        <p className="text-sm text-slate-500">
+          Application deadline:{" "}
+          <span className="font-medium text-royal-ink">
+            {additional?.application_deadline ?? "Open"}
+          </span>
+        </p>
+        <Button variant="royal" shape="pill" onClick={actionFn}>
+          Apply
+          <FontAwesomeIcon icon={faArrowRight} className="h-3.5 w-3.5" />
+        </Button>
       </div>
-    </div>
+    </article>
   );
 };
 

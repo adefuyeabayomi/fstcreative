@@ -1,254 +1,166 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import "./style.css";
-import InputPlain from "../../components/input/input";
-import { TextAreaPlain } from "../../components/input/input";
-import { animateScroll as scroll } from "react-scroll";
-import { useHash } from "@/hooks/useHash";
-import { Checkbox } from "antd";
-import type { CheckboxProps } from "antd";
-import FButtonMain from "../../components/Button/Main";
+import { useEffect, useState } from "react";
 import { useDash } from "../../contexts/DashContext";
+import { useHash } from "@/hooks/useHash";
+import { Checkbox } from "@/components/ui/Checkbox";
+import { Field } from "@/components/ui/Field";
+import { Textarea } from "@/components/ui/Textarea";
+import { Button } from "@/components/ui/Button";
+import { Alert } from "@/components/ui/Alert";
+import { widthControlClass } from "@/styles/widthControl";
 
-const QuotationRequest = (): React.JSX.Element => {
-  let [description, setDescription] = useState("");
-  let [duration, setDuration] = useState("");
-  const [animationsList, setAnimationsList] = useState<string[]>([]);
-  const [productDevList, setProductDevList] = useState<string[]>([]);
-  const [contentCreationList, setContentCreationList] = useState<string[]>([]);
+const groups = {
+  "#product-development": {
+    title: "Digital product design and development",
+    options: [
+      "Web Development",
+      "Mobile App Development",
+      "UI/UX Design",
+      "Product Management",
+    ],
+  },
+  "#content-creation": {
+    title: "Digital content creation and social media management",
+    options: ["Copywriting", "Social Media Management", "Blog Management"],
+  },
+  "#animations": {
+    title: "Animation and story illustration",
+    options: ["2D Animations", "Story Illustrations", "Product Ads Video & Animations"],
+  },
+} as const;
 
-  let hash = useHash();
+type GroupKey = keyof typeof groups;
 
-  // Determine which list to update based on hash
-  const onChange: CheckboxProps["onChange"] = (e) => {
-    const { checked, value } = e.target;
-    let updater;
+export default function QuotationRequest(): React.JSX.Element {
+  const { updateDashStatus } = useDash();
+  const hash = useHash();
 
-    switch (hash) {
-      case "#product-development":
-        updater = setProductDevList;
-        break;
-      case "#content-creation":
-        updater = setContentCreationList;
-        break;
-      case "#animations":
-        updater = setAnimationsList;
-        break;
-      default:
-        updater = null;
-    }
+  const [selected, setSelected] = useState<string[]>([]);
+  const [description, setDescription] = useState("");
+  const [duration, setDuration] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
-    if (updater) {
-      updater((prevList) => {
-        // Add or remove the item based on the checkbox state
-        if (checked) {
-          return [...prevList, value];
-        } else {
-          return prevList.filter((item) => item !== value);
-        }
-      });
-    }
-    console.log(`Checked = ${checked}, Value = ${value}`, {
-      animationsList,
-      contentCreationList,
-      productDevList,
-    });
-  };
-  let locationString = "";
-  console.log({ locationHash: hash });
-  switch (hash) {
-    case "#product-development": {
-      locationString = "Digital product design and development.";
-      break;
-    }
-    case "#content-creation": {
-      locationString = "Digital Content Creation and Social Media Management.";
-      break;
-    }
-    case "#animations": {
-      locationString = "Animation and Story Illustration.";
-      break;
-    }
-    case "#coding-school": {
-      locationString = "Design Classes.";
-      break;
-    }
-  }
-
-  let { updateDashStatus } = useDash();
   useEffect(() => {
     updateDashStatus(false);
-    // Scroll to top when the component mounts
-    scroll.scrollToTop({
-      duration: 1000, // duration of the scrolling animation in milliseconds
-      smooth: "easeInOutQuart", // the type of easing
-    });
-  }, []);
+    window.scrollTo(0, 0);
+  }, [updateDashStatus]);
+
+  const group = (hash in groups ? groups[hash as GroupKey] : null) as
+    | (typeof groups)[GroupKey]
+    | null;
+
+  function toggle(value: string, checked: boolean) {
+    setSelected((current) =>
+      checked ? [...current, value] : current.filter((item) => item !== value),
+    );
+  }
 
   return (
-    <section id="quotation-request">
-      <div className="py-4" />
-      <div className="main-spacing-x">
-        <div className="qr-page-head p-3 text-center r-15">
-          <h3 className="font-family-quicksand text-semibold">
-            Quotation Form
-          </h3>
-          <p className="text-semibold text-main">{locationString}</p>
-          <p className="text-medium">
-            Please fill the form below. This would provide details of your need
-            for an accurate quotation.
-          </p>
+    <main className="bg-white pb-20">
+      <div className={widthControlClass}>
+        <div className="mx-auto max-w-3xl pt-14">
+          <div className="rounded-container border border-slate-200 bg-surface-canvas p-8 text-center shadow-card">
+            <span className="inline-flex h-7 items-center rounded-full bg-royal/5 px-3 text-[12px] font-medium text-royal">
+              Quotation
+            </span>
+            <h1 className="mt-4 font-quicksand text-[30px] font-semibold tracking-[-0.02em] text-royal-ink sm:text-[38px]">
+              Tell us what you need
+            </h1>
+            {group && <p className="mt-2 text-sm font-medium text-royal">{group.title}</p>}
+            <p className="mx-auto mt-2 max-w-xl text-[15px] leading-7 text-slate-600">
+              Share a few details so we can prepare an accurate quote for your
+              project.
+            </p>
+          </div>
+
+          <form
+            className="mt-6 space-y-6"
+            onSubmit={(event) => {
+              event.preventDefault();
+              setSubmitted(true);
+            }}
+          >
+            {submitted && (
+              <Alert tone="success">
+                Thanks — your request has been received. Our team will contact you
+                with a quote.
+              </Alert>
+            )}
+
+            {group && (
+              <section className="rounded-container border border-slate-200 bg-white p-6 shadow-card">
+                <h2 className="text-sm font-semibold text-royal-ink">
+                  Pick the services you need
+                </h2>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  {group.options.map((option) => (
+                    <Checkbox
+                      key={option}
+                      value={option}
+                      checked={selected.includes(option)}
+                      onCheckedChange={toggle}
+                      className="rounded-lg border border-slate-100 px-3 py-2.5 hover:bg-slate-50"
+                    >
+                      {option}
+                    </Checkbox>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            <section className="space-y-4 rounded-container border border-slate-200 bg-white p-6 shadow-card">
+              <Textarea
+                label="Project details"
+                value={description}
+                onChange={setDescription}
+                placeholder="Describe what you need the product to do."
+                rows={4}
+                required
+              />
+              <Field
+                label="How soon do you need it?"
+                value={duration}
+                onChange={setDuration}
+                placeholder="e.g. 4 weeks"
+              />
+            </section>
+
+            <section className="space-y-4 rounded-container border border-slate-200 bg-white p-6 shadow-card">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <Field
+                  label="Name"
+                  value={name}
+                  onChange={setName}
+                  placeholder="Your name"
+                  required
+                />
+                <Field
+                  label="Phone / WhatsApp"
+                  value={phone}
+                  onChange={setPhone}
+                  placeholder="+234..."
+                />
+              </div>
+              <Field
+                label="Email"
+                value={email}
+                onChange={setEmail}
+                type="email"
+                placeholder="you@company.com"
+                required
+              />
+            </section>
+
+            <Button type="submit" variant="royal" size="lg" fullWidth>
+              Request quotation
+            </Button>
+          </form>
         </div>
-        <div className="py-3" />
-        <form>
-          <div className="input-outline-group r-15 p-3">
-            {hash == "#product-development" && (
-              <div className="">
-                <label className="text-p text-medium">
-                  Pick the services you need from this group below.
-                </label>
-                <p>
-                  <Checkbox value={"Web Development"} onChange={onChange}>
-                    Web Development
-                  </Checkbox>
-                </p>
-                <p>
-                  <Checkbox
-                    value={"Mobile App Development"}
-                    onChange={onChange}
-                  >
-                    Mobile App Development
-                  </Checkbox>
-                </p>
-                <p>
-                  <Checkbox value={"UI/UX Design"} onChange={onChange}>
-                    UI/UX Design
-                  </Checkbox>
-                </p>
-                <p>
-                  <Checkbox value={"Product Management"} onChange={onChange}>
-                    Product Management
-                  </Checkbox>
-                </p>
-              </div>
-            )}
-            {hash == "#content-creation" && (
-              <div className="">
-                <label className="text-p text-medium">
-                  Pick the services you need from this group below.
-                </label>
-                <p>
-                  <Checkbox value={"Copywriting"} onChange={onChange}>
-                    Copywriting
-                  </Checkbox>
-                </p>
-                <p>
-                  <Checkbox
-                    value={"Social Media Management"}
-                    onChange={onChange}
-                  >
-                    Social Media Management
-                  </Checkbox>
-                </p>
-                <p>
-                  <Checkbox value={"Blog Management"} onChange={onChange}>
-                    Blog Management
-                  </Checkbox>
-                </p>
-              </div>
-            )}
-            {hash == "#animations" && (
-              <div className="">
-                <label className="text-p text-medium">
-                  Pick the services you need from this group below.
-                </label>
-                <p>
-                  <Checkbox value={"2d Animations"} onChange={onChange}>
-                    2d Animations
-                  </Checkbox>
-                </p>
-                <p>
-                  <Checkbox value={"Story Illustrations"} onChange={onChange}>
-                    Story Illustrations
-                  </Checkbox>
-                </p>
-                <p>
-                  <Checkbox
-                    value={"Product Ads Video & Animations"}
-                    onChange={onChange}
-                  >
-                    Product Ads Video & Animations
-                  </Checkbox>
-                </p>
-              </div>
-            )}
-            <div className="py-2" />
-            <label className="text-p text-medium">
-              Describe Some specifics you would need the product for.
-            </label>
-            <div className="py-1" />
-            <TextAreaPlain
-              value={description}
-              onChange={(e) => {
-                setDescription(e);
-              }}
-            />
-            <div className="py-2" />
-
-            <label className="text-p text-medium">
-              How soon would you need it.
-            </label>
-            <div className="py-1" />
-            <InputPlain
-              value={duration}
-              onChange={(e) => {
-                setDuration(e);
-              }}
-            />
-          </div>
-          <div className="py-3" />
-          <div className="input-outline-group r-15 p-3">
-            <label className="text-p text-medium">Name</label>
-            <div className="py-1" />
-            <InputPlain
-              value={duration}
-              onChange={(e) => {
-                setDuration(e);
-              }}
-            />
-            <div className="py-2" />
-            <label className="text-p text-medium">
-              Phone / WhatsApp Number
-            </label>
-            <div className="py-1" />
-            <InputPlain
-              value={duration}
-              onChange={(e) => {
-                setDuration(e);
-              }}
-            />
-            <div className="py-2" />
-            <label className="text-p text-medium">Email</label>
-            <div className="py-1" />
-            <InputPlain
-              value={duration}
-              onChange={(e) => {
-                setDuration(e);
-              }}
-            />
-            <div className="py-2" />
-          </div>
-          <div className="py-3" />
-          <div className="input-outline-group r-15 p-3">
-            <FButtonMain style={{ width: "100%" }}>
-              Request For Quotation
-            </FButtonMain>
-          </div>
-        </form>
       </div>
-    </section>
+    </main>
   );
-};
-
-export default QuotationRequest;
+}

@@ -1,7 +1,6 @@
 "use client";
 
 import { animateScroll as scroll } from "react-scroll";
-import "./style.css";
 import { useEffect } from "react";
 import designPrinciple1 from "./images/design-principles-1.png";
 import designPrinciple2 from "./images/design-principles-2.png";
@@ -24,33 +23,33 @@ const DesignPrinciples = () => {
     });
   }, []);
   return (
-    <section className="main-spacing-x">
+    <section className="mx-auto w-full max-w-6xl px-4 sm:px-6">
       <div className="py-4" />
 
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
-        <div className="container-fluid no-space">
-          <div className="row no-space">
-            <div className="w-max-content no-space">
-              <p className="royal text-semibold">{category}</p>
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
+        <div className="w-full">
+          <div className="flex flex-wrap">
+            <div className="w-max">
+              <p className="text-royal font-semibold">{category}</p>
             </div>
-            <div className="col"></div>
-            <div className="w-max-content no-space">
-              <p className="text-semibold royal-shade-5">{duration} Read</p>
+            <div className="flex-1"></div>
+            <div className="w-max">
+              <p className="font-semibold text-royal-ink">{duration} Read</p>
             </div>
           </div>
         </div>
         <div className="py-2" />
-        <h1 className="text-bold font-family-quicksand royal-shade-5">
+        <h1 className="font-bold font-quicksand text-royal-ink text-[28px] leading-tight sm:text-[36px]">
           Introduction to Visual Design (II) - Design Principles
         </h1>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             What are design principles?
           </h4>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Design principles help designers create useful designs that are
             effective and cohesive and pass information to the viewers properly.
             <br />
@@ -59,20 +58,20 @@ const DesignPrinciples = () => {
           </p>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Unity and Variety
           </h4>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Unity ensures all elements in a design work together harmoniously,
             creating a sense of cohesion. Variety adds interest by incorporating
             differences in the design, for instance, imagine if every element in
             a design (shapes, colors, and fonts) was identical—your design would
             look boring and flat!
           </p>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Imagine a design for a travel blog post. If we used the same font
             size, color, and style for the heading, subheading, and body text,
             it would lack personality. But by introducing variety (like
@@ -82,26 +81,26 @@ const DesignPrinciples = () => {
           </p>
         </div>
 
-        <div className="container-fluid no-space">
-          <div className="row g-3 align-items-center justify-content-center">
-            <div className="article-images-container">
+        <div className="w-full">
+          <div className="flex flex-wrap gap-4 items-center justify-center">
+            <div className="mx-auto w-full max-w-[400px]">
               <img src={designPrinciple1.src} />
             </div>
           </div>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Balance
           </h4>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Balance refers to how elements are distributed in a design. It can
             be symmetrical, where both sides mirror each other, or asymmetrical,
             where different elements still balance each other visually.
           </p>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Imagine designing a poster for a music event. If we place the title
             and main image exactly in the center, the design would feel
             structured and balanced (symmetrical). But for a more dynamic feel,
@@ -111,28 +110,28 @@ const DesignPrinciples = () => {
           </p>
         </div>
 
-        <div className="container-fluid no-space">
-          <div className="row g-3 align-items-center justify-content-center">
-            <div className="article-images-container">
+        <div className="w-full">
+          <div className="flex flex-wrap gap-4 items-center justify-center">
+            <div className="mx-auto w-full max-w-[400px]">
               <img src={designPrinciple2.src} />
             </div>
-            <div className="article-images-container">
+            <div className="mx-auto w-full max-w-[400px]">
               <img src={designPrinciple3.src} />
             </div>
           </div>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Contrast
           </h4>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Contrast helps highlight differences between elements, like light
             vs. dark, large vs. small, or bold vs. thin
           </p>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Imagine designing a sale announcement poster. If everything was in
             the same color and size, nothing would stand out! But by using bold,
             bright colors for the “50% Off” and a smaller, more subtle font for
@@ -142,28 +141,28 @@ const DesignPrinciples = () => {
           </p>
         </div>
 
-        <div className="container-fluid no-space">
-          <div className="row g-3 align-items-center justify-content-center">
-            <div className="article-images-container">
+        <div className="w-full">
+          <div className="flex flex-wrap gap-4 items-center justify-center">
+            <div className="mx-auto w-full max-w-[400px]">
               <img src={designPrinciple4.src} />
             </div>
-            <div className="article-images-container">
+            <div className="mx-auto w-full max-w-[400px]">
               <img src={designPrinciple5.src} />
             </div>
           </div>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Spacing & Proximity
           </h4>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Spacing is about the amount of space between elements, while
             proximity refers to how close or far elements are from each other.
           </p>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Imagine you’re designing a flyer for a restaurant. If the contact
             details, opening hours, and menu items are all crammed together with
             no space between them, the design feels cluttered and confusing. By
@@ -174,28 +173,28 @@ const DesignPrinciples = () => {
           </p>
         </div>
 
-        <div className="container-fluid no-space">
-          <div className="row g-3 align-items-center justify-content-center">
-            <div className="article-images-container">
+        <div className="w-full">
+          <div className="flex flex-wrap gap-4 items-center justify-center">
+            <div className="mx-auto w-full max-w-[400px]">
               <img src={designPrinciple6.src} />
             </div>
-            <div className="article-images-container">
+            <div className="mx-auto w-full max-w-[400px]">
               <img src={designPrinciple7.src} />
             </div>
           </div>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Hierarchy
           </h4>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Hierarchy helps organize elements by importance, guiding viewers
             through the design in the right order.
           </p>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Imagine designing a movie poster. The movie title should be the
             biggest and boldest, followed by the release date, and finally the
             smaller cast names. If everything were the same size, viewers
@@ -204,16 +203,16 @@ const DesignPrinciples = () => {
           </p>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Emphasis
           </h4>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Emphasis directs attention to the most important part of a design.
           </p>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Imagine creating a banner ad for a new product. If the product image
             and text were all the same size and color, nothing would stand out.
             But by making the product name bold and using a bright color, you
@@ -223,17 +222,17 @@ const DesignPrinciples = () => {
           </p>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Repetition
           </h4>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Repetition is about using the same element throughout your design to
             create consistency.
           </p>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Imagine designing a website for a brand. If each page uses different
             fonts, colors, and button styles, the site will feel disjointed. But
             by repeating the same font, color scheme, and button design across
@@ -243,11 +242,11 @@ const DesignPrinciples = () => {
           </p>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold">Scale</h4>
-          <p className="py-2 text-medium gray-4">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">Scale</h4>
+          <p className="py-2 font-medium text-slate-600">
             Scale refers to the size of elements in relation to one another.
             Imagine designing an Instagram post for a clothing sale. If the
             "Sale" text and the image of the clothes were the same size, they’d
@@ -258,13 +257,13 @@ const DesignPrinciples = () => {
           </p>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold"></h4>
-          <p className="py-2 text-medium gray-4"></p>
-          <p className="py-2 text-medium gray-4"></p>
-          <p className="py-2 text-medium gray-4"></p>
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug"></h4>
+          <p className="py-2 font-medium text-slate-600"></p>
+          <p className="py-2 font-medium text-slate-600"></p>
+          <p className="py-2 font-medium text-slate-600"></p>
         </div>
       </div>
     </section>

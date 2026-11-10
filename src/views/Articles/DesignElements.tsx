@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import "./style.css";
 import designElement1 from "./images/design-elements-1.png";
 import designElement2 from "./images/design-elements-2.png";
 import designElement3 from "./images/design-elements-3.png";
@@ -29,32 +28,32 @@ const DesignElements = () => {
   }, []);
 
   return (
-    <section className="main-spacing-x royal-shade-5">
+    <section className="mx-auto w-full max-w-6xl px-4 sm:px-6 text-royal-ink">
       <div className="py-4" />
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
-        <div className="container-fluid no-space">
-          <div className="row no-space">
-            <div className="w-max-content no-space">
-              <p className="royal text-semibold">{category}</p>
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
+        <div className="w-full">
+          <div className="flex flex-wrap">
+            <div className="w-max">
+              <p className="text-royal font-semibold">{category}</p>
             </div>
-            <div className="col"></div>
-            <div className="w-max-content no-space">
-              <p className="text-semibold royal-shade-5">{duration} Read</p>
+            <div className="flex-1"></div>
+            <div className="w-max">
+              <p className="font-semibold text-royal-ink">{duration} Read</p>
             </div>
           </div>
         </div>
         <div className="py-2" />
-        <h1 className="text-bold font-family-quicksand royal-shade-5">
+        <h1 className="font-bold font-quicksand text-royal-ink text-[28px] leading-tight sm:text-[36px]">
           Introduction to Visual Design (I) - Design Elements
         </h1>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             What is design?
           </h4>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             The term design is used in many contexts. From architecture and
             structural design, to fashion, to information technology,
             infographics, presentation, branding and strategy, Product,
@@ -70,7 +69,7 @@ const DesignElements = () => {
             rough sketches, then they undergo several more process of refinement
             before being ready to be presented as finished work.
           </p>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             All design however have building block. This building blocks are the
             components that are put together to build the design. Each component
             individually may not be much on their own. But together, they create
@@ -79,23 +78,23 @@ const DesignElements = () => {
           </p>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             What are design elements?
           </h4>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Visual Design elements are the building block of every visual design
             composition. These element come together to create all designs we
             see, from simple text compositions, to eye catching graphics
             designs. So what are these design elements? Let's dive in an get
             started.
           </p>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Visual design elements includes:
           </p>
-          <ul className="text-p text-medium gray-4">
+          <ul className="text-[15px] font-medium text-slate-600">
             <li>Line</li>
             <li>Shape</li>
             <li>Form</li>
@@ -106,11 +105,11 @@ const DesignElements = () => {
           </ul>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold">Line</h4>
-          <p className="py-2 text-medium gray-4">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">Line</h4>
+          <p className="py-2 font-medium text-slate-600">
             A line is a connection between two points. Line are essential in
             designing. They serve many purpose and can be used to create a wide
             variety of different designs. Lines can be used to create boundary
@@ -124,23 +123,23 @@ const DesignElements = () => {
             includes line art, 2d illustrations, icons etc.{" "}
           </p>
 
-          <div className="container-fluid no-space">
-            <div className="row g-3 align-items-center justify-content-center">
-              <div className="article-images-container">
+          <div className="w-full">
+            <div className="flex flex-wrap gap-4 items-center justify-center">
+              <div className="mx-auto w-full max-w-[400px]">
                 <img src={designElement1.src} />
               </div>
-              <div className="article-images-container">
+              <div className="mx-auto w-full max-w-[400px]">
                 <img src={designElement2.src} />
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold">Shape</h4>
-          <p className="py-2 text-medium gray-4">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">Shape</h4>
+          <p className="py-2 font-medium text-slate-600">
             A shape is formed when a line is enclosed. Some common shapes are
             circles, rectangles, triangles. An infinite number of shapes can be
             formed by combining other shapes, tweaking the boundaries of the
@@ -148,25 +147,25 @@ const DesignElements = () => {
             bring a design to life.
           </p>
 
-          <div className="container-fluid no-space">
-            <div className="row g-3 align-items-center justify-content-center">
-              <div className="article-images-container">
+          <div className="w-full">
+            <div className="flex flex-wrap gap-4 items-center justify-center">
+              <div className="mx-auto w-full max-w-[400px]">
                 <img src={designElement3.src} />
               </div>
-              <div className="article-images-container">
+              <div className="mx-auto w-full max-w-[400px]">
                 <img src={designElement4.src} />
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Typography
           </h4>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Typography in design refers to working with text, arranging text to
             meet the goals of readability, legibility, and even aesthetics and
             visual appeal. It involves the use of fonts, and varying styles of
@@ -176,10 +175,10 @@ const DesignElements = () => {
             easy to read and replicate across different media but also pleasing
             to the eyes.
           </p>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             The elements of typography are :
           </p>
-          <ul className="text-p text-medium gray-4">
+          <ul className="text-[15px] font-medium text-slate-600">
             <li>Fonts and Typefaces</li>
             <li>Leading, Kerning and Tracking</li>
             <li>Hierarchy</li>
@@ -188,13 +187,13 @@ const DesignElements = () => {
           </ul>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h6 className="font-family-quicksand gray-2 text-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Fonts And Typeface
           </h6>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Font is a single typeface. A typeface is a collection of related
             fonts. I you used Cambria, font size - 12, style - normal. That
             would be a font. But a collection of different weights, and style of
@@ -202,13 +201,13 @@ const DesignElements = () => {
             <br />
             Some properties of fonts are:
             <br />
-            <span className="text-semibold">Weight:</span> Thin, Regular, Semi
+            <span className="font-semibold">Weight:</span> Thin, Regular, Semi
             Bold, Bold, Extra Bold
             <br />
-            <span className="text-semibold">Style:</span> Italic, Normal,
+            <span className="font-semibold">Style:</span> Italic, Normal,
             Oblique
             <br />
-            <span className="text-semibold">Size:</span> Font Size is
+            <span className="font-semibold">Size:</span> Font Size is
             conventionally measured in pixels(px). By default paragraph fonts
             are usually 12px, Subtitle - 18px, Titles - 48px. You can set fonts
             to any size depending on the need at hand.
@@ -222,55 +221,55 @@ const DesignElements = () => {
           </p>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h6 className="font-family-quicksand gray-2 text-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Leading, Kerning and Tracking
           </h6>
-          <p className="py-2 text-medium gray-4">
-            <span className="text-semibold">Kerning:</span> The adjustment of
+          <p className="py-2 font-medium text-slate-600">
+            <span className="font-semibold">Kerning:</span> The adjustment of
             space between individual characters.
             <br />
-            <span className="text-semibold">Leading:</span> The vertical spacing
+            <span className="font-semibold">Leading:</span> The vertical spacing
             between lines of text.
             <br />
-            <span className="text-semibold">Letterspacing (Tracking):</span> The
+            <span className="font-semibold">Letterspacing (Tracking):</span> The
             uniform adjustment of space across a range of characters in a block
             of text.
           </p>
         </div>
 
-        <div className="container-fluid no-space">
-          <div className="row g-3 align-items-center justify-content-center">
-            <div className="article-images-container">
+        <div className="w-full">
+          <div className="flex flex-wrap gap-4 items-center justify-center">
+            <div className="mx-auto w-full max-w-[400px]">
               <img src={designElement5.src} />
             </div>
-            <div className="article-images-container">
+            <div className="mx-auto w-full max-w-[400px]">
               <img src={designElement6.src} />
             </div>
           </div>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h6 className="font-family-quicksand gray-2 text-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Hierarchy
           </h6>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Using different font sizes, weights, or styles to establish a sense
             of importance in the text.
           </p>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h6 className="font-family-quicksand gray-2 text-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Consistency
           </h6>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Consistency in typography refers to maintaining uniformity in font
             choices, sizes, line heights, and spacing throughout a design. It
             ensures that the design feels cohesive, improves readability, and
@@ -279,23 +278,23 @@ const DesignElements = () => {
           </p>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h6 className="font-family-quicksand gray-2 text-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Alignment
           </h6>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Alignment: How text is aligned on a page (left, right, center, or
             justified).
           </p>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold">Color</h4>
-          <p className="py-2 text-medium gray-4">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">Color</h4>
+          <p className="py-2 font-medium text-slate-600">
             Color also known as hue is a quality observed on object surfaces.
             Colors can be combined in very interesting ways to create unique and
             eye catching designs. There are different topics to understand when
@@ -303,28 +302,28 @@ const DesignElements = () => {
           </p>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h6 className="font-family-quicksand gray-2 text-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Primary (Brand), Secondary, Accent Colors
           </h6>
-          <p className="py-2 text-medium gray-4">
-            <span className="text-semibold">Primary (Brand) Color: </span> This
+          <p className="py-2 font-medium text-slate-600">
+            <span className="font-semibold">Primary (Brand) Color: </span> This
             is the main color used to represent your brand. It’s the most
             dominant color in your design and is often used in logos, website
             headers, and major elements. The primary color helps create a strong
             brand identity and is the color most associated with your business.
           </p>
-          <p className="py-2 text-medium gray-4">
-            <span className="text-semibold">Secondary Color: </span>The
+          <p className="py-2 font-medium text-slate-600">
+            <span className="font-semibold">Secondary Color: </span>The
             secondary complements the primary color. It’s used to highlight key
             elements, such as buttons, links, or calls to action. Secondary
             colors provide contrast and help guide users’ attention to specific
             areas without overpowering the primary color.
           </p>
-          <p className="py-2 text-medium gray-4">
-            <span className="text-semibold">Accent Color: </span>Accent colors
+          <p className="py-2 font-medium text-slate-600">
+            <span className="font-semibold">Accent Color: </span>Accent colors
             add additional depth and variety to a design. These are often used
             sparingly and can help break up large areas of content or create
             visual interest without distracting from the brand's primary or
@@ -333,44 +332,44 @@ const DesignElements = () => {
           </p>
         </div>
 
-        <div className="row g-3 align-items-center justify-content-center">
-          <div className="article-images-container">
+        <div className="flex flex-wrap gap-4 items-center justify-center">
+          <div className="mx-auto w-full max-w-[400px]">
             <img src={designElement7.src} />
           </div>
-          <div className="article-images-container">
+          <div className="mx-auto w-full max-w-[400px]">
             <img src={designElement8.src} />
           </div>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h6 className="font-family-quicksand gray-2 text-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Shades, Tints and Tones
           </h6>
-          <p className="py-2 text-medium gray-4">
-            <span className="text-semibold">Shades: </span> A shade is created
+          <p className="py-2 font-medium text-slate-600">
+            <span className="font-semibold">Shades: </span> A shade is created
             by adding black to a color, making it darker. This is often used for
             more dramatic or subdued effects.
             <br />
-            <span className="text-semibold">Tints: </span>A tint is created by
+            <span className="font-semibold">Tints: </span>A tint is created by
             adding white to a color, making it lighter. This is common in
             creating softer, pastel tones.
             <br />
-            <span className="text-semibold">Tones: </span>A tone is created by
+            <span className="font-semibold">Tones: </span>A tone is created by
             adding gray (a mixture of black and white) to a color. Tones help
             create more muted, sophisticated colors that can be used for subtle
             design work.
           </p>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h6 className="font-family-quicksand gray-2 text-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Color Palette
           </h6>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             A color palette is a collection of colors chosen for a design or
             brand. It typically includes primary, secondary, and accent colors,
             ensuring visual harmony. Palettes are essential for maintaining
@@ -380,22 +379,22 @@ const DesignElements = () => {
           </p>
         </div>
 
-        <div className="row g-3 align-items-center justify-content-center">
-          <div className="article-images-container">
+        <div className="flex flex-wrap gap-4 items-center justify-center">
+          <div className="mx-auto w-full max-w-[400px]">
             <img src={designElement9.src} />
           </div>
-          <div className="article-images-container">
+          <div className="mx-auto w-full max-w-[400px]">
             <img src={designElement10.src} />
           </div>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h6 className="font-family-quicksand gray-2 text-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Color Theory
           </h6>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Color theory involves understanding the relationships between colors
             and how they interact. It covers concepts like the color wheel,
             complementary colors, analogous colors, and color harmony. This
@@ -409,55 +408,55 @@ const DesignElements = () => {
           </p>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold">Form</h4>
-          <p className="py-2 text-medium gray-4">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">Form</h4>
+          <p className="py-2 font-medium text-slate-600">
             Form in design refers to creating a sense of realism by using
             three-dimensional objects. It allows flat, 2D designs to appear more
             lifelike and tangible. <br /> Realism can be achieved through
             several techniques:
           </p>
-          <ul className="text-p text-medium gray-4">
+          <ul className="text-[15px] font-medium text-slate-600">
             <li>
-              <span className="text-semibold">Lighting: </span>Simulating light
+              <span className="font-semibold">Lighting: </span>Simulating light
               sources to add highlights and shadows.
             </li>
             <li>
-              <span className="text-semibold">Shadows: </span>Creating depth and
+              <span className="font-semibold">Shadows: </span>Creating depth and
               grounding objects by adding shadows.
             </li>
             <li>
-              <span className="text-semibold">Depth: </span>Using layering,
+              <span className="font-semibold">Depth: </span>Using layering,
               gradients, and overlap to give the illusion of depth.
             </li>
             <li>
-              <span className="text-semibold">Perspective: </span>Altering
+              <span className="font-semibold">Perspective: </span>Altering
               angles and scaling to mimic how objects appear in real life.
             </li>
           </ul>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             These techniques make designs appear more dynamic and realistic.
             Modern day designs use realism to achieve an immersive experience
             for users and is becoming very popular in web design.
           </p>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Texture
           </h4>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Texture in design refers to the surface quality of an object. In
             graphic and digital design, texture creates the illusion of a
             surface that can be felt, even though the medium is flat. It adds
             depth, dimension, and realism to designs, making elements more
             engaging and lifelike.
           </p>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Textures can be rough, smooth, gritty, soft, or metallic, among
             other types. They are often achieved through patterns, gradients, or
             image overlays. In UI/UX design, texture is primarily visual,
@@ -465,41 +464,41 @@ const DesignElements = () => {
             weight to certain elements, helping guide attention and evoke
             emotions.
           </p>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             For example: <br />
             Paper texture in a background gives a handmade feel. <br />
             Wood grain in a product image adds warmth and earthiness. <br />
             Subtle gradients mimic soft textures for buttons or cards. <br />
           </p>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Textures should be used carefully to avoid overwhelming the design
             or distracting from the core content.
           </p>
         </div>
       </div>
-      <div className="article-contents-main px-0 px-sm-2 px-md-4 px-lg-5">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
-          <h4 className="font-family-quicksand gray-2 text-semibold">Space</h4>
-          <p className="py-2 text-medium gray-4">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">Space</h4>
+          <p className="py-2 font-medium text-slate-600">
             Also know as whitespace or negative space. Space in design is
             necessary to ensure the design is not cluttered. A cluttered design
             is always not ideal. Designs need space to breath. Elements in a
             design should be given a healthy room to breath
           </p>
-          <p className="py-2 text-medium gray-4">
+          <p className="py-2 font-medium text-slate-600">
             Here are key ways to implement better whitespace in design:
           </p>
 
-          <ul className="text-p text-medium gray-4">
+          <ul className="text-[15px] font-medium text-slate-600">
             <li>
-              <span className="text-semibold">Use a Grid System: </span>Grids
+              <span className="font-semibold">Use a Grid System: </span>Grids
               create a structured layout, naturally introducing consistent
               whitespace between elements. They help maintain uniform spacing,
               making the design more balanced and readable.
             </li>
             <li>
-              <span className="text-semibold">
+              <span className="font-semibold">
                 Prioritize Content Hierarchy:{" "}
               </span>
               Increase whitespace around important elements (like headers or
@@ -507,13 +506,13 @@ const DesignElements = () => {
               hierarchy. This separates primary content from secondary details.
             </li>
             <li>
-              <span className="text-semibold">Embrace Minimalism: </span>Avoid
+              <span className="font-semibold">Embrace Minimalism: </span>Avoid
               overcrowding by using fewer elements and embracing simplicity.
               Allow content to "breathe" by not filling every part of the
               canvas, which improves focus and visual clarity.
             </li>
             <li>
-              <span className="text-semibold">
+              <span className="font-semibold">
                 Adjust Line Spacing and Letter Spacing:{" "}
               </span>
               Increase line height (leading) and letter spacing (tracking) for
@@ -521,13 +520,13 @@ const DesignElements = () => {
               while generous spacing can enhance comfort and flow.
             </li>
             <li>
-              <span className="text-semibold">Use Padding and Margins: </span>
+              <span className="font-semibold">Use Padding and Margins: </span>
               Properly apply padding within elements (e.g., buttons or text
               blocks) and margins between elements to create adequate gaps,
               ensuring a more open and clean design.
             </li>
             <li>
-              <span className="text-semibold">
+              <span className="font-semibold">
                 Consistent Spacing Between Sections:{" "}
               </span>
               Ensure consistent vertical and horizontal whitespace between
@@ -535,7 +534,7 @@ const DesignElements = () => {
               and prevents visual clutter.
             </li>
             <li>
-              <span className="text-semibold">
+              <span className="font-semibold">
                 Balance Positive and Negative Space:{" "}
               </span>
               Pay attention to the relationship between positive space (content)
@@ -543,7 +542,7 @@ const DesignElements = () => {
               enhance the design’s composition and aesthetic.
             </li>
             <li>
-              <span className="text-semibold">Whitespace in UI Elements: </span>
+              <span className="font-semibold">Whitespace in UI Elements: </span>
               Space out interactive elements like buttons, forms, and links.
               Adding whitespace around these areas ensures they stand out and
               improves usability by making them easier to tap or click.

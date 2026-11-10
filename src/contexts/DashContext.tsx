@@ -1,17 +1,15 @@
-import React, { createContext, useState, useContext } from "react";
+"use client";
+
+import React, { createContext, useState, useContext, useCallback, useMemo } from "react";
 
 interface DashContextType {
   isDash: boolean;
   updateDashStatus: (val: boolean) => void;
 }
 
-const dummyUpdate = (val: boolean): void => {
-  console.log(val);
-};
-
 const defaultContextValue: DashContextType = {
   isDash: false,
-  updateDashStatus: dummyUpdate,
+  updateDashStatus: () => {},
 };
 
 const DashContext = createContext<DashContextType>(defaultContextValue);
@@ -29,13 +27,16 @@ export function DashProvider({
 }: {
   children: React.ReactNode;
 }): React.JSX.Element {
-  let [isDash, setIsDash] = useState(false);
-  function updateDashStatus(val: boolean) {
+  const [isDash, setIsDash] = useState(false);
+
+  const updateDashStatus = useCallback((val: boolean) => {
     setIsDash(val);
-  }
-  return (
-    <DashContext.Provider value={{ isDash, updateDashStatus }}>
-      {children}
-    </DashContext.Provider>
+  }, []);
+
+  const value = useMemo(
+    () => ({ isDash, updateDashStatus }),
+    [isDash, updateDashStatus],
   );
+
+  return <DashContext.Provider value={value}>{children}</DashContext.Provider>;
 }

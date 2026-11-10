@@ -1,17 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 
-import "../src/externals/bootstrap-grid.min.css";
-import "../src/App.css";
 import "./tailwind.css";
 
 import { Providers } from "@/components/Providers";
 import { AppShell } from "@/components/AppShell";
+import { getSiteUrl } from "@/lib/siteUrl";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  ),
+  metadataBase: new URL(getSiteUrl()),
   title: {
     default: "Five and Six Technologies",
     template: "%s | Five and Six Technologies",
@@ -46,10 +43,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="font-sans antd-normal">
+      <body className="font-sans">
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap"
         />
         <Providers>
           <AppShell>{children}</AppShell>

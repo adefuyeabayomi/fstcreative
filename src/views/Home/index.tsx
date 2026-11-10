@@ -1,6 +1,15 @@
 "use client";
 
-import "./style.css";
+import { useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowRight,
+  faCheck,
+  faLocationArrow,
+  faStarHalfStroke,
+} from "@fortawesome/free-solid-svg-icons";
 
 import heroImg from "../../assets/images/Hero-section.png";
 import s2 from "../../assets/images/s2.png";
@@ -11,498 +20,369 @@ import service4 from "../../assets/images/service4.png";
 import contactCall from "../../assets/images/contact-call.png";
 import contactWhatsapp from "../../assets/images/contact-whatsapp.png";
 import contactEmail from "../../assets/images/contact-email.png";
-import { animateScroll as scroll } from "react-scroll";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faLocationArrow,
-  faStarHalfStroke,
-} from "@fortawesome/free-solid-svg-icons";
-import FButtonMain from "../../components/Button/Main";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useHash } from "@/hooks/useHash";
-import { useEffect } from "react";
+import { widthControlClass } from "@/styles/widthControl";
+import { cn } from "@/lib/cn";
+import { Button } from "@/components/ui/Button";
 import { useDash } from "../../contexts/DashContext";
 
-const Home = () => {
-  let router = useRouter();
-  let hash = useHash();
+const services: Array<{
+  title: string;
+  group: string | null;
+  cta: string;
+  points: string[];
+  image: { src: string };
+}> = [
+  {
+    title: "Branding & Identity Design",
+    group: "branding",
+    cta: "See service plans",
+    image: service1,
+    points: [
+      "Strategic brand development",
+      "Custom logo creation — distinctive and timeless logos tailored to your brand's personality and vision",
+      "Reusable visual identity systems with cohesive iconography, patterns and graphic elements",
+      "Brand story design",
+      "Packaging and merchandise branding",
+    ],
+  },
+  {
+    title: "Creative Graphics Design",
+    group: "creativeGraphicsDesign",
+    cta: "See service plans",
+    image: service2,
+    points: [
+      "High-impact poster and flyer designs for events, products and campaigns",
+      "Social media graphics optimised for every platform, with consistent branding",
+      "Advertorial-style visuals built for click-through and conversion",
+    ],
+  },
+  {
+    title: "UI/UX Design",
+    group: "uiUxDesign",
+    cta: "See service plans",
+    image: service3,
+    points: [
+      "Full user research — surveys, interviews and journey maps",
+      "Low-fidelity and high-fidelity designs",
+      "Fully interactive prototypes for proper user testing",
+      "Style guide and design system with reusable components",
+    ],
+  },
+  {
+    title: "Web Development",
+    group: "webDevelopment",
+    cta: "See service plans",
+    image: service4,
+    points: [
+      "Accessible, user-friendly website design",
+      "Simplified deployment and ongoing assistance",
+      "SEO optimisation and SSL security",
+      "API and database integrations",
+    ],
+  },
+  {
+    title: "Design and Coding Classes",
+    group: null,
+    cta: "Register for a bootcamp",
+    image: service4,
+    points: [
+      "Design fundamentals — bootcamp",
+      "Web design fundamentals (HTML & CSS) — bootcamp",
+      "JavaScript and the web, React.js — bootcamp",
+      "Beginner to advanced UI design with Figma — bootcamp",
+    ],
+  },
+];
 
-  let { updateDashStatus } = useDash();
+const contactChannels = [
+  {
+    label: "Call",
+    value: "0813 624 3796",
+    href: "tel:+2348136243796",
+    image: contactCall,
+  },
+  {
+    label: "WhatsApp",
+    value: "0813 624 3796",
+    href: "https://wa.me/+2348136243796",
+    image: contactWhatsapp,
+  },
+  {
+    label: "Email",
+    value: "yomi@fiveandsixtechnologies.com",
+    href: "mailto:yomi@fiveandsixtechnologies.com",
+    image: contactEmail,
+  },
+];
+
+export default function Home(): React.JSX.Element {
+  const router = useRouter();
+  const hash = useHash();
+  const { updateDashStatus } = useDash();
+
   useEffect(() => {
     updateDashStatus(false);
-    // Scroll to top when the component mounts
-    scroll.scrollToTop({
-      duration: 1000, // duration of the scrolling animation in milliseconds
-      smooth: "easeInOutQuart", // the type of easing
-    });
-  }, []);
+    window.scrollTo(0, 0);
+  }, [updateDashStatus]);
+
   useEffect(() => {
-    if (hash === "#services") {
-      scrollToServices();
-    } else if (hash === "#contact") {
-      scrollToContact();
-    } else {
-      scroll.scrollToTop({
-        duration: 1000, // duration of the scrolling animation in milliseconds
-        smooth: "easeInOutQuart", // the type of easing
-      });
-    }
+    const scrollTo = (selector: string) => {
+      const element = document.querySelector(selector) as HTMLElement | null;
+      if (!element) return;
+      window.scrollTo({ top: element.offsetTop - 70, behavior: "smooth" });
+    };
+
+    if (hash === "#services") scrollTo("#services");
+    else if (hash === "#contact") scrollTo("#contact");
+    else window.scrollTo(0, 0);
   }, [hash]);
-  function scrollToServices() {
-    let element = document.querySelector("#services") as HTMLElement;
-    window.scrollTo({
-      top: element.offsetTop - 70, // Adjust the offset value as needed
-      behavior: "smooth",
-    });
-  }
 
-  function scrollToContact() {
-    let element = document.querySelector("#contact") as HTMLElement;
-    window.scrollTo({
-      top: element.offsetTop - 70, // Adjust the offset value as needed
-      behavior: "smooth",
-    });
-  }
-
-  function goToPricing(qGroup: string) {
-    router.push(`/pricing#${qGroup}`);
-  }
   return (
-    <main id="home" className="homepage-container">
-      <div className="main-spacing-x">
-        <div className="py-0 py-md-2 py-lg-4" />
-        <div className="container-fluid no-space">
-          <div className="row no-space align-items-center">
-            <div className="col-12 col-md-6">
-              <div className="hero-text-contents-container text-lg-left text-center">
-                <div className="py-4" />
-                <div className="hero-accent-container center d-block d-md-none">
-                  <p>
-                    <FontAwesomeIcon icon={faStarHalfStroke} /> Hi, Welcome{" "}
-                    <span className="d-inline d-md-none">to FST</span>
-                    <span className="d-none d-md-inline">
-                      to Five & Six Technologies
-                    </span>{" "}
-                    <FontAwesomeIcon icon={faStarHalfStroke} />
-                  </p>
-                </div>
-                <div className="hero-accent-container d-none d-md-block">
-                  <p>
-                    <FontAwesomeIcon icon={faStarHalfStroke} /> Hi, Welcome{" "}
-                    <span className="d-inline d-md-none">to FST</span>
-                    <span className="d-none d-md-inline">
-                      to Five & Six Technologies
-                    </span>{" "}
-                    <FontAwesomeIcon icon={faStarHalfStroke} />
-                  </p>
-                </div>
-                <div className="py-2" />
-                <h1 className="text-bold font-family-quicksand">
-                  WE CREATE <span className="text-main">RESULT DRIVEN</span>{" "}
-                  DIGITAL SOLUTIONS
-                </h1>
-                <div className="py-2" />
-                <p className="text-regular">
-                  At Five & Six Technologies, our mission is to drive your
-                  business forward. We build websites and mobile apps that
-                  increase sales, enhance brand visibility, engage customers
-                  effectively, and generate valuable leads, ensuring tangible
-                  growth and success for your business.
-                </p>
-                <div className="py-2" />
-                <div
-                  className="w-max-content center d-block d-md-none"
-                  onClick={scrollToServices}
-                >
-                  <FButtonMain
-                    style={{
-                      borderRadius: "50px",
-                      paddingLeft: "70px",
-                      paddingRight: "70px",
-                    }}
-                    icon={<FontAwesomeIcon icon={faLocationArrow} />}
-                    iconLeft={false}
-                  >
-                    Our Services
-                  </FButtonMain>
-                </div>
-                <div
-                  className="w-max-content d-none d-md-block"
-                  onClick={scrollToServices}
-                >
-                  <FButtonMain
-                    style={{
-                      borderRadius: "50px",
-                      paddingLeft: "70px",
-                      paddingRight: "70px",
-                    }}
-                    icon={<FontAwesomeIcon icon={faLocationArrow} />}
-                    iconLeft={false}
-                  >
-                    Our Services
-                  </FButtonMain>
-                </div>
-              </div>
-            </div>
-            <div className="col-12 col-md-6">
-              <div className="py-4 py-md-0" />
-              <div className="img-container">
-                <img src={heroImg.src} />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="d-divider-1 gray-11-bg my-5" />
+    <main id="home" className="overflow-hidden bg-white text-royal-ink">
+      {/* Hero */}
+      <section className="relative">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-40 -top-32 h-96 w-96 rounded-full bg-royal/5 blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -left-40 top-40 h-96 w-96 rounded-full bg-brand/5 blur-3xl"
+        />
 
-        <div id="section-2" className="container-fluid no-space">
-          <div className="row no-space align-items-end">
-            <div className="col-12 col-lg-6 order-last order-md-first d-md-none d-lg-block">
-              <div className="py-4 py-md-0" />
-              <div className="img-container">
-                <img src={s2.src} />
-              </div>
-            </div>
-            <div className="col-12 col-lg-6">
-              <div className="hero-text-contents-container text-lg-left text-center">
-                <div className="py-2" />
-                <h1 className="font-family-quicksand text-semibold">
-                  TAKE ADVANTAGE OF{" "}
-                  <span className="text-main">MODERN INNOVATIONS</span> AND
-                  SPEED UP YOUR BUSINESS OPERATIONS AND EXPOSURE.
-                </h1>
-                <div className="py-2" />
-                <p className="text-regular">
-                  Having a website and a mobile application brings you just
-                  clicks away from getting a new client, making a new sale,
-                  getting one more prospect to see your business. Let's help you
-                  get visibility for your business.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="d-divider-1 gray-11-bg my-5" />
+        <div className={cn(widthControlClass, "relative")}>
+          <div className="grid items-center gap-10 py-12 lg:grid-cols-2 lg:gap-14 lg:py-20">
+            <div className="text-center lg:text-left">
+              <span className="inline-flex items-center gap-2 rounded-full bg-royal/5 px-5 py-2 text-[13px] font-medium text-royal">
+                <FontAwesomeIcon icon={faStarHalfStroke} className="h-3 w-3" />
+                Hi, welcome to Five &amp; Six Technologies
+                <FontAwesomeIcon icon={faStarHalfStroke} className="h-3 w-3" />
+              </span>
 
-        <div id="services">
-          <div className="text-center service-text container">
-            <div className="py-2" />
-            <h1 className="font-family-quicksand text-semibold">
-              OUR <span className="text-main">SERVICES</span>
-            </h1>
-            <div className="py-2" />
-            <p className="text-regular">
-              Discover how our diverse suite of services can help you navigate
-              the digital landscape with ease, offering innovative solutions
-              tailored to your unique needs.
-            </p>
-          </div>
-          <div className="py-4" />
-          <div className="container-fluid no-space">
-            <div className="row no-space align-items-center col-12 col-xxl-10 center">
-              <div className="col-12 col-lg-5 order-last order-lg-first">
-                <div className="py-2 py-lg-0" />
-                <div className="s-content">
-                  <h5 className="font-family-quicksand text-semibold">
-                    Branding & Identity Design
-                  </h5>
-                  <div className="py-1" />
-                  <ul className="service-list text-p text-regular">
-                    <li className="text-medium">Strategic Brand Development</li>
-                    <li className="text-medium">
-                      Custom Logo Creation. Distinctive and Timeless logos
-                      tailored to your brand’s personality and vision.
-                    </li>
-                    <li className="text-medium">
-                      Visual Identity Systems (Reusable) with cohesive branding
-                      assets, including iconography, patterns, and graphic
-                      elements, for consistent communication
-                    </li>
-                    <li className="text-medium">Brand Story Design</li>
-                    <li className="text-medium">
-                      Packaging & Merchandise Branding
-                    </li>
-                  </ul>
-                  <div className="py-2" />
-                  <FButtonMain
-                    style={{ paddingLeft: "70px", paddingRight: "70px" }}
-                    actionFn={() => {
-                      goToPricing("branding");
-                    }}
-                  >
-                    See Service Plans
-                  </FButtonMain>
-                </div>
-              </div>
-              <div className="col-12 col-lg-7">
-                <div className="img-container s-image">
-                  <img src={service1.src} />
-                </div>
+              <h1 className="mt-6 font-quicksand text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] text-royal-ink sm:text-[44px] lg:text-[52px]">
+                WE CREATE <span className="text-royal">RESULT DRIVEN</span>{" "}
+                DIGITAL SOLUTIONS
+              </h1>
+
+              <p className="mx-auto mt-5 max-w-xl text-[15px] leading-7 text-ink-muted lg:mx-0">
+                At Five &amp; Six Technologies, our mission is to drive your
+                business forward. We build websites and mobile apps that increase
+                sales, enhance brand visibility, engage customers effectively and
+                generate valuable leads — ensuring tangible growth and success.
+              </p>
+
+              <div className="mt-8 flex justify-center lg:justify-start">
+                <Button
+                  type="button"
+                  variant="royal"
+                  size="lg"
+                  shape="pill"
+                  onClick={() =>
+                    document
+                      .querySelector("#services")
+                      ?.scrollIntoView({ behavior: "smooth", block: "start" })
+                  }
+                >
+                  Our services
+                  <FontAwesomeIcon icon={faLocationArrow} className="h-3.5 w-3.5" />
+                </Button>
               </div>
             </div>
-          </div>
-          <div className="py-4" />
-          <div className="container-fluid no-space">
-            <div className="row no-space align-items-center col-12 col-xxl-10 center">
-              <div className="col-12 col-lg-5 order-last">
-                <div className="py-2 py-lg-0" />
-                <div className="s-content">
-                  <h5 className="font-family-quicksand text-semibold">
-                    Creative Graphics Design
-                  </h5>
-                  <div className="py-1" />
-                  <ul className="service-list text-p text-regular">
-                    <li className="text-medium">
-                      High-Impact Poster & Flyer Designs to promote events,
-                      products, or campaigns with maximum visual appeal.
-                    </li>
-                    <li className="text-medium">
-                      Social Media Graphics optimized for all social platforms,
-                      ensuring consistent branding across all channels.
-                    </li>
-                    <li className="text-medium">
-                      Advertorial Style Graphics Stunning visuals specifically
-                      created for ads, ensuring high click-through rates and
-                      conversions.
-                    </li>
-                  </ul>
-                  <div className="py-2" />
-                  <FButtonMain
-                    style={{ paddingLeft: "70px", paddingRight: "70px" }}
-                    actionFn={() => {
-                      goToPricing("creativeGraphicsDesign");
-                    }}
-                  >
-                    See Service Plans
-                  </FButtonMain>
-                </div>
-              </div>
-              <div className="col-12 col-lg-7">
-                <div className="img-container s-image">
-                  <img src={service2.src} />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="py-4" />
-          <div className="container-fluid no-space">
-            <div className="row no-space align-items-center col-12 col-xxl-10 center">
-              <div className="col-12 col-lg-5 order-last order-lg-first">
-                <div className="py-2 py-lg-0" />
-                <div className="s-content">
-                  <h5 className="font-family-quicksand text-semibold">
-                    UI/UX Design
-                  </h5>
-                  <div className="py-1" />
-                  <ul className="service-list text-p text-regular">
-                    <li className="text-medium">
-                      Full User Research (surveys, interviews, journey maps)
-                    </li>
-                    <li className="text-medium">Low-Fi and High Fi Designs </li>
-                    <li className="text-medium">
-                      Fully Interactive Prototyping for Proper User Testing.
-                    </li>
-                    <li className="text-medium">
-                      Style Guide + Design System (detailed with icons and
-                      reusable components for scalability)
-                    </li>
-                  </ul>
-                  <div className="py-2" />
-                  <FButtonMain
-                    style={{ paddingLeft: "70px", paddingRight: "70px" }}
-                    actionFn={() => {
-                      goToPricing("uiUxDesign");
-                    }}
-                  >
-                    See Service Plans
-                  </FButtonMain>
-                </div>
-              </div>
-              <div className="col-12 col-lg-7">
-                <div className="img-container s-image">
-                  <img src={service3.src} />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="py-4" />
-          <div className="container-fluid no-space">
-            <div className="row no-space align-items-center col-12 col-xxl-10 center">
-              <div className="col-12 col-lg-5 order-last">
-                <div className="py-2 py-lg-0" />
-                <div className="s-content">
-                  <h5 className="font-family-quicksand text-semibold">
-                    Web Development
-                  </h5>
-                  <div className="py-1" />
-                  <ul className="service-list text-p text-regular">
-                    <li className="text-medium">
-                      Fully Accessible Website Design. User Friendly Interface
-                      which ensures A great experience for your customers{" "}
-                    </li>
-                    <li className="text-medium">
-                      Simplified Deployment and Assistance
-                    </li>
-                    <li className="text-medium">
-                      SEO Optimization and SSL Security{" "}
-                    </li>
-                    <li className="text-medium">
-                      API and Database Integrations
-                    </li>
-                  </ul>
-                  <div className="py-2" />
-                  <FButtonMain
-                    style={{ paddingLeft: "70px", paddingRight: "70px" }}
-                    actionFn={() => {
-                      goToPricing("webDevelopment");
-                    }}
-                  >
-                    See Service Plans
-                  </FButtonMain>
-                </div>
-              </div>
-              <div className="col-12 col-lg-7">
-                <div className="img-container s-image">
-                  <img src={service4.src} />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="py-4" />
-          <div className="container-fluid no-space">
-            <div className="row no-space align-items-center col-12 col-xxl-10 center">
-              <div className="col-12 col-lg-5 order-last order-lg-first">
-                <div className="py-2 py-lg-0" />
-                <div className="s-content">
-                  <h5 className="font-family-quicksand text-semibold">
-                    Design and Coding Classes
-                  </h5>
-                  <div className="py-1" />
-                  <ul className="service-list text-p text-regular">
-                    <li className="text-medium">
-                      Design Fundamentals - Bootcamp{" "}
-                    </li>
-                    <li className="text-medium">
-                      Web Design Fundamentals (HTML & CSS) - Bootcamp{" "}
-                    </li>
-                    <li className="text-medium">
-                      JavaScript and The Web, React.js - Bootcamp{" "}
-                    </li>
-                    <li className="text-medium">
-                      Beginner To Advanced UI Design With Figma - Bootcamp
-                    </li>
-                  </ul>
-                  <div className="py-2" />
-                  <FButtonMain
-                    style={{ paddingLeft: "70px", paddingRight: "70px" }}
-                    actionFn={() => {
-                      router.push("/bootcamps");
-                    }}
-                  >
-                    Register For a Bootcamp
-                  </FButtonMain>
-                </div>
-              </div>
-              <div className="col-12 col-lg-7">
-                <div className="img-container s-image">
-                  <img src={service4.src} />
-                </div>
+
+            <div className="relative">
+              <div className="rounded-canvas border border-white/70 bg-surface-canvas p-3 shadow-floating">
+                <img
+                  src={heroImg.src}
+                  alt="Five and Six Technologies digital solutions"
+                  className="h-auto w-full rounded-card object-cover"
+                />
               </div>
             </div>
           </div>
         </div>
-        <div className="d-divider-1 gray-11-bg my-5" />
-        <div id="contact">
-          <div className="service-text-container">
-            <div className="py-2" />
-            <h1 className="text-center font-family-quicksand text-semibold">
-              GET IN <span className="text-main">CONTACT</span>
-            </h1>
-            <div className="py-2" />
-            <p className="text-center text-regular">
-              Reach us via the following channels for further enquires, feedback
-              or complaints.
-            </p>
-            <div className="py-3" />
-            <div className="container-fluid no-space">
-              <div className="row g-2">
-                <div className="col-12 col-md-4">
-                  <div className="py-2 py-md-0" />
-                  <div className="contact-item">
-                    <div className="w-max-content center">
-                      <div className="img-container">
-                        <img className="contact-image" src={contactCall.src} />
-                      </div>
-                    </div>
-                    <div className="px-2 text-center">
-                      <h6 className="font-family-quicksand text-semibold">
-                        Call
-                      </h6>
-                      <p className="text-regular">
-                        <Link
-                          className="text-none text-regular mw-150 text-dark"
-                          href={"tel:+2348136243796"}
-                        >
-                          08136243796
-                        </Link>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="py-2 py-md-0" />
-                  <div className="contact-item">
-                    <div className="w-max-content center">
-                      <div className="img-container">
-                        <img className="contact-image" src={contactWhatsapp.src} />
-                      </div>
-                    </div>
-                    <div className="px-2 text-center">
-                      <h6 className="font-family-quicksand text-semibold">
-                        WhatsApp
-                      </h6>
-                      <p className="text-regular">
-                        <Link
-                          className="text-none text-regular mw-150 text-dark"
-                          href={"https://wa.me/+2348136243796"}
-                        >
-                          08136243796
-                        </Link>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="py-2 py-md-0" />
-                  <div className="contact-item">
-                    <div className="w-max-content center">
-                      <div className="img-container">
-                        <img className="contact-image" src={contactEmail.src} />
-                      </div>
-                    </div>
-                    <div className="px-2 text-center">
-                      <h6 className="font-family-quicksand text-semibold">
-                        Email
-                      </h6>
-                      <p className="text-regular">
-                        <Link
-                          className="text-none text-regular mw-150 text-dark"
-                          href={"mailto:adefuyeabayomi16@gmail.com"}
-                        >
-                          adefuyeabayomi16gmail.com
-                        </Link>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      </section>
+
+      <div className={widthControlClass}>
+        <div className="h-px bg-black/[0.06]" />
       </div>
+
+      {/* Why */}
+      <section id="section-2" className={widthControlClass}>
+        <div className="grid items-center gap-10 py-14 lg:grid-cols-2 lg:gap-14">
+          <div className="text-center lg:order-1 lg:text-left">
+            <h2 className="font-quicksand text-[28px] font-semibold leading-tight tracking-[-0.02em] text-royal-ink sm:text-[36px]">
+              TAKE ADVANTAGE OF{" "}
+              <span className="text-royal">MODERN INNOVATIONS</span> AND SPEED UP
+              YOUR BUSINESS OPERATIONS AND EXPOSURE.
+            </h2>
+            <p className="mx-auto mt-5 max-w-xl text-[15px] leading-7 text-ink-muted lg:mx-0">
+              Having a website and a mobile application brings you just clicks
+              away from getting a new client, making a new sale, or getting one
+              more prospect to see your business. Let&apos;s help you get
+              visibility for your business.
+            </p>
+          </div>
+
+          <div className="">
+            <div className="rounded-canvas border border-white/70 p-3 shadow-card">
+              <img
+                src={s2.src}
+                alt="Modern digital innovation"
+                className="h-auto w-full rounded-card object-cover"
+              />
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Services */}
+      <section id="services" className="scroll-mt-24 bg-surface-canvas/60">
+        <div className={widthControlClass}>
+          <div className="py-14 sm:py-16">
+            <div className="mx-auto max-w-2xl text-center">
+              <span className="inline-flex h-7 items-center rounded-full bg-royal/5 px-3 text-[12px] font-medium text-royal">
+                What we do
+              </span>
+              <h2 className="mt-4 font-quicksand text-[30px] font-semibold tracking-[-0.02em] text-royal-ink sm:text-[38px]">
+                OUR <span className="text-royal">SERVICES</span>
+              </h2>
+              <p className="mt-3 text-[15px] leading-7 text-ink-muted">
+                Discover how our suite of services can help you navigate the
+                digital landscape with ease, offering innovative solutions
+                tailored to your unique needs.
+              </p>
+            </div>
+
+            <div className="mt-12 space-y-14 lg:space-y-20">
+              {services.map((service, index) => {
+                const reversed = index % 2 === 1;
+                return (
+                  <div
+                    key={service.title}
+                    className="grid items-center gap-8 lg:grid-cols-2 lg:gap-14"
+                  >
+                    <div
+                      className={cn(
+                        "text-center lg:text-left",
+                        reversed ? "lg:order-2" : "lg:order-1",
+                      )}
+                    >
+                      <h3 className="font-quicksand text-[21px] font-semibold text-royal-ink sm:text-[23px]">
+                        {service.title}
+                      </h3>
+
+                      <ul className="mt-4 list-none space-y-2.5 text-left">
+                        {service.points.map((point) => (
+                          <li
+                            key={point}
+                            className="flex items-start gap-2.5 text-[14px] leading-6 text-ink-muted"
+                          >
+                            <FontAwesomeIcon
+                              icon={faCheck}
+                              className="mt-1.5 h-3 w-3 shrink-0 text-royal"
+                            />
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="mt-6 flex justify-center lg:justify-start">
+                        <Button
+                          type="button"
+                          variant="royalOutline"
+                          shape="pill"
+                          onClick={() =>
+                            service.group
+                              ? router.push(`/pricing#${service.group}`)
+                              : router.push("/bootcamps")
+                          }
+                        >
+                          {service.cta}
+                          <FontAwesomeIcon icon={faArrowRight} className="h-3.5 w-3.5" />
+                        </Button>
+                      </div>
+                    </div>
+
+                    <div className={reversed ? "lg:order-1" : "lg:order-2"}>
+                      <div className="overflow-hidden rounded-container border border-white/70 bg-white p-3 shadow-card">
+                        <img
+                          src={service.image.src}
+                          alt={service.title}
+                          className="h-auto w-full rounded-card object-cover"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className={widthControlClass}>
+        <div className="h-px bg-black/[0.06]" />
+      </div>
+
+      {/* Contact */}
+      <section id="contact" className="scroll-mt-24">
+        <div className={widthControlClass}>
+          <div className="py-14 sm:py-16">
+            <div className="mx-auto max-w-2xl text-center">
+              <span className="inline-flex h-7 items-center rounded-full bg-royal/5 px-3 text-[12px] font-medium text-royal">
+                Contact
+              </span>
+              <h2 className="mt-4 font-quicksand text-[30px] font-semibold tracking-[-0.02em] text-royal-ink sm:text-[38px]">
+                GET IN <span className="text-royal">CONTACT</span>
+              </h2>
+              <p className="mt-3 text-[15px] leading-7 text-ink-muted">
+                Reach us through any of the channels below for enquiries,
+                feedback or complaints.
+              </p>
+            </div>
+
+            <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
+              {contactChannels.map((channel) => (
+                <div
+                  key={channel.label}
+                  className="rounded-container border border-royal/10 bg-white p-6 text-center shadow-card transition-shadow hover:shadow-floating"
+                >
+                  <img
+                    src={channel.image.src}
+                    alt=""
+                    className="mx-auto h-16 w-16 object-contain"
+                  />
+                  <h3 className="mt-4 font-quicksand text-[16px] font-semibold text-royal-ink">
+                    {channel.label}
+                  </h3>
+                  <a
+                    href={channel.href}
+                    className="mt-1 inline-block text-[14px] font-medium text-royal no-underline transition-colors hover:text-royal-dark"
+                  >
+                    {channel.value}
+                  </a>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 rounded-container border border-white/70 bg-surface-canvas p-6 text-center shadow-card">
+              <p className="text-[14px] leading-6 text-ink-muted">
+                Prefer a tailored proposal?{" "}
+                <Link
+                  href="/quotation-request"
+                  className="font-semibold text-royal no-underline transition-colors hover:text-royal-dark"
+                >
+                  Request a quotation
+                </Link>
+                .
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
-};
-
-export default Home;
+}

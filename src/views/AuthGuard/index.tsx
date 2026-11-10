@@ -1,46 +1,43 @@
 "use client";
 
-import React, { useEffect } from "react";
-import "./style.css";
-import { animateScroll as scroll } from "react-scroll";
-import { useDash } from "../../contexts/DashContext";
-import FButtonMain from "../../components/Button/Main";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useDash } from "../../contexts/DashContext";
+import { Button } from "@/components/ui/Button";
+import { LockIcon } from "@/components/ui/icons";
 
-const AuthGuard = (): React.JSX.Element => {
-  let router = useRouter();
+export default function AuthGuard(): React.JSX.Element {
+  const router = useRouter();
+  const { updateDashStatus } = useDash();
 
-  let { updateDashStatus } = useDash();
   useEffect(() => {
     updateDashStatus(false);
-    // Scroll to top when the component mounts
-    scroll.scrollToTop({
-      duration: 1000, // duration of the scrolling animation in milliseconds
-      smooth: "easeInOutQuart", // the type of easing
-    });
-  }, []);
+    window.scrollTo(0, 0);
+  }, [updateDashStatus]);
 
   return (
-    <div className="col-10 col-md-8 col-lg-5 center">
-      <div className="py-5" />
-      <div className="text-center royal-shade-5">
-        <h5 className="text-bold">You are not Logged In.</h5>
-        <p className="text-medium">
-          Please login to access your dashboard and other informations.
+    <main className="flex min-h-[calc(100vh-68px)] items-center justify-center bg-surface-canvas px-4">
+      <div className="w-full max-w-md rounded-container border border-white/70 bg-white/90 p-8 text-center shadow-card backdrop-blur">
+        <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-50 text-brand">
+          <LockIcon className="h-6 w-6" />
+        </span>
+        <h1 className="mt-5 text-2xl font-semibold tracking-tight text-ink">
+          You are not logged in
+        </h1>
+        <p className="mt-2 text-sm leading-6 text-ink-muted">
+          Please sign in to access your dashboard and account information.
         </p>
-      </div>
-      <div className="py-2" />
-      <div className="">
-        <FButtonMain
-          actionFn={() => router.push("/login")}
-          style={{ width: "100%", borderRadius: "30px" }}
+        <Button
+          type="button"
+          variant="primary"
+          size="lg"
+          fullWidth
+          className="mt-6"
+          onClick={() => router.push("/login")}
         >
-          <span className="font-family-quicksand">Login</span>
-        </FButtonMain>
+          Login
+        </Button>
       </div>
-      <div className="py-5" />
-    </div>
+    </main>
   );
-};
-
-export default AuthGuard;
+}
