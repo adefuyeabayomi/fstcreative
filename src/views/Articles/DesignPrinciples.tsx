@@ -26,7 +26,7 @@ const DesignPrinciples = () => {
     <section className="mx-auto w-full max-w-6xl px-4 sm:px-6">
       <div className="py-4" />
 
-      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="w-full">
           <div className="flex flex-wrap">
             <div className="w-max">
@@ -43,7 +43,7 @@ const DesignPrinciples = () => {
           Introduction to Visual Design (II) - Design Principles
         </h1>
       </div>
-      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
           <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
@@ -58,7 +58,7 @@ const DesignPrinciples = () => {
           </p>
         </div>
       </div>
-      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
           <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
@@ -89,7 +89,7 @@ const DesignPrinciples = () => {
           </div>
         </div>
       </div>
-      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
           <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
@@ -121,7 +121,7 @@ const DesignPrinciples = () => {
           </div>
         </div>
       </div>
-      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
           <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
@@ -152,7 +152,7 @@ const DesignPrinciples = () => {
           </div>
         </div>
       </div>
-      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
           <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
@@ -184,7 +184,7 @@ const DesignPrinciples = () => {
           </div>
         </div>
       </div>
-      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
           <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
@@ -203,7 +203,7 @@ const DesignPrinciples = () => {
           </p>
         </div>
       </div>
-      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
           <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
@@ -222,7 +222,7 @@ const DesignPrinciples = () => {
           </p>
         </div>
       </div>
-      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
           <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
@@ -242,7 +242,7 @@ const DesignPrinciples = () => {
           </p>
         </div>
       </div>
-      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
           <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">Scale</h4>
@@ -257,7 +257,7 @@ const DesignPrinciples = () => {
           </p>
         </div>
       </div>
-      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
+      <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_p]:leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-6">
         <div className="py-3" />
         <div>
           <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug"></h4>
