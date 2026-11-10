@@ -3,6 +3,7 @@ import Script from "next/script";
 
 import "../src/externals/bootstrap-grid.min.css";
 import "../src/App.css";
+import "./tailwind.css";
 
 import { Providers } from "@/components/Providers";
 import { AppShell } from "@/components/AppShell";

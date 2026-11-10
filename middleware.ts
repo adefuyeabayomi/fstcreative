@@ -12,8 +12,6 @@ const protectedRoutes = [
   "/chat",
 ];
 
-const authRoutes = ["/login", "/signup", "/forgot-password", "/reset-password"];
-
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
   const token =
@@ -21,11 +19,6 @@ export async function middleware(request: NextRequest) {
     // Legacy cookie from the pre-backend auth flow.
     request.cookies.get("access_token")?.value;
   const isLoggedIn = !!token;
-
-  // Redirect logged-in users away from auth pages
-  if (authRoutes.includes(path) && isLoggedIn) {
-    return NextResponse.redirect(new URL("/dashboard", request.nextUrl.origin));
-  }
 
   // Protect dashboard routes
   if (protectedRoutes.some((route) => path.startsWith(route)) && !isLoggedIn) {

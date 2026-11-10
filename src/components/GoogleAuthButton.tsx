@@ -1,7 +1,5 @@
 "use client";
 
-"use client";
-
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { SocialButton } from "@/components/Button/Main";
 import googleIconSvg from "@/assets/google-logo.png";

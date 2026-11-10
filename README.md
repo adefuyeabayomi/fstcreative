@@ -56,3 +56,30 @@ NEXT_PUBLIC_API_BASE_URL=https://api.example.com
 # Public site URL used for metadata / Open Graph
 NEXT_PUBLIC_SITE_URL=https://fiveandsixtechnologies.com
 ```
+
+## Authentication
+
+Public user auth is handled by `fst_backend` (Express). Next.js proxies `/api/*`
+to it (see `rewrites` in `next.config.js`), so session cookies are first-party.
+
+- **Signup** – first/last name, email, password → emailed 6-digit code → account
+  activated and signed in (`POST /api/v1/user-auth/register`, `/verify-email`).
+- **Login** – email + password → emailed 6-digit code → session
+  (`POST /api/v1/user-auth/login`, `/otp`).
+- **Password recovery** – email → emailed code → new password
+  (`POST /api/v1/user-auth/forgot-password`, `/reset-password`).
+  `/reset-password` redirects to `/forgot-password`; there are no token links.
+- **Google** – Google Identity Services (`@react-oauth/google`) sends an ID token
+  to `POST /api/v1/user-auth/google`, which verifies it with
+  `google-auth-library`, links/creates the user and issues the session.
+
+Sessions are httpOnly cookies (`fst_pa_access` / `fst_pa_refresh`) — no tokens
+are stored in JavaScript. `middleware.ts` protects `/dashboard/*` and `/chat`
+by checking the access cookie.
+
+### Environment
+
+| Variable | Purpose |
+| --- | --- |
+| `API_PROXY_TARGET` | Backend origin for the `/api` rewrite (default `http://localhost:5100`) |
+| `NEXT_PUBLIC_GOOGLE_CLIENT_ID` | Google OAuth client id — must match `GOOGLE_CLIENT_ID` in `fst_backend/.env` |
