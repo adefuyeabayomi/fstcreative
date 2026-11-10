@@ -6,12 +6,14 @@ import { usePathname, useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRight,
+  faBars,
   faBlog,
   faBoxes,
-  faBullseye,
+  faGraduationCap,
   faHome,
   faPhone,
-  faTabletAlt,
+  faTag,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 
 import logo from "../../assets/images/Logo Main.svg";
@@ -85,12 +87,9 @@ const dashboardLinks = [
 const mobileLinks = [
   { label: "Home", href: "/", icon: faHome },
   { label: "Services", href: "/#services", icon: faBoxes },
-  { label: "Exhibits", href: "/exhibits", icon: faBullseye },
-  { label: "Products", href: "/products", icon: faTabletAlt },
-  { label: "Contact", href: "/#contact", icon: faPhone },
+  { label: "Pricing", href: "/pricing", icon: faTag },
   { label: "Blog", href: "/blog", icon: faBlog },
-  { label: "Careers", href: "/careers", icon: faBlog },
-  { label: "Design School", href: "/bootcamps", icon: faBlog },
+  { label: "Bootcamps", href: "/bootcamps", icon: faGraduationCap },
 ];
 
 const iconClass = "h-[18px] w-[18px] object-contain";
@@ -215,32 +214,17 @@ export function Header(): React.JSX.Element {
             aria-controls="mobile-menu"
             className="ml-1 inline-flex h-10 w-10 items-center justify-center rounded-md text-royal transition-colors hover:bg-brand-tint/60 lg:hidden"
           >
-            {isOpen ? (
-              <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6" aria-hidden="true">
-                <path
-                  d="M6 6l12 12M18 6L6 18"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            ) : (
-              <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6" aria-hidden="true">
-                <path
-                  d="M4 7h16M4 12h16M4 17h16"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            )}
+            <FontAwesomeIcon
+              icon={isOpen ? faXmark : faBars}
+              className="h-5 w-5"
+            />
           </button>
         </div>
       </div>
 
       {/* Mobile drawer */}
       <div
-        className={`fixed inset-x-0 bottom-0 top-[68px] z-40 lg:hidden ${
+        className={`fixed inset-0 z-50 lg:hidden ${
           isOpen ? "" : "pointer-events-none"
         }`}
         aria-hidden={!isOpen}
@@ -266,14 +250,7 @@ export function Header(): React.JSX.Element {
               aria-label="Close menu"
               className="inline-flex h-9 w-9 items-center justify-center rounded-md text-royal transition-colors hover:bg-brand-tint/60"
             >
-              <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
-                <path
-                  d="M6 6l12 12M18 6L6 18"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
+              <FontAwesomeIcon icon={faXmark} className="h-4 w-4" />
             </button>
           </div>
 
@@ -321,7 +298,6 @@ export function Header(): React.JSX.Element {
           )}
 
           <div className="px-5 pt-6">
-            <h4 className="font-quicksand text-base font-semibold text-royal-ink">Main Menu</h4>
             <nav aria-label="Mobile navigation" className="mt-3">
               <ul className="font-quicksand text-[15px] font-medium">
                 {mobileLinks.map((item) => (

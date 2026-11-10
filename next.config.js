@@ -1,4 +1,10 @@
 /** @type {import('next').NextConfig} */
+function normaliseProxyTarget(raw) {
+  const value = (raw || "http://localhost:5100").trim();
+  if (!value) return "http://localhost:5100";
+  return /^https?:\/\//i.test(value) ? value : `https://${value}`;
+}
+
 const nextConfig = {
   reactStrictMode: true,
   eslint: {
@@ -14,7 +20,7 @@ const nextConfig = {
    * (cookies are first-party and the dashboard middleware can read them).
    */
   async rewrites() {
-    const target = process.env.API_PROXY_TARGET || "http://localhost:5100";
+    const target = normaliseProxyTarget(process.env.API_PROXY_TARGET);
     return [
       {
         source: "/api/:path*",

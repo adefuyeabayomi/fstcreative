@@ -7,8 +7,16 @@ import { Providers } from "@/components/Providers";
 import { AppShell } from "@/components/AppShell";
 import { getSiteUrl } from "@/lib/siteUrl";
 
+function metadataBaseUrl(): URL {
+  try {
+    return new URL(getSiteUrl());
+  } catch {
+    return new URL("https://fiveandsixtechnologies.com");
+  }
+}
+
 export const metadata: Metadata = {
-  metadataBase: new URL(getSiteUrl()),
+  metadataBase: metadataBaseUrl(),
   title: {
     default: "Five and Six Technologies",
     template: "%s | Five and Six Technologies",
