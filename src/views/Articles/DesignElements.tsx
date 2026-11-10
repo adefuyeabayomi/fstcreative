@@ -43,14 +43,14 @@ const DesignElements = () => {
           </div>
         </div>
         <div className="py-2" />
-        <h1 className="font-bold font-quicksand text-royal-ink">
+        <h1 className="font-bold font-quicksand text-royal-ink text-[28px] leading-tight sm:text-[36px]">
           Introduction to Visual Design (I) - Design Elements
         </h1>
       </div>
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             What is design?
           </h4>
           <p className="py-2 font-medium text-slate-600">
@@ -81,7 +81,7 @@ const DesignElements = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             What are design elements?
           </h4>
           <p className="py-2 font-medium text-slate-600">
@@ -108,7 +108,7 @@ const DesignElements = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">Line</h4>
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">Line</h4>
           <p className="py-2 font-medium text-slate-600">
             A line is a connection between two points. Line are essential in
             designing. They serve many purpose and can be used to create a wide
@@ -138,7 +138,7 @@ const DesignElements = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">Shape</h4>
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">Shape</h4>
           <p className="py-2 font-medium text-slate-600">
             A shape is formed when a line is enclosed. Some common shapes are
             circles, rectangles, triangles. An infinite number of shapes can be
@@ -162,7 +162,7 @@ const DesignElements = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Typography
           </h4>
           <p className="py-2 font-medium text-slate-600">
@@ -190,7 +190,7 @@ const DesignElements = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Fonts And Typeface
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -224,7 +224,7 @@ const DesignElements = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Leading, Kerning and Tracking
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -254,7 +254,7 @@ const DesignElements = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Hierarchy
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -266,7 +266,7 @@ const DesignElements = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Consistency
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -281,7 +281,7 @@ const DesignElements = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Alignment
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -293,7 +293,7 @@ const DesignElements = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">Color</h4>
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">Color</h4>
           <p className="py-2 font-medium text-slate-600">
             Color also known as hue is a quality observed on object surfaces.
             Colors can be combined in very interesting ways to create unique and
@@ -305,7 +305,7 @@ const DesignElements = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Primary (Brand), Secondary, Accent Colors
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -344,7 +344,7 @@ const DesignElements = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Shades, Tints and Tones
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -366,7 +366,7 @@ const DesignElements = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Color Palette
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -391,7 +391,7 @@ const DesignElements = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Color Theory
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -411,7 +411,7 @@ const DesignElements = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">Form</h4>
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">Form</h4>
           <p className="py-2 font-medium text-slate-600">
             Form in design refers to creating a sense of realism by using
             three-dimensional objects. It allows flat, 2D designs to appear more
@@ -446,7 +446,7 @@ const DesignElements = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Texture
           </h4>
           <p className="py-2 font-medium text-slate-600">
@@ -479,7 +479,7 @@ const DesignElements = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">Space</h4>
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">Space</h4>
           <p className="py-2 font-medium text-slate-600">
             Also know as whitespace or negative space. Space in design is
             necessary to ensure the design is not cluttered. A cluttered design

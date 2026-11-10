@@ -31,19 +31,19 @@ const TempArticle = (): React.JSX.Element => {
           </div>
         </div>
         <div className="py-2" />
-        <h1 className="font-bold font-quicksand text-royal-ink">
+        <h1 className="font-bold font-quicksand text-royal-ink text-[28px] leading-tight sm:text-[36px]">
           Introduction to Visual Design (I) - Design Elements
         </h1>
       </div>
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold"></h4>
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug"></h4>
           <p className="py-2 font-medium text-slate-600"></p>
           <div className="w-full">
             <div className="flex flex-wrap gap-4 items-center">
-              <div className="w-full md:w-1/2"></div>
-              <div className="w-full md:w-1/2"></div>
+              <div className="w-full md:w-[calc(50%-0.5rem)]"></div>
+              <div className="w-full md:w-[calc(50%-0.5rem)]"></div>
             </div>
           </div>
           <ul className="text-[15px] font-medium text-slate-600">

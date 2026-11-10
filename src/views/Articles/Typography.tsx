@@ -39,7 +39,7 @@ const Typography = (): React.JSX.Element => {
           </div>
         </div>
         <div className="py-2" />
-        <h1 className="font-bold font-quicksand text-royal-ink">
+        <h1 className="font-bold font-quicksand text-royal-ink text-[28px] leading-tight sm:text-[36px]">
           Introduction to Visual Design (I) - Design Elements
         </h1>
       </div>
@@ -47,10 +47,10 @@ const Typography = (): React.JSX.Element => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Introduction to Typography
           </h4>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             What is Typography?
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -58,7 +58,7 @@ const Typography = (): React.JSX.Element => {
             visually appealing and readable. It includes everything from font
             choice to line spacing, impacting how information is communicated.
           </p>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Importance of Typography in Design
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -69,8 +69,8 @@ const Typography = (): React.JSX.Element => {
           </p>
           <div className="w-full">
             <div className="flex flex-wrap gap-4 items-center">
-              <div className="w-full md:w-1/2"></div>
-              <div className="w-full md:w-1/2"></div>
+              <div className="w-full md:w-[calc(50%-0.5rem)]"></div>
+              <div className="w-full md:w-[calc(50%-0.5rem)]"></div>
             </div>
           </div>
         </div>
@@ -78,10 +78,10 @@ const Typography = (): React.JSX.Element => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Elements of Typography
           </h4>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Fonts and Typefaces
           </h6>
 
@@ -106,14 +106,14 @@ const Typography = (): React.JSX.Element => {
               </div>
             </div>
           </div>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Font Size and Scale{" "}
           </h6>
           <p className="py-2 font-medium text-slate-600">
             Appropriate font size and scale enhance readability, especially on
             digital platforms where screens vary in size.
           </p>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Leading, Kerning, and Tracking{" "}
           </h6>
 
@@ -141,8 +141,8 @@ const Typography = (): React.JSX.Element => {
           </div>
           <div className="w-full">
             <div className="flex flex-wrap gap-4 items-center">
-              <div className="w-full md:w-1/2"></div>
-              <div className="w-full md:w-1/2"></div>
+              <div className="w-full md:w-[calc(50%-0.5rem)]"></div>
+              <div className="w-full md:w-[calc(50%-0.5rem)]"></div>
             </div>
           </div>
         </div>
@@ -150,10 +150,10 @@ const Typography = (): React.JSX.Element => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Typography Classifications
           </h4>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Serif, Sans Serif, and Slab Serif
           </h6>
 
@@ -173,7 +173,7 @@ const Typography = (): React.JSX.Element => {
             </li>
           </ul>
 
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Script, Display and Decorative
           </h6>
 
@@ -200,7 +200,7 @@ const Typography = (): React.JSX.Element => {
             </div>
           </div>
 
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Monospace and Modern Fonts
           </h6>
 
@@ -224,11 +224,11 @@ const Typography = (): React.JSX.Element => {
             </div>
           </div>
 
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Typography in UI/UX DesignFont Size and Scale{" "}
           </h4>
 
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Enhancing Readability and User Experience{" "}
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -237,7 +237,7 @@ const Typography = (): React.JSX.Element => {
             UI/UX as it prevents user frustration and supports a seamless
             experience.
           </p>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Visual Hierarchy and Emphasis.
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -245,7 +245,7 @@ const Typography = (): React.JSX.Element => {
             color. Larger or bolder fonts signal important information, guiding
             users’ focus through a design.
           </p>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Accessibility Considerations.{" "}
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -255,8 +255,8 @@ const Typography = (): React.JSX.Element => {
 
           <div className="w-full">
             <div className="flex flex-wrap gap-4 items-center">
-              <div className="w-full md:w-1/2"></div>
-              <div className="w-full md:w-1/2"></div>
+              <div className="w-full md:w-[calc(50%-0.5rem)]"></div>
+              <div className="w-full md:w-[calc(50%-0.5rem)]"></div>
             </div>
           </div>
         </div>
@@ -264,10 +264,10 @@ const Typography = (): React.JSX.Element => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Best Practices in Typography
           </h4>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Consistency and Legibility
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -275,14 +275,14 @@ const Typography = (): React.JSX.Element => {
             design. Legibility ensures that text is easy to read, regardless of
             screen size or resolution.
           </p>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Using White Space Effectively
           </h6>
           <p className="py-2 font-medium text-slate-600">
             White space, or negative space, around text and elements gives the
             design breathing room, preventing clutter and enhancing readability.
           </p>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Pairing Fonts and Creating Contrast
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -293,8 +293,8 @@ const Typography = (): React.JSX.Element => {
 
           <div className="w-full">
             <div className="flex flex-wrap gap-4 items-center">
-              <div className="w-full md:w-1/2"></div>
-              <div className="w-full md:w-1/2"></div>
+              <div className="w-full md:w-[calc(50%-0.5rem)]"></div>
+              <div className="w-full md:w-[calc(50%-0.5rem)]"></div>
             </div>
           </div>
         </div>
@@ -302,17 +302,17 @@ const Typography = (): React.JSX.Element => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Common Mistakes in Typography
           </h4>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Overuse of Fonts
           </h6>
           <p className="py-2 font-medium text-slate-600">
             Using too many fonts can make designs appear chaotic. Limit font
             choices to one or two that work well together.
           </p>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Insufficient Line Spacing
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -320,7 +320,7 @@ const Typography = (): React.JSX.Element => {
             Generous spacing enhances comfort and flow, especially in
             paragraphs.
           </p>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Ignoring Mobile Responsiveness
           </h6>
           <p className="py-2 font-medium text-slate-600">

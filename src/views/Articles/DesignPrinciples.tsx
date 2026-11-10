@@ -39,14 +39,14 @@ const DesignPrinciples = () => {
           </div>
         </div>
         <div className="py-2" />
-        <h1 className="font-bold font-quicksand text-royal-ink">
+        <h1 className="font-bold font-quicksand text-royal-ink text-[28px] leading-tight sm:text-[36px]">
           Introduction to Visual Design (II) - Design Principles
         </h1>
       </div>
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             What are design principles?
           </h4>
           <p className="py-2 font-medium text-slate-600">
@@ -61,7 +61,7 @@ const DesignPrinciples = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Unity and Variety
           </h4>
           <p className="py-2 font-medium text-slate-600">
@@ -92,7 +92,7 @@ const DesignPrinciples = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Balance
           </h4>
           <p className="py-2 font-medium text-slate-600">
@@ -124,7 +124,7 @@ const DesignPrinciples = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Contrast
           </h4>
           <p className="py-2 font-medium text-slate-600">
@@ -155,7 +155,7 @@ const DesignPrinciples = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Spacing & Proximity
           </h4>
           <p className="py-2 font-medium text-slate-600">
@@ -187,7 +187,7 @@ const DesignPrinciples = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Hierarchy
           </h4>
           <p className="py-2 font-medium text-slate-600">
@@ -206,7 +206,7 @@ const DesignPrinciples = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Emphasis
           </h4>
           <p className="py-2 font-medium text-slate-600">
@@ -225,7 +225,7 @@ const DesignPrinciples = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Repetition
           </h4>
           <p className="py-2 font-medium text-slate-600">
@@ -245,7 +245,7 @@ const DesignPrinciples = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">Scale</h4>
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">Scale</h4>
           <p className="py-2 font-medium text-slate-600">
             Scale refers to the size of elements in relation to one another.
             Imagine designing an Instagram post for a clothing sale. If the
@@ -260,7 +260,7 @@ const DesignPrinciples = () => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold"></h4>
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug"></h4>
           <p className="py-2 font-medium text-slate-600"></p>
           <p className="py-2 font-medium text-slate-600"></p>
           <p className="py-2 font-medium text-slate-600"></p>

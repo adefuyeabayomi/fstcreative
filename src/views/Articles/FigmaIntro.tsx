@@ -40,14 +40,14 @@ const FigmaIntro = (): React.JSX.Element => {
           </div>
         </div>
         <div className="py-2" />
-        <h1 className="font-bold font-quicksand text-royal-ink">
+        <h1 className="font-bold font-quicksand text-royal-ink text-[28px] leading-tight sm:text-[36px]">
           Introduction to Visual Design (I) - Design Elements
         </h1>
       </div>
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             What is Figma?
           </h4>
           <p className="py-2 font-medium text-slate-600">
@@ -70,7 +70,7 @@ const FigmaIntro = (): React.JSX.Element => {
             </div>
           </div>
           <div className="py-3" />
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Why Use Figma?
           </h6>
 
@@ -108,10 +108,10 @@ const FigmaIntro = (): React.JSX.Element => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl text-slate-800">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Getting Started
           </h4>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Setting Up A Figma Account.
           </h6>
 
@@ -135,7 +135,7 @@ const FigmaIntro = (): React.JSX.Element => {
             </div>
           </div>
           <div className="py-3" />
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             The Figma Interface
           </h6>
           <dl>
@@ -198,7 +198,7 @@ const FigmaIntro = (): React.JSX.Element => {
 
           <p className="py-2 font-medium text-slate-600"></p>
 
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Navigating the canvas
           </h6>
           <dl>
@@ -226,7 +226,7 @@ const FigmaIntro = (): React.JSX.Element => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl text-slate-800">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Basic Tools and Functions
           </h4>
           <p className="py-2 font-medium text-slate-600">
@@ -244,7 +244,7 @@ const FigmaIntro = (): React.JSX.Element => {
           </p>
           <p className="py-2 font-medium text-slate-600"></p>
           <p className="py-2 font-medium text-slate-600"></p>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Shapes and Lines
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -264,7 +264,7 @@ const FigmaIntro = (): React.JSX.Element => {
             </div>
           </div>
           <div className="py-3" />
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Pen Tool and Bezier Curves
           </h6>
           <dl>
@@ -283,7 +283,7 @@ const FigmaIntro = (): React.JSX.Element => {
               is particularly useful for creating organic and intricate shapes.
             </dd>
           </dl>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Text Tool
           </h6>
           <dl>
@@ -312,10 +312,10 @@ const FigmaIntro = (): React.JSX.Element => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl text-slate-800">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Working with Colors and Styles
           </h4>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Color Picker and Fill Options
           </h6>
 
@@ -348,7 +348,7 @@ const FigmaIntro = (): React.JSX.Element => {
             </div>
           </div>
           <div className="py-3" />
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Creating Styles
           </h6>
 
@@ -374,7 +374,7 @@ const FigmaIntro = (): React.JSX.Element => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl text-slate-800">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Layer Management
           </h4>
           <p className="py-2 font-medium text-slate-600">
@@ -388,7 +388,7 @@ const FigmaIntro = (): React.JSX.Element => {
             on top of one another, with those at the top appearing in front
             visually, which helps create depth and structure.
           </p>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Organizing Layers
           </h6>
 
@@ -410,7 +410,7 @@ const FigmaIntro = (): React.JSX.Element => {
             </dd>
           </dl>
 
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Layer Visibility and Locking
           </h6>
 
@@ -436,10 +436,10 @@ const FigmaIntro = (): React.JSX.Element => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl text-slate-800">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Components and Reusability
           </h4>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Creating Components
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -450,7 +450,7 @@ const FigmaIntro = (): React.JSX.Element => {
             maintain consistency and saves time, as changes made to the main
             component (master) update all instances of it.
           </p>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Using and Updating Components
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -482,7 +482,7 @@ const FigmaIntro = (): React.JSX.Element => {
             </dd>
           </dl>
 
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Layer Visibility and Locking
           </h6>
 
@@ -507,10 +507,10 @@ const FigmaIntro = (): React.JSX.Element => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl text-slate-800">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Exporting Designs
           </h4>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Exporting Assets
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -520,7 +520,7 @@ const FigmaIntro = (): React.JSX.Element => {
             developers or clients. Select the item and use the “Export” option
             to choose your format and scale.
           </p>
-          <h6 className="font-quicksand text-slate-800 font-semibold">
+          <h6 className="font-quicksand text-slate-800 font-semibold text-[17px] leading-snug">
             Export Settings
           </h6>
           <p className="py-2 font-medium text-slate-600">

@@ -46,14 +46,14 @@ const ColorTheory = (): React.JSX.Element => {
           </div>
         </div>
         <div className="py-2" />
-        <h1 className="font-bold font-quicksand text-royal-ink">
+        <h1 className="font-bold font-quicksand text-royal-ink text-[28px] leading-tight sm:text-[36px]">
           Introduction to Visual Design (I) - Design Elements
         </h1>
       </div>
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Color Theory
           </h4>
           <p className="py-2 font-medium text-slate-600">
@@ -76,7 +76,7 @@ const ColorTheory = (): React.JSX.Element => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Hue, Saturation and Value
           </h4>
           <p className="py-2 font-medium text-slate-600">
@@ -130,7 +130,7 @@ const ColorTheory = (): React.JSX.Element => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             The Color Wheel
           </h4>
           <p className="py-2 font-medium text-slate-600">
@@ -144,7 +144,7 @@ const ColorTheory = (): React.JSX.Element => {
             tertiary colors
           </p>
 
-          <h6 className="font-quicksand text-slate-800 font-medium">
+          <h6 className="font-quicksand text-slate-800 font-medium text-[17px] leading-snug">
             Primary Colors:
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -152,7 +152,7 @@ const ColorTheory = (): React.JSX.Element => {
             colors. They are red, blue, and yellow.
           </p>
 
-          <h6 className="font-quicksand text-slate-800 font-medium">
+          <h6 className="font-quicksand text-slate-800 font-medium text-[17px] leading-snug">
             Secondary Colors
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -161,7 +161,7 @@ const ColorTheory = (): React.JSX.Element => {
             blue).
           </p>
 
-          <h6 className="font-quicksand text-slate-800 font-medium">
+          <h6 className="font-quicksand text-slate-800 font-medium text-[17px] leading-snug">
             Tertiary Colors
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -192,7 +192,7 @@ const ColorTheory = (): React.JSX.Element => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Color Relationships on the Wheel - The Color Schemes and Harmonies
           </h4>
           <p className="py-2 font-medium text-slate-600">
@@ -200,14 +200,14 @@ const ColorTheory = (): React.JSX.Element => {
             designer chooses these colors according to principles of color
             theory
           </p>
-          <h6 className="font-quicksand text-slate-800 font-medium">
+          <h6 className="font-quicksand text-slate-800 font-medium text-[17px] leading-snug">
             Complementary Colors
           </h6>
           <p className="py-2 font-medium text-slate-600">
             Colors that are opposite each other on the color wheel. They create
             high contrast and make each other stand out.
           </p>
-          <h6 className="font-quicksand text-slate-800 font-medium">
+          <h6 className="font-quicksand text-slate-800 font-medium text-[17px] leading-snug">
             Analogous Colors
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -225,14 +225,14 @@ const ColorTheory = (): React.JSX.Element => {
               </div>
             </div>
           </div>
-          <h6 className="font-quicksand text-slate-800 font-medium">
+          <h6 className="font-quicksand text-slate-800 font-medium text-[17px] leading-snug">
             Triadic Colors
           </h6>
           <p className="py-2 font-medium text-slate-600">
             These are colors evenly spaced around the wheel, forming a triangle.
             They tend to be vibrant, even if you use pale or muted versions.
           </p>
-          <h6 className="font-quicksand text-slate-800 font-medium">
+          <h6 className="font-quicksand text-slate-800 font-medium text-[17px] leading-snug">
             Split-Complementary Colors:
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -251,7 +251,7 @@ const ColorTheory = (): React.JSX.Element => {
               </div>
             </div>
           </div>
-          <h6 className="font-quicksand text-slate-800 font-medium">
+          <h6 className="font-quicksand text-slate-800 font-medium text-[17px] leading-snug">
             Monochromatic Colors
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -259,7 +259,7 @@ const ColorTheory = (): React.JSX.Element => {
             hue. It’s a subtle and cohesive way to create depth and visual
             interest.
           </p>
-          <h6 className="font-quicksand text-slate-800 font-medium">
+          <h6 className="font-quicksand text-slate-800 font-medium text-[17px] leading-snug">
             Tetradic (Double-Complementary) Colors
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -277,7 +277,7 @@ const ColorTheory = (): React.JSX.Element => {
               </div>
             </div>
           </div>
-          <h6 className="font-quicksand text-slate-800 font-medium">
+          <h6 className="font-quicksand text-slate-800 font-medium text-[17px] leading-snug">
             Square Color Scheme
           </h6>
           <p className="py-2 font-medium text-slate-600">
@@ -292,14 +292,14 @@ const ColorTheory = (): React.JSX.Element => {
               </div>
             </div>
           </div>
-          <h6 className="font-quicksand text-slate-800 font-medium"></h6>
+          <h6 className="font-quicksand text-slate-800 font-medium text-[17px] leading-snug"></h6>
           <p className="py-2 font-medium text-slate-600"></p>
         </div>
       </div>
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Color Harmony
           </h4>
           <p className="py-2 font-medium text-slate-600">
@@ -310,7 +310,7 @@ const ColorTheory = (): React.JSX.Element => {
             their impact on the overall design.
           </p>
           <div className="py-2" />
-          <h6 className="font-quicksand text-slate-800 font-medium">
+          <h6 className="font-quicksand text-slate-800 font-medium text-[17px] leading-snug">
             How to Apply Color Harmony in Design
           </h6>
 
@@ -358,7 +358,7 @@ const ColorTheory = (): React.JSX.Element => {
       <div className="mx-auto w-full max-w-3xl px-0 sm:px-2 md:px-4 lg:px-5 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl">
         <div className="py-3" />
         <div>
-          <h4 className="font-quicksand text-slate-800 font-semibold">
+          <h4 className="font-quicksand text-slate-800 font-semibold text-[20px] leading-snug">
             Color Psychology
           </h4>
           <p className="py-2 font-medium text-slate-600">
