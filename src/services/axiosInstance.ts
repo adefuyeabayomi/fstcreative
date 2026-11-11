@@ -1,24 +1,46 @@
-import axios from "axios";
+import axios, { AxiosError, type InternalAxiosRequestConfig } from "axios";
 
-const localUrl = "http://localhost:3000";
-const productionURL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.denateonlineservice.com";
+/**
+ * Shared client for remaining dashboard services. Relative URLs pass through
+ * the Next.js /api rewrite, keeping httpOnly auth cookies first-party.
+ */
+export const axiosInstance = axios.create({
+  baseURL: "",
+  withCredentials: true,
+  headers: { "Content-Type": "application/json" },
+});
 
-function backendUrl() {
-  // During server-side rendering `window` is not available.
-  if (typeof window === "undefined") {
-    return productionURL;
-  }
+type RetryConfig = InternalAxiosRequestConfig & { _authRetried?: boolean };
+let refreshInFlight: Promise<unknown> | null = null;
 
-  const hostname = window.location.hostname;
-  return hostname === "localhost" || hostname === "127.0.0.1"
-    ? localUrl
-    : productionURL;
+function refreshSession() {
+  refreshInFlight ??= axios
+    .post(
+      "/api/v1/user-auth/refresh",
+      {},
+      { withCredentials: true, headers: { "Content-Type": "application/json" } },
+    )
+    .finally(() => {
+      refreshInFlight = null;
+    });
+  return refreshInFlight;
 }
 
-export const axiosInstance = axios.create({
-  baseURL: backendUrl(),
-  headers: {
-    "Content-Type": "application/json", // Set the content type to JSON
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  async (error: AxiosError) => {
+    const config = error.config as RetryConfig | undefined;
+    const isAuthRequest = config?.url?.includes("/user-auth/");
+    if (error.response?.status === 401 && config && !config._authRetried && !isAuthRequest) {
+      config._authRetried = true;
+      try {
+        await refreshSession();
+        return axiosInstance.request(config);
+      } catch (refreshError) {
+        window.dispatchEvent(new Event("fst:user-session-expired"));
+        return Promise.reject(refreshError);
+      }
+    }
+    return Promise.reject(error);
   },
-});
+);

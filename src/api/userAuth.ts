@@ -31,7 +31,13 @@ interface Envelope<T> {
 
 const BASE = "/api/v1/user-auth";
 
-async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
+class ApiError extends Error {
+  constructor(message: string, readonly status: number) {
+    super(message);
+  }
+}
+
+async function requestRaw<T>(path: string, init: RequestInit = {}): Promise<T> {
   const response = await fetch(`${BASE}${path}`, {
     credentials: "include",
     headers: {
@@ -49,12 +55,54 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
   }
 
   if (!response.ok || !payload?.success) {
-    throw new Error(
+    throw new ApiError(
       payload?.error || payload?.message || `Request failed (${response.status})`,
+      response.status,
     );
   }
 
   return payload.data;
+}
+
+const noRefreshPaths = new Set([
+  "/register",
+  "/verify-email",
+  "/resend-otp",
+  "/login",
+  "/otp",
+  "/google",
+  "/refresh",
+  "/logout",
+  "/forgot-password",
+  "/reset-password",
+]);
+
+let refreshInFlight: Promise<unknown> | null = null;
+
+function refreshSession() {
+  refreshInFlight ??= requestRaw("/refresh", { method: "POST", body: "{}" })
+    .finally(() => {
+      refreshInFlight = null;
+    });
+  return refreshInFlight;
+}
+
+/** Retry protected API requests once after silently rotating the session. */
+async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
+  try {
+    return await requestRaw<T>(path, init);
+  } catch (error) {
+    if (!(error instanceof ApiError) || error.status !== 401 || noRefreshPaths.has(path)) {
+      throw error;
+    }
+    try {
+      await refreshSession();
+    } catch (refreshError) {
+      window.dispatchEvent(new Event("fst:user-session-expired"));
+      throw refreshError;
+    }
+    return requestRaw<T>(path, init);
+  }
 }
 
 export const userAuthApi = {
@@ -95,20 +143,9 @@ export const userAuthApi = {
       body: JSON.stringify({ idToken }),
     }),
 
-  me: async () => {
-    try {
-      return await request<{ user: SessionUser }>("/me");
-    } catch {
-      // The access cookie is short lived; try a silent refresh once.
-      await request<{ user: SessionUser }>("/refresh", {
-        method: "POST",
-        body: "{}",
-      });
-      return request<{ user: SessionUser }>("/me");
-    }
-  },
+  me: () => request<{ user: SessionUser }>("/me"),
 
-  refresh: () => request<{ user: SessionUser }>("/refresh", { method: "POST", body: "{}" }),
+  refresh: () => requestRaw<{ user: SessionUser }>("/refresh", { method: "POST", body: "{}" }),
 
   logout: () => request<{ message: string }>("/logout", { method: "POST", body: "{}" }),
 

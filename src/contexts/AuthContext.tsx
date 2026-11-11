@@ -67,6 +67,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
+  useEffect(() => {
+    const expire = () => setUser(null);
+    window.addEventListener("fst:user-session-expired", expire);
+    return () => window.removeEventListener("fst:user-session-expired", expire);
+  }, []);
+
   const login = useCallback(async (email: string, password: string) => {
     const result = await userAuthApi.login(email, password);
     // The backend always requires the emailed OTP for password sign-in.
