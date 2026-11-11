@@ -1,5 +1,5 @@
 import Link from "next/link";
-import logoBlue from "../../assets/images/logo-blue.svg";
+import logoWhite from "../../assets/images/logo-white.svg";
 import { widthControlClass } from "@/styles/widthControl";
 import { cn } from "@/lib/cn";
 
@@ -68,9 +68,9 @@ export function Footer(): React.JSX.Element {
             <div className="rounded-container border border-white/10 bg-white/[0.03] p-6 text-center">
               <Link href="/" aria-label="Five and Six Technologies — home">
                 <img
-                  src={logoBlue.src}
+                  src={logoWhite.src}
                   alt="Five and Six Technologies"
-                  className="mx-auto h-20 w-20 object-contain"
+                  className="mx-auto w-[200px] object-contain"
                 />
               </Link>
               <p className="mt-4 text-sm font-semibold">Five and Six Technologies</p>

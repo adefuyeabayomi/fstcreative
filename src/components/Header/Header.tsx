@@ -132,7 +132,7 @@ export function Header(): React.JSX.Element {
             <img
               src={logo.src}
               alt="Five and Six Technologies"
-              className="h-[22px] w-auto"
+              className="h-[50px] w-auto"
             />
           </Link>
 
